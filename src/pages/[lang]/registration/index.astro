@@ -1,0 +1,65 @@
+---
+import Footer from '../../../components/site/Footer.astro';
+import Header from '../../../components/site/Header.astro';
+import type { Locale } from '../../../data/types';
+import Layout from '../../../layouts/Layout.astro';
+import { locales, siteConfig } from '../../../lib/site';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const locale = Astro.params.lang as Locale;
+const copy = {
+  en: {
+    title: 'Registration',
+    intro: 'This route shell points attendees toward the external registration flow while the full content page is prepared.',
+    cta: 'Open registration form',
+    section: 'What this page will add',
+    cards: [
+      'Eligibility, timing, and attendance notes for invited participants.',
+      'The external form handoff for registration capture.',
+      'Practical reminders before completing the submission.',
+    ],
+  },
+  it: {
+    title: 'Registrazione',
+    intro: 'Questa shell indirizza i partecipanti verso il form esterno mentre viene completata la pagina definitiva.',
+    cta: 'Apri il modulo di registrazione',
+    section: 'Cosa aggiungera questa pagina',
+    cards: [
+      'Requisiti, tempistiche e note di partecipazione per gli invitati.',
+      'Il passaggio al form esterno per la raccolta delle registrazioni.',
+      'Promemoria pratici prima dell invio della candidatura.',
+    ],
+  },
+}[locale];
+---
+
+<Layout locale={locale} title={`${copy.title} | COMPASS`} description={copy.intro}>
+  <Header locale={locale} />
+  <main class="page-shell">
+    <section class="page-hero container">
+      <div class="page-hero__content">
+        <p class="eyebrow">COMPASS</p>
+        <h1>{copy.title}</h1>
+        <p class="page-lead">{copy.intro}</p>
+
+        <div class="page-actions">
+          <a class="btn-primary" href={siteConfig.registrationUrl} target="_blank" rel="noreferrer">
+            {copy.cta}
+          </a>
+        </div>
+      </div>
+      <aside class="page-hero__meta">
+        <p class="page-meta__label">{copy.section}</p>
+        <ul class="page-meta__list">
+          {copy.cards.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </aside>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</Layout>

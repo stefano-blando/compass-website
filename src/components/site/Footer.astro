@@ -1,0 +1,42 @@
+---
+import { buildLocalizedPath, getLabels, siteConfig } from '../../lib/site';
+import type { Locale } from '../../data/types';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props as Props;
+const labels = getLabels(locale);
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__grid">
+    <div>
+      <p class="site-footer__eyebrow">COMPASS</p>
+      <p>{siteConfig.fullTitle}</p>
+      <p>{siteConfig.eventDate}</p>
+      <p>{siteConfig.venue}</p>
+    </div>
+
+    <div>
+      <p class="site-footer__eyebrow">{locale === 'it' ? 'Navigazione' : 'Navigation'}</p>
+      <ul>
+        <li><a href={buildLocalizedPath(locale)}>{labels.home}</a></li>
+        <li><a href={buildLocalizedPath(locale, 'programme')}>{labels.programme}</a></li>
+        <li><a href={buildLocalizedPath(locale, 'speakers')}>{labels.speakers}</a></li>
+        <li><a href={buildLocalizedPath(locale, 'registration')}>{labels.registration}</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="site-footer__eyebrow">{locale === 'it' ? 'Contatti' : 'Contact'}</p>
+      <p><a href="mailto:compass-workshop@example.org">compass-workshop@example.org</a></p>
+      <p>
+        <a href={siteConfig.registrationUrl} target="_blank" rel="noreferrer">
+          {locale === 'it' ? 'Modulo di registrazione esterno' : 'External registration form'}
+        </a>
+      </p>
+    </div>
+  </div>
+</footer>

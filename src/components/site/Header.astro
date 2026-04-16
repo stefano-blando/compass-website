@@ -1,0 +1,53 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import { buildLocalizedPath, getLabels, siteConfig } from '../../lib/site';
+import type { Locale } from '../../data/types';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props as Props;
+const labels = getLabels(locale);
+const currentPath = Astro.url.pathname;
+
+const links = [
+  { key: 'programme', href: buildLocalizedPath(locale, 'programme'), label: labels.programme },
+  { key: 'speakers', href: buildLocalizedPath(locale, 'speakers'), label: labels.speakers },
+  { key: 'venue', href: buildLocalizedPath(locale, 'venue'), label: labels.venue },
+  { key: 'registration', href: buildLocalizedPath(locale, 'registration'), label: labels.registration },
+  { key: 'about', href: buildLocalizedPath(locale, 'about'), label: labels.about },
+  { key: 'organizers', href: buildLocalizedPath(locale, 'organizers'), label: labels.organizers },
+  { key: 'faq', href: buildLocalizedPath(locale, 'faq'), label: labels.faq },
+];
+
+function isActive(href: string) {
+  return currentPath === href;
+}
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a href={buildLocalizedPath(locale)} class="site-brand">
+      <span class="site-brand__wordmark">{siteConfig.name}</span>
+      <span class="site-brand__subline">{siteConfig.eventDate} · Pisa</span>
+    </a>
+
+    <nav aria-label="Main navigation" class="site-nav">
+      <ul>
+        {links.map((link) => (
+          <li>
+            <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <LanguageSwitcher locale={locale} />
+      <a href={buildLocalizedPath(locale, 'registration')} class="btn-primary">{labels.register}</a>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,32 @@
+---
+import { buildLocalizedPath, locales } from '../../lib/site';
+import type { Locale } from '../../data/types';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props as Props;
+const currentPath = Astro.url.pathname;
+const segments = currentPath.split('/').filter(Boolean);
+const currentSubpath = locales.includes(segments[0] as Locale) ? segments.slice(1).join('/') : '';
+
+const options = locales.map((lang) => ({
+  lang,
+  href: buildLocalizedPath(lang, currentSubpath),
+}));
+---
+
+<div class="language-switcher" aria-label="Language switcher">
+  {options.map((option) => (
+    <a
+      class="language-switcher__link"
+      href={option.href}
+      hreflang={option.lang}
+      lang={option.lang}
+      aria-current={option.lang === locale ? 'page' : undefined}
+    >
+      {option.lang.toUpperCase()}
+    </a>
+  ))}
+</div>

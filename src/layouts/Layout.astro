@@ -1,23 +1,29 @@
 ---
 import '../styles/global.css';
+import type { Locale } from '../data/types';
 
 interface Props {
-  title?: string;
+  title: string;
+  description: string;
+  locale: Locale;
 }
 
-const { title = 'SummitFlow' } = Astro.props;
+const { title, description, locale } = Astro.props as Props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={locale}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Premium event landing template built with Astro, Tailwind, Motion, and Vue." />
-    <meta name="theme-color" content="#c4502f" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#7e2434" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
   <body>

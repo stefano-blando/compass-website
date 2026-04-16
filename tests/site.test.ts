@@ -14,6 +14,38 @@ describe('site helpers', () => {
     expect(locales).toEqual(['en', 'it']);
   });
 
+  it('builds expected top-level routes', () => {
+    const routes = locales.flatMap((locale) => [
+      buildLocalizedPath(locale),
+      buildLocalizedPath(locale, 'programme'),
+      buildLocalizedPath(locale, 'speakers'),
+      buildLocalizedPath(locale, 'registration'),
+      buildLocalizedPath(locale, 'venue'),
+      buildLocalizedPath(locale, 'about'),
+      buildLocalizedPath(locale, 'organizers'),
+      buildLocalizedPath(locale, 'faq'),
+    ]);
+
+    expect(routes).toEqual([
+      '/en/',
+      '/en/programme/',
+      '/en/speakers/',
+      '/en/registration/',
+      '/en/venue/',
+      '/en/about/',
+      '/en/organizers/',
+      '/en/faq/',
+      '/it/',
+      '/it/programme/',
+      '/it/speakers/',
+      '/it/registration/',
+      '/it/venue/',
+      '/it/about/',
+      '/it/organizers/',
+      '/it/faq/',
+    ]);
+  });
+
   it('builds localized paths and collapses duplicate slashes', () => {
     expect(buildLocalizedPath('en', '/programme')).toBe('/en/programme/');
     expect(buildLocalizedPath('it', 'registration')).toBe('/it/registration/');
