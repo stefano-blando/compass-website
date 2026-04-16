@@ -1,6 +1,6 @@
 ---
 import LanguageSwitcher from './LanguageSwitcher.astro';
-import { buildLocalizedPath, getLabels, siteConfig } from '../../lib/site';
+import { buildLocalizedPath, getChromeLabels, getLabels, siteConfig } from '../../lib/site';
 import type { Locale } from '../../data/types';
 
 interface Props {
@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { locale } = Astro.props as Props;
+const chrome = getChromeLabels(locale);
 const labels = getLabels(locale);
 const currentPath = Astro.url.pathname;
 
@@ -33,7 +34,7 @@ function isActive(href: string) {
       <span class="site-brand__subline">{siteConfig.eventDate} · Pisa</span>
     </a>
 
-    <nav aria-label="Main navigation" class="site-nav">
+    <nav aria-label={chrome.mainNavigation} class="site-nav">
       <ul>
         {links.map((link) => (
           <li>

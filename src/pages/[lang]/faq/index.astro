@@ -3,13 +3,14 @@ import Footer from '../../../components/site/Footer.astro';
 import Header from '../../../components/site/Header.astro';
 import type { Locale } from '../../../data/types';
 import Layout from '../../../layouts/Layout.astro';
-import { locales } from '../../../lib/site';
+import { getPageMetadata, locales } from '../../../lib/site';
 
 export function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
 }
 
 const locale = Astro.params.lang as Locale;
+const pageMeta = getPageMetadata(locale, 'faq');
 const copy = {
   en: {
     title: 'FAQ',
@@ -34,7 +35,7 @@ const copy = {
 }[locale];
 ---
 
-<Layout locale={locale} title={`${copy.title} | COMPASS`} description={copy.intro}>
+<Layout locale={locale} title={pageMeta.title} description={pageMeta.description}>
   <Header locale={locale} />
   <main class="page-shell">
     <section class="page-hero container">

@@ -1,5 +1,5 @@
 ---
-import { buildLocalizedPath, getLabels, siteConfig } from '../../lib/site';
+import { buildLocalizedPath, getLabels, getSiteIdentity, siteConfig } from '../../lib/site';
 import type { Locale } from '../../data/types';
 
 interface Props {
@@ -8,13 +8,14 @@ interface Props {
 
 const { locale } = Astro.props as Props;
 const labels = getLabels(locale);
+const identity = getSiteIdentity(locale);
 ---
 
 <footer class="site-footer">
   <div class="container site-footer__grid">
     <div>
       <p class="site-footer__eyebrow">COMPASS</p>
-      <p>{siteConfig.fullTitle}</p>
+      <p>{identity.fullTitle}</p>
       <p>{siteConfig.eventDate}</p>
       <p>{siteConfig.venue}</p>
     </div>

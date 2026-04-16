@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest';
+import rootIndexSource from '../src/pages/index.astro?raw';
 import {
   buildLocalizedPath,
+  getChromeLabels,
+  getLabels,
+  getPageMetadata,
   getProgrammeSessions,
+  getRootRedirect,
   getSpeakerBySlug,
   getTalksForSession,
   getTalksBySpeaker,
@@ -12,6 +17,16 @@ import { talks } from '../src/data/talks';
 describe('site helpers', () => {
   it('exports the supported locales', () => {
     expect(locales).toEqual(['en', 'it']);
+  });
+
+  it('defines a zero-delay static root redirect for the default locale', () => {
+    const redirect = getRootRedirect();
+
+    expect(redirect.target).toBe('./en/');
+    expect(redirect.metaRefresh).toBe('0;url=./en/');
+    expect(rootIndexSource).toContain('<meta http-equiv="refresh"');
+    expect(rootIndexSource).toContain('window.location.replace');
+    expect(rootIndexSource).not.toContain('Astro.redirect');
   });
 
   it('builds expected top-level routes', () => {
@@ -50,6 +65,50 @@ describe('site helpers', () => {
     expect(buildLocalizedPath('en', '/programme')).toBe('/en/programme/');
     expect(buildLocalizedPath('it', 'registration')).toBe('/it/registration/');
     expect(buildLocalizedPath('en', '//programme//overview/')).toBe('/en/programme/overview/');
+  });
+
+  it('localizes shared chrome labels for English and Italian shells', () => {
+    expect(getChromeLabels('en')).toMatchObject({
+      mainNavigation: 'Main navigation',
+      languageSwitcher: 'Language switcher',
+      switchLocale: {
+        it: 'Switch to Italian',
+      },
+    });
+
+    expect(getChromeLabels('it')).toMatchObject({
+      mainNavigation: 'Navigazione principale',
+      languageSwitcher: 'Selettore della lingua',
+      switchLocale: {
+        en: 'Passa alla versione inglese',
+      },
+    });
+  });
+
+  it('localizes Italian navigation labels for the shared shell', () => {
+    expect(getLabels('it')).toMatchObject({
+      home: 'Inizio',
+      about: 'Chi siamo',
+      speakers: 'Relatori',
+      organizers: 'Organizzatori',
+    });
+  });
+
+  it('localizes shell page metadata for both locales', () => {
+    expect(getPageMetadata('en', 'home')).toEqual({
+      title: 'COMPASS | COmplexity, Markets, Policy, and AI in Social Systems',
+      description: 'COMPASS workshop on complexity, markets, policy, and AI in social systems.',
+    });
+
+    expect(getPageMetadata('it', 'home')).toEqual({
+      title: 'COMPASS | COmplexity, Mercati, Policy e AI nei sistemi sociali',
+      description: 'Workshop COMPASS su complessita, mercati, policy e AI nei sistemi sociali.',
+    });
+
+    expect(getPageMetadata('it', 'about')).toEqual({
+      title: 'Chi siamo | COMPASS',
+      description: 'Missione del workshop COMPASS e posizionamento interdisciplinare.',
+    });
   });
 
   it('links speakers to talks through shared slugs', () => {

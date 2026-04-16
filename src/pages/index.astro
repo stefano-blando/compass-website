@@ -1,3 +1,26 @@
 ---
-return Astro.redirect('/en/');
+import { getRootRedirect } from '../lib/site';
+
+const rootRedirect = getRootRedirect();
 ---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="refresh" content={rootRedirect.metaRefresh} />
+    <meta name="robots" content="noindex" />
+    <link rel="canonical" href={rootRedirect.target} />
+    <title>Redirecting to COMPASS</title>
+    <script is:inline>
+      window.location.replace('./en/');
+    </script>
+  </head>
+  <body>
+    <p>
+      Redirecting to the English COMPASS homepage.
+      <a href={rootRedirect.target}>Continue to COMPASS</a>
+    </p>
+  </body>
+</html>
