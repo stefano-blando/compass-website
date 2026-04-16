@@ -1,0 +1,190 @@
+---
+import type { Locale, Session } from '../../data/types';
+import { getSpeakerBySlug, getTalksForSession } from '../../lib/site';
+import TalkListItem from './TalkListItem.astro';
+
+interface Props {
+  locale: Locale;
+  session: Session;
+}
+
+const { locale, session } = Astro.props;
+const chairs = session.chairSlugs
+  .map((chairSlug) => getSpeakerBySlug(chairSlug))
+  .filter((speaker): speaker is NonNullable<typeof speaker> => Boolean(speaker));
+const sessionTalks = getTalksForSession(session.slug);
+const sessionTypeLabel = {
+  en: {
+    keynote: 'Keynote',
+    panel: 'Panel',
+    break: 'Break',
+    lunch: 'Lunch',
+    opening: 'Opening',
+    closing: 'Closing',
+    social: 'Social',
+  },
+  it: {
+    keynote: 'Keynote',
+    panel: 'Panel',
+    break: 'Pausa',
+    lunch: 'Pranzo',
+    opening: 'Apertura',
+    closing: 'Chiusura',
+    social: 'Sociale',
+  },
+}[locale];
+const copy = {
+  en: {
+    chairs: chairs.length > 1 ? 'Session chairs' : 'Session chair',
+    talks: 'Talks in this session',
+  },
+  it: {
+    chairs: chairs.length > 1 ? 'Coordinamento sessione' : 'Coordinamento sessione',
+    talks: 'Interventi in sessione',
+  },
+}[locale];
+---
+
+<section class="session-block">
+  <div class="session-block__rail">
+    <p class="session-block__time">{session.startsAt.slice(11, 16)} - {session.endsAt.slice(11, 16)}</p>
+    <p class="session-block__type">{sessionTypeLabel[session.type]}</p>
+  </div>
+
+  <div class="session-block__body">
+    <header class="session-block__header">
+      <div>
+        <h2>{session.title[locale]}</h2>
+        <p>{session.description[locale]}</p>
+      </div>
+
+      {chairs.length > 0 && (
+        <p class="session-block__chairs">
+          <span>{copy.chairs}</span>
+          {chairs.map((chair) => chair.name).join(', ')}
+        </p>
+      )}
+    </header>
+
+    {sessionTalks.length > 0 && (
+      <div class="session-block__talks-shell">
+        <p class="session-block__talks-label">{copy.talks}</p>
+        <ul class="session-block__talks">
+          {sessionTalks.map((talk) => <TalkListItem locale={locale} talk={talk} />)}
+        </ul>
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .session-block {
+    display: grid;
+    grid-template-columns: minmax(124px, 164px) minmax(0, 1fr);
+    gap: 1.1rem;
+    align-items: start;
+  }
+
+  .session-block__rail,
+  .session-block__body {
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .session-block__rail {
+    position: sticky;
+    top: 7.2rem;
+    padding: 1.15rem;
+    display: grid;
+    gap: 0.4rem;
+    background:
+      linear-gradient(180deg, rgba(126, 36, 52, 0.08), rgba(126, 36, 52, 0)),
+      var(--surface-strong);
+  }
+
+  .session-block__time,
+  .session-block__type,
+  .session-block__talks-label,
+  .session-block__chairs span {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .session-block__time {
+    color: var(--accent);
+  }
+
+  .session-block__type {
+    color: var(--ink-soft);
+  }
+
+  .session-block__body {
+    padding: clamp(1.35rem, 3vw, 1.9rem);
+  }
+
+  .session-block__header {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .session-block__header h2 {
+    margin: 0;
+    font-size: clamp(2.15rem, 5vw, 3.15rem);
+    line-height: 0.96;
+  }
+
+  .session-block__header p {
+    margin: 0.55rem 0 0;
+    color: var(--ink-soft);
+    max-width: 50rem;
+  }
+
+  .session-block__chairs {
+    margin: 0;
+    padding: 1rem 1.1rem;
+    border-radius: 20px;
+    background: rgba(55, 95, 138, 0.08);
+    color: var(--ink);
+  }
+
+  .session-block__chairs span {
+    display: block;
+    margin-bottom: 0.3rem;
+    color: var(--accent-cool);
+  }
+
+  .session-block__talks-shell {
+    margin-top: 1.35rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .session-block__talks-label {
+    color: var(--accent-cool);
+  }
+
+  .session-block__talks {
+    display: grid;
+    gap: 0.8rem;
+    margin: 0.9rem 0 0;
+    padding: 0;
+  }
+
+  @media (max-width: 900px) {
+    .session-block {
+      grid-template-columns: 1fr;
+    }
+
+    .session-block__rail {
+      position: static;
+      grid-template-columns: repeat(2, auto);
+      justify-content: start;
+      align-items: baseline;
+    }
+  }
+</style>

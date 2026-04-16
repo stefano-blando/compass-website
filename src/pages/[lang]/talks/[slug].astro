@@ -1,0 +1,188 @@
+---
+import Footer from '../../../components/site/Footer.astro';
+import Header from '../../../components/site/Header.astro';
+import type { Locale } from '../../../data/types';
+import Layout from '../../../layouts/Layout.astro';
+import {
+  buildLocalizedPath,
+  getProgrammeSessions,
+  getSpeakerBySlug,
+  getTalkBySlug,
+  getTalksForSession,
+  locales,
+} from '../../../lib/site';
+
+export function getStaticPaths() {
+  return locales.flatMap((lang) =>
+    getProgrammeSessions().flatMap((session) =>
+      getTalksForSession(session.slug).map((talk) => ({
+        params: { lang, slug: talk.slug },
+      })),
+    ),
+  );
+}
+
+const locale = Astro.params.lang as Locale;
+const talk = getTalkBySlug(Astro.params.slug!);
+
+if (!talk) {
+  throw new Error(`Unknown talk: ${Astro.params.slug}`);
+}
+
+const session = getProgrammeSessions().find((candidate) => candidate.slug === talk.sessionSlug);
+const speakers = talk.speakerSlugs
+  .map((speakerSlug) => getSpeakerBySlug(speakerSlug))
+  .filter((speaker): speaker is NonNullable<typeof speaker> => Boolean(speaker));
+const copy = {
+  en: {
+    back: 'Programme',
+    speakers: 'Speakers',
+    session: 'Session',
+    time: 'Time',
+    materials: 'Materials',
+    openLink: 'Open link',
+    missingSession: 'Programme session to be confirmed',
+  },
+  it: {
+    back: 'Programma',
+    speakers: 'Relatori',
+    session: 'Sessione',
+    time: 'Orario',
+    materials: 'Materiali',
+    openLink: 'Apri il link',
+    missingSession: 'Sessione del programma in aggiornamento',
+  },
+} as const satisfies Record<
+  Locale,
+  {
+    back: string;
+    speakers: string;
+    session: string;
+    time: string;
+    materials: string;
+    openLink: string;
+    missingSession: string;
+  }
+>;
+const pageCopy = copy[locale];
+---
+
+<Layout locale={locale} title={`${talk.title[locale]} | COMPASS`} description={talk.abstract[locale]}>
+  <Header locale={locale} />
+  <main class="page-shell">
+    <section class="page-hero container talk-page">
+      <div class="page-hero__content talk-page__hero">
+        <p class="eyebrow">
+          <a href={buildLocalizedPath(locale, 'programme')}>{pageCopy.back}</a>
+        </p>
+        <h1>{talk.title[locale]}</h1>
+        <p class="page-lead">{talk.abstract[locale]}</p>
+      </div>
+
+      <aside class="page-hero__meta talk-page__meta">
+        <div>
+          <p class="page-meta__label">{pageCopy.session}</p>
+          <p class="talk-page__meta-value">{session?.title[locale] ?? pageCopy.missingSession}</p>
+        </div>
+
+        {talk.startsAt && (
+          <div>
+            <p class="page-meta__label">{pageCopy.time}</p>
+            <p class="talk-page__meta-value">
+              {talk.startsAt.slice(11, 16)}
+              {session ? ` · ${session.startsAt.slice(11, 16)} - ${session.endsAt.slice(11, 16)}` : ''}
+            </p>
+          </div>
+        )}
+
+        {talk.materialsUrl && (
+          <div>
+            <p class="page-meta__label">{pageCopy.materials}</p>
+            <a class="talk-page__materials" href={talk.materialsUrl}>{pageCopy.openLink}</a>
+          </div>
+        )}
+      </aside>
+    </section>
+
+    <section class="container talk-page__details">
+      <article class="content-card talk-page__abstract">
+        <p class="page-meta__label">{pageCopy.speakers}</p>
+        <div class="talk-page__speaker-grid">
+          {speakers.map((speaker) => (
+            <div class="talk-page__speaker-card">
+              <h2>{speaker.name}</h2>
+              <p class="talk-page__speaker-affiliation">{speaker.affiliation}</p>
+              <p>{speaker.bio[locale]}</p>
+            </div>
+          ))}
+        </div>
+      </article>
+    </section>
+  </main>
+  <Footer locale={locale} />
+</Layout>
+
+<style>
+  .talk-page {
+    align-items: stretch;
+  }
+
+  .talk-page__hero h1 {
+    margin-bottom: 1rem;
+  }
+
+  .talk-page__hero .eyebrow a {
+    text-decoration: none;
+  }
+
+  .talk-page__meta {
+    gap: 1.2rem;
+  }
+
+  .talk-page__meta-value {
+    margin: 0.35rem 0 0;
+    color: var(--ink);
+    font-weight: 700;
+  }
+
+  .talk-page__materials {
+    display: inline-flex;
+    margin-top: 0.35rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+
+  .talk-page__details {
+    margin-top: 1.5rem;
+  }
+
+  .talk-page__abstract {
+    padding: clamp(1.5rem, 4vw, 2rem);
+  }
+
+  .talk-page__speaker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .talk-page__speaker-card {
+    padding: 1.2rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(20, 32, 51, 0.08);
+  }
+
+  .talk-page__speaker-card h2 {
+    margin: 0;
+    font-size: 2rem;
+    line-height: 0.95;
+  }
+
+  .talk-page__speaker-affiliation {
+    margin: 0.55rem 0 0.8rem;
+    color: var(--accent);
+    font-weight: 700;
+  }
+</style>

@@ -385,6 +385,10 @@ export function getSpeakerBySlug(slug: string) {
   return speakers.find((speaker) => speaker.slug === slug);
 }
 
+export function getTalkBySlug(slug: string) {
+  return talks.find((talk) => talk.slug === slug);
+}
+
 export function getTalksBySpeaker(slug: string) {
   return talks.filter((talk) => talk.speakerSlugs.includes(slug));
 }
@@ -451,7 +455,9 @@ export function getProgrammeSessions() {
 }
 
 export function getTalksForSession(sessionSlug: string) {
-  return talks.filter((talk) => talk.sessionSlug === sessionSlug);
+  return talks
+    .filter((talk) => talk.sessionSlug === sessionSlug)
+    .sort((a, b) => (a.startsAt ?? '').localeCompare(b.startsAt ?? '') || a.slug.localeCompare(b.slug));
 }
 
 export { defaultLocale, siteConfig };

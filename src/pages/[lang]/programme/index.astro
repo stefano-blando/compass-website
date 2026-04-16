@@ -1,41 +1,44 @@
 ---
+import ProgrammeTimeline from '../../../components/programme/ProgrammeTimeline.astro';
 import Footer from '../../../components/site/Footer.astro';
 import Header from '../../../components/site/Header.astro';
 import type { Locale } from '../../../data/types';
 import Layout from '../../../layouts/Layout.astro';
-import { getPageMetadata, locales } from '../../../lib/site';
+import { getProgrammeSessions, locales } from '../../../lib/site';
 
 export function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
 }
 
 const locale = Astro.params.lang as Locale;
-const pageMeta = getPageMetadata(locale, 'programme');
 const copy = {
   en: {
     title: 'Programme',
-    intro: 'This route shell will become the structured programme page with sessions, talks, and timing.',
-    section: 'What lands here next',
+    intro: 'Follow the workshop from the opening keynote through the AI methods panel and the final social dinner. Each talk links to a dedicated abstract page.',
+    section: 'In this schedule',
     cards: [
-      'A full chronology of keynote sessions, thematic panels, and breaks.',
-      'Links to speaker profiles and talk metadata sourced from the typed data layer.',
-      'A layout designed to support both English and Italian programme views.',
+      'Chronological session blocks with localized titles and descriptions.',
+      'Talk entries connected to shared speaker and session data.',
+      'A stable agenda structure ready for later expansion into speaker detail pages.',
     ],
+    description: 'Full workshop programme with sessions, talk links, and shared agenda metadata.',
   },
   it: {
     title: 'Programma',
-    intro: 'Questa shell ospitera il programma strutturato con sessioni, interventi e orari.',
-    section: 'Cosa arrivera qui',
+    intro: 'Segui il workshop dall’apertura keynote al panel sui metodi di AI fino alla cena sociale finale. Ogni intervento collega a una pagina con abstract dedicato.',
+    section: 'In questo programma',
     cards: [
-      'Una cronologia completa di keynote, panel tematici e pause.',
-      'Collegamenti ai profili speaker e ai metadati degli interventi dal data layer tipizzato.',
-      'Un layout pensato per supportare il programma in inglese e in italiano.',
+      'Blocchi cronologici con titoli e descrizioni localizzati.',
+      'Interventi collegati ai dati condivisi di relatori e sessioni.',
+      'Una struttura di agenda stabile pronta a espandersi senza anticipare le pagine speaker di dettaglio.',
     ],
+    description: 'Programma completo del workshop con sessioni, link agli interventi e metadati condivisi dell’agenda.',
   },
 }[locale];
+const sessions = getProgrammeSessions();
 ---
 
-<Layout locale={locale} title={pageMeta.title} description={pageMeta.description}>
+<Layout locale={locale} title={`${copy.title} | COMPASS`} description={copy.description}>
   <Header locale={locale} />
   <main class="page-shell">
     <section class="page-hero container">
@@ -53,6 +56,16 @@ const copy = {
         </ul>
       </aside>
     </section>
+
+    <section class="container programme-page__timeline">
+      <ProgrammeTimeline locale={locale} sessions={sessions} />
+    </section>
   </main>
   <Footer locale={locale} />
 </Layout>
+
+<style>
+  .programme-page__timeline {
+    margin-top: 1.5rem;
+  }
+</style>

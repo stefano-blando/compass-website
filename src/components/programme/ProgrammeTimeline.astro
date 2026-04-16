@@ -1,0 +1,102 @@
+---
+import type { Locale, Session } from '../../data/types';
+import { getTalksForSession } from '../../lib/site';
+import SessionBlock from './SessionBlock.astro';
+
+interface Props {
+  locale: Locale;
+  sessions: Session[];
+}
+
+const { locale, sessions } = Astro.props;
+const firstSession = sessions[0];
+const dayLabel = firstSession
+  ? new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB', {
+      weekday: 'long',
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    }).format(new Date(firstSession.startsAt))
+  : '';
+const totalTalks = sessions.reduce((count, session) => count + getTalksForSession(session.slug).length, 0);
+const copy = {
+  en: {
+    day: 'Workshop day',
+    overview: `${sessions.length} sessions · ${totalTalks} talks`,
+  },
+  it: {
+    day: 'Giornata del workshop',
+    overview: `${sessions.length} sessioni · ${totalTalks} interventi`,
+  },
+}[locale];
+---
+
+<section class="programme-timeline">
+  <div class="programme-timeline__meta">
+    <div>
+      <p class="programme-timeline__eyebrow">{copy.day}</p>
+      <h2>{dayLabel}</h2>
+    </div>
+    <p class="programme-timeline__summary">{copy.overview}</p>
+  </div>
+
+  <div class="programme-timeline__list">
+    {sessions.map((session) => <SessionBlock locale={locale} session={session} />)}
+  </div>
+</section>
+
+<style>
+  .programme-timeline {
+    display: grid;
+    gap: 1.4rem;
+  }
+
+  .programme-timeline__meta {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: clamp(1.35rem, 3vw, 1.8rem);
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background:
+      radial-gradient(circle at top right, rgba(55, 95, 138, 0.14), transparent 34%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.78));
+    box-shadow: var(--shadow);
+  }
+
+  .programme-timeline__eyebrow,
+  .programme-timeline__summary {
+    margin: 0;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .programme-timeline__eyebrow {
+    color: var(--accent);
+  }
+
+  .programme-timeline__meta h2 {
+    margin: 0.35rem 0 0;
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 0.96;
+  }
+
+  .programme-timeline__summary {
+    color: var(--ink-soft);
+  }
+
+  .programme-timeline__list {
+    display: grid;
+    gap: 1.2rem;
+  }
+
+  @media (max-width: 720px) {
+    .programme-timeline__meta {
+      flex-direction: column;
+      align-items: start;
+    }
+  }
+</style>

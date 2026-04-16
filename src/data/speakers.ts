@@ -6,8 +6,8 @@ export const speakers: Speaker[] = [
     name: 'Guido Germano',
     affiliation: 'University College London',
     roleLabel: {
-      en: 'Keynote Speaker',
-      it: 'Keynote Speaker',
+      en: 'Keynote speaker',
+      it: 'Relatore keynote',
     },
     bio: {
       en: 'Professor of Computational Science working on complex systems, economics, and computational methods.',
@@ -20,8 +20,8 @@ export const speakers: Speaker[] = [
     name: 'Prabhani Kuruppumullage Don',
     affiliation: 'Pennsylvania State University',
     roleLabel: {
-      en: 'Keynote Speaker',
-      it: 'Keynote Speaker',
+      en: 'Keynote speaker',
+      it: 'Relatrice keynote',
     },
     bio: {
       en: 'Associate Professor of Statistics focused on high-dimensional data, model validation, and machine learning.',
@@ -34,8 +34,8 @@ export const speakers: Speaker[] = [
     name: 'Stefano Blando',
     affiliation: 'Scuola Superiore Sant’Anna',
     roleLabel: {
-      en: 'Chair',
-      it: 'Chair',
+      en: 'Session chair',
+      it: 'Coordinatore di sessione',
     },
     bio: {
       en: 'Researcher working on complex systems, empirical methods, and event coordination.',
@@ -48,8 +48,8 @@ export const speakers: Speaker[] = [
     name: 'Biancamaria Bombino',
     affiliation: 'Scuola Superiore Sant’Anna',
     roleLabel: {
-      en: 'Chair',
-      it: 'Chair',
+      en: 'Session chair',
+      it: 'Coordinatrice di sessione',
     },
     bio: {
       en: 'Researcher focused on policy analysis, computational social science, and workshop organization.',

@@ -14,6 +14,7 @@ import {
   getProgrammeSessions,
   getRootRedirect,
   getSpeakerBySlug,
+  getTalkBySlug,
   getTalksForSession,
   getTalksBySpeaker,
   locales,
@@ -189,6 +190,17 @@ describe('site helpers', () => {
     const sessions = getProgrammeSessions();
     expect(sessions[0]?.slug).toBe('welcome-opening');
     expect(sessions.at(-1)?.slug).toBe('social-dinner');
+  });
+
+  it('returns talks for the AI methods panel', () => {
+    const sessionTalks = getTalksForSession('panel-ai-methods');
+
+    expect(sessionTalks.length).toBeGreaterThan(0);
+  });
+
+  it('retrieves talks by slug for detail routes', () => {
+    expect(getTalkBySlug('complexity-keynote')?.sessionSlug).toBe('welcome-opening');
+    expect(getTalkBySlug('missing-talk')).toBeUndefined();
   });
 
   it('keeps seeded speaker, chair, and talk relations resolvable', () => {
