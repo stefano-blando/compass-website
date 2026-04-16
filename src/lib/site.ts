@@ -324,22 +324,22 @@ const homepageCuration = {
     {
       speakerSlug: 'prabhani-don',
       roleLabel: {
-        en: 'Keynote speaker',
-        it: 'Relatrice keynote',
+        en: 'Panel speaker',
+        it: 'Relatrice del panel',
       },
     },
     {
       speakerSlug: 'stefano-blando',
       roleLabel: {
-        en: 'Session chair',
-        it: 'Coordinatore di sessione',
+        en: 'Panel speaker and session chair',
+        it: 'Relatore del panel e coordinatore di sessione',
       },
     },
     {
       speakerSlug: 'biancamaria-bombino',
       roleLabel: {
-        en: 'Session chair',
-        it: 'Coordinatrice di sessione',
+        en: 'Panel speaker and session chair',
+        it: 'Relatrice del panel e coordinatrice di sessione',
       },
     },
   ],

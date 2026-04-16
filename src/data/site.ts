@@ -84,7 +84,7 @@ export const pageMetadata = {
     },
     programme: {
       title: 'Programme | COMPASS',
-      description: 'Structured programme shell for sessions, talks, and timing.',
+      description: 'Seeded workshop programme with the current sessions, talks, and agenda links.',
     },
     speakers: {
       title: 'Speakers | COMPASS',
@@ -118,7 +118,7 @@ export const pageMetadata = {
     },
     programme: {
       title: 'Programma | COMPASS',
-      description: 'Shell del programma con sessioni, interventi e orari.',
+      description: 'Programma seed del workshop con le sessioni, gli interventi e i collegamenti attualmente disponibili.',
     },
     speakers: {
       title: 'Relatori | COMPASS',

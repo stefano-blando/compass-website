@@ -4,41 +4,40 @@ import Footer from '../../../components/site/Footer.astro';
 import Header from '../../../components/site/Header.astro';
 import type { Locale } from '../../../data/types';
 import Layout from '../../../layouts/Layout.astro';
-import { getProgrammeSessions, locales } from '../../../lib/site';
+import { getPageMetadata, getProgrammeSessions, locales } from '../../../lib/site';
 
 export function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
 }
 
 const locale = Astro.params.lang as Locale;
+const pageMeta = getPageMetadata(locale, 'programme');
 const copy = {
   en: {
     title: 'Programme',
-    intro: 'Follow the workshop from the opening keynote through the AI methods panel and the final social dinner. Each talk links to a dedicated abstract page.',
-    section: 'In this schedule',
+    intro: 'This seeded agenda shows the current opening keynote, AI methods panel, and social dinner entries already connected to shared session and talk data.',
+    section: 'Current seeded agenda',
     cards: [
-      'Chronological session blocks with localized titles and descriptions.',
-      'Talk entries connected to shared speaker and session data.',
-      'A stable agenda structure ready for later expansion into speaker detail pages.',
+      'Chronological session blocks for the entries currently seeded in the data layer.',
+      'Talk links with localized abstracts for the talks already published on the site.',
+      'A stable agenda structure that can expand as additional sessions are confirmed.',
     ],
-    description: 'Full workshop programme with sessions, talk links, and shared agenda metadata.',
   },
   it: {
     title: 'Programma',
-    intro: 'Segui il workshop dall’apertura keynote al panel sui metodi di AI fino alla cena sociale finale. Ogni intervento collega a una pagina con abstract dedicato.',
-    section: 'In questo programma',
+    intro: 'Questa agenda seed mostra le voci attualmente pubblicate: keynote di apertura, panel sui metodi di AI e cena sociale, tutte collegate ai dati condivisi di sessioni e interventi.',
+    section: 'Agenda seed attuale',
     cards: [
-      'Blocchi cronologici con titoli e descrizioni localizzati.',
-      'Interventi collegati ai dati condivisi di relatori e sessioni.',
-      'Una struttura di agenda stabile pronta a espandersi senza anticipare le pagine speaker di dettaglio.',
+      'Blocchi cronologici per le voci attualmente seminate nel data layer.',
+      'Link agli abstract localizzati per gli interventi gia pubblicati sul sito.',
+      'Una struttura stabile che puo espandersi quando saranno confermate altre sessioni.',
     ],
-    description: 'Programma completo del workshop con sessioni, link agli interventi e metadati condivisi dell’agenda.',
   },
 }[locale];
 const sessions = getProgrammeSessions();
 ---
 
-<Layout locale={locale} title={`${copy.title} | COMPASS`} description={copy.description}>
+<Layout locale={locale} title={pageMeta.title} description={pageMeta.description}>
   <Header locale={locale} />
   <main class="page-shell">
     <section class="page-hero container">

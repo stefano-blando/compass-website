@@ -116,6 +116,16 @@ describe('site helpers', () => {
       title: 'Chi siamo | COMPASS',
       description: 'Missione del workshop COMPASS e posizionamento interdisciplinare.',
     });
+
+    expect(getPageMetadata('en', 'programme')).toEqual({
+      title: 'Programme | COMPASS',
+      description: 'Seeded workshop programme with the current sessions, talks, and agenda links.',
+    });
+
+    expect(getPageMetadata('it', 'programme')).toEqual({
+      title: 'Programma | COMPASS',
+      description: 'Programma seed del workshop con le sessioni, gli interventi e i collegamenti attualmente disponibili.',
+    });
   });
 
   it('returns the four workshop highlights for each locale', () => {
@@ -164,8 +174,10 @@ describe('site helpers', () => {
     ]);
     expect(english[0]?.role).toBe('Keynote speaker');
     expect(italian[0]?.role).toBe('Relatore keynote');
-    expect(italian[2]?.role).toBe('Coordinatore di sessione');
-    expect(italian[3]?.role).toBe('Coordinatrice di sessione');
+    expect(english[1]?.role).toBe('Panel speaker');
+    expect(italian[1]?.role).toBe('Relatrice del panel');
+    expect(italian[2]?.role).toBe('Relatore del panel e coordinatore di sessione');
+    expect(italian[3]?.role).toBe('Relatrice del panel e coordinatrice di sessione');
   });
 
   it('localizes homepage scroll sections for the floating navigation', () => {
@@ -203,6 +215,24 @@ describe('site helpers', () => {
     expect(getTalkBySlug('missing-talk')).toBeUndefined();
   });
 
+  it('aligns speaker contribution metadata with the seeded talk sessions', () => {
+    for (const talk of talks) {
+      const session = getProgrammeSessions().find((candidate) => candidate.slug === talk.sessionSlug);
+      expect(session, `missing session for ${talk.slug}`).toBeDefined();
+
+      if (session?.type !== 'panel') {
+        continue;
+      }
+
+      for (const speakerSlug of talk.speakerSlugs) {
+        const speaker = getSpeakerBySlug(speakerSlug);
+        expect(speaker, `missing talk speaker: ${speakerSlug}`).toBeDefined();
+        expect(speaker?.type).toContain('panelist');
+        expect(speaker?.roleLabel.en.toLowerCase()).toContain('panel');
+      }
+    }
+  });
+
   it('keeps seeded speaker, chair, and talk relations resolvable', () => {
     const orderedSessions = getProgrammeSessions();
 
@@ -213,7 +243,9 @@ describe('site helpers', () => {
     }
 
     for (const talk of talks) {
-      expect(getSpeakerBySlug(talk.speakerSlugs[0]), `missing talk speaker for ${talk.slug}`).toBeDefined();
+      for (const speakerSlug of talk.speakerSlugs) {
+        expect(getSpeakerBySlug(speakerSlug), `missing talk speaker for ${talk.slug}: ${speakerSlug}`).toBeDefined();
+      }
       const session = orderedSessions.find((candidate) => candidate.slug === talk.sessionSlug);
       expect(session, `missing session for ${talk.slug}`).toBeDefined();
       expect(getTalksForSession(talk.sessionSlug)).toContain(talk);
