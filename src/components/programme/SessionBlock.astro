@@ -33,19 +33,43 @@ const sessionTypeLabel = {
     social: 'Sociale',
   },
 }[locale];
+const emptyStateCopy = {
+  en: {
+    break: 'This block is reserved for informal discussion and transition within the day.',
+    lunch: 'This block is dedicated to the networking lunch for invited speakers and attendees.',
+    closing: 'This block closes the workshop before the evening social dinner.',
+    social: 'This block is the closing dinner for speakers, panelists, and organizers.',
+    opening: 'This block frames the workshop day before the keynote sequence begins.',
+  },
+  it: {
+    break: 'Questo blocco e riservato a confronto informale e transizione nella giornata.',
+    lunch: 'Questo blocco e dedicato al networking lunch per speaker invitati e partecipanti.',
+    closing: 'Questo blocco chiude il workshop prima della cena sociale serale.',
+    social: 'Questo blocco corrisponde alla cena conclusiva per speaker, panelist e organizzatori.',
+    opening: 'Questo blocco inquadra la giornata prima dell’avvio della sequenza di keynote.',
+  },
+}[locale];
 const copy = {
   en: {
     chairs: chairs.length > 1 ? 'Session chairs' : 'Session chair',
     talks: 'Talks in this session',
   },
   it: {
-    chairs: chairs.length > 1 ? 'Coordinamento sessione' : 'Coordinamento sessione',
+    chairs: 'Coordinamento sessione',
     talks: 'Interventi in sessione',
   },
 }[locale];
+const emptyState =
+  session.type === 'break' ||
+  session.type === 'lunch' ||
+  session.type === 'closing' ||
+  session.type === 'social' ||
+  session.type === 'opening'
+    ? emptyStateCopy[session.type]
+    : null;
 ---
 
-<section class="session-block">
+<section class="session-block" data-session-type={session.type}>
   <div class="session-block__rail">
     <p class="session-block__time">{session.startsAt.slice(11, 16)} - {session.endsAt.slice(11, 16)}</p>
     <p class="session-block__type">{sessionTypeLabel[session.type]}</p>
@@ -66,14 +90,19 @@ const copy = {
       )}
     </header>
 
-    {sessionTalks.length > 0 && (
+    {sessionTalks.length > 0 ? (
       <div class="session-block__talks-shell">
         <p class="session-block__talks-label">{copy.talks}</p>
         <ul class="session-block__talks">
           {sessionTalks.map((talk) => <TalkListItem locale={locale} talk={talk} />)}
         </ul>
       </div>
-    )}
+    ) : emptyState ? (
+      <div class="session-block__empty">
+        <p class="session-block__empty-label">{sessionTypeLabel[session.type]}</p>
+        <p>{emptyState}</p>
+      </div>
+    ) : null}
   </div>
 </section>
 
@@ -107,7 +136,8 @@ const copy = {
   .session-block__time,
   .session-block__type,
   .session-block__talks-label,
-  .session-block__chairs span {
+  .session-block__chairs span,
+  .session-block__empty-label {
     margin: 0;
     font-size: 0.8rem;
     font-weight: 800;
@@ -124,7 +154,13 @@ const copy = {
   }
 
   .session-block__body {
+    position: relative;
+    overflow: hidden;
     padding: clamp(1.35rem, 3vw, 1.9rem);
+    background:
+      radial-gradient(circle at top right, rgba(55, 95, 138, 0.08), transparent 28%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.8)),
+      var(--surface);
   }
 
   .session-block__header {
@@ -158,13 +194,15 @@ const copy = {
     color: var(--accent-cool);
   }
 
-  .session-block__talks-shell {
+  .session-block__talks-shell,
+  .session-block__empty {
     margin-top: 1.35rem;
     padding-top: 1.15rem;
     border-top: 1px solid var(--line);
   }
 
-  .session-block__talks-label {
+  .session-block__talks-label,
+  .session-block__empty-label {
     color: var(--accent-cool);
   }
 
@@ -173,6 +211,28 @@ const copy = {
     gap: 0.8rem;
     margin: 0.9rem 0 0;
     padding: 0;
+  }
+
+  .session-block__empty {
+    display: grid;
+    gap: 0.45rem;
+  }
+
+  .session-block__empty p:last-child {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  [data-session-type='keynote'] .session-block__rail {
+    background:
+      linear-gradient(180deg, rgba(55, 95, 138, 0.12), rgba(55, 95, 138, 0)),
+      var(--surface-strong);
+  }
+
+  [data-session-type='social'] .session-block__rail {
+    background:
+      linear-gradient(180deg, rgba(126, 36, 52, 0.14), rgba(126, 36, 52, 0)),
+      var(--surface-strong);
   }
 
   @media (max-width: 900px) {

@@ -15,12 +15,12 @@ const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
 <section id="featured-speakers" class="featured-speakers" data-home-reveal>
   <div class="container featured-speakers__shell">
     <div class="featured-speakers__head">
-      <div>
+      <div data-reveal-item>
         <p class="section-kicker">{speakers.eyebrow}</p>
         <h2>{speakers.title}</h2>
       </div>
 
-      <div class="featured-speakers__head-copy">
+      <div class="featured-speakers__head-copy" data-reveal-item style="--reveal-delay: 90ms;">
         <p>{speakers.intro}</p>
         <p>{speakers.note}</p>
       </div>
@@ -34,13 +34,16 @@ const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
       <div class="featured-speakers__viewport" data-speaker-viewport>
         <div class="featured-speakers__track">
           {featuredSpeakers.map((speaker, index) => (
-            <article class="featured-speakers__card" style={`--reveal-delay: ${index * 70}ms;`}>
-              <div class="featured-speakers__avatar" aria-hidden="true">
-                {speaker.name
-                  .split(' ')
-                  .map((part) => part[0])
-                  .slice(0, 2)
-                  .join('')}
+            <article class="featured-speakers__card" style={`--reveal-delay: ${index * 70}ms; --speaker-index: ${index};`} data-reveal-item>
+              <div class="featured-speakers__media" aria-hidden="true">
+                <div class="featured-speakers__media-grid"></div>
+                <div class="featured-speakers__avatar">
+                  {speaker.name
+                    .split(' ')
+                    .map((part) => part[0])
+                    .slice(0, 2)
+                    .join('')}
+                </div>
               </div>
 
               <p class="featured-speakers__role">{speaker.role}</p>
@@ -49,7 +52,7 @@ const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
               <p class="featured-speakers__bio">{speaker.bio}</p>
 
               <div class="featured-speakers__talk">
-                <span>{locale === 'it' ? 'Intervento' : 'Contribution'}</span>
+                <span>{locale === 'it' ? 'Contributo' : 'Contribution'}</span>
                 <strong>{speaker.talkTitle ?? speakers.emptyTalkLabel}</strong>
               </div>
             </article>
@@ -62,7 +65,9 @@ const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
       </button>
     </div>
 
-    <a class="btn-secondary" href={buildLocalizedPath(locale, 'speakers')}>{labels.speakers}</a>
+    <a class="btn-secondary" href={buildLocalizedPath(locale, 'speakers')} data-reveal-item style="--reveal-delay: 140ms;">
+      {labels.speakers}
+    </a>
   </div>
 </section>
 
@@ -108,13 +113,14 @@ const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
   }
 
   .featured-speakers__shell {
+    position: relative;
     display: grid;
     gap: 1.3rem;
   }
 
   .featured-speakers__head {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.82fr);
     gap: 1rem;
     align-items: end;
   }
@@ -150,32 +156,89 @@ const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
   .featured-speakers__track {
     display: grid;
     grid-auto-flow: column;
-    grid-auto-columns: minmax(260px, 1fr);
+    grid-auto-columns: minmax(290px, 1fr);
     gap: 0.9rem;
   }
 
   .featured-speakers__card {
+    position: relative;
+    overflow: hidden;
     scroll-snap-align: start;
     min-height: 100%;
     border-radius: 26px;
-    padding: 1.3rem;
+    padding: 1.25rem;
     border: 1px solid rgba(255, 255, 255, 0.62);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 253, 249, 0.96)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(255, 253, 249, 0.98)),
       var(--surface);
     box-shadow: var(--shadow);
+    transition:
+      transform 220ms ease,
+      box-shadow 220ms ease,
+      border-color 220ms ease;
+  }
+
+  .featured-speakers__card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-strong);
+    border-color: rgba(55, 95, 138, 0.18);
+  }
+
+  .featured-speakers__media {
+    position: relative;
+    overflow: hidden;
+    min-height: 8.6rem;
+    margin-bottom: 1.05rem;
+    border-radius: 20px;
+    background:
+      radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0) 38%),
+      linear-gradient(135deg, rgba(126, 36, 52, 0.88), rgba(55, 95, 138, 0.88));
+  }
+
+  .featured-speakers__media::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.42;
+  }
+
+  .featured-speakers__media::after {
+    content: "";
+    position: absolute;
+    width: 8rem;
+    height: 8rem;
+    right: -1.5rem;
+    top: -1rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    animation: speakerOrbit 12s linear infinite;
+  }
+
+  .featured-speakers__media-grid {
+    position: absolute;
+    inset: auto 12% 20% 12%;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.86), rgba(255, 255, 255, 0.16));
   }
 
   .featured-speakers__avatar {
-    width: 3.4rem;
-    height: 3.4rem;
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    width: 3.7rem;
+    height: 3.7rem;
     border-radius: 999px;
     display: grid;
     place-items: center;
-    background: linear-gradient(135deg, var(--accent), var(--accent-cool));
-    color: #fff;
+    background: rgba(255, 255, 255, 0.92);
+    color: var(--ink);
     font-weight: 800;
     letter-spacing: 0.08em;
+    box-shadow: 0 14px 28px rgba(20, 32, 51, 0.18);
   }
 
   .featured-speakers__role,
@@ -186,7 +249,7 @@ const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
   }
 
   .featured-speakers__role {
-    margin: 1rem 0 0;
+    margin: 0;
     font-size: 0.8rem;
     font-weight: 800;
     letter-spacing: 0.14em;
@@ -194,7 +257,7 @@ const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
   }
 
   .featured-speakers__card h3 {
-    margin: 0.35rem 0 0;
+    margin: 0.4rem 0 0;
     font-size: 2rem;
     line-height: 0.95;
   }
@@ -232,6 +295,24 @@ const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
     color: var(--ink);
     box-shadow: var(--shadow);
     cursor: pointer;
+    transition:
+      transform 180ms ease,
+      box-shadow 180ms ease;
+  }
+
+  .featured-speakers__nav:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-strong);
+  }
+
+  @keyframes speakerOrbit {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   @media (max-width: 980px) {

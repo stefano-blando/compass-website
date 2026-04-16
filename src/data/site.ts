@@ -80,15 +80,15 @@ export const pageMetadata = {
   en: {
     home: {
       title: `COMPASS | ${siteIdentity.en.fullTitle}`,
-      description: 'COMPASS workshop on complexity, markets, policy, and AI in social systems.',
+      description: 'COMPASS is a one-day academic workshop in Pisa with keynotes, panels, and interdisciplinary discussion on complexity, markets, policy, and AI.',
     },
     programme: {
       title: 'Programme | COMPASS',
-      description: 'Seeded workshop programme with the current sessions, talks, and agenda links.',
+      description: 'Current COMPASS programme with opening, keynote lectures, panel sessions, breaks, and the closing social dinner.',
     },
     speakers: {
       title: 'Speakers | COMPASS',
-      description: 'Speaker listing shell with affiliations, roles, and talk links.',
+      description: 'Current speaker list for COMPASS, including keynote guests, organizers, chairs, and named panel contributors.',
     },
     venue: {
       title: 'Venue | COMPASS',
@@ -114,15 +114,15 @@ export const pageMetadata = {
   it: {
     home: {
       title: `COMPASS | ${siteIdentity.it.fullTitle}`,
-      description: 'Workshop COMPASS su complessita, mercati, policy e AI nei sistemi sociali.',
+      description: 'COMPASS e un workshop accademico di una giornata a Pisa con keynote, panel e confronto interdisciplinare su complessita, mercati, policy e AI.',
     },
     programme: {
       title: 'Programma | COMPASS',
-      description: 'Programma seed del workshop con le sessioni, gli interventi e i collegamenti attualmente disponibili.',
+      description: 'Programma attuale di COMPASS con apertura, keynote, panel, pause, pranzo e cena sociale conclusiva.',
     },
     speakers: {
       title: 'Relatori | COMPASS',
-      description: 'Shell dei relatori con affiliazioni, ruoli e collegamenti agli interventi.',
+      description: 'Elenco attuale dei relatori di COMPASS, con keynote, organizzatori, chair e contributori di panel nominati.',
     },
     venue: {
       title: 'Sede | COMPASS',

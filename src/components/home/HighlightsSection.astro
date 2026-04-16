@@ -13,7 +13,12 @@ const highlights = getHomepageHighlights(locale);
 <section class="home-highlights" data-home-reveal>
   <div class="container home-highlights__grid">
     {highlights.map((highlight, index) => (
-      <article class="home-highlights__card" style={`--reveal-delay: ${index * 70}ms;`}>
+      <article class="home-highlights__card" style={`--reveal-delay: ${index * 80}ms;`} data-reveal-item>
+        <div class="home-highlights__card-top" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <p class="home-highlights__value">{highlight.value}</p>
         <p class="home-highlights__label">{highlight.label}</p>
       </article>
@@ -23,7 +28,7 @@ const highlights = getHomepageHighlights(locale);
 
 <style>
   .home-highlights {
-    padding: 0.4rem 0 2rem;
+    padding: 0.5rem 0 2rem;
     opacity: 0;
     transform: translateY(24px);
     transition:
@@ -43,14 +48,52 @@ const highlights = getHomepageHighlights(locale);
   }
 
   .home-highlights__card {
+    position: relative;
+    overflow: hidden;
     border-radius: 24px;
-    padding: 1.4rem 1.2rem;
+    padding: 1.25rem 1.2rem 1.35rem;
     border: 1px solid rgba(255, 255, 255, 0.62);
     background:
-      linear-gradient(180deg, rgba(55, 95, 138, 0.1), rgba(255, 255, 255, 0)),
+      radial-gradient(circle at top right, rgba(55, 95, 138, 0.12), transparent 38%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 253, 249, 0.78)),
       var(--surface-strong);
     box-shadow: var(--shadow);
-    text-align: center;
+  }
+
+  .home-highlights__card::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 3px;
+    background: linear-gradient(90deg, rgba(126, 36, 52, 0.68), rgba(55, 95, 138, 0.72));
+    transform: scaleX(0.45);
+    transform-origin: left;
+    transition: transform 260ms ease;
+  }
+
+  .home-highlights__card:hover::after {
+    transform: scaleX(1);
+  }
+
+  .home-highlights__card-top {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1.3rem;
+  }
+
+  .home-highlights__card-top span {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: rgba(20, 32, 51, 0.18);
+  }
+
+  .home-highlights__card-top span:nth-child(2) {
+    background: rgba(126, 36, 52, 0.34);
+  }
+
+  .home-highlights__card-top span:nth-child(3) {
+    background: rgba(55, 95, 138, 0.34);
   }
 
   .home-highlights__value {
@@ -62,9 +105,10 @@ const highlights = getHomepageHighlights(locale);
   }
 
   .home-highlights__label {
-    margin: 0.4rem 0 0;
+    margin: 0.48rem 0 0;
     color: var(--ink-soft);
     font-weight: 700;
+    max-width: 15ch;
   }
 
   @media (max-width: 980px) {

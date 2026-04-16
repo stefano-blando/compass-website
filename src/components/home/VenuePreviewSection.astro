@@ -9,19 +9,20 @@ interface Props {
 const { locale } = Astro.props;
 const labels = getLabels(locale);
 const { venue } = getHomepageContent(locale);
+const venueVisualLabel = locale === 'it' ? 'Pisa · Sant’Anna' : 'Pisa · Sant’Anna';
 ---
 
 <section id="venue-preview" class="venue-preview" data-home-reveal>
   <div class="venue-preview__stage">
     <div class="container venue-preview__layout">
-      <div class="venue-preview__copy">
+      <div class="venue-preview__copy" data-reveal-item>
         <p class="section-kicker">{venue.eyebrow}</p>
         <h2>{venue.title}</h2>
         <p>{venue.intro}</p>
 
         <div class="venue-preview__facts">
           {venue.facts.map((fact, index) => (
-            <article class="venue-preview__fact" style={`--reveal-delay: ${index * 80}ms;`}>
+            <article class="venue-preview__fact" style={`--reveal-delay: ${index * 80 + 90}ms;`} data-reveal-item>
               <span>0{index + 1}</span>
               <p>{fact}</p>
             </article>
@@ -29,7 +30,13 @@ const { venue } = getHomepageContent(locale);
         </div>
       </div>
 
-      <aside class="venue-preview__card">
+      <div class="venue-preview__visual" aria-hidden="true" data-reveal-item style="--reveal-delay: 120ms;">
+        <div class="venue-preview__visual-grid"></div>
+        <div class="venue-preview__visual-arch"></div>
+        <p>{venueVisualLabel}</p>
+      </div>
+
+      <aside class="venue-preview__card" data-reveal-item style="--reveal-delay: 180ms;">
         <p class="venue-preview__card-label">{labels.venue}</p>
         <h3>{siteConfig.venue}</h3>
         <p class="venue-preview__date">{siteConfig.eventDate}</p>
@@ -86,9 +93,9 @@ const { venue } = getHomepageContent(locale);
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.8fr) minmax(280px, 0.8fr);
     gap: 1rem;
-    align-items: center;
+    align-items: stretch;
   }
 
   .venue-preview__copy,
@@ -135,6 +142,65 @@ const { venue } = getHomepageContent(locale);
     margin: 0;
   }
 
+  .venue-preview__visual {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.22), transparent 34%),
+      rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    min-height: 100%;
+  }
+
+  .venue-preview__visual-grid,
+  .venue-preview__visual-arch {
+    position: absolute;
+  }
+
+  .venue-preview__visual-grid {
+    inset: 0;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 24px 24px;
+    opacity: 0.5;
+  }
+
+  .venue-preview__visual-arch {
+    left: 18%;
+    right: 18%;
+    bottom: 18%;
+    height: 48%;
+    border-radius: 999px 999px 0 0;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-bottom: 0;
+  }
+
+  .venue-preview__visual::after {
+    content: "";
+    position: absolute;
+    width: 9rem;
+    height: 9rem;
+    border-radius: 999px;
+    right: -1rem;
+    top: -1rem;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.24), transparent 70%);
+    animation: venueFloat 8s ease-in-out infinite alternate;
+  }
+
+  .venue-preview__visual p {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
   .venue-preview__card {
     border-radius: 28px;
     padding: 1.4rem;
@@ -173,9 +239,23 @@ const { venue } = getHomepageContent(locale);
     margin-top: 1rem;
   }
 
-  @media (max-width: 980px) {
+  @keyframes venueFloat {
+    from {
+      transform: translate3d(-6px, -4px, 0);
+    }
+
+    to {
+      transform: translate3d(6px, 8px, 0);
+    }
+  }
+
+  @media (max-width: 1080px) {
     .venue-preview__layout {
       grid-template-columns: 1fr;
+    }
+
+    .venue-preview__visual {
+      min-height: 12rem;
     }
   }
 </style>

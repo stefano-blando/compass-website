@@ -31,6 +31,11 @@ const { hero } = getHomepageContent(locale);
     </div>
 
     <aside class="home-hero__panel" data-home-hero-enter style="--hero-enter-delay: 140ms;">
+      <div class="home-hero__panel-figure" aria-hidden="true">
+        <div class="home-hero__panel-ring home-hero__panel-ring--outer"></div>
+        <div class="home-hero__panel-ring home-hero__panel-ring--inner"></div>
+        <div class="home-hero__panel-core"></div>
+      </div>
       <p class="home-hero__panel-label">{hero.panelLabel}</p>
       <ul class="home-hero__panel-list">
         {hero.panelItems.map((item) => (
@@ -151,6 +156,7 @@ const { hero } = getHomepageContent(locale);
   }
 
   .home-hero__panel {
+    position: relative;
     align-self: stretch;
     background:
       linear-gradient(180deg, rgba(55, 95, 138, 0.12), rgba(255, 255, 255, 0.94) 52%),
@@ -205,9 +211,51 @@ const { hero } = getHomepageContent(locale);
     text-transform: uppercase;
   }
 
+  .home-hero__panel-figure {
+    position: absolute;
+    inset: 1rem 1rem auto auto;
+    width: 8.5rem;
+    aspect-ratio: 1;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+
+  .home-hero__panel-ring,
+  .home-hero__panel-core {
+    position: absolute;
+    border-radius: 999px;
+  }
+
+  .home-hero__panel-ring {
+    inset: 0;
+    border: 1px solid rgba(55, 95, 138, 0.16);
+  }
+
+  .home-hero__panel-ring--outer {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0)),
+      radial-gradient(circle at 30% 30%, rgba(126, 36, 52, 0.18), rgba(126, 36, 52, 0) 60%);
+    animation: heroPanelOrbit 14s linear infinite;
+  }
+
+  .home-hero__panel-ring--inner {
+    inset: 17%;
+    border-color: rgba(20, 32, 51, 0.12);
+    animation: heroPanelOrbit 11s linear infinite reverse;
+  }
+
+  .home-hero__panel-core {
+    inset: 35%;
+    background:
+      radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.2)),
+      linear-gradient(135deg, rgba(126, 36, 52, 0.9), rgba(55, 95, 138, 0.88));
+    box-shadow: 0 12px 28px rgba(20, 32, 51, 0.18);
+    animation: heroCoreFloat 5.5s ease-in-out infinite alternate;
+  }
+
   .home-hero__panel-list {
     list-style: none;
-    margin: 0.85rem 0 0;
+    margin: 5.8rem 0 0;
     padding: 0;
     display: grid;
     gap: 0.75rem;
@@ -242,6 +290,26 @@ const { hero } = getHomepageContent(locale);
     }
   }
 
+  @keyframes heroPanelOrbit {
+    from {
+      transform: rotate(0deg);
+    }
+
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes heroCoreFloat {
+    from {
+      transform: translateY(-3px) scale(0.98);
+    }
+
+    to {
+      transform: translateY(5px) scale(1.02);
+    }
+  }
+
   @media (max-width: 980px) {
     .home-hero {
       min-height: auto;
@@ -252,6 +320,10 @@ const { hero } = getHomepageContent(locale);
       grid-template-columns: 1fr;
       align-items: stretch;
     }
+
+    .home-hero__panel-list {
+      margin-top: 5.2rem;
+    }
   }
 
   @media (max-width: 720px) {
@@ -261,6 +333,10 @@ const { hero } = getHomepageContent(locale);
 
     .home-hero__actions {
       flex-direction: column;
+    }
+
+    .home-hero__panel-figure {
+      width: 7rem;
     }
   }
 </style>

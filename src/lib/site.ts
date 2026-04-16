@@ -107,92 +107,93 @@ const homepageContent = {
   en: {
     hero: {
       eyebrow: 'COMPASS 2026',
-      title: 'Complexity, markets, policy, and AI in one academic workshop.',
+      title: 'A focused workshop on socio-economic complexity, AI methods, and policy.',
       copy:
-        'An interdisciplinary workshop bringing economists, computational social scientists, complexity researchers, and AI scholars into one shared conversation.',
-      supportingNote: 'A one-day bilingual format with keynotes, panels, invited discussants, and a closing dinner in Pisa.',
+        'Organized by PhD-AI.it Society doctoral researchers, COMPASS connects complexity science, markets, networks, law, and AI in a single one-day academic setting.',
+      supportingNote:
+        'Current draft: opening remarks, three keynote slots, three chaired panels, two coffee breaks, a networking lunch, closing remarks, and a social dinner in Pisa.',
       panelLabel: 'Workshop Snapshot',
       panelItems: [
         siteConfig.eventDate,
         siteConfig.venue,
-        'Three keynote moments, thematic panels, and an interdisciplinary closing session.',
+        'Free participation · expected audience 30-40 · alternate date 18 May 2026.',
       ],
     },
     whyCompass: {
       eyebrow: 'Why COMPASS',
-      title: 'Built for rigorous exchange instead of conference noise.',
+      title: 'Structured for an interdisciplinary day that still feels academically tight.',
       intro:
-        'COMPASS is framed as a working academic environment: compact, cross-disciplinary, and oriented toward methods, evidence, and policy relevance.',
+        'COMPASS is designed as a compact workshop where keynote framing and doctoral-led panels move through predictive methods, networks, and legal-ethical debate without splitting the room into parallel tracks.',
       pillars: [
         {
-          title: 'Interdisciplinary by design',
-          body: 'Economics, complexity science, AI, and policy analysis share one programme rather than parallel tracks.',
+          title: 'One room, three tracks',
+          body: 'The programme advances from AI methods to networks and NLP, then to legal and ethical questions, so the same audience shares the whole scientific arc.',
         },
         {
-          title: 'Focused scientific agenda',
-          body: 'Each block is designed to move from keynote framing to panel discussion and concrete methodological debate.',
+          title: 'Doctoral leadership with invited depth',
+          body: 'Six doctoral organizers chair the tracks while confirmed keynote guests and named discussants widen the methodological and institutional perspective.',
         },
         {
-          title: 'Small enough to work',
-          body: 'The format keeps room for genuine discussion, speaker access, and follow-up collaboration.',
+          title: 'Designed for discussion',
+          body: 'Coffee breaks, lunch, and the social dinner are part of the workshop architecture, giving the day space for Q&A, comparison, and follow-up collaboration.',
         },
       ],
-      asideTitle: 'What the day is optimized for',
+      asideTitle: 'What the structure is meant to do',
       asideBody:
-        'The homepage sets expectations for the workshop tone before detail pages take over the full programme and speaker materials.',
+        'The homepage now mirrors the actual workshop draft rather than a seed shell, while still keeping uncertain items explicit where invitations or affiliations are not finalized.',
       asidePoints: [
-        'Shared vocabulary across disciplines',
-        'Methods and policy implications in the same room',
-        'Discussion-first pacing with a clear start-to-finish arc',
+        'Bridge complexity science, AI, policy, and law',
+        'Keep keynote framing adjacent to doctoral-led discussion',
+        'Leave TBC items visible instead of implying false certainty',
       ],
     },
     highlights: [
-      { value: '3', label: 'International keynotes' },
-      { value: '3', label: 'Thematic panels' },
-      { value: '1', label: 'Interdisciplinary day' },
-      { value: '1', label: 'Closing social dinner' },
+      { value: '12', label: 'Scheduled programme blocks' },
+      { value: '3', label: 'Keynote lecture slots' },
+      { value: '6', label: 'Doctoral organizers and chairs' },
+      { value: '15', label: 'Named contributors in the current draft' },
     ],
     programme: {
       eyebrow: 'Programme Preview',
-      title: 'A single-day arc with room for depth.',
+      title: 'The homepage now follows the actual day structure.',
       intro:
-        'The workshop keeps the original template’s rhythm, but the content is now organized around opening framing, AI methods discussion, and a closing social moment.',
-      note: 'The full schedule, abstracts, and session detail will continue to expand on the dedicated programme page as workshop materials are finalized.',
-      sessionLabel: 'Session',
-      talkLabel: 'Featured talk',
+        'This preview tracks the current workshop draft from welcome remarks through keynote-panel progression, ending with the evening social dinner while leaving the third keynote slot explicitly marked TBC.',
+      note: 'The dedicated programme page carries the full twelve-block structure, including both coffee breaks, the networking lunch, and the closing remarks.',
+      sessionLabel: 'Programme block',
+      talkLabel: 'Linked contribution',
     },
     speakers: {
       eyebrow: 'Featured Speakers',
-      title: 'Researchers and chairs shaping the first COMPASS edition.',
+      title: 'Confirmed keynote guests, reserved keynote slot, and the track chairs.',
       intro:
-        'The landing page highlights invited voices and session leadership without expanding yet into full speaker biographies or detail pages.',
-      note: 'Speaker profiles and contribution details will continue to grow as invited participation is confirmed.',
-      emptyTalkLabel: 'Workshop contribution to be announced',
+        'The homepage foregrounds the invited keynote voices and the doctoral organizers leading the three thematic tracks, while the data layer already includes the named panel contributors listed in the workshop status document.',
+      note: 'Where titles, affiliations, or participation details are still being finalized, the cards stay explicit about that uncertainty instead of filling gaps with invented detail.',
+      emptyTalkLabel: 'Contribution details in preparation',
     },
     venue: {
       eyebrow: 'Venue Preview',
       title: 'Hosted at Scuola Superiore Sant’Anna in Pisa.',
       intro:
-        'The workshop setting is academic and compact, keeping attendees close to the sessions, informal discussion, and the final social dinner.',
+        'The event is planned for the Scuola Superiore Sant’Anna in Pisa, with the Aula Magna Storica or Aula 3 identified as the working venue options for a compact academic setting.',
       facts: [
         'Historic campus setting in central Pisa',
-        'Easy walk between plenary space, coffee breaks, and discussion areas',
-        'Travel guidance and detailed logistics live on the dedicated venue page',
+        'Working venue options already identified inside Sant’Anna',
+        'Short movement between plenary room, breaks, and discussion areas',
       ],
       travelTitle: 'Travel note',
       travelBody: 'Pisa Centrale and Galileo Galilei Airport provide the simplest arrival routes for most attendees.',
     },
     registration: {
       eyebrow: 'Registration',
-      title: 'Apply early and plan around the workshop schedule.',
+      title: 'Register early for a compact, free workshop format.',
       intro:
-        'Registration remains a lightweight handoff to the dedicated page and external form, while the homepage explains what prospective attendees should expect.',
+        'Participation remains free, but the event is designed for a focused in-person audience. The registration handoff stays simple while the homepage now explains the structure attendees are registering for.',
       deadlineLabel: 'Indicative deadline',
       deadlineValue: 'Before 1 May 2026',
       checklist: [
-        'Review the workshop framing and programme preview',
-        'Confirm travel feasibility for Pisa',
-        'Complete the registration form through the dedicated page',
+        'Review the full twelve-block workshop structure',
+        'Confirm travel feasibility for Pisa and the selected date',
+        'Use the registration page or external form to complete signup',
       ],
       secondaryCta: 'Open external registration form',
     },
@@ -207,93 +208,93 @@ const homepageContent = {
   it: {
     hero: {
       eyebrow: 'COMPASS 2026',
-      title: 'Complessità, mercati, policy e AI in un unico workshop accademico.',
+      title: 'Un workshop focalizzato su complessita socio-economica, metodi AI e policy.',
       copy:
-        'Un workshop interdisciplinare che riunisce economisti, studiosi di social science computazionale, ricercatori della complessità e studiosi di AI in una conversazione comune.',
+        'Organizzato da dottorandi di PhD-AI.it Society, COMPASS mette in relazione scienza della complessita, mercati, reti, diritto e AI in un’unica giornata accademica.',
       supportingNote:
-        'Un formato bilingue di una giornata con keynote, panel, discussant invitati e cena sociale finale a Pisa.',
+        'Bozza attuale: saluti iniziali, tre slot keynote, tre panel con chair, due coffee break, networking lunch, closing remarks e cena sociale a Pisa.',
       panelLabel: 'Sintesi Del Workshop',
       panelItems: [
         siteConfig.eventDate,
         siteConfig.venue,
-        'Tre momenti keynote, panel tematici e una chiusura interdisciplinare della giornata.',
+        'Partecipazione gratuita · pubblico atteso 30-40 persone · data alternativa 18 maggio 2026.',
       ],
     },
     whyCompass: {
       eyebrow: 'Perché COMPASS',
-      title: 'Progettato per il confronto rigoroso, non per il rumore da conferenza.',
+      title: 'Progettato per una giornata interdisciplinare che resti scientificamente compatta.',
       intro:
-        'COMPASS è pensato come ambiente accademico di lavoro: compatto, interdisciplinare e orientato a metodi, evidenza empirica e rilevanza per le policy.',
+        'COMPASS è disegnato come workshop compatto in cui keynote e panel guidati dai dottorandi attraversano metodi predittivi, networks e dibattito giuridico-etico senza dividere il pubblico in tracce parallele.',
       pillars: [
         {
-          title: 'Interdisciplinare per costruzione',
-          body: 'Economia, scienza della complessità, AI e policy analysis condividono un unico programma invece di tracce parallele.',
+          title: 'Un’unica sala, tre track',
+          body: 'Il programma avanza dai metodi AI a networks e NLP, fino a diritto ed etica, cosi lo stesso pubblico condivide l’intero arco scientifico.',
         },
         {
-          title: 'Agenda scientifica focalizzata',
-          body: 'Ogni blocco accompagna dalla keynote introduttiva alla discussione di panel e al confronto metodologico concreto.',
+          title: 'Leadership dottorale con ospiti invitati',
+          body: 'Sei dottorandi organizzatori coordinano le track mentre keynote confermate e discussant nominati ampliano la prospettiva metodologica e istituzionale.',
         },
         {
-          title: 'Dimensione che favorisce il dialogo',
-          body: 'Il formato lascia spazio a discussione reale, accesso ai relatori e collaborazioni successive.',
+          title: 'Pensato per la discussione',
+          body: 'Coffee break, lunch e cena sociale fanno parte dell’architettura del workshop e aprono spazio a Q&A, confronto e collaborazioni successive.',
         },
       ],
-      asideTitle: 'Obiettivi della giornata',
+      asideTitle: 'A cosa serve questa struttura',
       asideBody:
-        'La homepage definisce il tono del workshop prima che le pagine di dettaglio assumano il compito di mostrare programma e materiali dei relatori.',
+        'La homepage riflette ora la bozza reale del workshop invece di una shell seed, mantenendo comunque espliciti gli elementi ancora incerti quando inviti o affiliazioni non sono finalizzati.',
       asidePoints: [
-        'Vocabolario condiviso tra discipline',
-        'Metodi e implicazioni di policy nello stesso spazio di confronto',
-        'Ritmo discussion-first con un arco narrativo chiaro dall’inizio alla fine',
+        'Costruire un ponte tra complessita, AI, policy e diritto',
+        'Tenere affiancati framing keynote e discussione guidata dai dottorandi',
+        'Lasciare visibili i TBC senza simulare una certezza non ancora acquisita',
       ],
     },
     highlights: [
-      { value: '3', label: 'Keynote internazionali' },
-      { value: '3', label: 'Panel tematici' },
-      { value: '1', label: 'Giornata interdisciplinare' },
-      { value: '1', label: 'Cena sociale finale' },
+      { value: '12', label: 'Blocchi in programma' },
+      { value: '3', label: 'Slot keynote' },
+      { value: '6', label: 'Dottorandi organizzatori e chair' },
+      { value: '15', label: 'Contributori nominati nella bozza attuale' },
     ],
     programme: {
       eyebrow: 'Anteprima Del Programma',
-      title: 'Una giornata unica con spazio per andare in profondità.',
+      title: 'La homepage segue ora la struttura reale della giornata.',
       intro:
-        'Il workshop mantiene il ritmo del template originale, ma il contenuto ora è organizzato attorno ad apertura, discussione sui metodi AI e chiusura sociale.',
-      note: 'Il programma completo, con abstract e dettagli delle sessioni, continuerà ad arricchirsi nella pagina dedicata man mano che i materiali saranno confermati.',
-      sessionLabel: 'Sessione',
-      talkLabel: 'Intervento in evidenza',
+        'Questa anteprima segue la bozza attuale del workshop dall’apertura alla sequenza keynote-panel, fino alla cena sociale serale, mantenendo lo slot della terza keynote esplicitamente marcato come TBC.',
+      note: 'La pagina programma raccoglie l’intera struttura in dodici blocchi, comprese entrambe le pause caffe, il networking lunch e le closing remarks.',
+      sessionLabel: 'Blocco di programma',
+      talkLabel: 'Contributo collegato',
     },
     speakers: {
       eyebrow: 'Relatori In Evidenza',
-      title: 'Ricercatori e coordinatori di sessione che definiscono la prima edizione di COMPASS.',
+      title: 'Keynote confermate, slot keynote riservato e chair delle track.',
       intro:
-        'La landing page mette in primo piano voci invitate e guida delle sessioni senza espandersi ancora in schede complete o pagine di dettaglio.',
-      note: 'Profili dei relatori e dettagli sui contributi continueranno a crescere con la conferma delle partecipazioni invitate.',
-      emptyTalkLabel: 'Contributo al workshop in aggiornamento',
+        'La homepage mette in primo piano le voci keynote e i dottorandi che guidano le tre track tematiche, mentre il data layer include gia i contributori di panel nominati nel documento di stato del workshop.',
+      note: 'Dove titoli, affiliazioni o dettagli di partecipazione sono ancora in definizione, le card rendono esplicita l’incertezza invece di colmare i vuoti con dettagli inventati.',
+      emptyTalkLabel: 'Dettagli del contributo in preparazione',
     },
     venue: {
       eyebrow: 'Anteprima Della Sede',
       title: 'Ospitato alla Scuola Superiore Sant’Anna di Pisa.',
       intro:
-        'L’ambiente del workshop è accademico e raccolto, così partecipanti, sessioni, discussione informale e cena finale restano parte dello stesso flusso.',
+        'L’evento è previsto alla Scuola Superiore Sant’Anna di Pisa, con Aula Magna Storica o Aula 3 indicate come opzioni di lavoro per un contesto accademico raccolto.',
       facts: [
         'Contesto storico nel centro di Pisa',
-        'Spostamenti brevi tra plenaria, coffee break e spazi di discussione',
-        'Indicazioni di viaggio e logistica dettagliata nella pagina dedicata alla sede',
+        'Opzioni di sede gia individuate all’interno di Sant’Anna',
+        'Spostamenti brevi tra plenaria, pause e spazi di discussione',
       ],
       travelTitle: 'Nota sul viaggio',
       travelBody: 'Pisa Centrale e l’aeroporto Galileo Galilei sono i punti di arrivo più semplici per la maggior parte dei partecipanti.',
     },
     registration: {
       eyebrow: 'Registrazione',
-      title: 'Candidati in anticipo e pianifica la giornata del workshop.',
+      title: 'Registrati presto per un workshop gratuito e raccolto.',
       intro:
-        'La registrazione resta un passaggio leggero verso la pagina dedicata e il form esterno, mentre la homepage chiarisce cosa aspettarsi prima dell’iscrizione.',
+        'La partecipazione resta gratuita, ma l’evento è pensato per un pubblico in presenza contenuto. Il passaggio di registrazione resta semplice mentre la homepage spiega meglio la struttura per cui ci si iscrive.',
       deadlineLabel: 'Scadenza indicativa',
       deadlineValue: 'Entro il 1 maggio 2026',
       checklist: [
-        'Rivedi il framing del workshop e l’anteprima del programma',
-        'Verifica la fattibilità del viaggio verso Pisa',
-        'Completa il form di registrazione dalla pagina dedicata',
+        'Rivedi la struttura completa del workshop in dodici blocchi',
+        'Verifica la fattibilita del viaggio verso Pisa e della data scelta',
+        'Usa la pagina di registrazione o il form esterno per completare l’iscrizione',
       ],
       secondaryCta: 'Apri il form esterno di registrazione',
     },
@@ -309,8 +310,13 @@ const homepageContent = {
 
 const homepageCuration = {
   programmePreview: [
-    { sessionSlug: 'welcome-opening' },
-    { sessionSlug: 'panel-ai-methods' },
+    { sessionSlug: 'opening-remarks' },
+    { sessionSlug: 'keynote-1' },
+    { sessionSlug: 'panel-1-ai-methods' },
+    { sessionSlug: 'keynote-2' },
+    { sessionSlug: 'panel-2-networks-nlp' },
+    { sessionSlug: 'keynote-3-tbc' },
+    { sessionSlug: 'panel-3-legal-ethics' },
     { sessionSlug: 'social-dinner' },
   ],
   featuredSpeakers: [
@@ -324,22 +330,57 @@ const homepageCuration = {
     {
       speakerSlug: 'prabhani-don',
       roleLabel: {
-        en: 'Panel speaker',
-        it: 'Relatrice del panel',
+        en: 'Confirmed keynote speaker',
+        it: 'Relatrice keynote confermata',
+      },
+    },
+    {
+      speakerSlug: 'senior-expert-ai-regulation-tbc',
+      roleLabel: {
+        en: 'Keynote slot in confirmation',
+        it: 'Slot keynote in conferma',
       },
     },
     {
       speakerSlug: 'stefano-blando',
       roleLabel: {
-        en: 'Panel speaker and session chair',
-        it: 'Relatore del panel e coordinatore di sessione',
+        en: 'Track 1 co-chair',
+        it: 'Relatore e co-chair della Track 1',
       },
     },
     {
       speakerSlug: 'biancamaria-bombino',
       roleLabel: {
-        en: 'Panel speaker and session chair',
-        it: 'Relatrice del panel e coordinatrice di sessione',
+        en: 'Track 1 co-chair',
+        it: 'Relatrice e co-chair della Track 1',
+      },
+    },
+    {
+      speakerSlug: 'lorenzo-emer',
+      roleLabel: {
+        en: 'Track 2 co-chair',
+        it: 'Relatore e co-chair della Track 2',
+      },
+    },
+    {
+      speakerSlug: 'alice-musso',
+      roleLabel: {
+        en: 'Track 2 co-chair',
+        it: 'Relatrice e co-chair della Track 2',
+      },
+    },
+    {
+      speakerSlug: 'roberta-romano',
+      roleLabel: {
+        en: 'Track 3 co-chair',
+        it: 'Relatrice e co-chair della Track 3',
+      },
+    },
+    {
+      speakerSlug: 'roberta-savella',
+      roleLabel: {
+        en: 'Track 3 co-chair',
+        it: 'Relatrice e co-chair della Track 3',
       },
     },
   ],
@@ -411,6 +452,7 @@ export function getHomepageProgrammePreview(locale: Locale) {
 
     return [{
       slug: session.slug,
+      type: session.type,
       title: session.title[locale],
       description: session.description[locale],
       startsAt: session.startsAt,

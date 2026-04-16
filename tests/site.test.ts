@@ -19,6 +19,8 @@ import {
   getTalksBySpeaker,
   locales,
 } from '../src/lib/site';
+import { sessions } from '../src/data/sessions';
+import { speakers } from '../src/data/speakers';
 import { talks } from '../src/data/talks';
 
 describe('site helpers', () => {
@@ -104,12 +106,12 @@ describe('site helpers', () => {
   it('localizes shell page metadata for both locales', () => {
     expect(getPageMetadata('en', 'home')).toEqual({
       title: 'COMPASS | COmplexity, Markets, Policy, and AI in Social Systems',
-      description: 'COMPASS workshop on complexity, markets, policy, and AI in social systems.',
+      description: 'COMPASS is a one-day academic workshop in Pisa with keynotes, panels, and interdisciplinary discussion on complexity, markets, policy, and AI.',
     });
 
     expect(getPageMetadata('it', 'home')).toEqual({
       title: 'COMPASS | COmplexity, Mercati, Policy e AI nei sistemi sociali',
-      description: 'Workshop COMPASS su complessita, mercati, policy e AI nei sistemi sociali.',
+      description: 'COMPASS e un workshop accademico di una giornata a Pisa con keynote, panel e confronto interdisciplinare su complessita, mercati, policy e AI.',
     });
 
     expect(getPageMetadata('it', 'about')).toEqual({
@@ -119,18 +121,29 @@ describe('site helpers', () => {
 
     expect(getPageMetadata('en', 'programme')).toEqual({
       title: 'Programme | COMPASS',
-      description: 'Seeded workshop programme with the current sessions, talks, and agenda links.',
+      description: 'Current COMPASS programme with opening, keynote lectures, panel sessions, breaks, and the closing social dinner.',
     });
 
     expect(getPageMetadata('it', 'programme')).toEqual({
       title: 'Programma | COMPASS',
-      description: 'Programma seed del workshop con le sessioni, gli interventi e i collegamenti attualmente disponibili.',
+      description: 'Programma attuale di COMPASS con apertura, keynote, panel, pause, pranzo e cena sociale conclusiva.',
     });
   });
 
   it('returns the four workshop highlights for each locale', () => {
     expect(getHomepageHighlights('en')).toHaveLength(4);
-    expect(getHomepageHighlights('it')[0]?.value).toBe('3');
+    expect(getHomepageHighlights('en')).toEqual([
+      { value: '12', label: 'Scheduled programme blocks' },
+      { value: '3', label: 'Keynote lecture slots' },
+      { value: '6', label: 'Doctoral organizers and chairs' },
+      { value: '15', label: 'Named contributors in the current draft' },
+    ]);
+    expect(getHomepageHighlights('it')).toEqual([
+      { value: '12', label: 'Blocchi in programma' },
+      { value: '3', label: 'Slot keynote' },
+      { value: '6', label: 'Dottorandi organizzatori e chair' },
+      { value: '15', label: 'Contributori nominati nella bozza attuale' },
+    ]);
   });
 
   it('returns public-facing homepage copy without planning-language placeholders', () => {
@@ -148,17 +161,26 @@ describe('site helpers', () => {
     const italian = getHomepageProgrammePreview('it');
 
     expect(english.map((session) => session.slug)).toEqual([
-      'welcome-opening',
-      'panel-ai-methods',
+      'opening-remarks',
+      'keynote-1',
+      'panel-1-ai-methods',
+      'keynote-2',
+      'panel-2-networks-nlp',
+      'keynote-3-tbc',
+      'panel-3-legal-ethics',
       'social-dinner',
     ]);
-    expect(english[1]).toMatchObject({
+    expect(english[2]).toMatchObject({
       chairLabel: 'Session chairs',
       chairNames: ['Stefano Blando', 'Biancamaria Bombino'],
     });
-    expect(italian[1]).toMatchObject({
+    expect(italian[4]).toMatchObject({
       chairLabel: 'Coordinamento',
-      title: 'Panel 1: Metodi e applicazioni dell’AI',
+      title: 'Panel 2: Networks e NLP',
+    });
+    expect(english[5]).toMatchObject({
+      title: 'Keynote 3',
+      featuredTalkTitle: 'Keynote lecture on AI regulation and ethics (TBC)',
     });
   });
 
@@ -169,15 +191,23 @@ describe('site helpers', () => {
     expect(english.map((speaker) => speaker.slug)).toEqual([
       'guido-germano',
       'prabhani-don',
+      'senior-expert-ai-regulation-tbc',
       'stefano-blando',
       'biancamaria-bombino',
+      'lorenzo-emer',
+      'alice-musso',
+      'roberta-romano',
+      'roberta-savella',
     ]);
     expect(english[0]?.role).toBe('Keynote speaker');
     expect(italian[0]?.role).toBe('Relatore keynote');
-    expect(english[1]?.role).toBe('Panel speaker');
-    expect(italian[1]?.role).toBe('Relatrice del panel');
-    expect(italian[2]?.role).toBe('Relatore del panel e coordinatore di sessione');
-    expect(italian[3]?.role).toBe('Relatrice del panel e coordinatrice di sessione');
+    expect(english[1]?.role).toBe('Confirmed keynote speaker');
+    expect(italian[1]?.role).toBe('Relatrice keynote confermata');
+    expect(english[2]?.role).toBe('Keynote slot in confirmation');
+    expect(italian[2]?.role).toBe('Slot keynote in conferma');
+    expect(italian[3]?.role).toBe('Relatore e co-chair della Track 1');
+    expect(italian[4]?.role).toBe('Relatrice e co-chair della Track 1');
+    expect(italian[8]?.role).toBe('Relatrice e co-chair della Track 3');
   });
 
   it('localizes homepage scroll sections for the floating navigation', () => {
@@ -195,24 +225,64 @@ describe('site helpers', () => {
     expect(speaker?.name).toBe('Guido Germano');
 
     const talks = getTalksBySpeaker('guido-germano');
-    expect(talks.map((talk) => talk.slug)).toContain('complexity-keynote');
+    expect(talks.map((talk) => talk.slug)).toContain('keynote-guido-germano');
   });
 
   it('returns programme sessions sorted by start time', () => {
     const sessions = getProgrammeSessions();
-    expect(sessions[0]?.slug).toBe('welcome-opening');
+    expect(sessions[0]?.slug).toBe('opening-remarks');
     expect(sessions.at(-1)?.slug).toBe('social-dinner');
   });
 
-  it('returns talks for the AI methods panel', () => {
-    const sessionTalks = getTalksForSession('panel-ai-methods');
-
-    expect(sessionTalks.length).toBeGreaterThan(0);
+  it('returns talks for the three thematic panels', () => {
+    expect(getTalksForSession('panel-1-ai-methods')).toHaveLength(3);
+    expect(getTalksForSession('panel-2-networks-nlp')).toHaveLength(5);
+    expect(getTalksForSession('panel-3-legal-ethics')).toHaveLength(4);
   });
 
   it('retrieves talks by slug for detail routes', () => {
-    expect(getTalkBySlug('complexity-keynote')?.sessionSlug).toBe('welcome-opening');
+    expect(getTalkBySlug('keynote-guido-germano')?.sessionSlug).toBe('keynote-1');
     expect(getTalkBySlug('missing-talk')).toBeUndefined();
+  });
+
+  it('keeps the seeded content aligned with the current workshop document', () => {
+    expect(sessions).toHaveLength(12);
+    expect(speakers).toHaveLength(16);
+    expect(talks).toHaveLength(16);
+
+    expect(sessions.map((session) => session.slug)).toEqual([
+      'opening-remarks',
+      'keynote-1',
+      'coffee-break-1',
+      'panel-1-ai-methods',
+      'networking-lunch',
+      'keynote-2',
+      'panel-2-networks-nlp',
+      'coffee-break-2',
+      'keynote-3-tbc',
+      'panel-3-legal-ethics',
+      'closing-remarks',
+      'social-dinner',
+    ]);
+
+    expect(speakers.map((speaker) => speaker.slug)).toEqual(expect.arrayContaining([
+      'andrea-vandin',
+      'guido-germano',
+      'prabhani-don',
+      'senior-expert-ai-regulation-tbc',
+      'stefano-blando',
+      'biancamaria-bombino',
+      'lorenzo-emer',
+      'alice-musso',
+      'roberta-romano',
+      'roberta-savella',
+      'simone-tonini',
+      'riccardo-porcedda',
+      'giuseppe-f-squillace',
+      'anna-gallo',
+      'vittoria-caponecchia',
+      'benedetta-tessa',
+    ]));
   });
 
   it('aligns speaker contribution metadata with the seeded talk sessions', () => {
@@ -220,15 +290,22 @@ describe('site helpers', () => {
       const session = getProgrammeSessions().find((candidate) => candidate.slug === talk.sessionSlug);
       expect(session, `missing session for ${talk.slug}`).toBeDefined();
 
-      if (session?.type !== 'panel') {
+      if (!session || !['panel', 'keynote', 'opening'].includes(session.type)) {
         continue;
       }
 
       for (const speakerSlug of talk.speakerSlugs) {
         const speaker = getSpeakerBySlug(speakerSlug);
         expect(speaker, `missing talk speaker: ${speakerSlug}`).toBeDefined();
-        expect(speaker?.type).toContain('panelist');
-        expect(speaker?.roleLabel.en.toLowerCase()).toContain('panel');
+        if (session.type === 'panel') {
+          expect(speaker?.type).toContain('panelist');
+          expect(speaker?.roleLabel.en.toLowerCase()).toContain('track');
+        }
+
+        if (session.type === 'keynote') {
+          expect(speaker?.type).toContain('keynote');
+          expect(speaker?.roleLabel.en.toLowerCase()).toContain('keynote');
+        }
       }
     }
   });

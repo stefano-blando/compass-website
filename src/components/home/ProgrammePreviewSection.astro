@@ -14,11 +14,25 @@ const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB
   hour: '2-digit',
   minute: '2-digit',
 });
+const sessionTypeLabels = {
+  en: {
+    opening: 'Opening',
+    keynote: 'Keynote',
+    panel: 'Panel',
+    social: 'Social',
+  },
+  it: {
+    opening: 'Apertura',
+    keynote: 'Keynote',
+    panel: 'Panel',
+    social: 'Sociale',
+  },
+} as const;
 ---
 
 <section id="programme-preview" class="programme-preview" data-home-reveal>
   <div class="container programme-preview__shell">
-    <div class="programme-preview__intro">
+    <div class="programme-preview__intro" data-reveal-item>
       <p class="section-kicker">{programme.eyebrow}</p>
       <h2>{programme.title}</h2>
       <p>{programme.intro}</p>
@@ -26,11 +40,17 @@ const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB
 
     <div class="programme-preview__grid">
       {sessions.map((session, index) => (
-        <article class="programme-preview__card" style={`--reveal-delay: ${index * 90}ms;`}>
+        <article class="programme-preview__card" style={`--reveal-delay: ${index * 85}ms; --card-index: ${index};`} data-reveal-item>
+          <div class="programme-preview__art" aria-hidden="true">
+            <span class="programme-preview__art-line"></span>
+            <span class="programme-preview__art-ring"></span>
+            <span class="programme-preview__art-dot"></span>
+          </div>
+
           <p class="programme-preview__time">
             {timeFormatter.format(new Date(session.startsAt))} - {timeFormatter.format(new Date(session.endsAt))}
           </p>
-          <p class="programme-preview__type">{programme.sessionLabel}</p>
+          <p class="programme-preview__type">{sessionTypeLabels[locale][session.type as keyof typeof sessionTypeLabels.en]}</p>
           <h3>{session.title}</h3>
           <p>{session.description}</p>
 
@@ -50,7 +70,7 @@ const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB
       ))}
     </div>
 
-    <div class="programme-preview__footer">
+    <div class="programme-preview__footer" data-reveal-item style="--reveal-delay: 180ms;">
       <p>{programme.note}</p>
       <a class="btn-secondary" href={buildLocalizedPath(locale, 'programme')}>{labels.viewProgramme}</a>
     </div>
@@ -78,7 +98,8 @@ const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB
     border-radius: 34px;
     padding: clamp(1.6rem, 4vw, 2.2rem);
     background:
-      radial-gradient(circle at top right, rgba(55, 95, 138, 0.16), transparent 32%),
+      radial-gradient(circle at top right, rgba(55, 95, 138, 0.24), transparent 32%),
+      radial-gradient(circle at bottom left, rgba(126, 36, 52, 0.22), transparent 28%),
       linear-gradient(180deg, #142033, #1d2d45);
     color: #f7f3ee;
     box-shadow: var(--shadow-strong);
@@ -96,6 +117,18 @@ const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB
     pointer-events: none;
   }
 
+  .programme-preview__shell::after {
+    content: "";
+    position: absolute;
+    inset: auto -8% -16% auto;
+    width: 22rem;
+    height: 22rem;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(126, 36, 52, 0.18), transparent 68%);
+    filter: blur(16px);
+    pointer-events: none;
+  }
+
   .programme-preview__intro,
   .programme-preview__footer,
   .programme-preview__grid {
@@ -107,28 +140,85 @@ const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB
     margin: 0.3rem 0 0.75rem;
     font-size: clamp(2.3rem, 5vw, 4rem);
     line-height: 0.93;
-    max-width: 11ch;
+    max-width: 13ch;
   }
 
   .programme-preview__intro p {
-    max-width: 50rem;
-    color: rgba(247, 243, 238, 0.8);
+    max-width: 56rem;
+    color: rgba(247, 243, 238, 0.82);
   }
 
   .programme-preview__grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 0.9rem;
     margin-top: 1.5rem;
   }
 
   .programme-preview__card {
+    position: relative;
+    overflow: hidden;
     border-radius: 24px;
     padding: 1.2rem;
-    background: rgba(255, 253, 249, 0.1);
+    background:
+      linear-gradient(180deg, rgba(255, 253, 249, 0.16), rgba(255, 253, 249, 0.08)),
+      rgba(255, 253, 249, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.12);
     box-shadow: 0 18px 36px rgba(5, 10, 16, 0.18);
     backdrop-filter: blur(12px);
+    transition:
+      transform 220ms ease,
+      border-color 220ms ease,
+      box-shadow 220ms ease;
+  }
+
+  .programme-preview__card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 22px 42px rgba(5, 10, 16, 0.24);
+  }
+
+  .programme-preview__art {
+    position: relative;
+    overflow: hidden;
+    height: 5.2rem;
+    margin-bottom: 1rem;
+    border-radius: 18px;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.04)),
+      rgba(20, 32, 51, 0.18);
+  }
+
+  .programme-preview__art-line,
+  .programme-preview__art-ring,
+  .programme-preview__art-dot {
+    position: absolute;
+  }
+
+  .programme-preview__art-line {
+    inset: 58% 10% auto;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.18));
+  }
+
+  .programme-preview__art-ring {
+    top: 0.8rem;
+    right: 1rem;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 999px;
+    animation: programmePreviewOrbit 11s linear infinite;
+  }
+
+  .programme-preview__art-dot {
+    left: calc(12% + (var(--card-index) * 8px));
+    top: calc(50% - 0.35rem);
+    width: 0.7rem;
+    height: 0.7rem;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(236, 193, 201, 0.98), rgba(255, 255, 255, 0.74));
+    box-shadow: 0 0 0 8px rgba(236, 193, 201, 0.08);
   }
 
   .programme-preview__time,
@@ -137,7 +227,7 @@ const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB
   .programme-preview__card p,
   .programme-preview__talk span,
   .programme-preview__footer p {
-    color: rgba(247, 243, 238, 0.78);
+    color: rgba(247, 243, 238, 0.8);
   }
 
   .programme-preview__time,
@@ -194,11 +284,17 @@ const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB
     background: rgba(255, 255, 255, 0.08);
   }
 
-  @media (max-width: 980px) {
-    .programme-preview__grid {
-      grid-template-columns: 1fr;
+  @keyframes programmePreviewOrbit {
+    from {
+      transform: rotate(0deg);
     }
 
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 980px) {
     .programme-preview__footer {
       flex-direction: column;
       align-items: flex-start;
