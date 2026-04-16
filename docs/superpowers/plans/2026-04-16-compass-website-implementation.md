@@ -40,9 +40,10 @@ describe('site helpers', () => {
     expect(locales).toEqual(['en', 'it']);
   });
 
-  it('builds localized paths without duplicate slashes', () => {
+  it('builds localized paths and collapses duplicate slashes', () => {
     expect(buildLocalizedPath('en', '/programme')).toBe('/en/programme/');
     expect(buildLocalizedPath('it', 'registration')).toBe('/it/registration/');
+    expect(buildLocalizedPath('en', '//programme//overview/')).toBe('/en/programme/overview/');
   });
 
   it('links speakers to talks through shared slugs', () => {
@@ -57,6 +58,16 @@ describe('site helpers', () => {
     const sessions = getProgrammeSessions();
     expect(sessions[0]?.slug).toBe('welcome-opening');
     expect(sessions.at(-1)?.slug).toBe('social-dinner');
+  });
+
+  it('keeps seeded speaker, chair, and talk relations resolvable', () => {
+    const orderedSessions = getProgrammeSessions();
+
+    for (const session of orderedSessions) {
+      for (const chairSlug of session.chairSlugs) {
+        expect(getSpeakerBySlug(chairSlug), `missing chair speaker: ${chairSlug}`).toBeDefined();
+      }
+    }
   });
 });
 ```
@@ -117,7 +128,7 @@ export type Speaker = {
   affiliation: string;
   roleLabel: LocalizedText;
   bio: LocalizedText;
-  image: string;
+  image?: string;
   type: SpeakerRole[];
   links?: {
     website?: string;
@@ -207,7 +218,6 @@ export const speakers: Speaker[] = [
       en: 'Professor of Computational Science working on complex systems, economics, and computational methods.',
       it: 'Professore di Computational Science con attività su sistemi complessi, economia e metodi computazionali.',
     },
-    image: '/images/speakers/guido-germano.jpg',
     type: ['keynote'],
   },
   {
@@ -222,8 +232,35 @@ export const speakers: Speaker[] = [
       en: 'Associate Professor of Statistics focused on high-dimensional data, model validation, and machine learning.',
       it: 'Associate Professor of Statistics specializzata in dati ad alta dimensionalità, validazione dei modelli e machine learning.',
     },
-    image: '/images/speakers/prabhani-don.jpg',
     type: ['keynote'],
+  },
+  {
+    slug: 'stefano-blando',
+    name: 'Stefano Blando',
+    affiliation: 'Scuola Superiore Sant’Anna',
+    roleLabel: {
+      en: 'Chair',
+      it: 'Chair',
+    },
+    bio: {
+      en: 'Researcher working on complex systems, empirical methods, and event coordination.',
+      it: 'Ricercatore che si occupa di sistemi complessi, metodi empirici e coordinamento eventi.',
+    },
+    type: ['chair', 'organizer'],
+  },
+  {
+    slug: 'biancamaria-bombino',
+    name: 'Biancamaria Bombino',
+    affiliation: 'Scuola Superiore Sant’Anna',
+    roleLabel: {
+      en: 'Chair',
+      it: 'Chair',
+    },
+    bio: {
+      en: 'Researcher focused on policy analysis, computational social science, and workshop organization.',
+      it: 'Ricercatrice focalizzata su policy analysis, social science computazionale e organizzazione di workshop.',
+    },
+    type: ['chair', 'organizer'],
   },
 ];
 ```
@@ -245,7 +282,7 @@ export const sessions: Session[] = [
     },
     type: 'opening',
     startsAt: '2026-05-11T09:00:00+02:00',
-    endsAt: '2026-05-11T09:15:00+02:00',
+    endsAt: '2026-05-11T09:45:00+02:00',
     chairSlugs: [],
   },
   {
