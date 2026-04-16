@@ -1,0 +1,134 @@
+---
+import type { Locale } from '../../data/types';
+import { buildLocalizedPath, getHomepageContent, getLabels, siteConfig } from '../../lib/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const labels = getLabels(locale);
+const { registration } = getHomepageContent(locale);
+---
+
+<section id="registration-cta" class="registration-cta" data-home-reveal>
+  <div class="container registration-cta__shell">
+    <div class="registration-cta__copy">
+      <p class="section-kicker">{registration.eyebrow}</p>
+      <h2>{registration.title}</h2>
+      <p>{registration.intro}</p>
+
+      <div class="registration-cta__actions">
+        <a class="btn-primary" href={buildLocalizedPath(locale, 'registration')}>{labels.registration}</a>
+        <a class="btn-secondary" href={siteConfig.registrationUrl} target="_blank" rel="noreferrer">
+          {registration.secondaryCta}
+        </a>
+      </div>
+    </div>
+
+    <aside class="registration-cta__panel">
+      <p class="registration-cta__deadline-label">{registration.deadlineLabel}</p>
+      <p class="registration-cta__deadline-value">{registration.deadlineValue}</p>
+
+      <ul class="registration-cta__list">
+        {registration.checklist.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .registration-cta {
+    padding: 1.2rem 0 0;
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 520ms ease,
+      transform 520ms ease;
+  }
+
+  .registration-cta.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .registration-cta__shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.7fr);
+    gap: 1rem;
+    padding: clamp(1.7rem, 4vw, 2.3rem);
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    background:
+      linear-gradient(180deg, rgba(126, 36, 52, 0.08), rgba(255, 255, 255, 0.82)),
+      var(--surface-strong);
+    box-shadow: var(--shadow);
+  }
+
+  .registration-cta__copy h2 {
+    margin: 0.3rem 0 0.8rem;
+    font-size: clamp(2.4rem, 5vw, 4.3rem);
+    line-height: 0.93;
+    max-width: 12ch;
+  }
+
+  .registration-cta__copy p,
+  .registration-cta__list li {
+    color: var(--ink-soft);
+  }
+
+  .registration-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.4rem;
+  }
+
+  .registration-cta__panel {
+    border-radius: 24px;
+    padding: 1.4rem;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(20, 32, 51, 0.08);
+  }
+
+  .registration-cta__deadline-label {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .registration-cta__deadline-value {
+    margin: 0.35rem 0 0;
+    color: var(--ink);
+    font-size: 2rem;
+    line-height: 0.95;
+    font-weight: 700;
+    font-family: "Cormorant Garamond", serif;
+  }
+
+  .registration-cta__list {
+    margin: 1rem 0 0;
+    padding-left: 1.1rem;
+  }
+
+  .registration-cta__list li + li {
+    margin-top: 0.55rem;
+  }
+
+  @media (max-width: 980px) {
+    .registration-cta__shell {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .registration-cta__actions {
+      flex-direction: column;
+    }
+  }
+</style>

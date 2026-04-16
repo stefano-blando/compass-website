@@ -1,0 +1,266 @@
+---
+import type { Locale } from '../../data/types';
+import { buildLocalizedPath, getHomepageContent, getLabels } from '../../lib/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const labels = getLabels(locale);
+const { hero } = getHomepageContent(locale);
+---
+
+<section id="top" class="home-hero" data-home-hero>
+  <div class="home-hero__radial home-hero__radial--a" aria-hidden="true"></div>
+  <div class="home-hero__radial home-hero__radial--b" aria-hidden="true"></div>
+  <div class="home-hero__grid-atmosphere" data-home-grid aria-hidden="true"></div>
+
+  <div class="container home-hero__layout">
+    <div class="home-hero__content" data-home-hero-enter>
+      <p class="eyebrow">{hero.eyebrow}</p>
+      <h1>{hero.title}</h1>
+      <p class="home-hero__copy">{hero.copy}</p>
+
+      <div class="home-hero__actions">
+        <a class="btn-primary" href={buildLocalizedPath(locale, 'registration')}>{labels.register}</a>
+        <a class="btn-secondary" href={buildLocalizedPath(locale, 'programme')}>{labels.viewProgramme}</a>
+      </div>
+
+      <p class="home-hero__note">{hero.supportingNote}</p>
+    </div>
+
+    <aside class="home-hero__panel" data-home-hero-enter style="--hero-enter-delay: 140ms;">
+      <p class="home-hero__panel-label">{hero.panelLabel}</p>
+      <ul class="home-hero__panel-list">
+        {hero.panelItems.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-home-hero]');
+    if (!root) {
+      return;
+    }
+
+    const grid = root.querySelector('[data-home-grid]');
+    const enterNodes = root.querySelectorAll('[data-home-hero-enter]');
+    requestAnimationFrame(() => {
+      root.classList.add('is-ready');
+      enterNodes.forEach((node) => node.classList.add('is-ready'));
+    });
+
+    if (!grid) {
+      return;
+    }
+
+    const updateGridShift = () => {
+      const y = window.scrollY;
+      const offsetX = (y * 0.035) % 10;
+      const offsetY = (y * 0.025) % 8;
+      grid.style.transform = `translate3d(${offsetX.toFixed(2)}px, ${offsetY.toFixed(2)}px, 0)`;
+    };
+
+    updateGridShift();
+    window.addEventListener('scroll', updateGridShift, { passive: true });
+  })();
+</script>
+
+<style>
+  .home-hero {
+    position: relative;
+    min-height: calc(100vh - 92px);
+    display: flex;
+    align-items: center;
+    overflow: clip;
+    padding: clamp(2rem, 4vw, 4rem) 0 2.5rem;
+  }
+
+  .home-hero__radial {
+    position: absolute;
+    border-radius: 999px;
+    pointer-events: none;
+    filter: blur(46px);
+    opacity: 0.18;
+  }
+
+  .home-hero__radial--a {
+    top: 4%;
+    left: -8%;
+    width: min(540px, 44vw);
+    height: min(540px, 44vw);
+    background: radial-gradient(circle, rgba(126, 36, 52, 0.28) 0%, rgba(126, 36, 52, 0) 72%);
+    animation: heroDriftA 18s ease-in-out infinite alternate;
+  }
+
+  .home-hero__radial--b {
+    right: -10%;
+    bottom: 2%;
+    width: min(520px, 42vw);
+    height: min(520px, 42vw);
+    background: radial-gradient(circle, rgba(55, 95, 138, 0.26) 0%, rgba(55, 95, 138, 0) 70%);
+    animation: heroDriftB 22s ease-in-out infinite alternate;
+  }
+
+  .home-hero__grid-atmosphere {
+    position: absolute;
+    inset: 8% 0 10%;
+    opacity: 0.55;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(20, 32, 51, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20, 32, 51, 0.06) 1px, transparent 1px),
+      radial-gradient(circle at top, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
+    background-size: 40px 40px, 40px 40px, 100% 100%;
+    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.35) 72%, transparent);
+    transition: transform 160ms linear;
+  }
+
+  .home-hero__layout {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.8fr);
+    gap: 1.5rem;
+    align-items: end;
+  }
+
+  .home-hero__content,
+  .home-hero__panel {
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    box-shadow: var(--shadow-strong);
+    backdrop-filter: blur(14px);
+  }
+
+  .home-hero__content {
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 253, 249, 0.64)),
+      var(--surface);
+    padding: clamp(2rem, 5vw, 4rem);
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 520ms ease,
+      transform 520ms ease;
+  }
+
+  .home-hero__panel {
+    align-self: stretch;
+    background:
+      linear-gradient(180deg, rgba(55, 95, 138, 0.12), rgba(255, 255, 255, 0.94) 52%),
+      rgba(255, 253, 249, 0.95);
+    padding: 1.5rem;
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 520ms ease var(--hero-enter-delay, 0ms),
+      transform 520ms ease var(--hero-enter-delay, 0ms);
+  }
+
+  .home-hero__content.is-ready,
+  .home-hero__panel.is-ready {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .home-hero h1 {
+    margin: 0.45rem 0 0.9rem;
+    font-size: clamp(3.2rem, 7vw, 6rem);
+    line-height: 0.92;
+    max-width: 11ch;
+    text-wrap: balance;
+  }
+
+  .home-hero__copy,
+  .home-hero__note {
+    max-width: 43rem;
+    color: var(--ink-soft);
+    font-size: 1.08rem;
+  }
+
+  .home-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.7rem;
+  }
+
+  .home-hero__note {
+    margin: 1.4rem 0 0;
+    font-size: 0.96rem;
+  }
+
+  .home-hero__panel-label {
+    margin: 0;
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .home-hero__panel-list {
+    list-style: none;
+    margin: 0.85rem 0 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .home-hero__panel-list li {
+    padding: 0.85rem 0.95rem;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(20, 32, 51, 0.08);
+    color: var(--ink);
+    box-shadow: 0 10px 24px rgba(20, 32, 51, 0.06);
+  }
+
+  @keyframes heroDriftA {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+      transform: translate3d(18px, -18px, 0) scale(1.05);
+    }
+  }
+
+  @keyframes heroDriftB {
+    from {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+
+    to {
+      transform: translate3d(-16px, 18px, 0) scale(1.04);
+    }
+  }
+
+  @media (max-width: 980px) {
+    .home-hero {
+      min-height: auto;
+      padding-top: 1.2rem;
+    }
+
+    .home-hero__layout {
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .home-hero h1 {
+      font-size: clamp(2.8rem, 14vw, 4.2rem);
+    }
+
+    .home-hero__actions {
+      flex-direction: column;
+    }
+  }
+</style>

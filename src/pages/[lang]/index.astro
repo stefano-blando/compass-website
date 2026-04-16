@@ -1,72 +1,24 @@
 ---
+import SectionScrollNav from '../../components/SectionScrollNav.vue';
+import FeaturedSpeakersSection from '../../components/home/FeaturedSpeakersSection.astro';
+import HeroSection from '../../components/home/HeroSection.astro';
+import HighlightsSection from '../../components/home/HighlightsSection.astro';
+import ProgrammePreviewSection from '../../components/home/ProgrammePreviewSection.astro';
+import RegistrationCtaSection from '../../components/home/RegistrationCtaSection.astro';
+import VenuePreviewSection from '../../components/home/VenuePreviewSection.astro';
+import WhyCompassSection from '../../components/home/WhyCompassSection.astro';
 import Footer from '../../components/site/Footer.astro';
 import Header from '../../components/site/Header.astro';
 import type { Locale } from '../../data/types';
 import Layout from '../../layouts/Layout.astro';
-import { buildLocalizedPath, getLabels, getPageMetadata, locales, siteConfig } from '../../lib/site';
+import { getPageMetadata, locales } from '../../lib/site';
 
 export function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
 }
 
 const locale = Astro.params.lang as Locale;
-const labels = getLabels(locale);
 const pageMeta = getPageMetadata(locale, 'home');
-
-const copy = {
-  en: {
-    title: 'A focused academic workshop on complexity, markets, policy, and AI.',
-    intro:
-      'COMPASS brings economists, computational social scientists, complexity researchers, and AI scholars together for a bilingual workshop in Pisa.',
-    metaLabel: 'Workshop Snapshot',
-    meta: [
-      'One-day interdisciplinary format with invited talks and panels.',
-      'Hosted at Scuola Superiore Sant’Anna in Pisa.',
-      'English and Italian route shells for the core site structure.',
-    ],
-    sectionLabel: 'Explore The Site',
-    cards: {
-      programme: 'Session schedule, keynote rhythm, and workshop flow.',
-      speakers: 'Research profiles and invited participant list.',
-      venue: 'Campus logistics, travel notes, and on-site guidance.',
-      registration: 'Registration path and attendee instructions.',
-      about: 'Mission, scope, and thematic framing for COMPASS.',
-      organizers: 'Organizing committee and institutional stewardship.',
-      faq: 'Common logistical questions and quick answers.',
-    },
-  },
-  it: {
-    title: 'Un workshop accademico su complessita, mercati, policy e AI.',
-    intro:
-      'COMPASS riunisce economisti, studiosi di social science computazionale, ricercatori della complessita e studiosi di AI in un workshop bilingue a Pisa.',
-    metaLabel: 'Sintesi Del Workshop',
-    meta: [
-      'Formato interdisciplinare di una giornata con keynote e panel invitati.',
-      'Ospitato presso la Scuola Superiore Sant’Anna di Pisa.',
-      'Shell di routing in inglese e italiano per la struttura base del sito.',
-    ],
-    sectionLabel: 'Esplora Il Sito',
-    cards: {
-      programme: 'Programma delle sessioni, ritmo delle keynote e flusso della giornata.',
-      speakers: 'Profili dei relatori e lista degli invitati.',
-      venue: 'Logistica della sede, viaggio e indicazioni pratiche.',
-      registration: 'Percorso di registrazione e istruzioni per i partecipanti.',
-      about: 'Missione, ambito e inquadramento tematico di COMPASS.',
-      organizers: 'Comitato organizzatore e presidi istituzionali.',
-      faq: 'Domande frequenti e risposte rapide.',
-    },
-  },
-}[locale];
-
-const sections = [
-  { key: 'programme', href: buildLocalizedPath(locale, 'programme'), label: labels.programme },
-  { key: 'speakers', href: buildLocalizedPath(locale, 'speakers'), label: labels.speakers },
-  { key: 'venue', href: buildLocalizedPath(locale, 'venue'), label: labels.venue },
-  { key: 'registration', href: buildLocalizedPath(locale, 'registration'), label: labels.registration },
-  { key: 'about', href: buildLocalizedPath(locale, 'about'), label: labels.about },
-  { key: 'organizers', href: buildLocalizedPath(locale, 'organizers'), label: labels.organizers },
-  { key: 'faq', href: buildLocalizedPath(locale, 'faq'), label: labels.faq },
-] as const;
 ---
 
 <Layout
@@ -75,53 +27,48 @@ const sections = [
   description={pageMeta.description}
 >
   <Header locale={locale} />
+  <SectionScrollNav client:load locale={locale} />
 
-  <main class="page-shell">
-    <section class="page-hero container">
-      <div class="page-hero__content">
-        <p class="eyebrow">COMPASS 2026</p>
-        <h1>{copy.title}</h1>
-        <p class="page-lead">{copy.intro}</p>
-
-        <div class="page-actions">
-          <a class="btn-primary" href={buildLocalizedPath(locale, 'registration')}>{labels.register}</a>
-          <a class="btn-secondary" href={buildLocalizedPath(locale, 'programme')}>{labels.viewProgramme}</a>
-        </div>
-      </div>
-
-      <aside class="page-hero__meta">
-        <div>
-          <p class="page-meta__label">{copy.metaLabel}</p>
-          <ul class="page-meta__list">
-            {copy.meta.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </div>
-
-        <div>
-          <p class="page-meta__label">{locale === 'it' ? 'Dettagli Evento' : 'Event Details'}</p>
-          <p>{siteConfig.eventDate}</p>
-          <p>{siteConfig.venue}</p>
-        </div>
-      </aside>
-    </section>
-
-    <section class="container page-section">
-      <div class="placeholder-panel">
-        <p class="section-kicker">{copy.sectionLabel}</p>
-        <div class="placeholder-grid">
-          {sections.map((section) => (
-            <a class="route-card" href={section.href}>
-              <span class="route-card__eyebrow">{labels.home}</span>
-              <h2>{section.label}</h2>
-              <p>{copy.cards[section.key]}</p>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
+  <main class="home-shell">
+    <HeroSection locale={locale} />
+    <WhyCompassSection locale={locale} />
+    <HighlightsSection locale={locale} />
+    <ProgrammePreviewSection locale={locale} />
+    <FeaturedSpeakersSection locale={locale} />
+    <VenuePreviewSection locale={locale} />
+    <RegistrationCtaSection locale={locale} />
   </main>
 
   <Footer locale={locale} />
+
+  <script is:inline>
+    (() => {
+      const sections = Array.from(document.querySelectorAll('[data-home-reveal]'));
+      if (!sections.length) {
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) {
+              continue;
+            }
+
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        },
+        { threshold: 0.16, rootMargin: '0px 0px -8% 0px' },
+      );
+
+      sections.forEach((section) => observer.observe(section));
+    })();
+  </script>
 </Layout>
+
+<style>
+  .home-shell {
+    padding-bottom: 4rem;
+  }
+</style>

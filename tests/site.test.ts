@@ -3,6 +3,7 @@ import rootIndexSource from '../src/pages/index.astro?raw';
 import {
   buildLocalizedPath,
   getChromeLabels,
+  getHomepageHighlights,
   getLabels,
   getPageMetadata,
   getProgrammeSessions,
@@ -109,6 +110,11 @@ describe('site helpers', () => {
       title: 'Chi siamo | COMPASS',
       description: 'Missione del workshop COMPASS e posizionamento interdisciplinare.',
     });
+  });
+
+  it('returns the four workshop highlights for each locale', () => {
+    expect(getHomepageHighlights('en')).toHaveLength(4);
+    expect(getHomepageHighlights('it')[0]?.value).toBe('3');
   });
 
   it('links speakers to talks through shared slugs', () => {

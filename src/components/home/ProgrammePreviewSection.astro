@@ -1,0 +1,207 @@
+---
+import type { Locale } from '../../data/types';
+import { buildLocalizedPath, getHomepageContent, getHomepageProgrammePreview, getLabels } from '../../lib/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const labels = getLabels(locale);
+const { programme } = getHomepageContent(locale);
+const sessions = getHomepageProgrammePreview(locale);
+const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB', {
+  hour: '2-digit',
+  minute: '2-digit',
+});
+---
+
+<section id="programme-preview" class="programme-preview" data-home-reveal>
+  <div class="container programme-preview__shell">
+    <div class="programme-preview__intro">
+      <p class="section-kicker">{programme.eyebrow}</p>
+      <h2>{programme.title}</h2>
+      <p>{programme.intro}</p>
+    </div>
+
+    <div class="programme-preview__grid">
+      {sessions.map((session, index) => (
+        <article class="programme-preview__card" style={`--reveal-delay: ${index * 90}ms;`}>
+          <p class="programme-preview__time">
+            {timeFormatter.format(new Date(session.startsAt))} - {timeFormatter.format(new Date(session.endsAt))}
+          </p>
+          <p class="programme-preview__type">{programme.sessionLabel}</p>
+          <h3>{session.title}</h3>
+          <p>{session.description}</p>
+
+          {session.chairNames.length > 0 && (
+            <p class="programme-preview__meta">
+              {locale === 'it' ? 'Chair:' : 'Chairs:'} {session.chairNames.join(', ')}
+            </p>
+          )}
+
+          {session.featuredTalkTitle && (
+            <div class="programme-preview__talk">
+              <span>{programme.talkLabel}</span>
+              <strong>{session.featuredTalkTitle}</strong>
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+
+    <div class="programme-preview__footer">
+      <p>{programme.note}</p>
+      <a class="btn-secondary" href={buildLocalizedPath(locale, 'programme')}>{labels.viewProgramme}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .programme-preview {
+    padding: 1.2rem 0 2rem;
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 520ms ease,
+      transform 520ms ease;
+  }
+
+  .programme-preview.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .programme-preview__shell {
+    position: relative;
+    overflow: hidden;
+    border-radius: 34px;
+    padding: clamp(1.6rem, 4vw, 2.2rem);
+    background:
+      radial-gradient(circle at top right, rgba(55, 95, 138, 0.16), transparent 32%),
+      linear-gradient(180deg, #142033, #1d2d45);
+    color: #f7f3ee;
+    box-shadow: var(--shadow-strong);
+  }
+
+  .programme-preview__shell::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+    background-size: 34px 34px;
+    opacity: 0.16;
+    pointer-events: none;
+  }
+
+  .programme-preview__intro,
+  .programme-preview__footer,
+  .programme-preview__grid {
+    position: relative;
+    z-index: 1;
+  }
+
+  .programme-preview__intro h2 {
+    margin: 0.3rem 0 0.75rem;
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    line-height: 0.93;
+    max-width: 11ch;
+  }
+
+  .programme-preview__intro p {
+    max-width: 50rem;
+    color: rgba(247, 243, 238, 0.8);
+  }
+
+  .programme-preview__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+
+  .programme-preview__card {
+    border-radius: 24px;
+    padding: 1.2rem;
+    background: rgba(255, 253, 249, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 18px 36px rgba(5, 10, 16, 0.18);
+    backdrop-filter: blur(12px);
+  }
+
+  .programme-preview__time,
+  .programme-preview__type,
+  .programme-preview__meta,
+  .programme-preview__card p,
+  .programme-preview__talk span,
+  .programme-preview__footer p {
+    color: rgba(247, 243, 238, 0.78);
+  }
+
+  .programme-preview__time,
+  .programme-preview__type {
+    margin: 0;
+    font-size: 0.82rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+
+  .programme-preview__type {
+    color: rgba(236, 193, 201, 0.92);
+    margin-top: 0.55rem;
+  }
+
+  .programme-preview__card h3 {
+    margin: 0.55rem 0 0.5rem;
+    font-size: 2rem;
+    line-height: 0.96;
+  }
+
+  .programme-preview__meta {
+    margin: 0.95rem 0 0;
+    font-size: 0.95rem;
+  }
+
+  .programme-preview__talk {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .programme-preview__talk span {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .programme-preview__footer {
+    margin-top: 1.4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .programme-preview__footer .btn-secondary {
+    color: #f7f3ee;
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  @media (max-width: 980px) {
+    .programme-preview__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .programme-preview__footer {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

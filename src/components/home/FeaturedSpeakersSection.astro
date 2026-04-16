@@ -1,0 +1,252 @@
+---
+import type { Locale } from '../../data/types';
+import { buildLocalizedPath, getHomepageContent, getHomepageFeaturedSpeakers, getLabels } from '../../lib/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const labels = getLabels(locale);
+const { speakers } = getHomepageContent(locale);
+const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
+---
+
+<section id="featured-speakers" class="featured-speakers" data-home-reveal>
+  <div class="container featured-speakers__shell">
+    <div class="featured-speakers__head">
+      <div>
+        <p class="section-kicker">{speakers.eyebrow}</p>
+        <h2>{speakers.title}</h2>
+      </div>
+
+      <div class="featured-speakers__head-copy">
+        <p>{speakers.intro}</p>
+        <p>{speakers.note}</p>
+      </div>
+    </div>
+
+    <div class="featured-speakers__carousel" data-speaker-carousel>
+      <button type="button" class="featured-speakers__nav" data-dir="prev" aria-label={locale === 'it' ? 'Relatori precedenti' : 'Previous speakers'}>
+        ←
+      </button>
+
+      <div class="featured-speakers__viewport" data-speaker-viewport>
+        <div class="featured-speakers__track">
+          {featuredSpeakers.map((speaker, index) => (
+            <article class="featured-speakers__card" style={`--reveal-delay: ${index * 70}ms;`}>
+              <div class="featured-speakers__avatar" aria-hidden="true">
+                {speaker.name
+                  .split(' ')
+                  .map((part) => part[0])
+                  .slice(0, 2)
+                  .join('')}
+              </div>
+
+              <p class="featured-speakers__role">{speaker.role}</p>
+              <h3>{speaker.name}</h3>
+              <p class="featured-speakers__affiliation">{speaker.affiliation}</p>
+              <p class="featured-speakers__bio">{speaker.bio}</p>
+
+              <div class="featured-speakers__talk">
+                <span>{locale === 'it' ? 'Intervento' : 'Contribution'}</span>
+                <strong>{speaker.talkTitle ?? speakers.emptyTalkLabel}</strong>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <button type="button" class="featured-speakers__nav" data-dir="next" aria-label={locale === 'it' ? 'Relatori successivi' : 'Next speakers'}>
+        →
+      </button>
+    </div>
+
+    <a class="btn-secondary" href={buildLocalizedPath(locale, 'speakers')}>{labels.speakers}</a>
+  </div>
+</section>
+
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-speaker-carousel]');
+    if (!root) {
+      return;
+    }
+
+    const viewport = root.querySelector('[data-speaker-viewport]');
+    const prev = root.querySelector('[data-dir="prev"]');
+    const next = root.querySelector('[data-dir="next"]');
+    if (!viewport || !prev || !next) {
+      return;
+    }
+
+    const step = () => Math.max(viewport.clientWidth * 0.82, 280);
+
+    prev.addEventListener('click', () => {
+      viewport.scrollBy({ left: -step(), behavior: 'smooth' });
+    });
+
+    next.addEventListener('click', () => {
+      viewport.scrollBy({ left: step(), behavior: 'smooth' });
+    });
+  })();
+</script>
+
+<style>
+  .featured-speakers {
+    padding: 1.2rem 0 2rem;
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 520ms ease,
+      transform 520ms ease;
+  }
+
+  .featured-speakers.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .featured-speakers__shell {
+    display: grid;
+    gap: 1.3rem;
+  }
+
+  .featured-speakers__head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.7fr);
+    gap: 1rem;
+    align-items: end;
+  }
+
+  .featured-speakers__head h2 {
+    margin: 0.3rem 0 0;
+    font-size: clamp(2.4rem, 5vw, 4.3rem);
+    line-height: 0.93;
+    max-width: 12ch;
+  }
+
+  .featured-speakers__head-copy p {
+    color: var(--ink-soft);
+  }
+
+  .featured-speakers__carousel {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 0.8rem;
+    align-items: center;
+  }
+
+  .featured-speakers__viewport {
+    overflow-x: auto;
+    scrollbar-width: none;
+    scroll-snap-type: x proximity;
+  }
+
+  .featured-speakers__viewport::-webkit-scrollbar {
+    display: none;
+  }
+
+  .featured-speakers__track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(260px, 1fr);
+    gap: 0.9rem;
+  }
+
+  .featured-speakers__card {
+    scroll-snap-align: start;
+    min-height: 100%;
+    border-radius: 26px;
+    padding: 1.3rem;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 253, 249, 0.96)),
+      var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .featured-speakers__avatar {
+    width: 3.4rem;
+    height: 3.4rem;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-cool));
+    color: #fff;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+
+  .featured-speakers__role,
+  .featured-speakers__affiliation,
+  .featured-speakers__bio,
+  .featured-speakers__talk span {
+    color: var(--ink-soft);
+  }
+
+  .featured-speakers__role {
+    margin: 1rem 0 0;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .featured-speakers__card h3 {
+    margin: 0.35rem 0 0;
+    font-size: 2rem;
+    line-height: 0.95;
+  }
+
+  .featured-speakers__affiliation {
+    margin: 0.3rem 0 0;
+    font-weight: 700;
+  }
+
+  .featured-speakers__bio {
+    margin: 0.85rem 0 0;
+  }
+
+  .featured-speakers__talk {
+    margin-top: 1rem;
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .featured-speakers__talk span {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+
+  .featured-speakers__nav {
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(20, 32, 51, 0.12);
+    background: rgba(255, 255, 255, 0.72);
+    color: var(--ink);
+    box-shadow: var(--shadow);
+    cursor: pointer;
+  }
+
+  @media (max-width: 980px) {
+    .featured-speakers__head {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .featured-speakers__carousel {
+      grid-template-columns: 1fr;
+    }
+
+    .featured-speakers__nav {
+      display: none;
+    }
+  }
+</style>
