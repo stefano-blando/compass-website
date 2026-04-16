@@ -398,6 +398,10 @@ git commit -m "feat: add typed COMPASS content foundation"
 - Modify: `src/styles/global.css`
 - Delete: `src/components/Header.astro`
 - Delete: `src/components/Footer.astro`
+- Delete: `src/pages/speakers.astro`
+- Delete: `src/pages/invite.astro`
+- Delete: `src/lib/cms.ts`
+- Modify or Delete: `src/components/NoiseStageSection.astro` only as needed to restore `astro check` during the shell transition
 - Create: `src/components/site/Header.astro`
 - Create: `src/components/site/Footer.astro`
 - Create: `src/components/site/LanguageSwitcher.astro`
