@@ -9,15 +9,22 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "check": "astro check",
+    "test": "vitest run"
   },
   "dependencies": {
     "@astrojs/vue": "^6.0.1",
     "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.0.8",
+    "astro": "^6.1.7",
     "motion": "^12.38.0",
     "simple-icons": "^16.14.0",
     "tailwindcss": "^4.2.2",
     "vue": "^3.5.31"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
   }
 }
