@@ -83,6 +83,15 @@ type HomepageScrollSection = {
   label: string;
 };
 
+type HomepageProgrammeSelection = {
+  sessionSlug: string;
+};
+
+type HomepageFeaturedSpeakerSelection = {
+  speakerSlug: string;
+  roleLabel: Record<Locale, string>;
+};
+
 type HomepageContent = {
   hero: HomepageHeroContent;
   whyCompass: HomepageWhyCompassContent;
@@ -148,7 +157,7 @@ const homepageContent = {
       title: 'A single-day arc with room for depth.',
       intro:
         'The workshop keeps the original template’s rhythm, but the content is now organized around opening framing, AI methods discussion, and a closing social moment.',
-      note: 'Task 3 keeps this to a preview. Detailed relational agenda pages remain in the next implementation step.',
+      note: 'The full schedule, abstracts, and session detail will continue to expand on the dedicated programme page as workshop materials are finalized.',
       sessionLabel: 'Session',
       talkLabel: 'Featured talk',
     },
@@ -157,7 +166,7 @@ const homepageContent = {
       title: 'Researchers and chairs shaping the first COMPASS edition.',
       intro:
         'The landing page highlights invited voices and session leadership without expanding yet into full speaker biographies or detail pages.',
-      note: 'Speaker detail pages stay out of scope for this task.',
+      note: 'Speaker profiles and contribution details will continue to grow as invited participation is confirmed.',
       emptyTalkLabel: 'Workshop contribution to be announced',
     },
     venue: {
@@ -249,16 +258,16 @@ const homepageContent = {
       title: 'Una giornata unica con spazio per andare in profondità.',
       intro:
         'Il workshop mantiene il ritmo del template originale, ma il contenuto ora è organizzato attorno ad apertura, discussione sui metodi AI e chiusura sociale.',
-      note: 'Task 3 si limita a un’anteprima. Le pagine relazionali complete del programma arrivano nello step successivo.',
+      note: 'Il programma completo, con abstract e dettagli delle sessioni, continuerà ad arricchirsi nella pagina dedicata man mano che i materiali saranno confermati.',
       sessionLabel: 'Sessione',
       talkLabel: 'Intervento in evidenza',
     },
     speakers: {
       eyebrow: 'Relatori In Evidenza',
-      title: 'Ricercatori e chair che definiscono la prima edizione di COMPASS.',
+      title: 'Ricercatori e coordinatori di sessione che definiscono la prima edizione di COMPASS.',
       intro:
         'La landing page mette in primo piano voci invitate e guida delle sessioni senza espandersi ancora in schede complete o pagine di dettaglio.',
-      note: 'Le pagine complete dei relatori restano fuori dallo scope di questo task.',
+      note: 'Profili dei relatori e dettagli sui contributi continueranno a crescere con la conferma delle partecipazioni invitate.',
       emptyTalkLabel: 'Contributo al workshop in aggiornamento',
     },
     venue: {
@@ -297,6 +306,47 @@ const homepageContent = {
     ],
   },
 } as const satisfies Record<Locale, HomepageContent>;
+
+const homepageCuration = {
+  programmePreview: [
+    { sessionSlug: 'welcome-opening' },
+    { sessionSlug: 'panel-ai-methods' },
+    { sessionSlug: 'social-dinner' },
+  ],
+  featuredSpeakers: [
+    {
+      speakerSlug: 'guido-germano',
+      roleLabel: {
+        en: 'Keynote speaker',
+        it: 'Relatore keynote',
+      },
+    },
+    {
+      speakerSlug: 'prabhani-don',
+      roleLabel: {
+        en: 'Keynote speaker',
+        it: 'Relatrice keynote',
+      },
+    },
+    {
+      speakerSlug: 'stefano-blando',
+      roleLabel: {
+        en: 'Session chair',
+        it: 'Coordinatore di sessione',
+      },
+    },
+    {
+      speakerSlug: 'biancamaria-bombino',
+      roleLabel: {
+        en: 'Session chair',
+        it: 'Coordinatrice di sessione',
+      },
+    },
+  ],
+} as const satisfies {
+  programmePreview: HomepageProgrammeSelection[];
+  featuredSpeakers: HomepageFeaturedSpeakerSelection[];
+};
 
 export function buildLocalizedPath(locale: Locale, pathname = '') {
   const cleanPath = pathname.replace(/\/+/g, '/').replace(/^\/|\/$/g, '');
@@ -344,35 +394,51 @@ export function getHomepageHighlights(locale: Locale) {
 }
 
 export function getHomepageProgrammePreview(locale: Locale) {
-  return getProgrammeSessions().map((session) => {
+  return homepageCuration.programmePreview.flatMap(({ sessionSlug }) => {
+    const session = sessions.find((candidate) => candidate.slug === sessionSlug);
+    if (!session) {
+      return [];
+    }
+
     const chairNames = session.chairSlugs
       .map((chairSlug) => getSpeakerBySlug(chairSlug)?.name)
       .filter((chairName): chairName is string => Boolean(chairName));
     const featuredTalk = getTalksForSession(session.slug)[0];
 
-    return {
+    return [{
       slug: session.slug,
       title: session.title[locale],
       description: session.description[locale],
       startsAt: session.startsAt,
       endsAt: session.endsAt,
       chairNames,
+      chairLabel:
+        locale === 'it'
+          ? 'Coordinamento'
+          : chairNames.length > 1
+            ? 'Session chairs'
+            : 'Session chair',
       featuredTalkTitle: featuredTalk?.title[locale] ?? null,
-    };
+    }];
   });
 }
 
 export function getHomepageFeaturedSpeakers(locale: Locale) {
-  return speakers.slice(0, 4).map((speaker) => {
+  return homepageCuration.featuredSpeakers.flatMap((selection) => {
+    const speaker = getSpeakerBySlug(selection.speakerSlug);
+    if (!speaker) {
+      return [];
+    }
+
     const relatedTalk = getTalksBySpeaker(speaker.slug)[0];
-    return {
+    return [{
       slug: speaker.slug,
       name: speaker.name,
       affiliation: speaker.affiliation,
-      role: speaker.roleLabel[locale],
+      role: selection.roleLabel[locale],
       bio: speaker.bio[locale],
       talkTitle: relatedTalk?.title[locale] ?? null,
-    };
+    }];
   });
 }
 

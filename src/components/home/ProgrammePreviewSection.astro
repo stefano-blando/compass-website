@@ -36,7 +36,7 @@ const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB
 
           {session.chairNames.length > 0 && (
             <p class="programme-preview__meta">
-              {locale === 'it' ? 'Chair:' : 'Chairs:'} {session.chairNames.join(', ')}
+              {session.chairLabel}: {session.chairNames.join(', ')}
             </p>
           )}
 

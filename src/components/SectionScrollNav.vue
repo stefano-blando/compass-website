@@ -2,9 +2,16 @@
   <nav
     class="scroll-nav"
     :class="{ 'is-visible': isVisible }"
+    :aria-hidden="!isVisible"
     :aria-label="locale === 'it' ? 'Navigazione rapida delle sezioni' : 'Section quick navigation'"
+    :inert="!isVisible"
   >
-    <a href="#top" class="logo-pill" :aria-label="locale === 'it' ? 'Torna in cima' : 'Back to top'">
+    <a
+      href="#top"
+      class="logo-pill"
+      :aria-label="locale === 'it' ? 'Torna in cima' : 'Back to top'"
+      :tabindex="isVisible ? null : -1"
+    >
       <span class="logo-pill__wordmark">C</span>
     </a>
 
@@ -13,6 +20,7 @@
       :key="section.id"
       :href="`#${section.id}`"
       class="nav-pill"
+      :tabindex="isVisible ? null : -1"
     >
       {{ section.label }}
     </a>

@@ -1,9 +1,14 @@
 import { describe, expect, it } from 'vitest';
+import scrollNavSource from '../src/components/SectionScrollNav.vue?raw';
 import rootIndexSource from '../src/pages/index.astro?raw';
 import {
   buildLocalizedPath,
   getChromeLabels,
+  getHomepageContent,
+  getHomepageFeaturedSpeakers,
   getHomepageHighlights,
+  getHomepageProgrammePreview,
+  getHomepageScrollSections,
   getLabels,
   getPageMetadata,
   getProgrammeSessions,
@@ -117,6 +122,61 @@ describe('site helpers', () => {
     expect(getHomepageHighlights('it')[0]?.value).toBe('3');
   });
 
+  it('returns public-facing homepage copy without planning-language placeholders', () => {
+    const english = getHomepageContent('en');
+    const italian = getHomepageContent('it');
+
+    expect(english.programme.note).not.toMatch(/task|scope/i);
+    expect(english.speakers.note).not.toMatch(/task|scope/i);
+    expect(italian.programme.note).not.toMatch(/task|scope/i);
+    expect(italian.speakers.note).not.toMatch(/task|scope/i);
+  });
+
+  it('returns curated programme preview entries with localized chair labels', () => {
+    const english = getHomepageProgrammePreview('en');
+    const italian = getHomepageProgrammePreview('it');
+
+    expect(english.map((session) => session.slug)).toEqual([
+      'welcome-opening',
+      'panel-ai-methods',
+      'social-dinner',
+    ]);
+    expect(english[1]).toMatchObject({
+      chairLabel: 'Session chairs',
+      chairNames: ['Stefano Blando', 'Biancamaria Bombino'],
+    });
+    expect(italian[1]).toMatchObject({
+      chairLabel: 'Coordinamento',
+      title: 'Panel 1: Metodi e applicazioni dell’AI',
+    });
+  });
+
+  it('returns curated featured speakers with localized homepage role labels', () => {
+    const english = getHomepageFeaturedSpeakers('en');
+    const italian = getHomepageFeaturedSpeakers('it');
+
+    expect(english.map((speaker) => speaker.slug)).toEqual([
+      'guido-germano',
+      'prabhani-don',
+      'stefano-blando',
+      'biancamaria-bombino',
+    ]);
+    expect(english[0]?.role).toBe('Keynote speaker');
+    expect(italian[0]?.role).toBe('Relatore keynote');
+    expect(italian[2]?.role).toBe('Coordinatore di sessione');
+    expect(italian[3]?.role).toBe('Coordinatrice di sessione');
+  });
+
+  it('localizes homepage scroll sections for the floating navigation', () => {
+    expect(getHomepageScrollSections('it')).toEqual([
+      { id: 'why-compass', label: 'Visione' },
+      { id: 'programme-preview', label: 'Programma' },
+      { id: 'featured-speakers', label: 'Relatori' },
+      { id: 'venue-preview', label: 'Sede' },
+      { id: 'registration-cta', label: 'Registrati' },
+    ]);
+  });
+
   it('links speakers to talks through shared slugs', () => {
     const speaker = getSpeakerBySlug('guido-germano');
     expect(speaker?.name).toBe('Guido Germano');
@@ -150,5 +210,10 @@ describe('site helpers', () => {
         expect(talk.startsAt >= session.startsAt && talk.startsAt < session.endsAt).toBe(true);
       }
     }
+  });
+
+  it('keeps the floating scroll nav unfocusable while hidden', () => {
+    expect(scrollNavSource).toContain(':inert="!isVisible"');
+    expect(scrollNavSource).toContain(":tabindex=\"isVisible ? null : -1\"");
   });
 });
