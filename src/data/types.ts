@@ -10,7 +10,7 @@ export type Speaker = {
   affiliation: string;
   roleLabel: LocalizedText;
   bio: LocalizedText;
-  image: string;
+  image?: string;
   type: SpeakerRole[];
   links?: {
     website?: string;

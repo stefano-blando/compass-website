@@ -13,7 +13,7 @@ export const sessions: Session[] = [
     },
     type: 'opening',
     startsAt: '2026-05-11T09:00:00+02:00',
-    endsAt: '2026-05-11T09:15:00+02:00',
+    endsAt: '2026-05-11T09:45:00+02:00',
     chairSlugs: [],
   },
   {

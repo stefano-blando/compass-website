@@ -7,7 +7,7 @@ import type { Locale } from '../data/types';
 export const locales = supportedLocales;
 
 export function buildLocalizedPath(locale: Locale, pathname = '') {
-  const cleanPath = pathname.replace(/^\/+|\/+$/g, '');
+  const cleanPath = pathname.replace(/\/+/g, '/').replace(/^\/|\/$/g, '');
   return cleanPath ? `/${locale}/${cleanPath}/` : `/${locale}/`;
 }
 
