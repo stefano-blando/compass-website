@@ -225,7 +225,7 @@ export type RichPageSection = {
   title: string;
   body: string;
   mediaLabel: string;
-  mediaType: string;
+  mediaType: 'portrait-grid' | 'landscape' | 'video' | 'info-panel';
   bullets?: string[];
 };
 
@@ -235,7 +235,7 @@ export type RichPageContent = {
     title: string;
     intro: string;
     mediaLabel: string;
-    mediaType: string;
+    mediaType: 'portrait-grid' | 'landscape' | 'video';
   };
   sections: RichPageSection[];
   ctaLabel?: string;
@@ -251,7 +251,7 @@ export const richPageContent = {
         title: 'What the workshop is trying to make possible',
         intro: 'A compact home for the workshop mission, scope, and expected interdisciplinary outcome.',
         mediaLabel: 'About page hero placeholder',
-        mediaType: 'placeholder',
+        mediaType: 'video',
       },
       sections: [
         {
@@ -259,7 +259,7 @@ export const richPageContent = {
           title: 'Why this workshop exists',
           body: 'The workshop gives a shared stage to complexity science, AI, markets, policy, and law so the discussion can stay interdisciplinary from the start.',
           mediaLabel: 'Mission placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: [
             'Keep the scope academic and focused.',
             'Make the connections between methods and institutions explicit.',
@@ -270,7 +270,7 @@ export const richPageContent = {
           title: 'How the day is organised',
           body: 'The page will eventually explain the day structure in more detail, but the current content already signals the compact, single-day format.',
           mediaLabel: 'Format placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'landscape',
           bullets: [
             'One room for the shared scientific arc.',
             'Breaks and meals as deliberate discussion time.',
@@ -281,7 +281,7 @@ export const richPageContent = {
           title: 'Who should read this page',
           body: 'This section is reserved for the public-facing explanation of who the workshop is for and what participants should expect.',
           mediaLabel: 'Audience placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: [
             'Doctoral researchers and invited speakers.',
             'Attendees interested in AI, policy, and socio-economic systems.',
@@ -296,7 +296,7 @@ export const richPageContent = {
         title: 'Who is contributing to COMPASS',
         intro: 'A working page for keynote guests, organizers, and the panel network around them.',
         mediaLabel: 'Speakers page hero placeholder',
-        mediaType: 'placeholder',
+        mediaType: 'portrait-grid',
       },
       sections: [
         {
@@ -304,7 +304,7 @@ export const richPageContent = {
           title: 'Invited voices and reserved slots',
           body: 'The page will present the keynote line-up together with the remaining confirmation status when needed.',
           mediaLabel: 'Keynote placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'portrait-grid',
           bullets: ['Confirmed keynote guests.', 'The open slot currently marked TBC.'],
         },
         {
@@ -312,7 +312,7 @@ export const richPageContent = {
           title: 'Who chairs the three thematic tracks',
           body: 'This section can grow into a structured overview of the doctoral chairs and their track responsibilities.',
           mediaLabel: 'Tracks placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Track 1 on AI methods.', 'Track 2 on networks and NLP.', 'Track 3 on law and ethics.'],
         },
         {
@@ -320,7 +320,7 @@ export const richPageContent = {
           title: 'Panel and discussant roles',
           body: 'The redesign keeps room for the people appearing in panels and discussant slots without forcing a long list into the hero.',
           mediaLabel: 'Contributor placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'portrait-grid',
           bullets: ['Named panel contributors.', 'Session discussants and closing voices.'],
         },
       ],
@@ -331,7 +331,7 @@ export const richPageContent = {
         title: 'Where the workshop takes place',
         intro: 'A page for the physical setting, arrival notes, and the practical details that help attendees plan the day.',
         mediaLabel: 'Venue page hero placeholder',
-        mediaType: 'placeholder',
+        mediaType: 'landscape',
       },
       sections: [
         {
@@ -339,7 +339,7 @@ export const richPageContent = {
           title: 'The Sant Anna campus in Pisa',
           body: 'The venue section will eventually explain the room setup and the working location within the campus.',
           mediaLabel: 'Location placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'landscape',
           bullets: ['Historic campus setting in central Pisa.', 'Short walking distances between rooms and break areas.'],
         },
         {
@@ -347,7 +347,7 @@ export const richPageContent = {
           title: 'How to get there',
           body: 'Arrival guidance can stay short while still giving attendees the practical routes they need.',
           mediaLabel: 'Travel placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'video',
           bullets: ['Pisa Centrale for rail arrivals.', 'Galileo Galilei Airport for air travel.'],
         },
         {
@@ -355,7 +355,7 @@ export const richPageContent = {
           title: 'What participants should know on the day',
           body: 'This section is reserved for the arrival and access notes that are helpful only once the event is nearly ready.',
           mediaLabel: 'Access placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Check-in timing and room access.', 'Local movement between sessions and breaks.'],
         },
       ],
@@ -367,7 +367,7 @@ export const richPageContent = {
         title: 'How to join the workshop',
         intro: 'This page will bridge the external form with the practical notes people need before they register.',
         mediaLabel: 'Registration page hero placeholder',
-        mediaType: 'placeholder',
+        mediaType: 'portrait-grid',
       },
       sections: [
         {
@@ -375,7 +375,7 @@ export const richPageContent = {
           title: 'Where registration happens',
           body: 'The final page will direct people to the form without cluttering the route with unnecessary detail.',
           mediaLabel: 'Form placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['External registration handoff.', 'Straightforward participation flow.'],
         },
         {
@@ -383,7 +383,7 @@ export const richPageContent = {
           title: 'When to register and what to check',
           body: 'The page should make the timing and planning constraints visible without overloading the route.',
           mediaLabel: 'Timing placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Review the event date and travel feasibility.', 'Confirm the attendance window before submitting.'],
         },
         {
@@ -391,7 +391,7 @@ export const richPageContent = {
           title: 'What to prepare before submitting',
           body: 'A short list helps attendees move through the form with the right expectations.',
           mediaLabel: 'Checklist placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'portrait-grid',
           bullets: ['Name and affiliation details.', 'A quick check of travel plans and availability.'],
         },
       ],
@@ -403,7 +403,7 @@ export const richPageContent = {
         title: 'Who is making the workshop happen',
         intro: 'This page will hold the committee overview and the institutional context around the event.',
         mediaLabel: 'Organizers page hero placeholder',
-        mediaType: 'placeholder',
+        mediaType: 'portrait-grid',
       },
       sections: [
         {
@@ -411,7 +411,7 @@ export const richPageContent = {
           title: 'The people coordinating COMPASS',
           body: 'The organizer listing can stay short at first while the detailed bios are handled elsewhere.',
           mediaLabel: 'Committee placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'portrait-grid',
           bullets: ['Doctoral organizers and chairs.', 'Academic and operational coordination.'],
         },
         {
@@ -419,7 +419,7 @@ export const richPageContent = {
           title: 'Where the event is anchored',
           body: 'This section gives room for the host institution and acknowledgement copy without duplicating the venue page.',
           mediaLabel: 'Hosting placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'landscape',
           bullets: ['Hosting institution context.', 'Local support and logistics ownership.'],
         },
         {
@@ -427,7 +427,7 @@ export const richPageContent = {
           title: 'Who to reach out to',
           body: 'The final page can provide a simple operational contact route once the public-facing text is settled.',
           mediaLabel: 'Contacts placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['General workshop contact.', 'Operational follow-up for attendees.'],
         },
       ],
@@ -438,7 +438,7 @@ export const richPageContent = {
         title: 'Answers to the practical questions',
         intro: 'A concise space for logistics, format, and participation questions that should stay out of the main narrative.',
         mediaLabel: 'FAQ page hero placeholder',
-        mediaType: 'placeholder',
+        mediaType: 'video',
       },
       sections: [
         {
@@ -446,7 +446,7 @@ export const richPageContent = {
           title: 'What attendees need to know first',
           body: 'The first FAQ block can answer the basic participation and registration questions without forcing people into the details pages.',
           mediaLabel: 'Participation placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Attendance is free.', 'The workshop is designed for a focused in-person audience.'],
         },
         {
@@ -454,7 +454,7 @@ export const richPageContent = {
           title: 'What remains to be confirmed for attendees',
           body: 'This block is reserved for the items that are practical, useful, and still subject to final confirmation.',
           mediaLabel: 'Logistics placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'landscape',
           bullets: ['Access to the room and venue circulation.', 'Travel and local movement around Pisa.'],
         },
         {
@@ -462,7 +462,7 @@ export const richPageContent = {
           title: 'What to expect from the workshop materials',
           body: 'A brief FAQ block can handle language, slide sharing, and any follow-up notes after the event.',
           mediaLabel: 'Materials placeholder',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Session materials and talk links.', 'Post-workshop communication.'],
         },
       ],
@@ -476,7 +476,7 @@ export const richPageContent = {
         title: 'Cosa il workshop vuole rendere possibile',
         intro: 'Una casa compatta per missione, perimetro e risultato interdisciplinare atteso del workshop.',
         mediaLabel: 'Segnaposto hero pagina chi siamo',
-        mediaType: 'placeholder',
+        mediaType: 'video',
       },
       sections: [
         {
@@ -484,7 +484,7 @@ export const richPageContent = {
           title: 'Perche esiste questo workshop',
           body: 'Il workshop mette su una stessa scena scienza della complessita, AI, mercati, policy e diritto per tenere il confronto interdisciplinare fin dall inizio.',
           mediaLabel: 'Segnaposto missione',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: [
             'Mantenere il perimetro accademico e focalizzato.',
             'Rendere espliciti i collegamenti tra metodi e istituzioni.',
@@ -495,7 +495,7 @@ export const richPageContent = {
           title: 'Come e organizzata la giornata',
           body: 'La pagina potra spiegare meglio il programma della giornata, ma il contenuto attuale segnala gia il formato compatto di una sola giornata.',
           mediaLabel: 'Segnaposto formato',
-          mediaType: 'placeholder',
+          mediaType: 'landscape',
           bullets: [
             'Una sala per l arco scientifico condiviso.',
             'Pause e pasti come tempo deliberato di discussione.',
@@ -506,7 +506,7 @@ export const richPageContent = {
           title: 'Chi dovrebbe leggere questa pagina',
           body: 'Questa sezione e riservata alla spiegazione pubblica di a chi si rivolge il workshop e di cosa aspettarsi.',
           mediaLabel: 'Segnaposto pubblico',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: [
             'Dottorandi e speaker invitati.',
             'Partecipanti interessati a AI, policy e sistemi socio-economici.',
@@ -521,7 +521,7 @@ export const richPageContent = {
         title: 'Chi contribuisce a COMPASS',
         intro: 'Una pagina di lavoro per ospiti keynote, organizzatori e la rete di panel attorno a loro.',
         mediaLabel: 'Segnaposto hero relatori',
-        mediaType: 'placeholder',
+        mediaType: 'portrait-grid',
       },
       sections: [
         {
@@ -529,7 +529,7 @@ export const richPageContent = {
           title: 'Voci invitate e slot riservati',
           body: 'La pagina presentera la line-up delle keynote insieme allo stato di conferma restante quando serve.',
           mediaLabel: 'Segnaposto keynote',
-          mediaType: 'placeholder',
+          mediaType: 'portrait-grid',
           bullets: ['Ospiti keynote confermati.', 'Lo slot aperto attualmente marcato TBC.'],
         },
         {
@@ -537,7 +537,7 @@ export const richPageContent = {
           title: 'Chi coordina le tre track tematiche',
           body: 'Questa sezione puo diventare una panoramica strutturata dei chair dottorali e delle rispettive responsabilita.',
           mediaLabel: 'Segnaposto track',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Track 1 sui metodi AI.', 'Track 2 su networks e NLP.', 'Track 3 su diritto ed etica.'],
         },
         {
@@ -545,7 +545,7 @@ export const richPageContent = {
           title: 'Ruoli di panel e discussant',
           body: 'Il redesign lascia spazio alle persone presenti nei panel e nei ruoli di discussant senza forzare un elenco lungo nell hero.',
           mediaLabel: 'Segnaposto contributori',
-          mediaType: 'placeholder',
+          mediaType: 'portrait-grid',
           bullets: ['Contributori di panel nominati.', 'Discussant di sessione e voci conclusive.'],
         },
       ],
@@ -556,7 +556,7 @@ export const richPageContent = {
         title: 'Dove si svolge il workshop',
         intro: 'Una pagina per il contesto fisico, le note di arrivo e i dettagli pratici che aiutano i partecipanti a pianificare la giornata.',
         mediaLabel: 'Segnaposto hero sede',
-        mediaType: 'placeholder',
+        mediaType: 'landscape',
       },
       sections: [
         {
@@ -564,7 +564,7 @@ export const richPageContent = {
           title: 'Il campus Sant Anna a Pisa',
           body: 'La sezione sede spieghera meglio la configurazione delle sale e il luogo di lavoro dentro il campus.',
           mediaLabel: 'Segnaposto posizione',
-          mediaType: 'placeholder',
+          mediaType: 'landscape',
           bullets: ['Contesto storico nel centro di Pisa.', 'Percorsi brevi tra sale e aree break.'],
         },
         {
@@ -572,7 +572,7 @@ export const richPageContent = {
           title: 'Come arrivarci',
           body: 'Le indicazioni di arrivo possono restare brevi pur dando ai partecipanti i percorsi pratici di cui hanno bisogno.',
           mediaLabel: 'Segnaposto viaggio',
-          mediaType: 'placeholder',
+          mediaType: 'video',
           bullets: ['Pisa Centrale per chi arriva in treno.', 'Aeroporto Galileo Galilei per chi arriva in aereo.'],
         },
         {
@@ -580,7 +580,7 @@ export const richPageContent = {
           title: 'Cosa sapere il giorno dell evento',
           body: 'Questa sezione e riservata alle note di arrivo e di accesso utili quando l evento e quasi pronto.',
           mediaLabel: 'Segnaposto accesso',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Orari di check-in e accesso alla sala.', 'Spostamenti locali tra sessioni e pause.'],
         },
       ],
@@ -592,7 +592,7 @@ export const richPageContent = {
         title: 'Come partecipare al workshop',
         intro: 'Questa pagina fara da ponte tra il form esterno e le note pratiche che servono prima della registrazione.',
         mediaLabel: 'Segnaposto hero registrazione',
-        mediaType: 'placeholder',
+        mediaType: 'portrait-grid',
       },
       sections: [
         {
@@ -600,7 +600,7 @@ export const richPageContent = {
           title: 'Dove avviene la registrazione',
           body: 'La pagina finale portera al form senza appesantire la route con dettagli inutili.',
           mediaLabel: 'Segnaposto modulo',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Passaggio a un modulo esterno.', 'Flusso di partecipazione semplice.'],
         },
         {
@@ -608,7 +608,7 @@ export const richPageContent = {
           title: 'Quando registrarsi e cosa verificare',
           body: 'La pagina deve rendere visibili le tempistiche e i vincoli di pianificazione senza sovraccaricare la route.',
           mediaLabel: 'Segnaposto tempistiche',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Rivedi la data dell evento e la fattibilita del viaggio.', 'Conferma la finestra di partecipazione prima di inviare.'],
         },
         {
@@ -616,7 +616,7 @@ export const richPageContent = {
           title: 'Cosa preparare prima di inviare',
           body: 'Una lista breve aiuta i partecipanti a compilare il form con le giuste aspettative.',
           mediaLabel: 'Segnaposto checklist',
-          mediaType: 'placeholder',
+          mediaType: 'portrait-grid',
           bullets: ['Nome e affiliazione.', 'Un controllo rapido su viaggio e disponibilita.'],
         },
       ],
@@ -628,7 +628,7 @@ export const richPageContent = {
         title: 'Chi sta rendendo possibile il workshop',
         intro: 'Questa pagina ospitera la panoramica del comitato e il contesto istituzionale dell evento.',
         mediaLabel: 'Segnaposto hero organizzatori',
-        mediaType: 'placeholder',
+        mediaType: 'portrait-grid',
       },
       sections: [
         {
@@ -636,7 +636,7 @@ export const richPageContent = {
           title: 'Le persone che coordinano COMPASS',
           body: 'L elenco degli organizzatori puo restare breve inizialmente mentre le biografie dettagliate vengono gestite altrove.',
           mediaLabel: 'Segnaposto comitato',
-          mediaType: 'placeholder',
+          mediaType: 'portrait-grid',
           bullets: ['Dottorandi organizzatori e chair.', 'Coordinamento accademico e operativo.'],
         },
         {
@@ -644,7 +644,7 @@ export const richPageContent = {
           title: 'Dove si ancora l evento',
           body: 'Questa sezione lascia spazio al contesto dell istituzione ospitante e al copy di acknowledgement senza duplicare la pagina sede.',
           mediaLabel: 'Segnaposto hosting',
-          mediaType: 'placeholder',
+          mediaType: 'landscape',
           bullets: ['Contesto dell istituzione ospitante.', 'Supporto locale e ownership della logistica.'],
         },
         {
@@ -652,7 +652,7 @@ export const richPageContent = {
           title: 'Chi contattare',
           body: 'La pagina finale potra offrire un percorso di contatto operativo semplice quando il testo pubblico sara stabilito.',
           mediaLabel: 'Segnaposto contatti',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Contatto generale del workshop.', 'Follow-up operativo per i partecipanti.'],
         },
       ],
@@ -663,7 +663,7 @@ export const richPageContent = {
         title: 'Risposte alle domande pratiche',
         intro: 'Uno spazio conciso per logistica, formato e partecipazione da tenere fuori dalla narrazione principale.',
         mediaLabel: 'Segnaposto hero FAQ',
-        mediaType: 'placeholder',
+        mediaType: 'video',
       },
       sections: [
         {
@@ -671,7 +671,7 @@ export const richPageContent = {
           title: 'Cosa devono sapere prima di tutto i partecipanti',
           body: 'Il primo blocco FAQ puo rispondere alle domande base su partecipazione e registrazione senza forzare gli utenti nelle pagine di dettaglio.',
           mediaLabel: 'Segnaposto partecipazione',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['La partecipazione e gratuita.', 'Il workshop e pensato per un pubblico in presenza e focalizzato.'],
         },
         {
@@ -679,7 +679,7 @@ export const richPageContent = {
           title: 'Cosa resta da confermare per i partecipanti',
           body: 'Questo blocco e riservato agli elementi pratici, utili e ancora soggetti a conferma finale.',
           mediaLabel: 'Segnaposto logistica',
-          mediaType: 'placeholder',
+          mediaType: 'landscape',
           bullets: ['Accesso alla sala e circolazione nella sede.', 'Viaggio e spostamenti locali a Pisa.'],
         },
         {
@@ -687,7 +687,7 @@ export const richPageContent = {
           title: 'Cosa aspettarsi dai materiali del workshop',
           body: 'Un breve blocco FAQ puo gestire lingua, condivisione delle slide e eventuali note successive all evento.',
           mediaLabel: 'Segnaposto materiali',
-          mediaType: 'placeholder',
+          mediaType: 'info-panel',
           bullets: ['Materiali di sessione e link ai talk.', 'Comunicazioni successive al workshop.'],
         },
       ],

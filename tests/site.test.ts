@@ -211,31 +211,37 @@ describe('site helpers', () => {
 
   it('returns rich placeholder-backed secondary page sections', () => {
     const about = getRichPageContent('en', 'about');
+    const speakers = getRichPageContent('en', 'speakers');
+    const venue = getRichPageContent('it', 'venue');
     const faq = getRichPageContent('it', 'faq');
 
     expect(about.hero).toMatchObject({
       eyebrow: 'About COMPASS',
-      mediaType: 'placeholder',
+      mediaType: 'video',
     });
+    expect(speakers.hero.mediaType).toBe('portrait-grid');
+    expect(venue.hero.mediaType).toBe('landscape');
     expect(about.sections).toHaveLength(3);
     expect(about.sections[0]).toMatchObject({
       eyebrow: 'Mission',
       mediaLabel: 'Mission placeholder',
-      mediaType: 'placeholder',
+      mediaType: 'info-panel',
     });
     expect(about.sections[0].bullets).toHaveLength(2);
     expect(about.ctaLabel).toBe('Read the programme');
     expect(faq.hero).toMatchObject({
       eyebrow: 'FAQ',
       mediaLabel: 'Segnaposto hero FAQ',
+      mediaType: 'video',
     });
     expect(faq.sections).toHaveLength(3);
     expect(faq.sections[1]).toMatchObject({
       eyebrow: 'Logistica',
       title: 'Cosa resta da confermare per i partecipanti',
-      mediaType: 'placeholder',
+      mediaType: 'landscape',
     });
     expect(faq.sections[1].bullets).toContain('Viaggio e spostamenti locali a Pisa.');
+    expect(venue.sections.some((section) => section.mediaType === 'video')).toBe(true);
   });
 
   it('returns cloned programme page content', () => {
