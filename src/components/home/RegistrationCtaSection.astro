@@ -24,7 +24,7 @@ const registrationRouteLabel = locale === 'it' ? 'Passaggio rapido' : 'Quick han
       <h2>{registration.title}</h2>
       <p>{registration.intro}</p>
 
-      <div class="registration-cta__tags" aria-hidden="true">
+      <div class="registration-cta__tags">
         {tags.map((tag, index) => (
           <span style={`--reveal-delay: ${index * 70 + 100}ms;`} data-reveal-item>{tag}</span>
         ))}

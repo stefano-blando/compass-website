@@ -9,7 +9,7 @@ interface Props {
 const { locale } = Astro.props;
 const labels = getLabels(locale);
 const { venue } = getHomepageContent(locale);
-const venueVisualLabel = locale === 'it' ? 'Sant’Anna placeholder' : 'Sant’Anna placeholder';
+const venueVisualLabel = locale === 'it' ? 'Visual della sede Sant’Anna' : 'Sant’Anna venue visual';
 const venueRouteEyebrow = locale === 'it' ? 'Apri la pagina sede' : 'Open venue page';
 const travelTags =
   locale === 'it'

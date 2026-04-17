@@ -612,11 +612,11 @@ ol {
   color: inherit;
 }
 
-[data-home-reveal] {
+html[data-js='true'] [data-home-reveal] {
   isolation: isolate;
 }
 
-[data-home-reveal] [data-reveal-item] {
+html[data-js='true'] [data-home-reveal] [data-reveal-item] {
   opacity: 0;
   transform: translate3d(0, 24px, 0) scale(0.985);
   filter: blur(2px);
@@ -627,7 +627,7 @@ ol {
   will-change: transform, opacity, filter;
 }
 
-[data-home-reveal].is-visible [data-reveal-item] {
+html[data-js='true'] [data-home-reveal].is-visible [data-reveal-item] {
   opacity: 1;
   transform: translate3d(0, 0, 0) scale(1);
   filter: blur(0);

@@ -27,6 +27,10 @@ const pageMeta = getPageMetadata(locale, 'home');
   title={pageMeta.title}
   description={pageMeta.description}
 >
+  <script is:inline>
+    document.documentElement.dataset.js = 'true';
+  </script>
+
   <Header locale={locale} />
   <SectionScrollNav client:load locale={locale} />
 

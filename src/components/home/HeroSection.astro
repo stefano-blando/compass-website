@@ -193,6 +193,12 @@ const hero = {
 
   .home-hero__content,
   .home-hero__media-column {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  :global(html[data-js='true']) .home-hero__content,
+  :global(html[data-js='true']) .home-hero__media-column {
     opacity: 0;
     transform: translateY(18px);
     transition:
@@ -200,8 +206,8 @@ const hero = {
       transform 520ms ease var(--hero-enter-delay, 0ms);
   }
 
-  .home-hero__content.is-ready,
-  .home-hero__media-column.is-ready {
+  :global(html[data-js='true']) .home-hero__content.is-ready,
+  :global(html[data-js='true']) .home-hero__media-column.is-ready {
     opacity: 1;
     transform: translateY(0);
   }

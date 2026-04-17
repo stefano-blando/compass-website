@@ -9,8 +9,8 @@ interface Props {
 const { locale } = Astro.props;
 const { mediaShowcase } = getHomepageContent(locale);
 const videoLabel = mediaShowcase.videoLabel;
-const stageLabel = locale === 'it' ? 'Placeholder video' : 'Placeholder video';
-const galleryLabel = locale === 'it' ? 'Frame della gallery' : 'Gallery frame';
+const stageLabel = locale === 'it' ? 'Video segnaposto' : 'Video placeholder';
+const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
 ---
 
 <section class="media-showcase" data-home-reveal data-media-showcase>

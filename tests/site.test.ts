@@ -1,7 +1,10 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import homePageSource from '../src/pages/[lang]/index.astro?raw';
 import heroSectionSource from '../src/components/home/HeroSection.astro?raw';
 import mediaShowcaseSectionSource from '../src/components/home/MediaShowcaseSection.astro?raw';
+import venuePreviewSectionSource from '../src/components/home/VenuePreviewSection.astro?raw';
+import registrationCtaSectionSource from '../src/components/home/RegistrationCtaSection.astro?raw';
 import scrollNavSource from '../src/components/SectionScrollNav.vue?raw';
 import rootIndexSource from '../src/pages/index.astro?raw';
 import {
@@ -28,6 +31,8 @@ import { sessions } from '../src/data/sessions';
 import { speakers } from '../src/data/speakers';
 import { talks } from '../src/data/talks';
 
+const globalCssSource = readFileSync(new URL('../src/styles/global.css', import.meta.url), 'utf8');
+
 describe('site helpers', () => {
   it('wires the homepage route to the hero and media showcase sections', () => {
     expect(homePageSource).toContain('<HeroSection locale={locale} />');
@@ -42,6 +47,23 @@ describe('site helpers', () => {
   it('defines the homepage media showcase source contract', () => {
     expect(mediaShowcaseSectionSource).toContain('data-media-showcase');
     expect(mediaShowcaseSectionSource).toContain('videoLabel');
+  });
+
+  it('gates homepage reveal choreography behind explicit JS enablement', () => {
+    expect(homePageSource).toContain("document.documentElement.dataset.js = 'true'");
+    expect(globalCssSource).toContain("html[data-js='true'] [data-home-reveal] [data-reveal-item]");
+    expect(heroSectionSource).toContain(":global(html[data-js='true']) .home-hero__content");
+  });
+
+  it('localizes Italian placeholder labels for media and venue sections', () => {
+    expect(mediaShowcaseSectionSource).toContain("locale === 'it' ? 'Video segnaposto' : 'Video placeholder'");
+    expect(mediaShowcaseSectionSource).toContain("locale === 'it' ? 'Frame della galleria' : 'Gallery frame'");
+    expect(venuePreviewSectionSource).toContain("locale === 'it' ? 'Visual della sede Sant’Anna' : 'Sant’Anna venue visual'");
+  });
+
+  it('keeps registration metadata chips exposed to assistive tech', () => {
+    expect(registrationCtaSectionSource).toContain('<div class=\"registration-cta__tags\">');
+    expect(registrationCtaSectionSource).not.toContain('<div class=\"registration-cta__tags\" aria-hidden=\"true\">');
   });
 
   it('exports the supported locales', () => {
