@@ -1,12 +1,18 @@
 import {
   chromeLabels,
   defaultLocale,
+  homepageMediaShowcaseContent,
   locales as supportedLocales,
   navLabels,
   pageMetadata,
+  programmePageContent,
+  richPageContent,
   siteConfig,
   siteIdentity,
   type SitePageKey,
+  type HomepageMediaShowcaseContent,
+  type ProgrammePageContent,
+  type RichPageContent,
 } from '../data/site';
 import { sessions } from '../data/sessions';
 import { speakers } from '../data/speakers';
@@ -96,6 +102,7 @@ type HomepageContent = {
   hero: HomepageHeroContent;
   whyCompass: HomepageWhyCompassContent;
   highlights: HomepageHighlight[];
+  mediaShowcase: HomepageMediaShowcaseContent;
   programme: HomepageProgrammeContent;
   speakers: HomepageSpeakersContent;
   venue: HomepageVenueContent;
@@ -153,6 +160,7 @@ const homepageContent = {
       { value: '6', label: 'Doctoral organizers and chairs' },
       { value: '15', label: 'Named contributors in the current draft' },
     ],
+    mediaShowcase: homepageMediaShowcaseContent.en,
     programme: {
       eyebrow: 'Programme Preview',
       title: 'The homepage now follows the actual day structure.',
@@ -254,6 +262,7 @@ const homepageContent = {
       { value: '6', label: 'Dottorandi organizzatori e chair' },
       { value: '15', label: 'Contributori nominati nella bozza attuale' },
     ],
+    mediaShowcase: homepageMediaShowcaseContent.it,
     programme: {
       eyebrow: 'Anteprima Del Programma',
       title: 'La homepage segue ora la struttura reale della giornata.',
@@ -412,6 +421,14 @@ export function getSiteIdentity(locale: Locale) {
 
 export function getHomepageContent(locale: Locale) {
   return homepageContent[locale] ?? homepageContent[defaultLocale];
+}
+
+export function getProgrammePageContent(locale: Locale): ProgrammePageContent {
+  return programmePageContent[locale] ?? programmePageContent[defaultLocale];
+}
+
+export function getRichPageContent(locale: Locale, page: Exclude<SitePageKey, 'home' | 'programme'>): RichPageContent {
+  return richPageContent[locale]?.[page] ?? richPageContent[defaultLocale][page];
 }
 
 export function getRootRedirect() {

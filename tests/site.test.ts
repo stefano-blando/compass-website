@@ -1,4 +1,7 @@
 import { describe, expect, it } from 'vitest';
+import homePageSource from '../src/pages/[lang]/index.astro?raw';
+import programmePageSource from '../src/pages/[lang]/programme/index.astro?raw';
+import speakersPageSource from '../src/pages/[lang]/speakers/index.astro?raw';
 import scrollNavSource from '../src/components/SectionScrollNav.vue?raw';
 import rootIndexSource from '../src/pages/index.astro?raw';
 import {
@@ -11,7 +14,9 @@ import {
   getHomepageScrollSections,
   getLabels,
   getPageMetadata,
+  getProgrammePageContent,
   getProgrammeSessions,
+  getRichPageContent,
   getRootRedirect,
   getSpeakerBySlug,
   getTalkBySlug,
@@ -154,6 +159,103 @@ describe('site helpers', () => {
     expect(english.speakers.note).not.toMatch(/task|scope/i);
     expect(italian.programme.note).not.toMatch(/task|scope/i);
     expect(italian.speakers.note).not.toMatch(/task|scope/i);
+  });
+
+  it('returns localized homepage media showcase copy', () => {
+    const english = getHomepageContent('en') as {
+      mediaShowcase?: {
+        eyebrow: string;
+        title: string;
+        intro: string;
+        items: Array<{
+          title: string;
+          body: string;
+        }>;
+        note: string;
+      };
+    };
+    const italian = getHomepageContent('it') as {
+      mediaShowcase?: {
+        eyebrow: string;
+        title: string;
+        intro: string;
+        items: Array<{
+          title: string;
+          body: string;
+        }>;
+        note: string;
+      };
+    };
+
+    expect(english.mediaShowcase).toEqual({
+      eyebrow: 'Media showcase',
+      title: 'A visual snapshot of the workshop day',
+      intro: 'A compact gallery panel for the redesign, pairing the venue, the people, and the conversations that define COMPASS.',
+      items: [
+        { title: 'The venue', body: 'Sant’Anna, Pisa, and the academic setting around the main room.' },
+        { title: 'The programme in motion', body: 'Keynotes, panels, and discussion moments through the day.' },
+        { title: 'The people behind it', body: 'Invited guests, organizers, and chair teams working together.' },
+      ],
+      note: 'Placeholder media slots are kept explicit until the final image selection is ready.',
+    });
+
+    expect(italian.mediaShowcase).toEqual({
+      eyebrow: 'Rassegna media',
+      title: 'Uno sguardo visivo sulla giornata del workshop',
+      intro: 'Un pannello gallery compatto per il redesign, che unisce sede, persone e conversazioni che definiscono COMPASS.',
+      items: [
+        { title: 'La sede', body: 'Sant’Anna a Pisa e il contesto accademico attorno alla sala principale.' },
+        { title: 'Il programma in movimento', body: 'Keynote, panel e momenti di discussione durante la giornata.' },
+        { title: 'Le persone dietro il workshop', body: 'Ospiti invitati, organizzatori e chair che lavorano insieme.' },
+      ],
+      note: 'Gli slot media restano espliciti finché non e pronta la selezione finale delle immagini.',
+    });
+  });
+
+  it('returns compact programme page copy with details outside the schedule flow', () => {
+    const english = getProgrammePageContent('en');
+    const italian = getProgrammePageContent('it');
+
+    expect(english).toEqual({
+      eyebrow: 'Programme overview',
+      title: 'The full workshop flow, kept compact for quick scanning.',
+      intro: 'This page keeps the schedule in the timeline below while the supporting copy explains how the day is structured.',
+      detailsTitle: 'What sits outside the timeline',
+      details: [
+        'Context for the opening, breaks, and closing moments.',
+        'A concise note on the invited voices and session chairs.',
+        'Practical guidance that does not belong inside the schedule cards.',
+      ],
+    });
+
+    expect(italian).toEqual({
+      eyebrow: 'Panoramica del programma',
+      title: "L'intero flusso del workshop, reso compatto per una lettura rapida.",
+      intro: 'Questa pagina lascia l agenda nella timeline sottostante mentre il copy di supporto spiega come e strutturata la giornata.',
+      detailsTitle: 'Cosa resta fuori dalla timeline',
+      details: [
+        'Contesto per apertura, pause e momenti conclusivi.',
+        'Una nota sintetica sulle voci invitate e sui chair di sessione.',
+        'Indicazioni pratiche che non appartengono alle card del programma.',
+      ],
+    });
+  });
+
+  it('returns rich placeholder-backed secondary page sections', () => {
+    const about = getRichPageContent('en', 'about');
+    const faq = getRichPageContent('it', 'faq');
+
+    expect(about.sections).toHaveLength(3);
+    expect(about.sections.some((section) => Boolean(section.placeholder))).toBe(true);
+    expect(about.sections[0]).toMatchObject({
+      eyebrow: 'About COMPASS',
+      title: 'What the workshop is trying to make possible',
+    });
+    expect(faq.sections.some((section) => Boolean(section.placeholder))).toBe(true);
+    expect(faq.sections[1]).toMatchObject({
+      eyebrow: 'Logistica',
+      title: 'Cosa resta da confermare per i partecipanti',
+    });
   });
 
   it('returns curated programme preview entries with localized chair labels', () => {
@@ -336,5 +438,11 @@ describe('site helpers', () => {
   it('keeps the floating scroll nav unfocusable while hidden', () => {
     expect(scrollNavSource).toContain(':inert="!isVisible"');
     expect(scrollNavSource).toContain(":tabindex=\"isVisible ? null : -1\"");
+  });
+
+  it('wires homepage, programme, and speakers routes to redesign content helpers', () => {
+    expect(homePageSource).toContain('getHomepageContent(locale)');
+    expect(programmePageSource).toContain('getProgrammePageContent(locale)');
+    expect(speakersPageSource).toContain("getRichPageContent(locale, 'speakers')");
   });
 });
