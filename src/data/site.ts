@@ -151,69 +151,71 @@ export type HomepageMediaShowcaseContent = {
   eyebrow: string;
   title: string;
   intro: string;
+  videoLabel: string;
   items: Array<{
     title: string;
     body: string;
+    mediaLabel: string;
   }>;
-  note: string;
 };
 
 export const homepageMediaShowcaseContent = {
   en: {
     eyebrow: 'Media showcase',
     title: 'A visual snapshot of the workshop day',
-    intro:
-      'A compact gallery panel for the redesign, pairing the venue, the people, and the conversations that define COMPASS.',
+    intro: 'A compact gallery panel for the redesign, pairing the venue, the people, and the conversations that define COMPASS.',
+    videoLabel: 'Workshop highlight video',
     items: [
-      { title: 'The venue', body: 'Sant’Anna, Pisa, and the academic setting around the main room.' },
-      { title: 'The programme in motion', body: 'Keynotes, panels, and discussion moments through the day.' },
-      { title: 'The people behind it', body: 'Invited guests, organizers, and chair teams working together.' },
+      { title: 'The venue', body: 'Sant’Anna, Pisa, and the academic setting around the main room.', mediaLabel: 'Venue still' },
+      { title: 'The programme in motion', body: 'Keynotes, panels, and discussion moments through the day.', mediaLabel: 'Programme still' },
+      { title: 'The people behind it', body: 'Invited guests, organizers, and chair teams working together.', mediaLabel: 'People still' },
     ],
-    note: 'Placeholder media slots are kept explicit until the final image selection is ready.',
   },
   it: {
     eyebrow: 'Rassegna media',
     title: 'Uno sguardo visivo sulla giornata del workshop',
-    intro:
-      'Un pannello gallery compatto per il redesign, che unisce sede, persone e conversazioni che definiscono COMPASS.',
+    intro: 'Un pannello gallery compatto per il redesign, che unisce sede, persone e conversazioni che definiscono COMPASS.',
+    videoLabel: 'Video highlight del workshop',
     items: [
-      { title: 'La sede', body: 'Sant’Anna a Pisa e il contesto accademico attorno alla sala principale.' },
-      { title: 'Il programma in movimento', body: 'Keynote, panel e momenti di discussione durante la giornata.' },
-      { title: 'Le persone dietro il workshop', body: 'Ospiti invitati, organizzatori e chair che lavorano insieme.' },
+      { title: 'La sede', body: 'Sant’Anna a Pisa e il contesto accademico attorno alla sala principale.', mediaLabel: 'Immagine della sede' },
+      { title: 'Il programma in movimento', body: 'Keynote, panel e momenti di discussione durante la giornata.', mediaLabel: 'Immagine del programma' },
+      { title: 'Le persone dietro il workshop', body: 'Ospiti invitati, organizzatori e chair che lavorano insieme.', mediaLabel: 'Immagine delle persone' },
     ],
-    note: 'Gli slot media restano espliciti finché non e pronta la selezione finale delle immagini.',
   },
 } as const satisfies Record<Locale, HomepageMediaShowcaseContent>;
 
 export type ProgrammePageContent = {
-  eyebrow: string;
   title: string;
   intro: string;
-  detailsTitle: string;
-  details: string[];
+  sectionLabel: string;
+  compactTalkLabel: string;
+  detailNote: string;
+  cards: string[];
 };
 
 export const programmePageContent = {
   en: {
-    eyebrow: 'Programme overview',
-    title: 'The full workshop flow, kept compact for quick scanning.',
-    intro: 'This page keeps the schedule in the timeline below while the supporting copy explains how the day is structured.',
-    detailsTitle: 'What sits outside the timeline',
-    details: [
-      'Context for the opening, breaks, and closing moments.',
-      'A concise note on the invited voices and session chairs.',
-      'Practical guidance that does not belong inside the schedule cards.',
+    title: 'The programme at a glance',
+    intro: 'The timeline below keeps the schedule intact while the supporting copy explains the structure around it.',
+    sectionLabel: 'Details outside the timeline',
+    compactTalkLabel: 'Compact talk notes',
+    detailNote: 'Use these notes for the workshop framing, not for the individual session cards.',
+    cards: [
+      'Opening remarks, keynotes, and chair-led panels stay easy to scan.',
+      'Breaks and lunch remain visible as part of the day structure.',
+      'Closing remarks and the social dinner stay grouped with the supporting copy.',
     ],
   },
   it: {
-    eyebrow: 'Panoramica del programma',
-    title: "L'intero flusso del workshop, reso compatto per una lettura rapida.",
-    intro: 'Questa pagina lascia l agenda nella timeline sottostante mentre il copy di supporto spiega come e strutturata la giornata.',
-    detailsTitle: 'Cosa resta fuori dalla timeline',
-    details: [
-      'Contesto per apertura, pause e momenti conclusivi.',
-      'Una nota sintetica sulle voci invitate e sui chair di sessione.',
-      'Indicazioni pratiche che non appartengono alle card del programma.',
+    title: 'Il programma in sintesi',
+    intro: 'La timeline sottostante mantiene intatta l agenda mentre il copy di supporto spiega la struttura attorno ad essa.',
+    sectionLabel: 'Dettagli fuori dalla timeline',
+    compactTalkLabel: 'Note compatte sui talk',
+    detailNote: 'Queste note servono per il framing del workshop, non per le singole sessioni.',
+    cards: [
+      'Saluti iniziali, keynote e panel guidati dai chair restano facili da leggere.',
+      'Pause e lunch restano visibili come parte della struttura della giornata.',
+      'Closing remarks e cena sociale restano nel copy di supporto.',
     ],
   },
 } as const satisfies Record<Locale, ProgrammePageContent>;
@@ -222,15 +224,21 @@ export type RichPageSection = {
   eyebrow: string;
   title: string;
   body: string;
-  items: string[];
-  placeholder: string;
+  mediaLabel: string;
+  mediaType: string;
+  bullets?: string[];
 };
 
 export type RichPageContent = {
-  eyebrow: string;
-  title: string;
-  intro: string;
+  hero: {
+    eyebrow: string;
+    title: string;
+    intro: string;
+    mediaLabel: string;
+    mediaType: string;
+  };
   sections: RichPageSection[];
+  ctaLabel?: string;
 };
 
 type RichPageKey = Exclude<SitePageKey, 'home' | 'programme'>;
@@ -238,360 +246,452 @@ type RichPageKey = Exclude<SitePageKey, 'home' | 'programme'>;
 export const richPageContent = {
   en: {
     about: {
-      eyebrow: 'About COMPASS',
-      title: 'What the workshop is trying to make possible',
-      intro: 'A compact home for the workshop mission, scope, and expected interdisciplinary outcome.',
+      hero: {
+        eyebrow: 'About COMPASS',
+        title: 'What the workshop is trying to make possible',
+        intro: 'A compact home for the workshop mission, scope, and expected interdisciplinary outcome.',
+        mediaLabel: 'About page hero placeholder',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
-          eyebrow: 'About COMPASS',
-          title: 'What the workshop is trying to make possible',
+          eyebrow: 'Mission',
+          title: 'Why this workshop exists',
           body: 'The workshop gives a shared stage to complexity science, AI, markets, policy, and law so the discussion can stay interdisciplinary from the start.',
-          items: [
+          mediaLabel: 'Mission placeholder',
+          mediaType: 'placeholder',
+          bullets: [
             'Keep the scope academic and focused.',
             'Make the connections between methods and institutions explicit.',
           ],
-          placeholder: 'Mission wording will be tightened once the final positioning copy is approved.',
         },
         {
           eyebrow: 'Format',
           title: 'How the day is organised',
           body: 'The page will eventually explain the day structure in more detail, but the current content already signals the compact, single-day format.',
-          items: [
+          mediaLabel: 'Format placeholder',
+          mediaType: 'placeholder',
+          bullets: [
             'One room for the shared scientific arc.',
             'Breaks and meals as deliberate discussion time.',
           ],
-          placeholder: 'Format copy remains provisional until the timetable is locked.',
         },
         {
           eyebrow: 'Audience',
           title: 'Who should read this page',
           body: 'This section is reserved for the public-facing explanation of who the workshop is for and what participants should expect.',
-          items: [
+          mediaLabel: 'Audience placeholder',
+          mediaType: 'placeholder',
+          bullets: [
             'Doctoral researchers and invited speakers.',
             'Attendees interested in AI, policy, and socio-economic systems.',
           ],
-          placeholder: 'Audience language will be aligned with the registration flow later.',
         },
       ],
+      ctaLabel: 'Read the programme',
     },
     speakers: {
-      eyebrow: 'Speakers',
-      title: 'Who is contributing to COMPASS',
-      intro: 'A working page for keynote guests, organizers, and the panel network around them.',
+      hero: {
+        eyebrow: 'Speakers',
+        title: 'Who is contributing to COMPASS',
+        intro: 'A working page for keynote guests, organizers, and the panel network around them.',
+        mediaLabel: 'Speakers page hero placeholder',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Keynotes',
           title: 'Invited voices and reserved slots',
           body: 'The page will present the keynote line-up together with the remaining confirmation status when needed.',
-          items: ['Confirmed keynote guests.', 'The open slot currently marked TBC.'],
-          placeholder: 'Keynote biographies remain lightweight until all invitations are final.',
+          mediaLabel: 'Keynote placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Confirmed keynote guests.', 'The open slot currently marked TBC.'],
         },
         {
           eyebrow: 'Tracks',
           title: 'Who chairs the three thematic tracks',
           body: 'This section can grow into a structured overview of the doctoral chairs and their track responsibilities.',
-          items: ['Track 1 on AI methods.', 'Track 2 on networks and NLP.', 'Track 3 on law and ethics.'],
-          placeholder: 'Chair profiles will expand when the session cards are rewritten.',
+          mediaLabel: 'Tracks placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Track 1 on AI methods.', 'Track 2 on networks and NLP.', 'Track 3 on law and ethics.'],
         },
         {
           eyebrow: 'Contributors',
           title: 'Panel and discussant roles',
           body: 'The redesign keeps room for the people appearing in panels and discussant slots without forcing a long list into the hero.',
-          items: ['Named panel contributors.', 'Session discussants and closing voices.'],
-          placeholder: 'Contributor detail stays in placeholder mode for this redesign pass.',
+          mediaLabel: 'Contributor placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Named panel contributors.', 'Session discussants and closing voices.'],
         },
       ],
     },
     venue: {
-      eyebrow: 'Venue',
-      title: 'Where the workshop takes place',
-      intro: 'A page for the physical setting, arrival notes, and the practical details that help attendees plan the day.',
+      hero: {
+        eyebrow: 'Venue',
+        title: 'Where the workshop takes place',
+        intro: 'A page for the physical setting, arrival notes, and the practical details that help attendees plan the day.',
+        mediaLabel: 'Venue page hero placeholder',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Location',
           title: 'The Sant Anna campus in Pisa',
           body: 'The venue section will eventually explain the room setup and the working location within the campus.',
-          items: ['Historic campus setting in central Pisa.', 'Short walking distances between rooms and break areas.'],
-          placeholder: 'Final room naming stays provisional until access is confirmed.',
+          mediaLabel: 'Location placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Historic campus setting in central Pisa.', 'Short walking distances between rooms and break areas.'],
         },
         {
           eyebrow: 'Travel',
           title: 'How to get there',
           body: 'Arrival guidance can stay short while still giving attendees the practical routes they need.',
-          items: ['Pisa Centrale for rail arrivals.', 'Galileo Galilei Airport for air travel.'],
-          placeholder: 'Travel copy will be expanded once local logistics are final.',
+          mediaLabel: 'Travel placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Pisa Centrale for rail arrivals.', 'Galileo Galilei Airport for air travel.'],
         },
         {
           eyebrow: 'Access',
           title: 'What participants should know on the day',
           body: 'This section is reserved for the arrival and access notes that are helpful only once the event is nearly ready.',
-          items: ['Check-in timing and room access.', 'Local movement between sessions and breaks.'],
-          placeholder: 'Access details remain placeholder-backed until the venue page is redesigned.',
+          mediaLabel: 'Access placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Check-in timing and room access.', 'Local movement between sessions and breaks.'],
         },
       ],
+      ctaLabel: 'Check travel notes',
     },
     registration: {
-      eyebrow: 'Registration',
-      title: 'How to join the workshop',
-      intro: 'This page will bridge the external form with the practical notes people need before they register.',
+      hero: {
+        eyebrow: 'Registration',
+        title: 'How to join the workshop',
+        intro: 'This page will bridge the external form with the practical notes people need before they register.',
+        mediaLabel: 'Registration page hero placeholder',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Form',
           title: 'Where registration happens',
           body: 'The final page will direct people to the form without cluttering the route with unnecessary detail.',
-          items: ['External registration handoff.', 'Straightforward participation flow.'],
-          placeholder: 'Form guidance stays provisional until the final capture flow is live.',
+          mediaLabel: 'Form placeholder',
+          mediaType: 'placeholder',
+          bullets: ['External registration handoff.', 'Straightforward participation flow.'],
         },
         {
           eyebrow: 'Timing',
           title: 'When to register and what to check',
           body: 'The page should make the timing and planning constraints visible without overloading the route.',
-          items: ['Review the event date and travel feasibility.', 'Confirm the attendance window before submitting.'],
-          placeholder: 'Timing copy will be synced with the final deadline wording later.',
+          mediaLabel: 'Timing placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Review the event date and travel feasibility.', 'Confirm the attendance window before submitting.'],
         },
         {
           eyebrow: 'Checklist',
           title: 'What to prepare before submitting',
           body: 'A short list helps attendees move through the form with the right expectations.',
-          items: ['Name and affiliation details.', 'A quick check of travel plans and availability.'],
-          placeholder: 'Checklist wording remains intentionally lightweight for now.',
+          mediaLabel: 'Checklist placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Name and affiliation details.', 'A quick check of travel plans and availability.'],
         },
       ],
+      ctaLabel: 'Open the registration form',
     },
     organizers: {
-      eyebrow: 'Organizers',
-      title: 'Who is making the workshop happen',
-      intro: 'This page will hold the committee overview and the institutional context around the event.',
+      hero: {
+        eyebrow: 'Organizers',
+        title: 'Who is making the workshop happen',
+        intro: 'This page will hold the committee overview and the institutional context around the event.',
+        mediaLabel: 'Organizers page hero placeholder',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Committee',
           title: 'The people coordinating COMPASS',
           body: 'The organizer listing can stay short at first while the detailed bios are handled elsewhere.',
-          items: ['Doctoral organizers and chairs.', 'Academic and operational coordination.'],
-          placeholder: 'Committee bios will be linked in once the final role table is ready.',
+          mediaLabel: 'Committee placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Doctoral organizers and chairs.', 'Academic and operational coordination.'],
         },
         {
           eyebrow: 'Hosting',
           title: 'Where the event is anchored',
           body: 'This section gives room for the host institution and acknowledgement copy without duplicating the venue page.',
-          items: ['Hosting institution context.', 'Local support and logistics ownership.'],
-          placeholder: 'Hosting acknowledgements remain placeholder-backed for the redesign phase.',
+          mediaLabel: 'Hosting placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Hosting institution context.', 'Local support and logistics ownership.'],
         },
         {
           eyebrow: 'Contacts',
           title: 'Who to reach out to',
           body: 'The final page can provide a simple operational contact route once the public-facing text is settled.',
-          items: ['General workshop contact.', 'Operational follow-up for attendees.'],
-          placeholder: 'Contact copy stays generic until the final ownership line is approved.',
+          mediaLabel: 'Contacts placeholder',
+          mediaType: 'placeholder',
+          bullets: ['General workshop contact.', 'Operational follow-up for attendees.'],
         },
       ],
     },
     faq: {
-      eyebrow: 'FAQ',
-      title: 'Answers to the practical questions',
-      intro: 'A concise space for logistics, format, and participation questions that should stay out of the main narrative.',
+      hero: {
+        eyebrow: 'FAQ',
+        title: 'Answers to the practical questions',
+        intro: 'A concise space for logistics, format, and participation questions that should stay out of the main narrative.',
+        mediaLabel: 'FAQ page hero placeholder',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Participation',
           title: 'What attendees need to know first',
           body: 'The first FAQ block can answer the basic participation and registration questions without forcing people into the details pages.',
-          items: ['Attendance is free.', 'The workshop is designed for a focused in-person audience.'],
-          placeholder: 'Attendance wording will be finalised with the registration page.',
+          mediaLabel: 'Participation placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Attendance is free.', 'The workshop is designed for a focused in-person audience.'],
         },
         {
           eyebrow: 'Logistics',
           title: 'What remains to be confirmed for attendees',
           body: 'This block is reserved for the items that are practical, useful, and still subject to final confirmation.',
-          items: ['Access to the room and venue circulation.', 'Travel and local movement around Pisa.'],
-          placeholder: 'Logistics copy remains provisional until the venue notes are complete.',
+          mediaLabel: 'Logistics placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Access to the room and venue circulation.', 'Travel and local movement around Pisa.'],
         },
         {
           eyebrow: 'Materials',
           title: 'What to expect from the workshop materials',
           body: 'A brief FAQ block can handle language, slide sharing, and any follow-up notes after the event.',
-          items: ['Session materials and talk links.', 'Post-workshop communication.'],
-          placeholder: 'Materials guidance stays lightweight until the content pack is ready.',
+          mediaLabel: 'Materials placeholder',
+          mediaType: 'placeholder',
+          bullets: ['Session materials and talk links.', 'Post-workshop communication.'],
         },
       ],
+      ctaLabel: 'Contact the organizers',
     },
   },
   it: {
     about: {
-      eyebrow: 'Chi siamo',
-      title: 'Cosa il workshop vuole rendere possibile',
-      intro: 'Una casa compatta per missione, perimetro e risultato interdisciplinare atteso del workshop.',
+      hero: {
+        eyebrow: 'Chi siamo',
+        title: 'Cosa il workshop vuole rendere possibile',
+        intro: 'Una casa compatta per missione, perimetro e risultato interdisciplinare atteso del workshop.',
+        mediaLabel: 'Segnaposto hero pagina chi siamo',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Missione',
           title: 'Perche esiste questo workshop',
           body: 'Il workshop mette su una stessa scena scienza della complessita, AI, mercati, policy e diritto per tenere il confronto interdisciplinare fin dall inizio.',
-          items: [
+          mediaLabel: 'Segnaposto missione',
+          mediaType: 'placeholder',
+          bullets: [
             'Mantenere il perimetro accademico e focalizzato.',
             'Rendere espliciti i collegamenti tra metodi e istituzioni.',
           ],
-          placeholder: 'Il testo di missione sara rifinito quando il copy finale di posizionamento sara approvato.',
         },
         {
           eyebrow: 'Formato',
           title: 'Come e organizzata la giornata',
           body: 'La pagina potra spiegare meglio il programma della giornata, ma il contenuto attuale segnala gia il formato compatto di una sola giornata.',
-          items: [
+          mediaLabel: 'Segnaposto formato',
+          mediaType: 'placeholder',
+          bullets: [
             'Una sala per l arco scientifico condiviso.',
             'Pause e pasti come tempo deliberato di discussione.',
           ],
-          placeholder: 'Il copy sul formato resta provvisorio finche l agenda non e bloccata.',
         },
         {
           eyebrow: 'Pubblico',
           title: 'Chi dovrebbe leggere questa pagina',
           body: 'Questa sezione e riservata alla spiegazione pubblica di a chi si rivolge il workshop e di cosa aspettarsi.',
-          items: [
+          mediaLabel: 'Segnaposto pubblico',
+          mediaType: 'placeholder',
+          bullets: [
             'Dottorandi e speaker invitati.',
             'Partecipanti interessati a AI, policy e sistemi socio-economici.',
           ],
-          placeholder: 'Il linguaggio sul pubblico sara allineato alla pagina di registrazione in un secondo momento.',
         },
       ],
+      ctaLabel: 'Leggi il programma',
     },
     speakers: {
-      eyebrow: 'Relatori',
-      title: 'Chi contribuisce a COMPASS',
-      intro: 'Una pagina di lavoro per ospiti keynote, organizzatori e la rete di panel attorno a loro.',
+      hero: {
+        eyebrow: 'Relatori',
+        title: 'Chi contribuisce a COMPASS',
+        intro: 'Una pagina di lavoro per ospiti keynote, organizzatori e la rete di panel attorno a loro.',
+        mediaLabel: 'Segnaposto hero relatori',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Keynote',
           title: 'Voci invitate e slot riservati',
           body: 'La pagina presentera la line-up delle keynote insieme allo stato di conferma restante quando serve.',
-          items: ['Ospiti keynote confermati.', 'Lo slot aperto attualmente marcato TBC.'],
-          placeholder: 'Le biografie keynote restano leggere finche tutti gli inviti non sono finali.',
+          mediaLabel: 'Segnaposto keynote',
+          mediaType: 'placeholder',
+          bullets: ['Ospiti keynote confermati.', 'Lo slot aperto attualmente marcato TBC.'],
         },
         {
           eyebrow: 'Track',
           title: 'Chi coordina le tre track tematiche',
           body: 'Questa sezione puo diventare una panoramica strutturata dei chair dottorali e delle rispettive responsabilita.',
-          items: ['Track 1 sui metodi AI.', 'Track 2 su networks e NLP.', 'Track 3 su diritto ed etica.'],
-          placeholder: 'I profili dei chair si espanderanno quando le card di sessione saranno riscritte.',
+          mediaLabel: 'Segnaposto track',
+          mediaType: 'placeholder',
+          bullets: ['Track 1 sui metodi AI.', 'Track 2 su networks e NLP.', 'Track 3 su diritto ed etica.'],
         },
         {
           eyebrow: 'Contributori',
           title: 'Ruoli di panel e discussant',
           body: 'Il redesign lascia spazio alle persone presenti nei panel e nei ruoli di discussant senza forzare un elenco lungo nell hero.',
-          items: ['Contributori di panel nominati.', 'Discussant di sessione e voci conclusive.'],
-          placeholder: 'Il dettaglio dei contributori resta in modalita placeholder per questo passaggio di redesign.',
+          mediaLabel: 'Segnaposto contributori',
+          mediaType: 'placeholder',
+          bullets: ['Contributori di panel nominati.', 'Discussant di sessione e voci conclusive.'],
         },
       ],
     },
     venue: {
-      eyebrow: 'Sede',
-      title: 'Dove si svolge il workshop',
-      intro: 'Una pagina per il contesto fisico, le note di arrivo e i dettagli pratici che aiutano i partecipanti a pianificare la giornata.',
+      hero: {
+        eyebrow: 'Sede',
+        title: 'Dove si svolge il workshop',
+        intro: 'Una pagina per il contesto fisico, le note di arrivo e i dettagli pratici che aiutano i partecipanti a pianificare la giornata.',
+        mediaLabel: 'Segnaposto hero sede',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Posizione',
           title: 'Il campus Sant Anna a Pisa',
           body: 'La sezione sede spieghera meglio la configurazione delle sale e il luogo di lavoro dentro il campus.',
-          items: ['Contesto storico nel centro di Pisa.', 'Percorsi brevi tra sale e aree break.'],
-          placeholder: 'La denominazione finale della sala resta provvisoria finche l accesso non e confermato.',
+          mediaLabel: 'Segnaposto posizione',
+          mediaType: 'placeholder',
+          bullets: ['Contesto storico nel centro di Pisa.', 'Percorsi brevi tra sale e aree break.'],
         },
         {
           eyebrow: 'Viaggio',
           title: 'Come arrivarci',
           body: 'Le indicazioni di arrivo possono restare brevi pur dando ai partecipanti i percorsi pratici di cui hanno bisogno.',
-          items: ['Pisa Centrale per chi arriva in treno.', 'Aeroporto Galileo Galilei per chi arriva in aereo.'],
-          placeholder: 'Il copy sul viaggio sara ampliato quando la logistica locale sara finale.',
+          mediaLabel: 'Segnaposto viaggio',
+          mediaType: 'placeholder',
+          bullets: ['Pisa Centrale per chi arriva in treno.', 'Aeroporto Galileo Galilei per chi arriva in aereo.'],
         },
         {
           eyebrow: 'Accesso',
           title: 'Cosa sapere il giorno dell evento',
           body: 'Questa sezione e riservata alle note di arrivo e di accesso utili quando l evento e quasi pronto.',
-          items: ['Orari di check-in e accesso alla sala.', 'Spostamenti locali tra sessioni e pause.'],
-          placeholder: 'I dettagli di accesso restano placeholder-backed finche la pagina sede non viene ridisegnata.',
+          mediaLabel: 'Segnaposto accesso',
+          mediaType: 'placeholder',
+          bullets: ['Orari di check-in e accesso alla sala.', 'Spostamenti locali tra sessioni e pause.'],
         },
       ],
+      ctaLabel: 'Controlla le note di viaggio',
     },
     registration: {
-      eyebrow: 'Registrazione',
-      title: 'Come partecipare al workshop',
-      intro: 'Questa pagina fara da ponte tra il form esterno e le note pratiche che servono prima della registrazione.',
+      hero: {
+        eyebrow: 'Registrazione',
+        title: 'Come partecipare al workshop',
+        intro: 'Questa pagina fara da ponte tra il form esterno e le note pratiche che servono prima della registrazione.',
+        mediaLabel: 'Segnaposto hero registrazione',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Modulo',
           title: 'Dove avviene la registrazione',
           body: 'La pagina finale portera al form senza appesantire la route con dettagli inutili.',
-          items: ['Passaggio a un modulo esterno.', 'Flusso di partecipazione semplice.'],
-          placeholder: 'Le indicazioni sul form restano provvisorie finche il flusso di raccolta non e attivo.',
+          mediaLabel: 'Segnaposto modulo',
+          mediaType: 'placeholder',
+          bullets: ['Passaggio a un modulo esterno.', 'Flusso di partecipazione semplice.'],
         },
         {
           eyebrow: 'Tempistiche',
           title: 'Quando registrarsi e cosa verificare',
           body: 'La pagina deve rendere visibili le tempistiche e i vincoli di pianificazione senza sovraccaricare la route.',
-          items: ['Rivedi la data dell evento e la fattibilita del viaggio.', 'Conferma la finestra di partecipazione prima di inviare.'],
-          placeholder: 'Il copy sulle tempistiche sara sincronizzato con il testo finale della scadenza.',
+          mediaLabel: 'Segnaposto tempistiche',
+          mediaType: 'placeholder',
+          bullets: ['Rivedi la data dell evento e la fattibilita del viaggio.', 'Conferma la finestra di partecipazione prima di inviare.'],
         },
         {
           eyebrow: 'Checklist',
           title: 'Cosa preparare prima di inviare',
           body: 'Una lista breve aiuta i partecipanti a compilare il form con le giuste aspettative.',
-          items: ['Nome e affiliazione.', 'Un controllo rapido su viaggio e disponibilita.'],
-          placeholder: 'Il linguaggio della checklist resta volutamente leggero per ora.',
+          mediaLabel: 'Segnaposto checklist',
+          mediaType: 'placeholder',
+          bullets: ['Nome e affiliazione.', 'Un controllo rapido su viaggio e disponibilita.'],
         },
       ],
+      ctaLabel: 'Apri il modulo di registrazione',
     },
     organizers: {
-      eyebrow: 'Organizzatori',
-      title: 'Chi sta rendendo possibile il workshop',
-      intro: 'Questa pagina ospitera la panoramica del comitato e il contesto istituzionale dell evento.',
+      hero: {
+        eyebrow: 'Organizzatori',
+        title: 'Chi sta rendendo possibile il workshop',
+        intro: 'Questa pagina ospitera la panoramica del comitato e il contesto istituzionale dell evento.',
+        mediaLabel: 'Segnaposto hero organizzatori',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Comitato',
           title: 'Le persone che coordinano COMPASS',
           body: 'L elenco degli organizzatori puo restare breve inizialmente mentre le biografie dettagliate vengono gestite altrove.',
-          items: ['Dottorandi organizzatori e chair.', 'Coordinamento accademico e operativo.'],
-          placeholder: 'Le biografie del comitato saranno collegate quando la tabella dei ruoli finale sara pronta.',
+          mediaLabel: 'Segnaposto comitato',
+          mediaType: 'placeholder',
+          bullets: ['Dottorandi organizzatori e chair.', 'Coordinamento accademico e operativo.'],
         },
         {
           eyebrow: 'Hosting',
           title: 'Dove si ancora l evento',
           body: 'Questa sezione lascia spazio al contesto dell istituzione ospitante e al copy di acknowledgement senza duplicare la pagina sede.',
-          items: ['Contesto dell istituzione ospitante.', 'Supporto locale e ownership della logistica.'],
-          placeholder: 'Gli acknowledgement di hosting restano placeholder-backed per la fase di redesign.',
+          mediaLabel: 'Segnaposto hosting',
+          mediaType: 'placeholder',
+          bullets: ['Contesto dell istituzione ospitante.', 'Supporto locale e ownership della logistica.'],
         },
         {
           eyebrow: 'Contatti',
           title: 'Chi contattare',
           body: 'La pagina finale potra offrire un percorso di contatto operativo semplice quando il testo pubblico sara stabilito.',
-          items: ['Contatto generale del workshop.', 'Follow-up operativo per i partecipanti.'],
-          placeholder: 'Il copy dei contatti resta generico finche la linea finale di ownership non e approvata.',
+          mediaLabel: 'Segnaposto contatti',
+          mediaType: 'placeholder',
+          bullets: ['Contatto generale del workshop.', 'Follow-up operativo per i partecipanti.'],
         },
       ],
     },
     faq: {
-      eyebrow: 'FAQ',
-      title: 'Risposte alle domande pratiche',
-      intro: 'Uno spazio conciso per logistica, formato e partecipazione da tenere fuori dalla narrazione principale.',
+      hero: {
+        eyebrow: 'FAQ',
+        title: 'Risposte alle domande pratiche',
+        intro: 'Uno spazio conciso per logistica, formato e partecipazione da tenere fuori dalla narrazione principale.',
+        mediaLabel: 'Segnaposto hero FAQ',
+        mediaType: 'placeholder',
+      },
       sections: [
         {
           eyebrow: 'Partecipazione',
           title: 'Cosa devono sapere prima di tutto i partecipanti',
           body: 'Il primo blocco FAQ puo rispondere alle domande base su partecipazione e registrazione senza forzare gli utenti nelle pagine di dettaglio.',
-          items: ['La partecipazione e gratuita.', 'Il workshop e pensato per un pubblico in presenza e focalizzato.'],
-          placeholder: 'Il testo sulla partecipazione sara finalizzato con la pagina registrazione.',
+          mediaLabel: 'Segnaposto partecipazione',
+          mediaType: 'placeholder',
+          bullets: ['La partecipazione e gratuita.', 'Il workshop e pensato per un pubblico in presenza e focalizzato.'],
         },
         {
           eyebrow: 'Logistica',
           title: 'Cosa resta da confermare per i partecipanti',
           body: 'Questo blocco e riservato agli elementi pratici, utili e ancora soggetti a conferma finale.',
-          items: ['Accesso alla sala e circolazione nella sede.', 'Viaggio e spostamenti locali a Pisa.'],
-          placeholder: 'Il copy logistico resta provvisorio finche le note della sede non sono complete.',
+          mediaLabel: 'Segnaposto logistica',
+          mediaType: 'placeholder',
+          bullets: ['Accesso alla sala e circolazione nella sede.', 'Viaggio e spostamenti locali a Pisa.'],
         },
         {
           eyebrow: 'Materiali',
           title: 'Cosa aspettarsi dai materiali del workshop',
           body: 'Un breve blocco FAQ puo gestire lingua, condivisione delle slide e eventuali note successive all evento.',
-          items: ['Materiali di sessione e link ai talk.', 'Comunicazioni successive al workshop.'],
-          placeholder: 'Le indicazioni sui materiali restano leggere finche il pacchetto contenuti non e pronto.',
+          mediaLabel: 'Segnaposto materiali',
+          mediaType: 'placeholder',
+          bullets: ['Materiali di sessione e link ai talk.', 'Comunicazioni successive al workshop.'],
         },
       ],
+      ctaLabel: 'Contatta gli organizzatori',
     },
   },
 } as const satisfies Record<Locale, Record<RichPageKey, RichPageContent>>;

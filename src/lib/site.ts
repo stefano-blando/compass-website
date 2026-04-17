@@ -424,11 +424,23 @@ export function getHomepageContent(locale: Locale) {
 }
 
 export function getProgrammePageContent(locale: Locale): ProgrammePageContent {
-  return programmePageContent[locale] ?? programmePageContent[defaultLocale];
+  const content = programmePageContent[locale] ?? programmePageContent[defaultLocale];
+  return {
+    ...content,
+    cards: [...content.cards],
+  };
 }
 
 export function getRichPageContent(locale: Locale, page: Exclude<SitePageKey, 'home' | 'programme'>): RichPageContent {
-  return richPageContent[locale]?.[page] ?? richPageContent[defaultLocale][page];
+  const content = richPageContent[locale]?.[page] ?? richPageContent[defaultLocale][page];
+  return {
+    hero: { ...content.hero },
+    sections: content.sections.map((section) => ({
+      ...section,
+      ...(section.bullets ? { bullets: [...section.bullets] } : {}),
+    })),
+    ...(content.ctaLabel ? { ctaLabel: content.ctaLabel } : {}),
+  };
 }
 
 export function getRootRedirect() {

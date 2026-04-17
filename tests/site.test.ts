@@ -162,100 +162,102 @@ describe('site helpers', () => {
   });
 
   it('returns localized homepage media showcase copy', () => {
-    const english = getHomepageContent('en') as {
-      mediaShowcase?: {
-        eyebrow: string;
-        title: string;
-        intro: string;
-        items: Array<{
-          title: string;
-          body: string;
-        }>;
-        note: string;
-      };
-    };
-    const italian = getHomepageContent('it') as {
-      mediaShowcase?: {
-        eyebrow: string;
-        title: string;
-        intro: string;
-        items: Array<{
-          title: string;
-          body: string;
-        }>;
-        note: string;
-      };
-    };
+    const english = getHomepageContent('en').mediaShowcase;
+    const italian = getHomepageContent('it').mediaShowcase;
 
-    expect(english.mediaShowcase).toEqual({
+    expect(english).toMatchObject({
       eyebrow: 'Media showcase',
-      title: 'A visual snapshot of the workshop day',
-      intro: 'A compact gallery panel for the redesign, pairing the venue, the people, and the conversations that define COMPASS.',
-      items: [
-        { title: 'The venue', body: 'Sant’Anna, Pisa, and the academic setting around the main room.' },
-        { title: 'The programme in motion', body: 'Keynotes, panels, and discussion moments through the day.' },
-        { title: 'The people behind it', body: 'Invited guests, organizers, and chair teams working together.' },
-      ],
-      note: 'Placeholder media slots are kept explicit until the final image selection is ready.',
+      videoLabel: 'Workshop highlight video',
     });
-
-    expect(italian.mediaShowcase).toEqual({
+    expect(italian).toMatchObject({
       eyebrow: 'Rassegna media',
-      title: 'Uno sguardo visivo sulla giornata del workshop',
-      intro: 'Un pannello gallery compatto per il redesign, che unisce sede, persone e conversazioni che definiscono COMPASS.',
-      items: [
-        { title: 'La sede', body: 'Sant’Anna a Pisa e il contesto accademico attorno alla sala principale.' },
-        { title: 'Il programma in movimento', body: 'Keynote, panel e momenti di discussione durante la giornata.' },
-        { title: 'Le persone dietro il workshop', body: 'Ospiti invitati, organizzatori e chair che lavorano insieme.' },
-      ],
-      note: 'Gli slot media restano espliciti finché non e pronta la selezione finale delle immagini.',
+      videoLabel: 'Video highlight del workshop',
     });
+    expect(english.items).toHaveLength(3);
+    expect(italian.items).toHaveLength(3);
+    expect(english.items[0]).toMatchObject({
+      mediaLabel: 'Venue still',
+    });
+    expect(italian.items[1]).toMatchObject({
+      mediaLabel: 'Immagine del programma',
+    });
+    expect(english.title).toMatch(/workshop day/i);
+    expect(italian.intro).toMatch(/redesign/i);
   });
 
   it('returns compact programme page copy with details outside the schedule flow', () => {
     const english = getProgrammePageContent('en');
     const italian = getProgrammePageContent('it');
 
-    expect(english).toEqual({
-      eyebrow: 'Programme overview',
-      title: 'The full workshop flow, kept compact for quick scanning.',
-      intro: 'This page keeps the schedule in the timeline below while the supporting copy explains how the day is structured.',
-      detailsTitle: 'What sits outside the timeline',
-      details: [
-        'Context for the opening, breaks, and closing moments.',
-        'A concise note on the invited voices and session chairs.',
-        'Practical guidance that does not belong inside the schedule cards.',
-      ],
+    expect(english).toMatchObject({
+      title: expect.stringContaining('programme'),
+      sectionLabel: 'Details outside the timeline',
+      compactTalkLabel: 'Compact talk notes',
+      detailNote: expect.stringContaining('workshop framing'),
     });
-
-    expect(italian).toEqual({
-      eyebrow: 'Panoramica del programma',
-      title: "L'intero flusso del workshop, reso compatto per una lettura rapida.",
-      intro: 'Questa pagina lascia l agenda nella timeline sottostante mentre il copy di supporto spiega come e strutturata la giornata.',
-      detailsTitle: 'Cosa resta fuori dalla timeline',
-      details: [
-        'Contesto per apertura, pause e momenti conclusivi.',
-        'Una nota sintetica sulle voci invitate e sui chair di sessione.',
-        'Indicazioni pratiche che non appartengono alle card del programma.',
-      ],
+    expect(italian).toMatchObject({
+      title: expect.stringContaining('programma'),
+      sectionLabel: 'Dettagli fuori dalla timeline',
+      compactTalkLabel: 'Note compatte sui talk',
+      detailNote: expect.stringContaining('framing del workshop'),
     });
+    expect(english.intro).toMatch(/timeline/i);
+    expect(italian.intro).toMatch(/timeline|agenda/i);
+    expect(english.cards).toHaveLength(3);
+    expect(italian.cards).toHaveLength(3);
+    expect(english.cards[0]).toMatch(/keynote|opening/i);
+    expect(italian.cards[2]).toMatch(/cena sociale|supporto/i);
   });
 
   it('returns rich placeholder-backed secondary page sections', () => {
     const about = getRichPageContent('en', 'about');
     const faq = getRichPageContent('it', 'faq');
 
-    expect(about.sections).toHaveLength(3);
-    expect(about.sections.some((section) => Boolean(section.placeholder))).toBe(true);
-    expect(about.sections[0]).toMatchObject({
+    expect(about.hero).toMatchObject({
       eyebrow: 'About COMPASS',
-      title: 'What the workshop is trying to make possible',
+      mediaType: 'placeholder',
     });
-    expect(faq.sections.some((section) => Boolean(section.placeholder))).toBe(true);
+    expect(about.sections).toHaveLength(3);
+    expect(about.sections[0]).toMatchObject({
+      eyebrow: 'Mission',
+      mediaLabel: 'Mission placeholder',
+      mediaType: 'placeholder',
+    });
+    expect(about.sections[0].bullets).toHaveLength(2);
+    expect(about.ctaLabel).toBe('Read the programme');
+    expect(faq.hero).toMatchObject({
+      eyebrow: 'FAQ',
+      mediaLabel: 'Segnaposto hero FAQ',
+    });
+    expect(faq.sections).toHaveLength(3);
     expect(faq.sections[1]).toMatchObject({
       eyebrow: 'Logistica',
       title: 'Cosa resta da confermare per i partecipanti',
+      mediaType: 'placeholder',
     });
+    expect(faq.sections[1].bullets).toContain('Viaggio e spostamenti locali a Pisa.');
+  });
+
+  it('returns cloned programme page content', () => {
+    const first = getProgrammePageContent('en');
+    first.cards.push('Mutated card');
+
+    const second = getProgrammePageContent('en');
+
+    expect(second.cards).not.toContain('Mutated card');
+  });
+
+  it('returns cloned rich page content', () => {
+    const first = getRichPageContent('en', 'about');
+    first.hero.title = 'Mutated hero title';
+    first.sections[0].title = 'Mutated section title';
+    first.sections[0].bullets?.push('Mutated bullet');
+
+    const second = getRichPageContent('en', 'about');
+
+    expect(second.hero.title).not.toBe('Mutated hero title');
+    expect(second.sections[0].title).not.toBe('Mutated section title');
+    expect(second.sections[0].bullets).not.toContain('Mutated bullet');
   });
 
   it('returns curated programme preview entries with localized chair labels', () => {
