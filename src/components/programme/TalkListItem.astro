@@ -11,7 +11,11 @@ const { locale, talk } = Astro.props;
 const speakers = talk.speakerSlugs
   .map((speakerSlug) => getSpeakerBySlug(speakerSlug))
   .filter((speaker): speaker is NonNullable<typeof speaker> => Boolean(speaker));
-const speakerLine = speakers.map((speaker) => `${speaker.name} · ${speaker.affiliation}`).join(' / ');
+const titleMatchesSingleSpeaker =
+  speakers.length === 1 && talk.title[locale].trim().toLowerCase() === speakers[0].name.trim().toLowerCase();
+const speakerLine = titleMatchesSingleSpeaker
+  ? speakers.map((speaker) => speaker.affiliation).join(' / ')
+  : speakers.map((speaker) => `${speaker.name} · ${speaker.affiliation}`).join(' / ');
 const startsAt = talk.startsAt?.slice(11, 16);
 ---
 

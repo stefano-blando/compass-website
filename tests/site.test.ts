@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import homePageSource from '../src/pages/[lang]/index.astro?raw';
+import programmePageSource from '../src/pages/[lang]/programme/index.astro?raw';
 import heroSectionSource from '../src/components/home/HeroSection.astro?raw';
 import mediaShowcaseSectionSource from '../src/components/home/MediaShowcaseSection.astro?raw';
 import venuePreviewSectionSource from '../src/components/home/VenuePreviewSection.astro?raw';
@@ -259,6 +260,11 @@ describe('site helpers', () => {
     expect(italian.cards[2]).toMatch(/cena sociale|supporto/i);
   });
 
+  it('keeps the published programme page copy aligned with the working agenda language', () => {
+    expect(programmePageSource).not.toMatch(/seeded agenda|agenda seed/i);
+    expect(programmePageSource).toMatch(/working agenda|agenda in lavorazione|current agenda/i);
+  });
+
   it('returns rich placeholder-backed secondary page sections', () => {
     const about = getRichPageContent('en', 'about');
     const speakers = getRichPageContent('en', 'speakers');
@@ -328,11 +334,10 @@ describe('site helpers', () => {
       'panel-2-networks-nlp',
       'keynote-3-tbc',
       'panel-3-legal-ethics',
-      'social-dinner',
     ]);
     expect(english[2]).toMatchObject({
       chairLabel: 'Session chairs',
-      chairNames: ['Stefano Blando', 'Biancamaria Bombino'],
+      chairNames: ['Stefano Blando', 'Bianca Bombino'],
     });
     expect(italian[4]).toMatchObject({
       chairLabel: 'Coordinamento',
@@ -340,7 +345,7 @@ describe('site helpers', () => {
     });
     expect(english[5]).toMatchObject({
       title: 'Keynote 3',
-      featuredTalkTitle: 'Keynote lecture on AI regulation and ethics (TBC)',
+      featuredTalkTitle: 'Senior Expert on AI Regulation & Ethics (TBC)',
     });
   });
 
@@ -389,15 +394,94 @@ describe('site helpers', () => {
   });
 
   it('returns programme sessions sorted by start time', () => {
-    const sessions = getProgrammeSessions();
-    expect(sessions[0]?.slug).toBe('opening-remarks');
-    expect(sessions.at(-1)?.slug).toBe('social-dinner');
+    expect(getProgrammeSessions().map((session) => ({
+      slug: session.slug,
+      startsAt: session.startsAt,
+      endsAt: session.endsAt,
+    }))).toEqual([
+      {
+        slug: 'opening-remarks',
+        startsAt: '2026-05-18T09:30:00+02:00',
+        endsAt: '2026-05-18T09:45:00+02:00',
+      },
+      {
+        slug: 'keynote-1',
+        startsAt: '2026-05-18T09:45:00+02:00',
+        endsAt: '2026-05-18T10:30:00+02:00',
+      },
+      {
+        slug: 'coffee-break-1',
+        startsAt: '2026-05-18T10:30:00+02:00',
+        endsAt: '2026-05-18T11:00:00+02:00',
+      },
+      {
+        slug: 'panel-1-ai-methods',
+        startsAt: '2026-05-18T11:00:00+02:00',
+        endsAt: '2026-05-18T12:30:00+02:00',
+      },
+      {
+        slug: 'networking-lunch',
+        startsAt: '2026-05-18T12:30:00+02:00',
+        endsAt: '2026-05-18T13:45:00+02:00',
+      },
+      {
+        slug: 'keynote-2',
+        startsAt: '2026-05-18T13:45:00+02:00',
+        endsAt: '2026-05-18T14:30:00+02:00',
+      },
+      {
+        slug: 'panel-2-networks-nlp',
+        startsAt: '2026-05-18T14:30:00+02:00',
+        endsAt: '2026-05-18T16:00:00+02:00',
+      },
+      {
+        slug: 'coffee-break-2',
+        startsAt: '2026-05-18T16:00:00+02:00',
+        endsAt: '2026-05-18T16:15:00+02:00',
+      },
+      {
+        slug: 'keynote-3-tbc',
+        startsAt: '2026-05-18T16:15:00+02:00',
+        endsAt: '2026-05-18T17:00:00+02:00',
+      },
+      {
+        slug: 'panel-3-legal-ethics',
+        startsAt: '2026-05-18T17:00:00+02:00',
+        endsAt: '2026-05-18T18:30:00+02:00',
+      },
+      {
+        slug: 'closing-remarks',
+        startsAt: '2026-05-18T18:30:00+02:00',
+        endsAt: '2026-05-18T18:40:00+02:00',
+      },
+    ]);
   });
 
-  it('returns talks for the three thematic panels', () => {
-    expect(getTalksForSession('panel-1-ai-methods')).toHaveLength(3);
-    expect(getTalksForSession('panel-2-networks-nlp')).toHaveLength(5);
-    expect(getTalksForSession('panel-3-legal-ethics')).toHaveLength(4);
+  it('returns the screenshot lineups for the three thematic panels including unresolved placeholders', () => {
+    expect(getTalksForSession('panel-1-ai-methods').map((talk) => talk.title.en)).toEqual([
+      'Stefano Blando',
+      'Bianca Bombino',
+      'Simone Tonini',
+      'Speaker (TBD)',
+      'Speaker (TBD)',
+      'Roundtable',
+    ]);
+    expect(getTalksForSession('panel-2-networks-nlp').map((talk) => talk.title.en)).toEqual([
+      'Lorenzo Emer',
+      'Alice Musso',
+      'Riccardo Porcedda',
+      'Giuseppe Squillace',
+      'Anna Gallo',
+      'Roundtable',
+    ]);
+    expect(getTalksForSession('panel-3-legal-ethics').map((talk) => talk.title.en)).toEqual([
+      'Roberta Romano',
+      'Roberta Savella',
+      'Vittoria Caponecchia',
+      'Elio Grande',
+      'Speaker (TBD)',
+      'Roundtable',
+    ]);
   });
 
   it('retrieves talks by slug for detail routes', () => {
@@ -405,10 +489,10 @@ describe('site helpers', () => {
     expect(getTalkBySlug('missing-talk')).toBeUndefined();
   });
 
-  it('keeps the seeded content aligned with the current workshop document', () => {
-    expect(sessions).toHaveLength(12);
-    expect(speakers).toHaveLength(16);
-    expect(talks).toHaveLength(16);
+  it('keeps the published programme aligned with the current workshop agenda', () => {
+    expect(sessions).toHaveLength(11);
+    expect(speakers).toHaveLength(20);
+    expect(talks).toHaveLength(23);
 
     expect(sessions.map((session) => session.slug)).toEqual([
       'opening-remarks',
@@ -422,7 +506,6 @@ describe('site helpers', () => {
       'keynote-3-tbc',
       'panel-3-legal-ethics',
       'closing-remarks',
-      'social-dinner',
     ]);
 
     expect(speakers.map((speaker) => speaker.slug)).toEqual(expect.arrayContaining([
@@ -441,8 +524,13 @@ describe('site helpers', () => {
       'giuseppe-f-squillace',
       'anna-gallo',
       'vittoria-caponecchia',
-      'benedetta-tessa',
+      'elio-grande',
+      'francesca-chiaromonte',
+      'speaker-tbd-panel-1-a',
+      'speaker-tbd-panel-1-b',
+      'speaker-tbd-panel-3-a',
     ]));
+    expect(speakers.map((speaker) => speaker.slug)).not.toContain('benedetta-tessa');
   });
 
   it('aligns speaker contribution metadata with the seeded talk sessions', () => {
@@ -459,7 +547,7 @@ describe('site helpers', () => {
         expect(speaker, `missing talk speaker: ${speakerSlug}`).toBeDefined();
         if (session.type === 'panel') {
           expect(speaker?.type).toContain('panelist');
-          expect(speaker?.roleLabel.en.toLowerCase()).toContain('track');
+          expect(speaker?.roleLabel.en.toLowerCase()).toMatch(/panel|track/);
         }
 
         if (session.type === 'keynote') {
@@ -491,6 +579,11 @@ describe('site helpers', () => {
         expect(talk.startsAt >= session.startsAt && talk.startsAt < session.endsAt).toBe(true);
       }
     }
+  });
+
+  it('keeps the full programme on the definitive 18 May 2026 workshop date', () => {
+    expect(getProgrammeSessions().every((session) => session.startsAt.startsWith('2026-05-18'))).toBe(true);
+    expect(talks.every((talk) => !talk.startsAt || talk.startsAt.startsWith('2026-05-18'))).toBe(true);
   });
 
   it('keeps the floating scroll nav unfocusable while hidden', () => {
