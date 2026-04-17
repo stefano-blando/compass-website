@@ -8,19 +8,26 @@ interface Props {
 
 const { locale } = Astro.props;
 const highlights = getHomepageHighlights(locale);
+const highlightLabel = locale === 'it' ? 'Segnale workshop' : 'Workshop signal';
 ---
 
 <section class="home-highlights" data-home-reveal>
   <div class="container home-highlights__grid">
     {highlights.map((highlight, index) => (
       <article class="home-highlights__card" style={`--reveal-delay: ${index * 80}ms;`} data-reveal-item>
-        <div class="home-highlights__card-top" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
+        <div class="media-shell media-shell--light home-highlights__media" aria-hidden="true">
+          <span class="media-shell__label">{highlightLabel}</span>
+          <span class="media-shell__badge">0{index + 1}</span>
+          <span class="media-shell__grid"></span>
+          <span class="media-shell__beam"></span>
+          <span class="media-shell__frame"></span>
+          <span class={`home-highlights__pulse home-highlights__pulse--${index + 1}`}></span>
         </div>
-        <p class="home-highlights__value">{highlight.value}</p>
-        <p class="home-highlights__label">{highlight.label}</p>
+
+        <div class="home-highlights__copy">
+          <p class="home-highlights__value">{highlight.value}</p>
+          <p class="home-highlights__label">{highlight.label}</p>
+        </div>
       </article>
     ))}
   </div>
@@ -29,16 +36,6 @@ const highlights = getHomepageHighlights(locale);
 <style>
   .home-highlights {
     padding: 0.5rem 0 2rem;
-    opacity: 0;
-    transform: translateY(24px);
-    transition:
-      opacity 520ms ease,
-      transform 520ms ease;
-  }
-
-  .home-highlights.is-visible {
-    opacity: 1;
-    transform: translateY(0);
   }
 
   .home-highlights__grid {
@@ -50,65 +47,84 @@ const highlights = getHomepageHighlights(locale);
   .home-highlights__card {
     position: relative;
     overflow: hidden;
-    border-radius: 24px;
-    padding: 1.25rem 1.2rem 1.35rem;
+    display: grid;
+    gap: 0.95rem;
+    padding: 0.9rem;
+    border-radius: 28px;
     border: 1px solid rgba(255, 255, 255, 0.62);
     background:
-      radial-gradient(circle at top right, rgba(55, 95, 138, 0.12), transparent 38%),
       linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 253, 249, 0.78)),
       var(--surface-strong);
     box-shadow: var(--shadow);
   }
 
-  .home-highlights__card::after {
-    content: "";
-    position: absolute;
-    inset: auto 0 0;
-    height: 3px;
-    background: linear-gradient(90deg, rgba(126, 36, 52, 0.68), rgba(55, 95, 138, 0.72));
-    transform: scaleX(0.45);
-    transform-origin: left;
-    transition: transform 260ms ease;
+  .home-highlights__card:first-child {
+    grid-column: span 2;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+    align-items: center;
   }
 
-  .home-highlights__card:hover::after {
-    transform: scaleX(1);
+  .home-highlights__media {
+    min-height: 9rem;
+    box-shadow: none;
   }
 
-  .home-highlights__card-top {
-    display: flex;
-    gap: 0.4rem;
-    margin-bottom: 1.3rem;
-  }
-
-  .home-highlights__card-top span {
-    width: 0.55rem;
-    height: 0.55rem;
-    border-radius: 999px;
-    background: rgba(20, 32, 51, 0.18);
-  }
-
-  .home-highlights__card-top span:nth-child(2) {
-    background: rgba(126, 36, 52, 0.34);
-  }
-
-  .home-highlights__card-top span:nth-child(3) {
-    background: rgba(55, 95, 138, 0.34);
+  .home-highlights__copy {
+    align-self: end;
   }
 
   .home-highlights__value {
     margin: 0;
     color: var(--accent);
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    line-height: 0.9;
+    font-size: clamp(2.7rem, 5vw, 4.3rem);
+    line-height: 0.88;
     font-weight: 800;
   }
 
   .home-highlights__label {
-    margin: 0.48rem 0 0;
+    margin: 0.5rem 0 0;
     color: var(--ink-soft);
     font-weight: 700;
-    max-width: 15ch;
+    max-width: 16ch;
+  }
+
+  .home-highlights__pulse {
+    position: absolute;
+    inset: auto;
+    border-radius: 999px;
+    filter: blur(4px);
+  }
+
+  .home-highlights__pulse--1 {
+    right: 12%;
+    top: 16%;
+    width: 6.5rem;
+    height: 6.5rem;
+    background: radial-gradient(circle, rgba(126, 36, 52, 0.18), rgba(126, 36, 52, 0) 72%);
+  }
+
+  .home-highlights__pulse--2 {
+    left: 16%;
+    bottom: 18%;
+    width: 4.8rem;
+    height: 4.8rem;
+    background: radial-gradient(circle, rgba(55, 95, 138, 0.22), rgba(55, 95, 138, 0) 72%);
+  }
+
+  .home-highlights__pulse--3 {
+    left: calc(50% - 2.1rem);
+    top: 22%;
+    width: 4.2rem;
+    height: 4.2rem;
+    background: radial-gradient(circle, rgba(236, 193, 201, 0.36), rgba(236, 193, 201, 0) 72%);
+  }
+
+  .home-highlights__pulse--4 {
+    right: 18%;
+    bottom: 18%;
+    width: 5rem;
+    height: 5rem;
+    background: radial-gradient(circle, rgba(55, 95, 138, 0.2), rgba(55, 95, 138, 0) 72%);
   }
 
   @media (max-width: 980px) {
@@ -118,8 +134,13 @@ const highlights = getHomepageHighlights(locale);
   }
 
   @media (max-width: 640px) {
-    .home-highlights__grid {
+    .home-highlights__grid,
+    .home-highlights__card:first-child {
       grid-template-columns: 1fr;
+    }
+
+    .home-highlights__card:first-child {
+      grid-column: auto;
     }
   }
 </style>

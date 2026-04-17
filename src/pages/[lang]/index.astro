@@ -3,6 +3,7 @@ import SectionScrollNav from '../../components/SectionScrollNav.vue';
 import FeaturedSpeakersSection from '../../components/home/FeaturedSpeakersSection.astro';
 import HeroSection from '../../components/home/HeroSection.astro';
 import HighlightsSection from '../../components/home/HighlightsSection.astro';
+import MediaShowcaseSection from '../../components/home/MediaShowcaseSection.astro';
 import ProgrammePreviewSection from '../../components/home/ProgrammePreviewSection.astro';
 import RegistrationCtaSection from '../../components/home/RegistrationCtaSection.astro';
 import VenuePreviewSection from '../../components/home/VenuePreviewSection.astro';
@@ -35,6 +36,7 @@ const pageMeta = getPageMetadata(locale, 'home');
     <HighlightsSection locale={locale} />
     <ProgrammePreviewSection locale={locale} />
     <FeaturedSpeakersSection locale={locale} />
+    <MediaShowcaseSection locale={locale} />
     <VenuePreviewSection locale={locale} />
     <RegistrationCtaSection locale={locale} />
   </main>

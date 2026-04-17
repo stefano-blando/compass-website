@@ -9,7 +9,12 @@ interface Props {
 const { locale } = Astro.props;
 const labels = getLabels(locale);
 const { venue } = getHomepageContent(locale);
-const venueVisualLabel = locale === 'it' ? 'Pisa · Sant’Anna' : 'Pisa · Sant’Anna';
+const venueVisualLabel = locale === 'it' ? 'Sant’Anna placeholder' : 'Sant’Anna placeholder';
+const venueRouteEyebrow = locale === 'it' ? 'Apri la pagina sede' : 'Open venue page';
+const travelTags =
+  locale === 'it'
+    ? ['Pisa Centrale', 'Galileo Galilei Airport', 'Centro storico']
+    : ['Pisa Centrale', 'Galileo Galilei Airport', 'Historic centre'];
 ---
 
 <section id="venue-preview" class="venue-preview" data-home-reveal>
@@ -30,20 +35,45 @@ const venueVisualLabel = locale === 'it' ? 'Pisa · Sant’Anna' : 'Pisa · Sant
         </div>
       </div>
 
-      <div class="venue-preview__visual" aria-hidden="true" data-reveal-item style="--reveal-delay: 120ms;">
-        <div class="venue-preview__visual-grid"></div>
-        <div class="venue-preview__visual-arch"></div>
-        <p>{venueVisualLabel}</p>
+      <div class="media-shell media-shell--video venue-preview__visual" aria-hidden="true" data-reveal-item style="--reveal-delay: 120ms;">
+        <span class="media-shell__label">{venueVisualLabel}</span>
+        <span class="media-shell__badge">{labels.venue}</span>
+        <span class="media-shell__grid"></span>
+        <span class="media-shell__scan"></span>
+        <span class="media-shell__orbit"></span>
+        <span class="media-shell__beam"></span>
+        <span class="media-shell__frame"></span>
+        <span class="venue-preview__arch"></span>
+        <span class="venue-preview__tile venue-preview__tile--a"></span>
+        <span class="venue-preview__tile venue-preview__tile--b"></span>
+        <div class="media-shell__caption">
+          <span class="media-shell__eyebrow">{siteConfig.eventDate}</span>
+          <strong>{siteConfig.venue}</strong>
+          <p>{venue.travelBody}</p>
+        </div>
       </div>
 
-      <aside class="venue-preview__card" data-reveal-item style="--reveal-delay: 180ms;">
-        <p class="venue-preview__card-label">{labels.venue}</p>
-        <h3>{siteConfig.venue}</h3>
-        <p class="venue-preview__date">{siteConfig.eventDate}</p>
-        <p class="venue-preview__travel-title">{venue.travelTitle}</p>
-        <p>{venue.travelBody}</p>
-        <a class="btn-secondary" href={buildLocalizedPath(locale, 'venue')}>{labels.venue}</a>
-      </aside>
+      <div class="venue-preview__side">
+        <aside class="venue-preview__card" data-reveal-item style="--reveal-delay: 180ms;">
+          <p class="venue-preview__card-label">{labels.venue}</p>
+          <h3>{siteConfig.venue}</h3>
+          <p class="venue-preview__date">{siteConfig.eventDate}</p>
+          <p class="venue-preview__travel-title">{venue.travelTitle}</p>
+          <p>{venue.travelBody}</p>
+
+          <div class="venue-preview__tags">
+            {travelTags.map((tag, index) => (
+              <span style={`--reveal-delay: ${index * 60 + 200}ms;`} data-reveal-item>{tag}</span>
+            ))}
+          </div>
+        </aside>
+
+        <a class="route-card venue-preview__route" href={buildLocalizedPath(locale, 'venue')} data-reveal-item style="--reveal-delay: 230ms;">
+          <span class="route-card__eyebrow">{venueRouteEyebrow}</span>
+          <h2>{labels.venue}</h2>
+          <p>{locale === 'it' ? 'Logistica, arrivi e dettagli della sede raccolti in un’unica pagina.' : 'Logistics, arrival notes, and venue details collected on one page.'}</p>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -51,16 +81,6 @@ const venueVisualLabel = locale === 'it' ? 'Pisa · Sant’Anna' : 'Pisa · Sant
 <style>
   .venue-preview {
     padding: 1.2rem 0 2rem;
-    opacity: 0;
-    transform: translateY(26px);
-    transition:
-      opacity 520ms ease,
-      transform 520ms ease;
-  }
-
-  .venue-preview.is-visible {
-    opacity: 1;
-    transform: translateY(0);
   }
 
   .venue-preview__stage {
@@ -93,7 +113,7 @@ const venueVisualLabel = locale === 'it' ? 'Pisa · Sant’Anna' : 'Pisa · Sant
     position: relative;
     z-index: 1;
     display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.8fr) minmax(280px, 0.8fr);
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr) minmax(280px, 0.78fr);
     gap: 1rem;
     align-items: stretch;
   }
@@ -143,62 +163,47 @@ const venueVisualLabel = locale === 'it' ? 'Pisa · Sant’Anna' : 'Pisa · Sant
   }
 
   .venue-preview__visual {
-    position: relative;
-    overflow: hidden;
-    border-radius: 28px;
-    background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.22), transparent 34%),
-      rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.14);
     min-height: 100%;
   }
 
-  .venue-preview__visual-grid,
-  .venue-preview__visual-arch {
+  .venue-preview__arch,
+  .venue-preview__tile {
     position: absolute;
+    pointer-events: none;
   }
 
-  .venue-preview__visual-grid {
-    inset: 0;
-    background:
-      linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-    background-size: 24px 24px;
-    opacity: 0.5;
-  }
-
-  .venue-preview__visual-arch {
+  .venue-preview__arch {
     left: 18%;
     right: 18%;
-    bottom: 18%;
-    height: 48%;
+    bottom: 20%;
+    height: 42%;
     border-radius: 999px 999px 0 0;
     border: 1px solid rgba(255, 255, 255, 0.28);
     border-bottom: 0;
   }
 
-  .venue-preview__visual::after {
-    content: "";
-    position: absolute;
-    width: 9rem;
-    height: 9rem;
-    border-radius: 999px;
-    right: -1rem;
-    top: -1rem;
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.24), transparent 70%);
-    animation: venueFloat 8s ease-in-out infinite alternate;
+  .venue-preview__tile {
+    width: 7rem;
+    height: 7rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 16px 30px rgba(5, 10, 16, 0.16);
   }
 
-  .venue-preview__visual p {
-    position: absolute;
-    left: 1rem;
-    bottom: 1rem;
-    margin: 0;
-    color: rgba(255, 255, 255, 0.84);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
+  .venue-preview__tile--a {
+    left: 14%;
+    top: 16%;
+  }
+
+  .venue-preview__tile--b {
+    right: 16%;
+    top: 24%;
+  }
+
+  .venue-preview__side {
+    display: grid;
+    gap: 0.9rem;
   }
 
   .venue-preview__card {
@@ -221,7 +226,7 @@ const venueVisualLabel = locale === 'it' ? 'Pisa · Sant’Anna' : 'Pisa · Sant
 
   .venue-preview__card h3 {
     margin: 0.45rem 0 0;
-    font-size: 2.25rem;
+    font-size: 2.1rem;
     line-height: 0.95;
   }
 
@@ -235,18 +240,28 @@ const venueVisualLabel = locale === 'it' ? 'Pisa · Sant’Anna' : 'Pisa · Sant
     margin-top: 0.95rem;
   }
 
-  .venue-preview__card .btn-secondary {
+  .venue-preview__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
     margin-top: 1rem;
   }
 
-  @keyframes venueFloat {
-    from {
-      transform: translate3d(-6px, -4px, 0);
-    }
+  .venue-preview__tags span {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.2rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(20, 32, 51, 0.08);
+    color: var(--ink);
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
 
-    to {
-      transform: translate3d(6px, 8px, 0);
-    }
+  .venue-preview__route {
+    background: rgba(255, 253, 249, 0.88);
   }
 
   @media (max-width: 1080px) {
@@ -255,7 +270,7 @@ const venueVisualLabel = locale === 'it' ? 'Pisa · Sant’Anna' : 'Pisa · Sant
     }
 
     .venue-preview__visual {
-      min-height: 12rem;
+      min-height: 14rem;
     }
   }
 </style>

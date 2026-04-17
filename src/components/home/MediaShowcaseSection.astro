@@ -1,0 +1,191 @@
+---
+import type { Locale } from '../../data/types';
+import { getHomepageContent } from '../../lib/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { mediaShowcase } = getHomepageContent(locale);
+const videoLabel = mediaShowcase.videoLabel;
+const stageLabel = locale === 'it' ? 'Placeholder video' : 'Placeholder video';
+const galleryLabel = locale === 'it' ? 'Frame della gallery' : 'Gallery frame';
+---
+
+<section class="media-showcase" data-home-reveal data-media-showcase>
+  <div class="container media-showcase__shell">
+    <div class="media-showcase__intro" data-reveal-item>
+      <p class="section-kicker">{mediaShowcase.eyebrow}</p>
+      <h2>{mediaShowcase.title}</h2>
+      <p>{mediaShowcase.intro}</p>
+    </div>
+
+    <div class="media-showcase__stage" data-reveal-item style="--reveal-delay: 80ms;">
+      <div class="media-shell media-shell--video media-showcase__video" aria-hidden="true">
+        <span class="media-shell__label">{videoLabel}</span>
+        <span class="media-shell__badge">{stageLabel}</span>
+        <span class="media-shell__grid"></span>
+        <span class="media-shell__scan"></span>
+        <span class="media-shell__orbit"></span>
+        <span class="media-shell__beam"></span>
+        <span class="media-shell__frame"></span>
+        <span class="media-shell__person media-showcase__figure media-showcase__figure--left"></span>
+        <span class="media-shell__person media-shell__person--soft media-showcase__figure media-showcase__figure--right"></span>
+        <span class="video-placeholder__play"></span>
+        <div class="media-shell__caption">
+          <span class="media-shell__eyebrow">{videoLabel}</span>
+          <strong>{mediaShowcase.title}</strong>
+          <p>{mediaShowcase.intro}</p>
+        </div>
+      </div>
+
+      <div class="media-showcase__cards">
+        {mediaShowcase.items.map((item, index) => (
+          <article class="media-showcase__card" data-reveal-item style={`--reveal-delay: ${index * 90 + 120}ms;`}>
+            <div class="media-shell media-shell--light media-shell--landscape media-showcase__card-media" aria-hidden="true">
+              <span class="media-shell__label">{item.mediaLabel}</span>
+              <span class="media-shell__badge">{galleryLabel}</span>
+              <span class="media-shell__grid"></span>
+              <span class="media-shell__scan"></span>
+              <span class="media-shell__beam"></span>
+              <span class="media-shell__frame"></span>
+              <span class={`media-showcase__pulse media-showcase__pulse--${index + 1}`}></span>
+            </div>
+
+            <div class="media-showcase__card-copy">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .media-showcase {
+    padding: 1rem 0 2rem;
+  }
+
+  .media-showcase__shell {
+    display: grid;
+    gap: 1.15rem;
+  }
+
+  .media-showcase__intro {
+    display: grid;
+    gap: 0.35rem;
+    max-width: 48rem;
+  }
+
+  .media-showcase__intro h2 {
+    margin: 0;
+    font-size: clamp(2.35rem, 5vw, 4.25rem);
+    line-height: 0.93;
+    max-width: 11ch;
+  }
+
+  .media-showcase__intro p {
+    margin: 0;
+    color: var(--ink-soft);
+  }
+
+  .media-showcase__stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .media-showcase__video {
+    min-height: clamp(20rem, 46vw, 28rem);
+  }
+
+  .media-showcase__figure--left {
+    left: 18%;
+    --person-width: 5rem;
+    --person-height: 8.7rem;
+  }
+
+  .media-showcase__figure--right {
+    right: 18%;
+    --person-width: 4.5rem;
+    --person-height: 7.6rem;
+  }
+
+  .media-showcase__cards {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .media-showcase__card {
+    display: grid;
+    grid-template-columns: minmax(170px, 0.9fr) minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: 0.85rem;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.62);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 253, 249, 0.92)),
+      var(--surface);
+    box-shadow: var(--shadow);
+  }
+
+  .media-showcase__card-media {
+    min-height: 100%;
+  }
+
+  .media-showcase__card-copy {
+    align-self: center;
+  }
+
+  .media-showcase__card-copy h3 {
+    margin: 0;
+    font-size: 1.85rem;
+    line-height: 0.96;
+  }
+
+  .media-showcase__card-copy p {
+    margin: 0.45rem 0 0;
+    color: var(--ink-soft);
+  }
+
+  .media-showcase__pulse {
+    position: absolute;
+    inset: auto;
+    width: 6.4rem;
+    height: 6.4rem;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(126, 36, 52, 0.22), rgba(126, 36, 52, 0) 70%);
+    filter: blur(6px);
+  }
+
+  .media-showcase__pulse--1 {
+    left: 12%;
+    bottom: 16%;
+  }
+
+  .media-showcase__pulse--2 {
+    right: 12%;
+    bottom: 18%;
+    background: radial-gradient(circle, rgba(55, 95, 138, 0.24), rgba(55, 95, 138, 0) 70%);
+  }
+
+  .media-showcase__pulse--3 {
+    left: calc(50% - 3.2rem);
+    top: calc(50% - 3.2rem);
+  }
+
+  @media (max-width: 980px) {
+    .media-showcase__stage,
+    .media-showcase__card {
+      grid-template-columns: 1fr;
+    }
+
+    .media-showcase__card-media {
+      min-height: 12rem;
+    }
+  }
+</style>

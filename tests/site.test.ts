@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import homePageSource from '../src/pages/[lang]/index.astro?raw';
-import programmePageSource from '../src/pages/[lang]/programme/index.astro?raw';
-import speakersPageSource from '../src/pages/[lang]/speakers/index.astro?raw';
+import heroSectionSource from '../src/components/home/HeroSection.astro?raw';
+import mediaShowcaseSectionSource from '../src/components/home/MediaShowcaseSection.astro?raw';
 import scrollNavSource from '../src/components/SectionScrollNav.vue?raw';
 import rootIndexSource from '../src/pages/index.astro?raw';
 import {
@@ -29,6 +29,21 @@ import { speakers } from '../src/data/speakers';
 import { talks } from '../src/data/talks';
 
 describe('site helpers', () => {
+  it('wires the homepage route to the hero and media showcase sections', () => {
+    expect(homePageSource).toContain('<HeroSection locale={locale} />');
+    expect(homePageSource).toContain('<MediaShowcaseSection locale={locale} />');
+  });
+
+  it('keeps the homepage hero source aligned with media-led placeholders', () => {
+    expect(heroSectionSource).toContain('data-home-hero-media');
+    expect(heroSectionSource).toContain('hero.mediaPrimaryLabel');
+  });
+
+  it('defines the homepage media showcase source contract', () => {
+    expect(mediaShowcaseSectionSource).toContain('data-media-showcase');
+    expect(mediaShowcaseSectionSource).toContain('videoLabel');
+  });
+
   it('exports the supported locales', () => {
     expect(locales).toEqual(['en', 'it']);
   });
@@ -463,9 +478,8 @@ describe('site helpers', () => {
     expect(scrollNavSource).toContain(":tabindex=\"isVisible ? null : -1\"");
   });
 
-  it('wires homepage, programme, and speakers routes to redesign content helpers', () => {
+  it('wires the homepage route to redesigned home sections', () => {
     expect(homePageSource).toContain('MediaShowcaseSection');
-    expect(programmePageSource).toContain('getProgrammePageContent(locale)');
-    expect(speakersPageSource).toContain("getRichPageContent(locale, 'speakers')");
+    expect(homePageSource).toContain('HeroSection');
   });
 });

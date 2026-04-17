@@ -13,6 +13,8 @@ const tags =
   locale === 'it'
     ? ['In presenza', 'Partecipazione gratuita', 'Pisa']
     : ['In person', 'Free attendance', 'Pisa'];
+const registrationMediaLabel = locale === 'it' ? 'Poster registrazione placeholder' : 'Registration poster placeholder';
+const registrationRouteLabel = locale === 'it' ? 'Passaggio rapido' : 'Quick handoff';
 ---
 
 <section id="registration-cta" class="registration-cta" data-home-reveal>
@@ -36,45 +38,48 @@ const tags =
       </div>
     </div>
 
-    <aside class="registration-cta__panel" data-reveal-item style="--reveal-delay: 120ms;">
-      <div class="registration-cta__panel-art" aria-hidden="true">
-        <span></span>
-        <span></span>
-        <span></span>
+    <div class="registration-cta__stage">
+      <div class="media-shell media-shell--video registration-cta__media" aria-hidden="true" data-reveal-item style="--reveal-delay: 120ms;">
+        <span class="media-shell__label">{registrationMediaLabel}</span>
+        <span class="media-shell__badge">{registrationRouteLabel}</span>
+        <span class="media-shell__grid"></span>
+        <span class="media-shell__scan"></span>
+        <span class="media-shell__orbit"></span>
+        <span class="media-shell__beam"></span>
+        <span class="media-shell__frame"></span>
+        <span class="registration-cta__ticket registration-cta__ticket--a"></span>
+        <span class="registration-cta__ticket registration-cta__ticket--b"></span>
+        <div class="media-shell__caption">
+          <span class="media-shell__eyebrow">{registration.deadlineLabel}</span>
+          <strong>{registration.deadlineValue}</strong>
+          <p>{siteConfig.eventDate}</p>
+        </div>
       </div>
 
-      <p class="registration-cta__deadline-label">{registration.deadlineLabel}</p>
-      <p class="registration-cta__deadline-value">{registration.deadlineValue}</p>
+      <aside class="registration-cta__panel" data-reveal-item style="--reveal-delay: 170ms;">
+        <p class="registration-cta__deadline-label">{registration.deadlineLabel}</p>
+        <p class="registration-cta__deadline-value">{registration.deadlineValue}</p>
 
-      <ul class="registration-cta__list">
-        {registration.checklist.map((item) => (
-          <li>{item}</li>
-        ))}
-      </ul>
-    </aside>
+        <ul class="registration-cta__list">
+          {registration.checklist.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </aside>
+    </div>
   </div>
 </section>
 
 <style>
   .registration-cta {
     padding: 1.2rem 0 0;
-    opacity: 0;
-    transform: translateY(24px);
-    transition:
-      opacity 520ms ease,
-      transform 520ms ease;
-  }
-
-  .registration-cta.is-visible {
-    opacity: 1;
-    transform: translateY(0);
   }
 
   .registration-cta__shell {
     position: relative;
     overflow: hidden;
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.72fr);
+    grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
     gap: 1rem;
     padding: clamp(1.7rem, 4vw, 2.3rem);
     border-radius: 32px;
@@ -126,6 +131,38 @@ const tags =
     margin-top: 1.4rem;
   }
 
+  .registration-cta__stage {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .registration-cta__media {
+    min-height: clamp(15rem, 30vw, 20rem);
+  }
+
+  .registration-cta__ticket {
+    position: absolute;
+    width: 7.4rem;
+    height: 5.2rem;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 16px 30px rgba(5, 10, 16, 0.16);
+    pointer-events: none;
+  }
+
+  .registration-cta__ticket--a {
+    left: 16%;
+    top: 18%;
+    transform: rotate(-8deg);
+  }
+
+  .registration-cta__ticket--b {
+    right: 16%;
+    top: 26%;
+    transform: rotate(8deg);
+  }
+
   .registration-cta__panel {
     position: relative;
     overflow: hidden;
@@ -135,58 +172,16 @@ const tags =
     border: 1px solid rgba(20, 32, 51, 0.08);
   }
 
-  .registration-cta__panel-art {
-    position: absolute;
-    inset: 0 auto auto 0;
-    width: 100%;
-    height: 4.2rem;
-    pointer-events: none;
-  }
-
-  .registration-cta__panel-art span {
-    position: absolute;
-    border-radius: 999px;
-  }
-
-  .registration-cta__panel-art span:nth-child(1) {
-    left: 1rem;
-    top: 1rem;
-    width: 5rem;
-    height: 5rem;
-    background: radial-gradient(circle, rgba(126, 36, 52, 0.16), transparent 70%);
-  }
-
-  .registration-cta__panel-art span:nth-child(2) {
-    right: 1rem;
-    top: 0.7rem;
-    width: 6.4rem;
-    height: 6.4rem;
-    border: 1px solid rgba(55, 95, 138, 0.12);
-    animation: registrationOrbit 11s linear infinite;
-  }
-
-  .registration-cta__panel-art span:nth-child(3) {
-    left: 1.1rem;
-    right: 1.1rem;
-    top: 2.4rem;
-    height: 1px;
-    background: linear-gradient(90deg, rgba(20, 32, 51, 0.08), rgba(55, 95, 138, 0.35), rgba(20, 32, 51, 0.08));
-  }
-
   .registration-cta__deadline-label {
-    position: relative;
     margin: 0;
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.16em;
     color: var(--accent);
     text-transform: uppercase;
-    z-index: 1;
   }
 
   .registration-cta__deadline-value {
-    position: relative;
-    z-index: 1;
     margin: 0.35rem 0 0;
     color: var(--ink);
     font-size: 2rem;
@@ -196,24 +191,12 @@ const tags =
   }
 
   .registration-cta__list {
-    position: relative;
-    z-index: 1;
     margin: 1rem 0 0;
     padding-left: 1.1rem;
   }
 
   .registration-cta__list li + li {
     margin-top: 0.55rem;
-  }
-
-  @keyframes registrationOrbit {
-    from {
-      transform: rotate(0deg);
-    }
-
-    to {
-      transform: rotate(360deg);
-    }
   }
 
   @media (max-width: 980px) {
