@@ -1,41 +1,41 @@
-# COMPASS Template Rhythm Redesign
+# COMPASS Template Home Transplant Redesign
 
 Date: 2026-04-17
 Project: COMPASS workshop microsite redesign
-Status: Approved redesign baseline
+Status: Approved redesign baseline, revised after template-repo review
 
 ## Objective
 
-Refine the current bilingual `COMPASS` Astro microsite so it recovers the visual rhythm, movement, and media presence of the original `Artham Summit` template while keeping the clearer `COMPASS` information architecture already introduced.
+Refine the current bilingual `COMPASS` Astro microsite so the homepage keeps almost the same visual structure as the original `Artham Summit` template, while swapping in `COMPASS` palette, copy, navigation targets, and placeholder media.
 
-The redesign should feel more alive and visually rich than the current implementation, but still academically credible and structurally readable.
+The redesign should feel like a direct `COMPASS` adaptation of the template rather than a loose interpretation.
 
 ## Approved Direction
 
 - Keep the existing `Astro` bilingual site structure and typed local content model.
-- Reintroduce the original template's visual energy: strong hero treatment, richer section choreography, placeholder imagery, placeholder video areas, and more visible motion.
-- Preserve the `COMPASS` content hierarchy instead of restoring the full original template page structure.
+- Rebuild the homepage so it follows the original template's section order and visual grammar almost intact.
+- Preserve the `COMPASS` content hierarchy for internal pages and dedicated routes.
 - Use placeholders for photos, videos, partner marks, and pending content details so real materials can be swapped in later without layout rework.
-- Keep the overall tone `editorial-research`, not startup-marketing, even when sections become more expressive.
+- Keep the overall tone `editorial-research`, not startup-marketing, even when the layout mirrors the original template.
 
 ## Core Product Decision
 
-This redesign follows the approved approach:
+This redesign now follows the approved approach:
 
-- `Template rhythm, COMPASS structure`
+- `Template transplant on the homepage, COMPASS structure elsewhere`
 
 That means:
 
-- recover the original template's pacing, reveal patterns, media blocks, and section richness
-- keep the current `COMPASS` page map and workshop-specific content model
+- keep the original template's homepage order, full-bleed staging, marquee behavior, dark media stage, card rhythm, carousel rhythm, and rich footer feel
+- keep the current `COMPASS` page map, workshop-specific content model, and bilingual routing
 - simplify dense information where the current site feels overloaded, especially on `Programme`
 
 ## Design Goals
 
 ### Visual goals
 
-- Make the homepage feel closer to the original template in energy and staging.
-- Restore moving visual surfaces, layered backgrounds, animated reveals, and richer section transitions.
+- Make the homepage feel structurally the same as the original template rather than merely inspired by it.
+- Restore moving visual surfaces, layered backgrounds, animated reveals, marquee imagery, and richer section transitions.
 - Reintroduce image-driven and video-driven content blocks using placeholder assets.
 - Make secondary pages feel intentionally designed, not like plain utility pages.
 
@@ -63,30 +63,32 @@ The redesign does not add new top-level sections. It improves how these pages ar
 
 ## Homepage Direction
 
-The homepage should become the strongest expression of the redesign.
+The homepage should become a direct `COMPASS` adaptation of the original template.
 
 ### Required behavior
 
-- Recover a large, media-rich hero inspired by the original template.
-- Use stronger alternating section composition, including image-led and media-led panels.
-- Keep the existing editorial `COMPASS` narrative instead of generic event marketing language.
-- Maintain clear CTAs for `Programme` and `Registration`.
+- Rebuild the homepage in the same sequence as the original template.
+- Keep the original template's large hero, image marquee, dark stage section, cards, carousel rhythm, and rich footer feel.
+- Swap all commercial event copy for `COMPASS` workshop copy and placeholder assets.
+- Maintain clear CTAs for `Programme`, `Registration`, `Speakers`, and `Venue`.
 
 ### Target homepage structure
 
-- hero with workshop title, date, venue, CTA, and motion-rich supporting visual treatment
-- `Why COMPASS` editorial introduction
-- highlights or metrics block
-- programme preview
+- header and section scroll nav
+- hero with workshop title, date, venue, CTA, trust row, and full-width moving image marquee
+- dark media stage adapted from the original template's second section
+- three navigation cards for `Programme`, `Speakers`, and `Venue`
 - featured speakers showcase with placeholder images
-- media or video placeholder section derived from the original template language
-- venue preview
-- registration CTA
+- editorial `Why COMPASS` section mapped onto the testimonial-style slot
+- venue carousel / immersive venue section
+- archive or teaser video placeholder section
+- rich footer adapted to `COMPASS`
 
 ### Content policy
 
 - Use placeholders wherever real imagery, logos, or clips are not available yet.
-- Placeholder media should still look deliberate and integrated into the design.
+- Preserve the template's strong visual framing even when the media is placeholder-based.
+- The homepage should not collapse back into centered utility blocks.
 
 ## Programme Direction
 
@@ -123,7 +125,7 @@ The page should feel like a clean narrative schedule, not a dense archive. Users
 
 ## Secondary Page Direction
 
-Secondary pages should become richer, not more minimal.
+Secondary pages should remain in the richer `COMPASS` direction already agreed, but they do not need to copy the original template one-to-one.
 
 ### Principle
 
@@ -208,13 +210,13 @@ Placeholders should be clearly swappable and should not force future structural 
 - Keep the current typed data layer for `site`, `speakers`, `sessions`, and `talks`.
 - Focus implementation effort on page composition, component redesign, and visual behavior.
 - Preserve existing dedicated talk pages so abstract and detail depth remain outside the main programme flow.
-- Prefer reusing or adapting original template patterns over inventing unrelated new UI systems.
+- Use the actual `Artham` repo as the structural reference for the homepage, not screenshots or approximate recreations.
 
 ## Scope for the Next Implementation Pass
 
 ### In scope
 
-- homepage redesign toward original template rhythm
+- homepage redesign toward a near-template transplant
 - richer media and motion treatment across key pages
 - programme simplification and visual cleanup
 - richer secondary page layouts
@@ -243,7 +245,7 @@ Implementation based on this spec should be checked through:
 
 The redesign is successful when:
 
-- the site visibly feels closer to the original template's energy and media richness
+- the homepage visibly feels like the original template with `COMPASS` content substituted in
 - the site still reads as `COMPASS`, not as a generic summit landing page
 - the `Programme` page becomes easier to scan and less dense
 - placeholders can be replaced later without structural rewrites
