@@ -89,6 +89,39 @@ Steps:
   - `env ASTRO_TELEMETRY_DISABLED=1 npm run build`
 - Review locally before touching internal pages
 
+### Task 2.5: Add the compass-and-graph motion layer to the upper homepage
+
+Objective:
+- keep the transplanted structure intact while making the hero and dark stage feel distinctly `COMPASS`
+
+Files:
+- `tests/site.test.ts`
+- `src/pages/[lang]/index.astro`
+- `src/components/home/HeroSection.astro`
+- `src/components/home/DarkStageSection.astro`
+- `src/styles/global.css` `if shared motion primitives are needed`
+
+Steps:
+- Add failing raw-source tests for:
+  - compass/radial overlay markers in the hero
+  - graph or route overlay markers in the dark stage
+  - scroll-linked motion hooks on marquee cards and upper-stage overlays
+- Run `npm test -- tests/site.test.ts` and confirm failure
+- Add lightweight overlay layers for:
+  - compass arcs
+  - radial ticks
+  - node-link traces
+  - route-like lines
+- Add restrained scroll-linked motion so marquee cards and overlays move at different rates
+- Keep the motion atmospheric and inexpensive:
+  - CSS-first
+  - lightweight JS only where needed
+  - no canvas or heavy visualization libraries
+- Run:
+  - `npm test -- tests/site.test.ts`
+  - `env ASTRO_TELEMETRY_DISABLED=1 npm run build`
+- Review the local preview before moving on
+
 ### Task 3: Finish internal-page polish
 
 Objective:

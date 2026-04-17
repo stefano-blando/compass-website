@@ -90,6 +90,45 @@ The homepage should become a direct `COMPASS` adaptation of the original templat
 - Preserve the template's strong visual framing even when the media is placeholder-based.
 - The homepage should not collapse back into centered utility blocks.
 
+### Visual identity layer
+
+The homepage should not stop at a template transplant. It should also acquire a recognisable `COMPASS` identity layer built from two linked metaphors:
+
+- `orientation`
+- `complex systems`
+
+This means the visual language should combine:
+
+- compass arcs and radial marks
+- route lines and map-like traces
+- graph nodes and thin network connections
+- motion that suggests navigating through a complex field rather than browsing static cards
+
+The intended result is not nautical branding in a literal sense. The site should feel like an academic workshop about navigating complexity, not a maritime event site.
+
+### Motion layer for the upper homepage
+
+The upper homepage should carry the strongest version of this identity layer.
+
+#### Hero
+
+- Keep the transplanted marquee structure from the original template.
+- Add graph-like and compass-like overlays behind and around the marquee.
+- Let marquee cards shift subtly on scroll so they feel embedded in a moving system.
+- Use large cropped arcs, radial ticks, and restrained node-link patterns.
+
+#### Dark stage
+
+- Make the dark stage the clearest expression of `compass + graph`.
+- Use luminous node connections, route lines, abstract cardinal cues, and concentric arcs.
+- Keep the motion atmospheric and slow; it should read as orientation in complexity, not as a technical visualization demo.
+
+#### Navigation cards
+
+- Keep the cards readable and controlled.
+- Use only light traces of the identity layer there: corner marks, mini-radials, or small node-line motifs.
+- Do not turn the cards into infographics.
+
 ## Programme Direction
 
 The `Programme` page is the main structural correction in this redesign.
@@ -178,6 +217,8 @@ Reintroduce more of the original template's movement vocabulary:
 - section reveal choreography
 - animated media framing
 - layered background movement where it supports atmosphere
+- scroll-linked compass and graph overlays on the upper homepage
+- differential parallax between cards, arcs, nodes, and route lines
 
 Motion should remain lightweight enough for a static site and should not undermine readability.
 
@@ -211,12 +252,15 @@ Placeholders should be clearly swappable and should not force future structural 
 - Focus implementation effort on page composition, component redesign, and visual behavior.
 - Preserve existing dedicated talk pages so abstract and detail depth remain outside the main programme flow.
 - Use the actual `Artham` repo as the structural reference for the homepage, not screenshots or approximate recreations.
+- Implement the `compass + graph` identity layer with CSS and lightweight JavaScript only.
+- Avoid heavyweight canvas engines or visualization libraries for this redesign pass.
 
 ## Scope for the Next Implementation Pass
 
 ### In scope
 
 - homepage redesign toward a near-template transplant
+- compass-and-graph motion layer for hero and dark stage
 - richer media and motion treatment across key pages
 - programme simplification and visual cleanup
 - richer secondary page layouts
@@ -246,6 +290,7 @@ Implementation based on this spec should be checked through:
 The redesign is successful when:
 
 - the homepage visibly feels like the original template with `COMPASS` content substituted in
+- the homepage also carries a distinct `COMPASS` identity through orientation and network motifs
 - the site still reads as `COMPASS`, not as a generic summit landing page
 - the `Programme` page becomes easier to scan and less dense
 - placeholders can be replaced later without structural rewrites
