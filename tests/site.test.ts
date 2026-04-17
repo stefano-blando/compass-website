@@ -161,6 +161,21 @@ describe('site helpers', () => {
     expect(italian.speakers.note).not.toMatch(/task|scope/i);
   });
 
+  it('returns cloned homepage content', () => {
+    const first = getHomepageContent('en');
+    first.highlights.push({ value: '99', label: 'Mutated highlight' });
+    first.scrollSections.push({ id: 'mutated', label: 'Mutated section' });
+    first.mediaShowcase.items[0].title = 'Mutated media title';
+    first.whyCompass.pillars[0].title = 'Mutated pillar title';
+
+    const second = getHomepageContent('en');
+
+    expect(second.highlights).not.toContainEqual({ value: '99', label: 'Mutated highlight' });
+    expect(second.scrollSections).not.toContainEqual({ id: 'mutated', label: 'Mutated section' });
+    expect(second.mediaShowcase.items[0].title).not.toBe('Mutated media title');
+    expect(second.whyCompass.pillars[0].title).not.toBe('Mutated pillar title');
+  });
+
   it('returns localized homepage media showcase copy', () => {
     const english = getHomepageContent('en').mediaShowcase;
     const italian = getHomepageContent('it').mediaShowcase;
@@ -449,7 +464,7 @@ describe('site helpers', () => {
   });
 
   it('wires homepage, programme, and speakers routes to redesign content helpers', () => {
-    expect(homePageSource).toContain('getHomepageContent(locale)');
+    expect(homePageSource).toContain('MediaShowcaseSection');
     expect(programmePageSource).toContain('getProgrammePageContent(locale)');
     expect(speakersPageSource).toContain("getRichPageContent(locale, 'speakers')");
   });

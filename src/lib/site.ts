@@ -317,6 +317,36 @@ const homepageContent = {
   },
 } as const satisfies Record<Locale, HomepageContent>;
 
+function cloneHomepageContent(content: HomepageContent): HomepageContent {
+  return {
+    hero: {
+      ...content.hero,
+      panelItems: [...content.hero.panelItems],
+    },
+    whyCompass: {
+      ...content.whyCompass,
+      pillars: content.whyCompass.pillars.map((pillar) => ({ ...pillar })),
+      asidePoints: [...content.whyCompass.asidePoints],
+    },
+    highlights: content.highlights.map((highlight) => ({ ...highlight })),
+    mediaShowcase: {
+      ...content.mediaShowcase,
+      items: content.mediaShowcase.items.map((item) => ({ ...item })),
+    },
+    programme: { ...content.programme },
+    speakers: { ...content.speakers },
+    venue: {
+      ...content.venue,
+      facts: [...content.venue.facts],
+    },
+    registration: {
+      ...content.registration,
+      checklist: [...content.registration.checklist],
+    },
+    scrollSections: content.scrollSections.map((section) => ({ ...section })),
+  };
+}
+
 const homepageCuration = {
   programmePreview: [
     { sessionSlug: 'opening-remarks' },
@@ -420,7 +450,7 @@ export function getSiteIdentity(locale: Locale) {
 }
 
 export function getHomepageContent(locale: Locale) {
-  return homepageContent[locale] ?? homepageContent[defaultLocale];
+  return cloneHomepageContent(homepageContent[locale] ?? homepageContent[defaultLocale]);
 }
 
 export function getProgrammePageContent(locale: Locale): ProgrammePageContent {
