@@ -1,4 +1,3 @@
-import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import homePageSource from '../src/pages/[lang]/index.astro?raw';
 import heroSectionSource from '../src/components/home/HeroSection.astro?raw';
@@ -31,8 +30,6 @@ import { sessions } from '../src/data/sessions';
 import { speakers } from '../src/data/speakers';
 import { talks } from '../src/data/talks';
 
-const globalCssSource = readFileSync(new URL('../src/styles/global.css', import.meta.url), 'utf8');
-
 describe('site helpers', () => {
   it('wires the homepage route to the hero and media showcase sections', () => {
     expect(homePageSource).toContain('<HeroSection locale={locale} />');
@@ -50,8 +47,9 @@ describe('site helpers', () => {
   });
 
   it('gates homepage reveal choreography behind explicit JS enablement', () => {
+    expect(homePageSource).toContain("'IntersectionObserver' in window");
     expect(homePageSource).toContain("document.documentElement.dataset.js = 'true'");
-    expect(globalCssSource).toContain("html[data-js='true'] [data-home-reveal] [data-reveal-item]");
+    expect(homePageSource).toContain("if (!('IntersectionObserver' in window))");
     expect(heroSectionSource).toContain(":global(html[data-js='true']) .home-hero__content");
   });
 
