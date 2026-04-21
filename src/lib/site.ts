@@ -578,6 +578,11 @@ export function buildLocalizedPath(locale: Locale, pathname = '') {
   return `${base}${localized}`.replace(/\/+/g, '/');
 }
 
+export function resolvePublicPath(path: string) {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  return `${base}/${path.replace(/^\//, '')}`.replace(/\/+/g, '/');
+}
+
 export function getLabels(locale: Locale) {
   return navLabels[locale] ?? navLabels[defaultLocale];
 }

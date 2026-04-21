@@ -10,6 +10,7 @@ import {
   getTalkBySlug,
   getTalksForSession,
   locales,
+  resolvePublicPath,
 } from '../../../lib/site';
 
 export function getStaticPaths() {
@@ -114,12 +115,8 @@ const timelineValue = talk.startsAt
                   speaker.image && "talk-detail__portrait--has-image"
                 ]}>
                   {speaker.image ? (
-                    <img src={speaker.image} alt={speaker.name} class="talk-detail__portrait-img" />
-                  ) : (
-                    <div class="talk-detail__portrait-placeholder">
-                      {speaker.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                  )}
+                    <img src={resolvePublicPath(speaker.image)} alt={speaker.name} class="talk-detail__portrait-img" />
+                  ) : null}
                 </div>
               ))}
               {speakers.length === 0 && (
@@ -167,7 +164,7 @@ const timelineValue = talk.startsAt
               <div class="talk-detail__speaker-head">
                 {speaker.image && (
                   <div class="talk-detail__speaker-photo">
-                    <img src={speaker.image} alt={speaker.name} />
+                    <img src={resolvePublicPath(speaker.image)} alt={speaker.name} />
                   </div>
                 )}
                 <div>
@@ -372,19 +369,6 @@ const timelineValue = talk.startsAt
     font-weight: 800;
     color: rgba(255, 255, 255, 0.5);
     letter-spacing: 0.05em;
-  }
-
-  .talk-detail__portrait::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    top: -1.55rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 999px;
-    transform: translateX(-50%);
-    background: radial-gradient(circle at 35% 30%, #ffffff, rgba(226, 216, 210, 0.92));
-    box-shadow: 0 12px 24px rgba(20, 32, 51, 0.18);
   }
 
   .talk-detail__portrait--cool {

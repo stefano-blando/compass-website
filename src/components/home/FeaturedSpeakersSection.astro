@@ -1,6 +1,13 @@
 ---
 import type { Locale } from '../../data/types';
-import { buildLocalizedPath, getHomepageContent, getHomepageFeaturedSpeakers, getLabels, getSpeakerBySlug } from '../../lib/site';
+import {
+  buildLocalizedPath,
+  getHomepageContent,
+  getHomepageFeaturedSpeakers,
+  getLabels,
+  getSpeakerBySlug,
+  resolvePublicPath,
+} from '../../lib/site';
 
 interface Props {
   locale: Locale;
@@ -64,7 +71,7 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
 
                 {getSpeakerBySlug(speaker.slug)?.image ? (
                   <div class="featured-speakers__photo">
-                    <img src={getSpeakerBySlug(speaker.slug)?.image} alt={speaker.name} />
+                    <img src={resolvePublicPath(getSpeakerBySlug(speaker.slug)!.image!)} alt={speaker.name} />
                   </div>
                 ) : (
                   <div class="featured-speakers__monogram">
