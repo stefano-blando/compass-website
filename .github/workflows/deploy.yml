@@ -1,3 +1,4 @@
+# Triggering a new deployment run after settings update
 name: Deploy Astro site
 
 on:
