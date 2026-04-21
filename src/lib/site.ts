@@ -524,45 +524,10 @@ const homepageCuration = {
       },
     },
     {
-      speakerSlug: 'stefano-blando',
+      speakerSlug: 'pagopa-ad',
       roleLabel: {
-        en: 'Track 1 co-chair',
-        it: 'Relatore e co-chair della Track 1',
-      },
-    },
-    {
-      speakerSlug: 'biancamaria-bombino',
-      roleLabel: {
-        en: 'Track 1 co-chair',
-        it: 'Relatrice e co-chair della Track 1',
-      },
-    },
-    {
-      speakerSlug: 'lorenzo-emer',
-      roleLabel: {
-        en: 'Track 2 co-chair',
-        it: 'Relatore e co-chair della Track 2',
-      },
-    },
-    {
-      speakerSlug: 'alice-musso',
-      roleLabel: {
-        en: 'Track 2 co-chair',
-        it: 'Relatrice e co-chair della Track 2',
-      },
-    },
-    {
-      speakerSlug: 'roberta-romano',
-      roleLabel: {
-        en: 'Track 3 co-chair',
-        it: 'Relatrice e co-chair della Track 3',
-      },
-    },
-    {
-      speakerSlug: 'roberta-savella',
-      roleLabel: {
-        en: 'Track 3 co-chair',
-        it: 'Relatrice e co-chair della Track 3',
+        en: 'Institutional keynote',
+        it: 'Keynote istituzionale',
       },
     },
   ],
