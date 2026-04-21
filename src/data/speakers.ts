@@ -37,6 +37,7 @@ export const speakers: Speaker[] = [
       en: 'Keynote speaker',
       it: 'Relatore keynote',
     },
+    image: '/images/keynote/guido_germano.png',
     bio: {
       en: 'Guido Germano is Professor of Computational Science at University College London (UCL) and Director of the MSc in Computational Finance. With a background in theoretical physical chemistry from the University of Pisa and a PhD in molecular simulation, his research focuses on financial mathematics, numerical methods for pricing derivatives, and the application of statistical physics and stochastic processes to systemic risk and complex financial systems.',
       it: 'Guido Germano è Professor of Computational Science presso lo University College London (UCL) e Direttore del Master in Computational Finance. Con una formazione in chimica fisica teorica presso l\'Università di Pisa e un dottorato in simulazione molecolare, la sua ricerca si concentra sulla matematica finanziaria, i metodi numerici per il pricing dei derivati e l\'applicazione della fisica statistica e dei processi stocastici al rischio sistemico e ai sistemi finanziari complessi.',
@@ -48,10 +49,12 @@ export const speakers: Speaker[] = [
     name: 'Prabhani Kuruppumullage Don',
     affiliation: 'Pennsylvania State University',
     roleLabel: {
-      en: 'Confirmed keynote speaker',
-      it: 'Relatrice keynote confermata',
+      en: 'Keynote speaker',
+      it: 'Relatrice keynote',
     },
+    image: '/images/keynote/prabhani_don.png',
     bio: {
+
       en: 'Prabhani Kuruppumullage Don is an Associate Research Professor and Director of Online Programs in the Department of Statistics at Pennsylvania State University. Her research focuses on computational statistics and statistical methodology for complex biological data, including bioinformatics, statistical genetics, and biostatistics. She previously held positions at the University of Rhode Island and the Harvard/Dana-Farber Cancer Institute.',
       it: 'Prabhani Kuruppumullage Don è Associate Research Professor e Direttrice dei Programmi Online presso il Dipartimento di Statistica della Pennsylvania State University. La sua ricerca si concentra sulla statistica computazionale e sulla metodologia statistica per dati biologici complessi, includendo bioinformatica, genetica statistica e biostatistica. In precedenza ha ricoperto incarichi presso la University of Rhode Island e l\'Harvard/Dana-Farber Cancer Institute.',
     },
