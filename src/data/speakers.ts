@@ -235,6 +235,7 @@ export const speakers: Speaker[] = [
       en: 'Panel 2 speaker',
       it: 'Relatrice del Panel 2',
     },
+    image: '/images/speakers/anna_gallo.jpeg',
     bio: {
       en: 'Anna Gallo is a postdoctoral researcher at the Enrico Fermi Research Center (CREF) in Rome. She holds a Ph.D. in Systems Science from IMT Lucca (2025) and a degree in Mathematics from the University of Florence (2021). Her research lies at the intersection of statistical mechanics and network science, focusing on random graph models and the structural properties of complex real-world systems.',
       it: 'Anna Gallo è una ricercatrice post-doc presso il Centro Ricerche Enrico Fermi (CREF) di Roma. Ha conseguito il dottorato in Systems Science presso la IMT Lucca (2025) e la laurea in Matematica presso l’Università di Firenze (2021). La sua ricerca si colloca all’intersezione tra meccanica statistica e scienza delle reti, concentrandosi su modelli di grafi casuali e sulle proprietà strutturali dei sistemi complessi del mondo reale.',
