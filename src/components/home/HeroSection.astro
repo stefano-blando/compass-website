@@ -1,6 +1,6 @@
 ---
 import type { Locale } from '../../data/types';
-import { buildLocalizedPath, getHomepageContent, getLabels } from '../../lib/site';
+import { buildLocalizedPath, getHomepageContent, getLabels, resolvePublicPath } from '../../lib/site';
 
 interface Props {
   locale: Locale;
@@ -43,9 +43,9 @@ const marqueeItems = Array.from({ length: marqueeCopies }, () => hero.marqueeIte
     </div>
 
     <div class="home-hero__logos">
-      <img src="/images/logos/sssa-color.png" alt="Scuola Superiore Sant’Anna" class="hero-logo" />
-      <img src="/images/logos/unipi-color.png" alt="Università di Pisa" class="hero-logo" />
-      <img src="/images/logos/ai_society_logo.png" alt="AI Society" class="hero-logo hero-logo--ai" />
+      <img src={resolvePublicPath("/images/logos/sssa-color.png")} alt="Scuola Superiore Sant’Anna" class="hero-logo" />
+      <img src={resolvePublicPath("/images/logos/unipi-color.png")} alt="Università di Pisa" class="hero-logo" />
+      <img src={resolvePublicPath("/images/logos/ai_society_logo.png")} alt="AI Society" class="hero-logo" />
     </div>
   </div>
 
@@ -345,22 +345,25 @@ const marqueeItems = Array.from({ length: marqueeCopies }, () => hero.marqueeIte
   }
 
   .home-hero__logos {
-    margin-top: 2rem;
+    margin-top: 2.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 2.5rem;
-    opacity: 0.85;
+    gap: 3.5rem;
+    opacity: 0.92;
   }
 
   .hero-logo {
-    height: 48px;
+    height: clamp(54px, 6vw, 72px);
     width: auto;
     object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(20, 32, 51, 0.08));
+    transition: transform 240ms ease, opacity 220ms ease;
   }
 
-  .hero-logo--ai {
-    height: 56px;
+  .hero-logo:hover {
+    transform: translateY(-3px) scale(1.04);
+    opacity: 1;
   }
 
   .home-hero__marquee {

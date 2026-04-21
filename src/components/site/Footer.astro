@@ -1,5 +1,5 @@
 ---
-import { buildLocalizedPath, getLabels, getSiteIdentity, siteConfig } from '../../lib/site';
+import { buildLocalizedPath, getLabels, getSiteIdentity, resolvePublicPath, siteConfig } from '../../lib/site';
 import type { Locale } from '../../data/types';
 
 interface Props {
@@ -33,9 +33,9 @@ const identity = getSiteIdentity(locale);
     <div>
       <p class="site-footer__eyebrow">{locale === 'it' ? 'Istituzioni' : 'Institutions'}</p>
       <div class="site-footer__logos">
-        <img src="/images/logos/sssa-color.png" alt="Scuola Superiore Sant’Anna" class="footer-logo" />
-        <img src="/images/logos/unipi-white.png" alt="Università di Pisa" class="footer-logo" />
-        <img src="/images/logos/ai_society_logo.png" alt="AI Society" class="footer-logo footer-logo--ai" />
+        <img src={resolvePublicPath("/images/logos/sssa-color.png")} alt="Scuola Superiore Sant’Anna" class="footer-logo" />
+        <img src={resolvePublicPath("/images/logos/unipi-color.png")} alt="Università di Pisa" class="footer-logo" />
+        <img src={resolvePublicPath("/images/logos/ai_society_logo.png")} alt="AI Society" class="footer-logo" />
       </div>
       <p>
         <a href={siteConfig.registrationUrl} target="_blank" rel="noreferrer">
@@ -49,16 +49,18 @@ const identity = getSiteIdentity(locale);
 <style>
   .site-footer__logos {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.25rem;
     align-items: center;
-    margin-bottom: 1rem;
+    margin-bottom: 1.2rem;
+    opacity: 0.85;
   }
   .footer-logo {
-    height: 38px;
+    height: 42px;
     width: auto;
     object-fit: contain;
+    transition: opacity 220ms ease;
   }
-  .footer-logo--ai {
-    height: 45px;
+  .footer-logo:hover {
+    opacity: 1;
   }
 </style>
