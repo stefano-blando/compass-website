@@ -59,15 +59,15 @@ export const speakers: Speaker[] = [
   },
   {
     slug: 'senior-expert-ai-regulation-tbc',
-    name: 'Senior Expert on AI Regulation & Ethics (TBC)',
-    affiliation: 'Speaker to be identified',
+    name: 'Senior Expert on AI Regulation & Ethics',
+    affiliation: 'To be confirmed',
     roleLabel: {
-      en: 'Keynote slot in confirmation',
-      it: 'Slot keynote in conferma',
+      en: 'Keynote speaker',
+      it: 'Relatore keynote',
     },
     bio: {
-      en: 'Reserved keynote slot for a senior expert on AI regulation and ethics, still under identification.',
-      it: 'Slot keynote riservato a un profilo senior su regolazione ed etica dell AI, ancora in fase di individuazione.',
+      en: 'Reserved keynote slot (TBC) for a senior expert on AI regulation and ethics, still under identification.',
+      it: 'Slot keynote riservato (TBC) a un profilo senior su regolazione ed etica dell AI, ancora in fase di individuazione.',
     },
     type: ['keynote'],
   },
@@ -188,11 +188,11 @@ export const speakers: Speaker[] = [
   },
   {
     slug: 'pagopa-ad',
-    name: 'CEO, PagoPA',
-    affiliation: 'PagoPA S.p.A.',
+    name: 'Alessandro Moricca',
+    affiliation: 'CEO, PagoPA S.p.A.',
     roleLabel: {
-      en: 'Institutional keynote',
-      it: 'Keynote istituzionale',
+      en: 'Keynote speaker',
+      it: 'Relatore keynote',
     },
     bio: {
       en: 'Keynote on digital transformation and technologies from the CEO of PagoPA.',

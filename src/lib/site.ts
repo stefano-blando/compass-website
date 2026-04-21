@@ -512,22 +512,22 @@ const homepageCuration = {
     {
       speakerSlug: 'prabhani-don',
       roleLabel: {
-        en: 'Confirmed keynote speaker',
-        it: 'Relatrice keynote confermata',
+        en: 'Keynote speaker',
+        it: 'Relatrice keynote',
       },
     },
     {
       speakerSlug: 'senior-expert-ai-regulation-tbc',
       roleLabel: {
-        en: 'Keynote slot in confirmation',
-        it: 'Slot keynote in conferma',
+        en: 'Keynote speaker',
+        it: 'Relatore keynote',
       },
     },
     {
       speakerSlug: 'pagopa-ad',
       roleLabel: {
-        en: 'Institutional keynote',
-        it: 'Keynote istituzionale',
+        en: 'Keynote speaker',
+        it: 'Relatore keynote',
       },
     },
   ],
