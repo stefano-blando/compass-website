@@ -16,16 +16,30 @@ export const speakers: Speaker[] = [
     type: [],
   },
   {
+    slug: 'rettore-sssa',
+    name: 'Rettore, Scuola Superiore Sant’Anna',
+    affiliation: 'Scuola Superiore Sant’Anna',
+    roleLabel: {
+      en: 'Opening remarks',
+      it: 'Saluti introduttivi',
+    },
+    bio: {
+      en: 'Institutional opening remarks on behalf of Scuola Superiore Sant’Anna.',
+      it: 'Saluti istituzionali per conto della Scuola Superiore Sant’Anna.',
+    },
+    type: [],
+  },
+  {
     slug: 'guido-germano',
     name: 'Guido Germano',
-    affiliation: 'University College London · Visiting professor at Scuola Superiore Sant’Anna',
+    affiliation: 'University College London · Visiting Professor at Scuola Superiore Sant’Anna',
     roleLabel: {
       en: 'Keynote speaker',
       it: 'Relatore keynote',
     },
     bio: {
-      en: 'Confirmed keynote speaker for the opening morning session.',
-      it: 'Relatore keynote confermato per la sessione di apertura del mattino.',
+      en: 'Guido Germano is Professor of Computational Science at University College London (UCL) and Director of the MSc in Computational Finance. With a background in theoretical physical chemistry from the University of Pisa and a PhD in molecular simulation, his research focuses on financial mathematics, numerical methods for pricing derivatives, and the application of statistical physics and stochastic processes to systemic risk and complex financial systems.',
+      it: 'Guido Germano è Professor of Computational Science presso lo University College London (UCL) e Direttore del Master in Computational Finance. Con una formazione in chimica fisica teorica presso l\'Università di Pisa e un dottorato in simulazione molecolare, la sua ricerca si concentra sulla matematica finanziaria, i metodi numerici per il pricing dei derivati e l\'applicazione della fisica statistica e dei processi stocastici al rischio sistemico e ai sistemi finanziari complessi.',
     },
     type: ['keynote'],
   },
@@ -38,8 +52,8 @@ export const speakers: Speaker[] = [
       it: 'Relatrice keynote confermata',
     },
     bio: {
-      en: 'Confirmed keynote speaker for the early afternoon session.',
-      it: 'Relatrice keynote confermata per la sessione di primo pomeriggio.',
+      en: 'Prabhani Kuruppumullage Don is an Associate Research Professor and Director of Online Programs in the Department of Statistics at Pennsylvania State University. Her research focuses on computational statistics and statistical methodology for complex biological data, including bioinformatics, statistical genetics, and biostatistics. She previously held positions at the University of Rhode Island and the Harvard/Dana-Farber Cancer Institute.',
+      it: 'Prabhani Kuruppumullage Don è Associate Research Professor e Direttrice dei Programmi Online presso il Dipartimento di Statistica della Pennsylvania State University. La sua ricerca si concentra sulla statistica computazionale e sulla metodologia statistica per dati biologici complessi, includendo bioinformatica, genetica statistica e biostatistica. In precedenza ha ricoperto incarichi presso la University of Rhode Island e l\'Harvard/Dana-Farber Cancer Institute.',
     },
     type: ['keynote'],
   },
@@ -65,23 +79,24 @@ export const speakers: Speaker[] = [
       en: 'Panel 1 chair and speaker',
       it: 'Chair e relatore del Panel 1',
     },
+    image: '/images/speakers/stefano_blando.jpg',
     bio: {
-      en: 'Organizer and current chair-speaker for the first panel.',
-      it: 'Organizzatore e attuale chair-relatore del primo panel.',
+      en: 'Stefano Blando is a PhD student in the National PhD Program in Artificial Intelligence at Scuola Superiore Sant’Anna and the University of Pisa. His research lies at the intersection of AI, agent-based modeling, and economics, with a focus on adaptive multi-agent systems, statistical verification of economic simulations, and robust quantitative methods for financial and socio-economic data.',
+      it: 'Stefano Blando è un dottorando del Dottorato Nazionale in Intelligenza Artificiale presso la Scuola Superiore Sant’Anna e l’Università di Pisa. La sua ricerca si colloca all’intersezione tra IA, modellazione ad agenti ed economia, con un focus su sistemi multi-agente adattivi, verifica statistica di simulazioni economiche e metodi quantitativi robusti per dati finanziari e socio-economici.',
     },
     type: ['panelist', 'chair', 'organizer'],
   },
   {
     slug: 'biancamaria-bombino',
-    name: 'Bianca Bombino',
-    affiliation: 'CNR/IIT · PhD-AI.it, Pillar Society',
+    name: 'Biancamaria Bombino',
+    affiliation: 'IIT-CNR · PhD-AI.it, Pillar Society',
     roleLabel: {
       en: 'Panel 1 chair and speaker',
       it: 'Chair e relatrice del Panel 1',
     },
     bio: {
-      en: 'Organizer and current chair-speaker for the first panel.',
-      it: 'Organizzatrice e attuale chair-relatrice del primo panel.',
+      en: 'Biancamaria Bombino is a PhD candidate at IIT-CNR. She earned her BSc in Computer Science and MSc in Data Science and Business Informatics from the University of Pisa. Her research investigates LLM-based analysis of signed networks and semantic modeling of social interactions, focusing on leveraging Large Language Models to improve the inference and modeling of positive and negative ties in online social networks.',
+      it: 'Biancamaria Bombino è una dottoranda presso l\'IIT-CNR. Ha conseguito la Laurea Triennale in Informatica e la Laurea Magistrale in Data Science and Business Informatics presso l\'Università di Pisa. La sua ricerca si occupa dell\'analisi di reti segnate tramite LLM e della modellazione semantica delle interazioni sociali, con l\'obiettivo di utilizzare i Large Language Models per migliorare l\'inferenza e la modellazione dei legami positivi e negativi nelle reti sociali online.',
     },
     type: ['panelist', 'chair', 'organizer'],
   },
@@ -102,14 +117,15 @@ export const speakers: Speaker[] = [
   {
     slug: 'alice-musso',
     name: 'Alice Musso',
-    affiliation: 'CNR/ISTI · PhD-AI.it, Pillar Society',
+    affiliation: 'ISTI-CNR · PhD-AI.it, Pillar Society',
     roleLabel: {
       en: 'Panel 2 chair and speaker',
       it: 'Chair e relatrice del Panel 2',
     },
+    image: '/images/speakers/alice_musso.png',
     bio: {
-      en: 'Organizer and current chair-speaker for the second panel.',
-      it: 'Organizzatrice e attuale chair-relatrice del secondo panel.',
+      en: 'Alice Musso is a PhD student at ISTI-CNR. She holds a BSc in Foreign Languages from the University of Florence and an MSc in Linguistics from the University of Pisa. Her research focuses on applying Machine Learning and NLP techniques to Cultural Heritage, specifically for authorship analysis of ancient texts through stylistic markers such as word frequencies and punctuation usage.',
+      it: 'Alice Musso è una dottoranda presso l\'ISTI-CNR. Ha conseguito la Laurea Triennale in Lingue Straniere presso l\'Università di Firenze e la Laurea Magistrale in Linguistica presso l\'Università di Pisa. La sua ricerca si concentra sull\'applicazione di tecniche di Machine Learning e NLP ai Beni Culturali, in particolare per l\'analisi della paternità dei testi antichi attraverso marcatori stilistici come la frequenza delle parole e l\'uso della punteggiatura.',
     },
     type: ['panelist', 'chair', 'organizer'],
   },
@@ -156,6 +172,34 @@ export const speakers: Speaker[] = [
     type: ['panelist'],
   },
   {
+    slug: 'corentin-lobet',
+    name: 'Corentin Lobet',
+    affiliation: 'Affiliation to be confirmed',
+    roleLabel: {
+      en: 'Panel 1 speaker',
+      it: 'Relatore del Panel 1',
+    },
+    bio: {
+      en: 'Current named speaker in the first panel lineup.',
+      it: 'Relatore attualmente indicato nella scaletta del primo panel.',
+    },
+    type: ['panelist'],
+  },
+  {
+    slug: 'pagopa-ad',
+    name: 'CEO, PagoPA',
+    affiliation: 'PagoPA S.p.A.',
+    roleLabel: {
+      en: 'Institutional keynote',
+      it: 'Keynote istituzionale',
+    },
+    bio: {
+      en: 'Keynote on digital transformation and technologies from the CEO of PagoPA.',
+      it: 'Keynote su digital transformation e tecnologie a cura dell Amministratore Delegato di PagoPA.',
+    },
+    type: ['keynote'],
+  },
+  {
     slug: 'riccardo-porcedda',
     name: 'Riccardo Porcedda',
     affiliation: 'Affiliation to be confirmed',
@@ -186,14 +230,14 @@ export const speakers: Speaker[] = [
   {
     slug: 'anna-gallo',
     name: 'Anna Gallo',
-    affiliation: 'Affiliation to be confirmed',
+    affiliation: 'Enrico Fermi Research Center (CREF)',
     roleLabel: {
       en: 'Panel 2 speaker',
       it: 'Relatrice del Panel 2',
     },
     bio: {
-      en: 'Current named speaker in the second panel lineup.',
-      it: 'Relatrice attualmente indicata nella scaletta del secondo panel.',
+      en: 'Anna Gallo is a postdoctoral researcher at the Enrico Fermi Research Center (CREF) in Rome. She holds a Ph.D. in Systems Science from IMT Lucca (2025) and a degree in Mathematics from the University of Florence (2021). Her research lies at the intersection of statistical mechanics and network science, focusing on random graph models and the structural properties of complex real-world systems.',
+      it: 'Anna Gallo è una ricercatrice post-doc presso il Centro Ricerche Enrico Fermi (CREF) di Roma. Ha conseguito il dottorato in Systems Science presso la IMT Lucca (2025) e la laurea in Matematica presso l’Università di Firenze (2021). La sua ricerca si colloca all’intersezione tra meccanica statistica e scienza delle reti, concentrandosi su modelli di grafi casuali e sulle proprietà strutturali dei sistemi complessi del mondo reale.',
     },
     type: ['panelist'],
   },
@@ -238,47 +282,5 @@ export const speakers: Speaker[] = [
       it: 'L agenda di lavoro attuale indica Francesca Chiaromonte per i saluti finali, in attesa di conferma finale.',
     },
     type: [],
-  },
-  {
-    slug: 'speaker-tbd-panel-1-a',
-    name: 'Speaker (TBD)',
-    affiliation: 'Panel 1 speaker to be confirmed',
-    roleLabel: {
-      en: 'Panel 1 speaker (TBD)',
-      it: 'Speaker del Panel 1 (TBD)',
-    },
-    bio: {
-      en: 'Open speaker slot preserved from the current panel lineup.',
-      it: 'Slot speaker aperto mantenuto nella scaletta attuale del panel.',
-    },
-    type: ['panelist'],
-  },
-  {
-    slug: 'speaker-tbd-panel-1-b',
-    name: 'Speaker (TBD)',
-    affiliation: 'Panel 1 speaker to be confirmed',
-    roleLabel: {
-      en: 'Panel 1 speaker (TBD)',
-      it: 'Speaker del Panel 1 (TBD)',
-    },
-    bio: {
-      en: 'Open speaker slot preserved from the current panel lineup.',
-      it: 'Slot speaker aperto mantenuto nella scaletta attuale del panel.',
-    },
-    type: ['panelist'],
-  },
-  {
-    slug: 'speaker-tbd-panel-3-a',
-    name: 'Speaker (TBD)',
-    affiliation: 'Panel 3 speaker to be confirmed',
-    roleLabel: {
-      en: 'Panel 3 speaker (TBD)',
-      it: 'Speaker del Panel 3 (TBD)',
-    },
-    bio: {
-      en: 'Open speaker slot preserved from the current panel lineup.',
-      it: 'Slot speaker aperto mantenuto nella scaletta attuale del panel.',
-    },
-    type: ['panelist'],
   },
 ];

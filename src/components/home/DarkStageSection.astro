@@ -1,0 +1,217 @@
+---
+import type { Locale } from '../../data/types';
+import { buildLocalizedPath, getHomepageContent, getLabels } from '../../lib/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const { darkStage } = getHomepageContent(locale);
+const labels = getLabels(locale);
+const watchLabel = locale === 'it' ? 'Apri il programma completo' : 'Open the full programme';
+---
+
+<section id="dark-stage" class="dark-stage" data-home-reveal>
+  <div class="dark-stage__decor dark-stage__decor--left" aria-hidden="true"></div>
+  <div class="dark-stage__decor dark-stage__decor--right" aria-hidden="true"></div>
+
+  <div class="container dark-stage__shell">
+    <p class="dark-stage__kicker" data-reveal-item>{darkStage.eyebrow}</p>
+    <h2 class="dark-stage__title" data-reveal-item style="--reveal-delay: 0.08s;">{darkStage.title}</h2>
+    <p class="dark-stage__copy" data-reveal-item style="--reveal-delay: 0.16s;">{darkStage.intro}</p>
+
+    <article class="dark-stage__video" data-reveal-item style="--reveal-delay: 0.24s;">
+      <div class="media-shell media-shell--video dark-stage__video-shell" aria-hidden="true" data-scroll-shift data-scroll-speed="10">
+        <span class="media-shell__label">{darkStage.videoLabel}</span>
+        <span class="media-shell__badge">{labels.programme}</span>
+        <span class="media-shell__grid"></span>
+        <span class="media-shell__scan"></span>
+        <span class="media-shell__orbit"></span>
+        <span class="media-shell__beam"></span>
+        <span class="media-shell__frame"></span>
+        <span class="media-shell__person dark-stage__figure dark-stage__figure--left"></span>
+        <span class="media-shell__person media-shell__person--soft dark-stage__figure dark-stage__figure--right"></span>
+        <span class="video-placeholder__play"></span>
+        <div class="media-shell__caption">
+          <span class="media-shell__eyebrow">{darkStage.videoLabel}</span>
+          <strong>{darkStage.videoTitle}</strong>
+          <p>{darkStage.videoCopy}</p>
+        </div>
+      </div>
+      <a class="dark-stage__video-pill" href={buildLocalizedPath(locale, 'programme')}>{watchLabel}</a>
+    </article>
+
+    <section class="dark-stage__themes" aria-label={darkStage.featuredLabel}>
+      <p class="dark-stage__themes-label" data-reveal-item style="--reveal-delay: 0.32s;">{darkStage.featuredLabel}</p>
+      <div class="dark-stage__themes-row" data-reveal-item style="--reveal-delay: 0.4s;">
+        {darkStage.featuredItems.map((item) => (
+          <span class="dark-stage__theme-pill">{item}</span>
+        ))}
+      </div>
+    </section>
+  </div>
+</section>
+
+<style>
+  .dark-stage {
+    position: relative;
+    overflow: hidden;
+    background-color: #182833;
+    background-image: linear-gradient(180deg, #182833 0%, #1f3444 42%, #14232f 100%);
+    color: #eef3f6;
+    margin-top: -2.2rem;
+    padding: 7rem 0 4rem;
+    clip-path: polygon(0 14%, 8% 12%, 22% 10%, 36% 9%, 50% 8%, 64% 9%, 78% 10%, 92% 12%, 100% 14%, 100% 100%, 0 100%);
+  }
+
+  .dark-stage__decor {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 999px;
+    opacity: 0.48;
+  }
+
+  .dark-stage__decor--left {
+    left: -10rem;
+    bottom: -10rem;
+    width: 22rem;
+    height: 22rem;
+    border: 20px solid rgba(255, 98, 40, 0.72);
+  }
+
+  .dark-stage__decor--right {
+    right: -8rem;
+    top: 5rem;
+    width: 19rem;
+    height: 19rem;
+    border: 14px solid rgba(255, 98, 40, 0.62);
+    border-left-color: rgba(169, 183, 193, 0.32);
+    border-top-color: rgba(169, 183, 193, 0.32);
+  }
+
+  .dark-stage__shell {
+    position: relative;
+    z-index: 3;
+    padding-top: 3rem;
+    text-align: center;
+  }
+
+  .dark-stage__kicker {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.84rem;
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 800;
+  }
+
+  .dark-stage__title {
+    margin: 0.7rem auto 0;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    line-height: 0.98;
+    max-width: 14ch;
+    color: #f4f6f8;
+  }
+
+  .dark-stage__copy {
+    margin: 0.95rem auto 0;
+    max-width: 46ch;
+    color: rgba(236, 243, 246, 0.82);
+    font-size: clamp(1rem, 1.45vw, 1.18rem);
+  }
+
+  .dark-stage__video {
+    position: relative;
+    margin: 1.7rem auto 0;
+    max-width: min(940px, 94%);
+  }
+
+  .dark-stage__video-shell {
+    min-height: clamp(18rem, 36vw, 28rem);
+    border-radius: 18px;
+    transform: translate3d(0, var(--scroll-shift, 0px), 0);
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+      linear-gradient(135deg, #0f1a29, #182833 55%, #243b4f);
+  }
+
+  .dark-stage__figure--left {
+    left: 24%;
+    --person-width: 4.8rem;
+    --person-height: 8.2rem;
+  }
+
+  .dark-stage__figure--right {
+    right: 24%;
+    --person-width: 4.2rem;
+    --person-height: 7.2rem;
+  }
+
+  .dark-stage__video-pill {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+    background: rgba(17, 17, 17, 0.86);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 0.72rem 1.2rem;
+    font-weight: 700;
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.24);
+  }
+
+  .dark-stage__themes {
+    margin-top: 1.7rem;
+  }
+
+  .dark-stage__themes-label {
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .dark-stage__themes-row {
+    margin-top: 0.9rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.7rem;
+  }
+
+  .dark-stage__theme-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.35rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f3f6f8;
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .dark-stage {
+      margin-top: -1.4rem;
+      padding-top: 6rem;
+      clip-path: none;
+      border-radius: 32px 32px 0 0;
+    }
+
+    .dark-stage__decor--left,
+    .dark-stage__decor--right {
+      width: 14rem;
+      height: 14rem;
+      border-width: 10px;
+    }
+
+  }
+</style>

@@ -13,94 +13,100 @@ const tags =
   locale === 'it'
     ? ['In presenza', 'Partecipazione gratuita', 'Pisa']
     : ['In person', 'Free attendance', 'Pisa'];
-const registrationMediaLabel = locale === 'it' ? 'Poster registrazione placeholder' : 'Registration poster placeholder';
-const registrationRouteLabel = locale === 'it' ? 'Passaggio rapido' : 'Quick handoff';
+const registrationMediaLabel = locale === 'it' ? 'Workshop archive placeholder' : 'Workshop archive placeholder';
+const registrationRouteLabel = locale === 'it' ? 'Media band' : 'Media band';
 ---
 
 <section id="registration-cta" class="registration-cta" data-home-reveal>
-  <div class="container registration-cta__shell">
-    <div class="registration-cta__copy" data-reveal-item>
-      <p class="section-kicker">{registration.eyebrow}</p>
-      <h2>{registration.title}</h2>
-      <p>{registration.intro}</p>
+  <div class="registration-cta__media-band">
+    <div class="container registration-cta__band-shell">
+      <div class="registration-cta__copy" data-reveal-item data-scroll-shift data-scroll-speed="14" data-scroll-direction="-1">
+        <p class="section-kicker">{registration.eyebrow}</p>
+        <h2>{registration.title}</h2>
+        <p>{registration.intro}</p>
 
-      <div class="registration-cta__tags">
-        {tags.map((tag, index) => (
-          <span style={`--reveal-delay: ${index * 70 + 100}ms;`} data-reveal-item>{tag}</span>
-        ))}
-      </div>
+        <div class="registration-cta__tags">
+          {tags.map((tag, index) => (
+            <span style={`--reveal-delay: ${index * 70 + 100}ms;`} data-reveal-item>{tag}</span>
+          ))}
+        </div>
 
-      <div class="registration-cta__actions">
-        <a class="btn-primary" href={buildLocalizedPath(locale, 'registration')}>{labels.registration}</a>
-        <a class="btn-secondary" href={siteConfig.registrationUrl} target="_blank" rel="noreferrer">
-          {registration.secondaryCta}
-        </a>
-      </div>
-    </div>
-
-    <div class="registration-cta__stage">
-      <div class="media-shell media-shell--video registration-cta__media" aria-hidden="true" data-reveal-item style="--reveal-delay: 120ms;">
-        <span class="media-shell__label">{registrationMediaLabel}</span>
-        <span class="media-shell__badge">{registrationRouteLabel}</span>
-        <span class="media-shell__grid"></span>
-        <span class="media-shell__scan"></span>
-        <span class="media-shell__orbit"></span>
-        <span class="media-shell__beam"></span>
-        <span class="media-shell__frame"></span>
-        <span class="registration-cta__ticket registration-cta__ticket--a"></span>
-        <span class="registration-cta__ticket registration-cta__ticket--b"></span>
-        <div class="media-shell__caption">
-          <span class="media-shell__eyebrow">{registration.deadlineLabel}</span>
-          <strong>{registration.deadlineValue}</strong>
-          <p>{siteConfig.eventDate}</p>
+        <div class="registration-cta__actions">
+          <a class="btn-primary" href={buildLocalizedPath(locale, 'registration')}>{labels.registration}</a>
+          <a class="btn-secondary" href={siteConfig.registrationUrl} target="_blank" rel="noreferrer">
+            {registration.secondaryCta}
+          </a>
         </div>
       </div>
 
-      <aside class="registration-cta__panel" data-reveal-item style="--reveal-delay: 170ms;">
-        <p class="registration-cta__deadline-label">{registration.deadlineLabel}</p>
-        <p class="registration-cta__deadline-value">{registration.deadlineValue}</p>
+      <div class="registration-cta__stage">
+        <div class="media-shell media-shell--video registration-cta__media" aria-hidden="true" data-reveal-item data-scroll-shift data-scroll-speed="18" style="--reveal-delay: 120ms;">
+          <span class="media-shell__label">{registrationMediaLabel}</span>
+          <span class="media-shell__badge">{registrationRouteLabel}</span>
+          <span class="media-shell__grid"></span>
+          <span class="media-shell__scan"></span>
+          <span class="media-shell__orbit"></span>
+          <span class="media-shell__beam"></span>
+          <span class="media-shell__frame"></span>
+          <span class="registration-cta__route registration-cta__route--a"></span>
+          <span class="registration-cta__route registration-cta__route--b"></span>
+          <span class="registration-cta__ticket registration-cta__ticket--a"></span>
+          <span class="registration-cta__ticket registration-cta__ticket--b"></span>
+          <div class="media-shell__caption">
+            <span class="media-shell__eyebrow">{registration.deadlineLabel}</span>
+            <strong>{registration.deadlineValue}</strong>
+            <p>{siteConfig.eventDate}</p>
+          </div>
+        </div>
 
-        <ul class="registration-cta__list">
-          {registration.checklist.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      </aside>
+        <aside class="registration-cta__panel" data-reveal-item data-scroll-shift data-scroll-speed="12" style="--reveal-delay: 170ms;">
+          <p class="registration-cta__deadline-label">{registration.deadlineLabel}</p>
+          <p class="registration-cta__deadline-value">{registration.deadlineValue}</p>
+
+          <ul class="registration-cta__list">
+            {registration.checklist.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </aside>
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .registration-cta {
-    padding: 1.2rem 0 0;
+    padding: 0 0 0.8rem;
   }
 
-  .registration-cta__shell {
+  .registration-cta__media-band {
     position: relative;
     overflow: hidden;
-    display: grid;
-    grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.98fr);
-    gap: 1rem;
-    padding: clamp(1.7rem, 4vw, 2.3rem);
-    border-radius: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.62);
+    padding: 3.2rem 0 4.2rem;
     background:
-      radial-gradient(circle at top right, rgba(55, 95, 138, 0.12), transparent 30%),
-      linear-gradient(180deg, rgba(126, 36, 52, 0.08), rgba(255, 255, 255, 0.82)),
-      var(--surface-strong);
-    box-shadow: var(--shadow);
+      radial-gradient(circle at 14% 18%, rgba(255, 98, 40, 0.18), transparent 22%),
+      radial-gradient(circle at 88% 20%, rgba(141, 185, 216, 0.16), transparent 26%),
+      linear-gradient(180deg, #182833 0%, #1f3444 42%, #14232f 100%);
+    color: #eef3f6;
+  }
+
+  .registration-cta__band-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 0.96fr) minmax(340px, 1.04fr);
+    gap: 1rem;
+    align-items: center;
   }
 
   .registration-cta__copy h2 {
     margin: 0.3rem 0 0.8rem;
-    font-size: clamp(2.4rem, 5vw, 4.3rem);
-    line-height: 0.93;
+    font-size: clamp(2.5rem, 5vw, 4.3rem);
+    line-height: 0.92;
     max-width: 12ch;
   }
 
   .registration-cta__copy p,
   .registration-cta__list li {
-    color: var(--ink-soft);
+    color: rgba(236, 243, 246, 0.82);
   }
 
   .registration-cta__tags {
@@ -117,9 +123,9 @@ const registrationRouteLabel = locale === 'it' ? 'Passaggio rapido' : 'Quick han
     min-height: 2.2rem;
     padding: 0.35rem 0.9rem;
     border-radius: 999px;
-    border: 1px solid rgba(20, 32, 51, 0.08);
-    background: rgba(255, 255, 255, 0.78);
-    color: var(--ink);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f3f6f8;
     font-size: 0.82rem;
     font-weight: 700;
   }
@@ -137,18 +143,53 @@ const registrationRouteLabel = locale === 'it' ? 'Passaggio rapido' : 'Quick han
   }
 
   .registration-cta__media {
-    min-height: clamp(15rem, 30vw, 20rem);
+    min-height: clamp(18rem, 36vw, 24rem);
+    transform: translate3d(0, var(--scroll-shift, 0px), 0);
+    background:
+      linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+      linear-gradient(135deg, #0f1a29, #182833 55%, #243b4f);
+  }
+
+  .registration-cta__route,
+  .registration-cta__ticket {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .registration-cta__route {
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .registration-cta__route--a {
+    right: 12%;
+    top: 10%;
+    width: 36%;
+    height: 36%;
+    border-top-color: rgba(255, 98, 40, 0.42);
+    border-right-color: rgba(255, 98, 40, 0.42);
+    transform: rotate(12deg);
+    animation: mediaOrbit 26s linear infinite;
+  }
+
+  .registration-cta__route--b {
+    left: 14%;
+    bottom: 10%;
+    width: 22%;
+    height: 22%;
+    border-bottom-color: rgba(141, 185, 216, 0.36);
+    border-left-color: rgba(141, 185, 216, 0.36);
+    transform: rotate(-18deg);
+    animation: mediaOrbit 18s linear infinite reverse;
   }
 
   .registration-cta__ticket {
-    position: absolute;
     width: 7.4rem;
     height: 5.2rem;
     border-radius: 22px;
     background: rgba(255, 255, 255, 0.14);
     border: 1px solid rgba(255, 255, 255, 0.16);
     box-shadow: 0 16px 30px rgba(5, 10, 16, 0.16);
-    pointer-events: none;
   }
 
   .registration-cta__ticket--a {
@@ -166,10 +207,11 @@ const registrationRouteLabel = locale === 'it' ? 'Passaggio rapido' : 'Quick han
   .registration-cta__panel {
     position: relative;
     overflow: hidden;
-    border-radius: 24px;
     padding: 1.4rem;
-    background: rgba(255, 255, 255, 0.74);
-    border: 1px solid rgba(20, 32, 51, 0.08);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    transform: translate3d(0, var(--scroll-shift, 0px), 0);
   }
 
   .registration-cta__deadline-label {
@@ -177,13 +219,13 @@ const registrationRouteLabel = locale === 'it' ? 'Passaggio rapido' : 'Quick han
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.16em;
-    color: var(--accent);
+    color: rgba(255, 255, 255, 0.68);
     text-transform: uppercase;
   }
 
   .registration-cta__deadline-value {
     margin: 0.35rem 0 0;
-    color: var(--ink);
+    color: #fff;
     font-size: 2rem;
     line-height: 0.95;
     font-weight: 700;
@@ -200,7 +242,7 @@ const registrationRouteLabel = locale === 'it' ? 'Passaggio rapido' : 'Quick han
   }
 
   @media (max-width: 980px) {
-    .registration-cta__shell {
+    .registration-cta__band-shell {
       grid-template-columns: 1fr;
     }
   }

@@ -33,17 +33,27 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
         ←
       </button>
 
-      <div class="featured-speakers__viewport" data-speaker-viewport aria-label={carouselLabel}>
+      <div class="featured-speakers__viewport" data-speaker-viewport aria-label={carouselLabel} data-scroll-shift data-scroll-speed="16">
         <div class="featured-speakers__track">
           {featuredSpeakers.map((speaker, index) => (
-            <article class="featured-speakers__card" style={`--reveal-delay: ${index * 70}ms;`} data-reveal-item>
-              <div class="media-shell media-shell--light media-shell--portrait featured-speakers__media" aria-hidden="true">
+            <article
+              class="featured-speakers__card"
+              style={`--reveal-delay: ${index * 70}ms;`}
+              data-reveal-item
+              data-scroll-shift
+              data-scroll-speed={String(14 + (index % 3) * 5)}
+              data-scroll-direction={index % 2 === 0 ? '-1' : '1'}
+            >
+              <div class="media-shell media-shell--light media-shell--portrait featured-speakers__media featured-speakers__media-shell" aria-hidden="true" data-scroll-shift data-scroll-speed={String(10 + (index % 3) * 4)} data-scroll-direction={index % 2 === 0 ? '1' : '-1'}>
                 <span class="media-shell__label">{portraitLabel}</span>
                 <span class="media-shell__badge">{speaker.role}</span>
                 <span class="media-shell__grid"></span>
                 <span class="media-shell__scan"></span>
                 <span class="media-shell__beam"></span>
                 <span class="media-shell__frame"></span>
+                <span class="featured-speakers__card-media-orbit featured-speakers__card-media-orbit--outer"></span>
+                <span class="featured-speakers__card-media-orbit featured-speakers__card-media-orbit--inner"></span>
+                <span class="featured-speakers__card-media-route"></span>
                 <span class="media-shell__person media-shell__person--soft featured-speakers__figure featured-speakers__figure--left"></span>
                 <span class="media-shell__person featured-speakers__figure featured-speakers__figure--right"></span>
                 <div class="featured-speakers__monogram">
@@ -151,6 +161,7 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
     overflow-x: auto;
     scrollbar-width: none;
     scroll-snap-type: x proximity;
+    transform: translate3d(0, calc(var(--scroll-shift, 0px) * 0.55), 0);
   }
 
   .featured-speakers__viewport::-webkit-scrollbar {
@@ -180,10 +191,11 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
       transform 220ms ease,
       box-shadow 220ms ease,
       border-color 220ms ease;
+    transform: translate3d(0, var(--scroll-shift, 0px), 0);
   }
 
   .featured-speakers__card:hover {
-    transform: translateY(-5px);
+    transform: translate3d(0, calc(var(--scroll-shift, 0px) - 5px), 0);
     box-shadow: var(--shadow-strong);
     border-color: rgba(55, 95, 138, 0.18);
   }
@@ -191,6 +203,50 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
   .featured-speakers__media {
     margin-bottom: 1.05rem;
     box-shadow: none;
+  }
+
+  .featured-speakers__media-shell {
+    transform: translate3d(0, calc(var(--scroll-shift, 0px) * 0.75), 0);
+  }
+
+  .featured-speakers__card-media-orbit,
+  .featured-speakers__card-media-route {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .featured-speakers__card-media-orbit {
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    animation: mediaOrbit 22s linear infinite;
+  }
+
+  .featured-speakers__card-media-orbit--outer {
+    inset: 8% 10% auto auto;
+    width: 58%;
+    height: 58%;
+    border-left-color: rgba(255, 98, 40, 0.42);
+    border-top-color: rgba(255, 98, 40, 0.42);
+  }
+
+  .featured-speakers__card-media-orbit--inner {
+    inset: auto auto 12% 12%;
+    width: 34%;
+    height: 34%;
+    border-right-color: rgba(55, 95, 138, 0.42);
+    border-bottom-color: rgba(55, 95, 138, 0.42);
+    animation-direction: reverse;
+    animation-duration: 18s;
+  }
+
+  .featured-speakers__card-media-route {
+    inset: 18% 14% 26% 14%;
+    background:
+      radial-gradient(circle at 18% 32%, rgba(255, 255, 255, 0.2) 0 3px, transparent 4px),
+      radial-gradient(circle at 82% 64%, rgba(255, 98, 40, 0.24) 0 3px, transparent 4px),
+      linear-gradient(128deg, transparent 16%, rgba(255, 255, 255, 0.18) 17%, rgba(255, 255, 255, 0.18) 18%, transparent 19%),
+      linear-gradient(24deg, transparent 58%, rgba(141, 185, 216, 0.18) 59%, rgba(141, 185, 216, 0.18) 60%, transparent 61%);
+    opacity: calc(0.45 + var(--section-progress, 0) * 0.2);
   }
 
   .featured-speakers__figure--left {

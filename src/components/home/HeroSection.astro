@@ -8,14 +8,9 @@ interface Props {
 
 const { locale } = Astro.props;
 const labels = getLabels(locale);
-const homepage = getHomepageContent(locale);
-const hero = {
-  ...homepage.hero,
-  mediaPrimaryLabel: locale === 'it' ? 'Sede principale placeholder' : 'Main venue placeholder',
-  mediaSecondaryLabel: locale === 'it' ? 'Conversazione di panel placeholder' : 'Panel conversation placeholder',
-  mediaStripLabel: locale === 'it' ? 'Giornata COMPASS' : 'COMPASS day',
-  registrationBadge: locale === 'it' ? 'Partecipazione gratuita' : 'Free attendance',
-};
+const { hero } = getHomepageContent(locale);
+const marqueeCopies = 4;
+const marqueeItems = Array.from({ length: marqueeCopies }, () => hero.marqueeItems).flat();
 ---
 
 <section id="top" class="home-hero" data-home-hero>
@@ -23,76 +18,56 @@ const hero = {
   <div class="home-hero__radial home-hero__radial--b" aria-hidden="true"></div>
   <div class="home-hero__grid-atmosphere" data-home-grid aria-hidden="true"></div>
 
-  <div class="container home-hero__layout">
-    <div class="home-hero__content" data-home-hero-enter>
-      <p class="eyebrow">{hero.eyebrow}</p>
-      <h1>{hero.title}</h1>
-      <p class="home-hero__copy">{hero.copy}</p>
+  <div class="container home-hero__top" data-home-hero-enter>
+    <p class="home-hero__eyebrow">{hero.eyebrow}</p>
+    <p class="home-hero__date">{hero.dateLine}</p>
+    <h1 class="home-hero__title">{hero.displayTitle}</h1>
+    <p class="home-hero__subtitle">{hero.subtitle}</p>
+    <p class="home-hero__copy">{hero.title}</p>
 
-      <div class="home-hero__actions">
-        <a class="btn-primary" href={buildLocalizedPath(locale, 'registration')}>{labels.register}</a>
-        <a class="btn-secondary" href={buildLocalizedPath(locale, 'programme')}>{labels.viewProgramme}</a>
-      </div>
+    <div class="home-hero__actions">
+      <a class="btn-primary" href={buildLocalizedPath(locale, 'registration')}>{labels.register}</a>
+      <a class="btn-secondary" href={buildLocalizedPath(locale, 'programme')}>{labels.viewProgramme}</a>
+    </div>
 
-      <p class="home-hero__note">{hero.supportingNote}</p>
+    <p class="home-hero__note">{hero.supportingNote}</p>
+    <p class="home-hero__attendance">{hero.attendanceNote}</p>
 
-      <div class="home-hero__strip" data-reveal-item>
-        <span>{hero.mediaStripLabel}</span>
-        <span>{hero.registrationBadge}</span>
-        <span>{hero.panelItems[0]}</span>
+    <div class="home-hero__trust-row" aria-label={hero.trustLabel}>
+      <span class="home-hero__trust-label">{hero.trustLabel}</span>
+      <div class="home-hero__trust-items">
+        {hero.trustItems.map((item) => (
+          <span>{item}</span>
+        ))}
       </div>
     </div>
 
-    <div class="home-hero__media-column" data-home-hero-enter style="--hero-enter-delay: 140ms;">
-      <div
-        class="media-shell media-shell--video home-hero__media-primary"
-        data-home-hero-media
-        aria-hidden="true"
-        aria-label={hero.mediaPrimaryLabel}
-      >
-        <span class="media-shell__label">{hero.mediaPrimaryLabel}</span>
-        <span class="media-shell__badge">{hero.panelLabel}</span>
-        <span class="media-shell__grid"></span>
-        <span class="media-shell__scan"></span>
-        <span class="media-shell__orbit"></span>
-        <span class="media-shell__beam"></span>
-        <span class="media-shell__frame"></span>
-        <span class="media-shell__person home-hero__figure home-hero__figure--left"></span>
-        <span class="media-shell__person media-shell__person--soft home-hero__figure home-hero__figure--center"></span>
-        <span class="media-shell__person home-hero__figure home-hero__figure--right"></span>
-        <div class="media-shell__caption">
-          <span class="media-shell__eyebrow">{hero.mediaPrimaryLabel}</span>
-          <strong>{hero.panelItems[1]}</strong>
-          <p>{hero.panelItems[2]}</p>
-        </div>
-      </div>
+    <div class="home-hero__logos">
+      <img src="/images/logos/sssa-color.png" alt="Scuola Superiore Sant’Anna" class="hero-logo" />
+      <img src="/images/logos/unipi-color.png" alt="Università di Pisa" class="hero-logo" />
+      <img src="/images/logos/ai_society_logo.png" alt="AI Society" class="hero-logo hero-logo--ai" />
+    </div>
+  </div>
 
-      <div class="home-hero__media-row">
-        <div
-          class="media-shell media-shell--light media-shell--portrait home-hero__media-secondary"
-          data-home-hero-media
+  <div class="home-hero__marquee" aria-label={locale === 'it' ? 'Momenti del workshop' : 'Workshop moments'}>
+    <div class="home-hero__marquee-track" data-home-marquee-track data-marquee-copies={String(marqueeCopies)}>
+      {marqueeItems.map((item, index) => (
+        <article
+          class={`home-hero__marquee-card home-hero__marquee-card--${(index % 6) + 1}`}
           aria-hidden="true"
-          aria-label={hero.mediaSecondaryLabel}
+          data-scroll-shift
+          data-scroll-speed={String(16 + (index % 4) * 4)}
+          data-scroll-direction={index % 2 === 0 ? '1' : '-1'}
         >
-          <span class="media-shell__label">{hero.mediaSecondaryLabel}</span>
-          <span class="media-shell__badge">{hero.mediaStripLabel}</span>
-          <span class="media-shell__grid"></span>
-          <span class="media-shell__scan"></span>
-          <span class="media-shell__beam"></span>
-          <span class="media-shell__frame"></span>
-          <span class="media-shell__person media-shell__person--soft home-hero__portrait home-hero__portrait--left"></span>
-          <span class="media-shell__person home-hero__portrait home-hero__portrait--right"></span>
-        </div>
-
-        <aside class="home-hero__snapshot">
-          <p class="home-hero__snapshot-label">{hero.panelLabel}</p>
-          <ul class="home-hero__snapshot-list">
-            {hero.panelItems.map((item) => (
-              <li>{item}</li>
-            ))}
-          </ul>
-        </aside>
-      </div>
+          <span class="home-hero__marquee-network"></span>
+          <span class="home-hero__marquee-network home-hero__marquee-network--secondary"></span>
+          <span class="home-hero__marquee-eyebrow">{item.eyebrow}</span>
+          <span class="home-hero__marquee-label">{item.label}</span>
+          <span class="home-hero__marquee-glow"></span>
+          <span class="home-hero__marquee-figure home-hero__marquee-figure--left"></span>
+          <span class="home-hero__marquee-figure home-hero__marquee-figure--right"></span>
+        </article>
+      ))}
     </div>
   </div>
 </section>
@@ -105,8 +80,16 @@ const hero = {
     }
 
     const grid = root.querySelector('[data-home-grid]');
-    const media = root.querySelectorAll('[data-home-hero-media]');
+    const marqueeTrack = root.querySelector('[data-home-marquee-track]');
     const enterNodes = root.querySelectorAll('[data-home-hero-enter]');
+    let frameId = 0;
+    let sequenceWidth = 0;
+    let marqueeOffset = -sequenceWidth;
+    let marqueeVelocity = -0.42;
+    let scrollImpulse = 0;
+    let lastTick = performance.now();
+    let lastScrollY = window.scrollY;
+
     requestAnimationFrame(() => {
       root.classList.add('is-ready');
       enterNodes.forEach((node) => node.classList.add('is-ready'));
@@ -115,90 +98,150 @@ const hero = {
     const updateScene = () => {
       const y = window.scrollY;
       if (grid) {
-        const offsetX = (y * 0.035) % 10;
-        const offsetY = (y * 0.025) % 8;
+        const offsetX = (y * 0.04) % 8;
+        const offsetY = (y * 0.03) % 6;
         grid.style.transform = `translate3d(${offsetX.toFixed(2)}px, ${offsetY.toFixed(2)}px, 0)`;
       }
+    };
 
-      media.forEach((node, index) => {
-        const direction = index % 2 === 0 ? 1 : -1;
-        const offsetY = Math.min(y * 0.028, 18) * direction;
-        node.style.transform = `translate3d(0, ${offsetY.toFixed(2)}px, 0)`;
-      });
+    const measureMarquee = () => {
+      if (!marqueeTrack) {
+        return;
+      }
+
+      const copies = Number(marqueeTrack.getAttribute('data-marquee-copies') ?? '4');
+      sequenceWidth = marqueeTrack.scrollWidth / copies;
+      if (!sequenceWidth) {
+        return;
+      }
+
+      marqueeOffset = -sequenceWidth;
+      marqueeTrack.style.transform = `translateX(${marqueeOffset}px)`;
+    };
+
+    const tickMarquee = (time) => {
+      if (!marqueeTrack || !sequenceWidth) {
+        frameId = requestAnimationFrame(tickMarquee);
+        return;
+      }
+
+      const heroRect = root.getBoundingClientRect();
+      if (heroRect.bottom <= 0 || heroRect.top >= window.innerHeight) {
+        lastTick = time;
+        frameId = requestAnimationFrame(tickMarquee);
+        return;
+      }
+
+      const delta = Math.min((time - lastTick) / 16.667, 2.2);
+      lastTick = time;
+      const viewportWidth = root.clientWidth || window.innerWidth || 0;
+      const totalWidth = marqueeTrack.scrollWidth;
+      const minOffset = viewportWidth - totalWidth;
+
+      scrollImpulse *= Math.pow(0.88, delta);
+      marqueeOffset += (marqueeVelocity + scrollImpulse) * delta;
+
+      while (marqueeOffset <= minOffset) {
+        marqueeOffset += sequenceWidth;
+      }
+
+      while (marqueeOffset > 0) {
+        marqueeOffset -= sequenceWidth;
+      }
+
+      marqueeTrack.style.transform = `translateX(${marqueeOffset}px)`;
+      frameId = requestAnimationFrame(tickMarquee);
+    };
+
+    const handleMarqueeScroll = () => {
+      const scrollDelta = window.scrollY - lastScrollY;
+      lastScrollY = window.scrollY;
+      scrollImpulse = Math.max(-8, Math.min(8, scrollImpulse + scrollDelta * 0.12));
     };
 
     updateScene();
+    measureMarquee();
     window.addEventListener('scroll', updateScene, { passive: true });
+    window.addEventListener('scroll', handleMarqueeScroll, { passive: true });
+    window.addEventListener('resize', measureMarquee);
+    frameId = requestAnimationFrame(tickMarquee);
+
+    window.addEventListener('beforeunload', () => {
+      window.cancelAnimationFrame(frameId);
+    }, { once: true });
   })();
 </script>
 
 <style>
   .home-hero {
     position: relative;
-    min-height: calc(100vh - 92px);
+    overflow: visible;
+    min-height: 100vh;
     display: flex;
-    align-items: center;
-    overflow: clip;
-    padding: clamp(2rem, 4vw, 4rem) 0 2.5rem;
+    flex-direction: column;
+    padding-top: clamp(4.8rem, 8vw, 7.2rem);
   }
 
   .home-hero__radial {
     position: absolute;
-    border-radius: 999px;
     pointer-events: none;
-    filter: blur(46px);
-    opacity: 0.18;
+    z-index: 0;
+    border-radius: 999px;
+    filter: blur(34px);
+    opacity: 0.12;
+    will-change: transform;
   }
 
   .home-hero__radial--a {
-    top: 4%;
-    left: -8%;
-    width: min(540px, 44vw);
-    height: min(540px, 44vw);
-    background: radial-gradient(circle, rgba(126, 36, 52, 0.28) 0%, rgba(126, 36, 52, 0) 72%);
-    animation: heroDriftA 18s ease-in-out infinite alternate;
+    left: -12%;
+    top: 8%;
+    width: min(760px, 68vw);
+    height: min(760px, 68vw);
+    background: radial-gradient(circle at 44% 42%, rgba(126, 36, 52, 0.16) 0%, rgba(126, 36, 52, 0.08) 34%, rgba(126, 36, 52, 0) 72%);
+    animation: homeHeroDriftA 30s ease-in-out infinite alternate;
   }
 
   .home-hero__radial--b {
-    right: -10%;
-    bottom: 2%;
-    width: min(520px, 42vw);
-    height: min(520px, 42vw);
-    background: radial-gradient(circle, rgba(55, 95, 138, 0.26) 0%, rgba(55, 95, 138, 0) 70%);
-    animation: heroDriftB 22s ease-in-out infinite alternate;
+    right: -16%;
+    top: 24%;
+    width: min(680px, 60vw);
+    height: min(680px, 60vw);
+    background: radial-gradient(circle at 56% 48%, rgba(55, 95, 138, 0.16) 0%, rgba(55, 95, 138, 0.08) 36%, rgba(55, 95, 138, 0) 74%);
+    animation: homeHeroDriftB 24s ease-in-out infinite alternate;
   }
 
   .home-hero__grid-atmosphere {
     position: absolute;
-    inset: 8% 0 10%;
-    opacity: 0.55;
+    inset: 0 0 28% 0;
     pointer-events: none;
+    z-index: 1;
+    opacity: 0.34;
     background-image:
-      linear-gradient(rgba(20, 32, 51, 0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(20, 32, 51, 0.06) 1px, transparent 1px),
-      radial-gradient(circle at top, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0));
-    background-size: 40px 40px, 40px 40px, 100% 100%;
-    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.92), rgba(0, 0, 0, 0.35) 72%, transparent);
+      linear-gradient(rgba(20, 32, 51, 0.055) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(20, 32, 51, 0.055) 1px, transparent 1px),
+      radial-gradient(ellipse 62% 46% at 50% 26%, rgba(55, 95, 138, 0.12), transparent 74%);
+    background-size: 42px 42px, 42px 42px, 100% 100%;
+    mask-image: radial-gradient(ellipse at 50% 34%, #000 44%, rgba(0, 0, 0, 0.05) 76%, transparent 100%);
     transition: transform 160ms linear;
   }
 
-  .home-hero__layout {
+  .home-hero__top {
     position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.95fr);
-    gap: 1rem;
-    align-items: end;
+    z-index: 2;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 2.25rem;
   }
 
-  .home-hero__content,
-  .home-hero__media-column {
+  .home-hero__top {
     opacity: 1;
     transform: translateY(0);
   }
 
-  :global(html[data-js='true']) .home-hero__content,
-  :global(html[data-js='true']) .home-hero__media-column {
+  :global(html[data-js='true']) .home-hero__top {
     opacity: 0;
     transform: translateY(18px);
     transition:
@@ -206,202 +249,310 @@ const hero = {
       transform 520ms ease var(--hero-enter-delay, 0ms);
   }
 
-  :global(html[data-js='true']) .home-hero__content.is-ready,
-  :global(html[data-js='true']) .home-hero__media-column.is-ready {
+  :global(html[data-js='true']) .home-hero__top.is-ready {
     opacity: 1;
     transform: translateY(0);
   }
 
-  .home-hero__content {
-    padding: clamp(2rem, 5vw, 4rem);
-    border-radius: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.68);
-    box-shadow: var(--shadow-strong);
-    backdrop-filter: blur(14px);
-    background:
-      linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 253, 249, 0.64)),
-      var(--surface);
-  }
-
-  .home-hero h1 {
-    margin: 0.45rem 0 0.9rem;
-    font-size: clamp(3.2rem, 7vw, 6rem);
-    line-height: 0.92;
-    max-width: 11ch;
-    text-wrap: balance;
-  }
-
-  .home-hero__copy,
-  .home-hero__note {
-    max-width: 43rem;
-    color: var(--ink-soft);
-    font-size: 1.08rem;
-  }
-
-  .home-hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-top: 1.7rem;
-  }
-
-  .home-hero__note {
-    margin: 1.4rem 0 0;
-    font-size: 0.96rem;
-  }
-
-  .home-hero__strip {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-    margin-top: 1.4rem;
-  }
-
-  .home-hero__strip span {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.2rem;
-    padding: 0.35rem 0.85rem;
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(20, 32, 51, 0.08);
-    color: var(--ink);
-    font-size: 0.8rem;
+  .home-hero__eyebrow,
+  .home-hero__date {
+    margin: 0;
+    text-transform: uppercase;
     font-weight: 700;
   }
 
-  .home-hero__media-column {
-    display: grid;
-    gap: 0.9rem;
-  }
-
-  .home-hero__media-primary {
-    min-height: clamp(18rem, 34vw, 24rem);
-    transition: transform 180ms linear;
-  }
-
-  .home-hero__media-row {
-    display: grid;
-    grid-template-columns: minmax(220px, 0.85fr) minmax(0, 1fr);
-    gap: 0.9rem;
-    align-items: stretch;
-  }
-
-  .home-hero__media-secondary {
-    min-height: 100%;
-    transition: transform 180ms linear;
-  }
-
-  .home-hero__snapshot {
-    padding: 1.35rem;
-    border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.62);
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 253, 249, 0.92)),
-      var(--surface);
-    box-shadow: var(--shadow);
-  }
-
-  .home-hero__snapshot-label {
-    margin: 0;
+  .home-hero__eyebrow {
+    letter-spacing: 0.3em;
+    font-size: 0.82rem;
     color: var(--accent);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
+  }
+
+  .home-hero__date {
+    margin-top: 0.8rem;
+    letter-spacing: 0.18em;
+    font-size: 0.84rem;
+    color: var(--ink-soft);
+  }
+
+  .home-hero__title {
+    margin: 0.55rem 0 0;
+    text-transform: uppercase;
+    line-height: 0.86;
+    font-size: clamp(4.8rem, 13vw, 9rem);
+    letter-spacing: -0.03em;
+    font-family: "Bebas Neue", "Arial Narrow", "Segoe UI", sans-serif;
+    font-weight: 400;
+  }
+
+  .home-hero__subtitle {
+    margin: 0.55rem auto 0;
+    max-width: 40ch;
+    font-size: 1rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.06em;
     text-transform: uppercase;
   }
 
-  .home-hero__snapshot-list {
-    list-style: none;
-    display: grid;
-    gap: 0.75rem;
-    margin: 1rem 0 0;
-    padding: 0;
-  }
-
-  .home-hero__snapshot-list li {
-    padding: 0.85rem 0.95rem;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(20, 32, 51, 0.08);
+  .home-hero__copy {
+    margin: 0.95rem auto 0;
+    max-width: 34ch;
+    font-size: clamp(1.04rem, 1.35vw, 1.16rem);
     color: var(--ink);
-    box-shadow: 0 10px 24px rgba(20, 32, 51, 0.06);
   }
 
-  .home-hero__figure--left {
-    left: 16%;
-    --person-width: 4.6rem;
-    --person-height: 7.8rem;
+  .home-hero__actions {
+    margin-top: 1.1rem;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
   }
 
-  .home-hero__figure--center {
-    left: calc(50% - 2.8rem);
-    --person-width: 5.6rem;
-    --person-height: 9.4rem;
+  .home-hero__note,
+  .home-hero__attendance {
+    margin: 0.8rem auto 0;
+    max-width: 60ch;
+    color: var(--ink-soft);
   }
 
-  .home-hero__figure--right {
-    right: 14%;
-    --person-width: 4.7rem;
-    --person-height: 8rem;
+  .home-hero__attendance {
+    font-size: 0.96rem;
   }
 
-  .home-hero__portrait--left {
-    left: 20%;
-    --person-width: 4rem;
-    --person-height: 6.9rem;
+  .home-hero__trust-row {
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 0.55rem;
+    justify-items: center;
   }
 
-  .home-hero__portrait--right {
-    right: 18%;
-    --person-width: 4rem;
-    --person-height: 6.6rem;
+  .home-hero__trust-label {
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    color: rgba(20, 32, 51, 0.5);
   }
 
-  @keyframes heroDriftA {
-    from {
+  .home-hero__trust-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.9rem 1.15rem;
+    font-size: 0.94rem;
+    font-weight: 700;
+    color: rgba(20, 32, 51, 0.82);
+  }
+
+  .home-hero__logos {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+    opacity: 0.85;
+  }
+
+  .hero-logo {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .hero-logo--ai {
+    height: 56px;
+  }
+
+  .home-hero__marquee {
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+    padding: 0 0 1rem;
+  }
+
+  .home-hero__marquee::before,
+  .home-hero__marquee::after {
+    content: "";
+    position: absolute;
+    inset-inline: 0;
+    height: 3rem;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .home-hero__marquee::before {
+    top: 0;
+    background: linear-gradient(180deg, var(--page-bg), rgba(246, 242, 236, 0));
+  }
+
+  .home-hero__marquee::after {
+    bottom: 0;
+    background: linear-gradient(0deg, var(--page-bg), rgba(246, 242, 236, 0));
+  }
+
+  .home-hero__marquee-track {
+    display: flex;
+    gap: 0;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .home-hero__marquee-card {
+    position: relative;
+    flex: 0 0 clamp(180px, 15vw, 240px);
+    height: clamp(230px, 26vw, 320px);
+    overflow: hidden;
+    transform: translate3d(0, var(--scroll-shift, 0px), 0);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+      linear-gradient(135deg, #3c5168, #223445 58%, #172636);
+  }
+
+  .home-hero__marquee-card--2,
+  .home-hero__marquee-card--5 {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0)),
+      linear-gradient(135deg, #765057, #b78d7e 58%, #7d5e51);
+  }
+
+  .home-hero__marquee-card--3,
+  .home-hero__marquee-card--6 {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0)),
+      linear-gradient(135deg, #243140, #172636 58%, #475f73);
+  }
+
+  .home-hero__marquee-network {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 22% 24%, rgba(255, 255, 255, 0.2) 0 4px, transparent 5px),
+      radial-gradient(circle at 68% 36%, rgba(255, 98, 40, 0.26) 0 4px, transparent 5px),
+      linear-gradient(118deg, transparent 24%, rgba(255, 255, 255, 0.16) 25%, transparent 26%),
+      linear-gradient(164deg, transparent 34%, rgba(255, 255, 255, 0.12) 35%, transparent 36%);
+    opacity: 0.46;
+  }
+
+  .home-hero__marquee-network--secondary {
+    background:
+      radial-gradient(circle at 78% 18%, rgba(141, 185, 216, 0.3) 0 3px, transparent 4px),
+      linear-gradient(142deg, transparent 52%, rgba(141, 185, 216, 0.14) 53%, transparent 54%);
+    opacity: 0.36;
+  }
+
+  .home-hero__marquee-eyebrow,
+  .home-hero__marquee-label {
+    position: absolute;
+    left: 1rem;
+    z-index: 2;
+    color: #fff;
+  }
+
+  .home-hero__marquee-eyebrow {
+    top: 1rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .home-hero__marquee-label {
+    left: 1rem;
+    bottom: 1.2rem;
+    right: 1rem;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .home-hero__marquee-glow {
+    position: absolute;
+    inset: auto -10% -22% auto;
+    width: 70%;
+    height: 70%;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(255, 122, 60, 0.32), rgba(255, 122, 60, 0) 72%);
+    filter: blur(18px);
+  }
+
+  .home-hero__marquee-figure {
+    position: absolute;
+    bottom: 3.3rem;
+    width: 4rem;
+    height: 7.2rem;
+    border-radius: 999px 999px 22px 22px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(255, 255, 255, 0)),
+      linear-gradient(180deg, rgba(251, 232, 224, 0.9), rgba(86, 37, 39, 0.96));
+    box-shadow: 0 18px 32px rgba(5, 10, 16, 0.25);
+  }
+
+  .home-hero__marquee-figure::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -1.6rem;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    background:
+      radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.08)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.02));
+  }
+
+  .home-hero__marquee-figure--left {
+    left: 18%;
+  }
+
+  .home-hero__marquee-figure--right {
+    right: 16%;
+    width: 3.5rem;
+    height: 6.4rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)),
+      linear-gradient(180deg, rgba(211, 225, 240, 0.88), rgba(55, 95, 138, 0.94));
+  }
+
+  @keyframes homeHeroDriftA {
+    0% {
       transform: translate3d(0, 0, 0) scale(1);
     }
 
-    to {
-      transform: translate3d(18px, -18px, 0) scale(1.05);
+    100% {
+      transform: translate3d(22px, -16px, 0) scale(1.03);
     }
   }
 
-  @keyframes heroDriftB {
-    from {
+  @keyframes homeHeroDriftB {
+    0% {
       transform: translate3d(0, 0, 0) scale(1);
     }
 
-    to {
-      transform: translate3d(-16px, 18px, 0) scale(1.04);
+    100% {
+      transform: translate3d(-18px, 20px, 0) scale(1.04);
     }
   }
 
-  @media (max-width: 1080px) {
+  @media (max-width: 900px) {
     .home-hero {
       min-height: auto;
-      padding-top: 1.2rem;
+      padding-top: 4.6rem;
     }
 
-    .home-hero__layout,
-    .home-hero__media-row {
-      grid-template-columns: 1fr;
-      align-items: stretch;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .home-hero h1 {
-      font-size: clamp(2.8rem, 14vw, 4.2rem);
+    .home-hero__title {
+      font-size: clamp(4rem, 18vw, 6.4rem);
     }
 
-    .home-hero__actions {
-      flex-direction: column;
+    .home-hero__marquee-card {
+      flex-basis: clamp(150px, 40vw, 220px);
+      height: clamp(200px, 52vw, 270px);
     }
 
-    .home-hero__strip {
-      flex-direction: column;
+    .home-hero__trust-items {
+      gap: 0.65rem 0.9rem;
+      font-size: 0.88rem;
     }
   }
 </style>

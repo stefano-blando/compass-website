@@ -2,16 +2,16 @@ import type { Talk } from './types';
 
 export const talks: Talk[] = [
   {
-    slug: 'opening-remarks-andrea-vandin',
+    slug: 'opening-remarks-vandin-rettore',
     title: {
       en: 'Opening Remarks',
       it: 'Saluti introduttivi',
     },
     abstract: {
-      en: 'Workshop welcome and framing for the day in Aula 3 at Scuola Superiore Sant’Anna.',
-      it: 'Benvenuto al workshop e framing della giornata in Aula 3 alla Scuola Superiore Sant’Anna.',
+      en: 'Workshop welcome and institutional framing by Andrea Vandin and the Rector of Scuola Superiore Sant’Anna.',
+      it: 'Benvenuto al workshop e saluti istituzionali a cura di Andrea Vandin e del Rettore della Scuola Superiore Sant’Anna.',
     },
-    speakerSlugs: ['andrea-vandin'],
+    speakerSlugs: ['andrea-vandin', 'rettore-sssa'],
     sessionSlug: 'opening-remarks',
     startsAt: '2026-05-18T09:30:00+02:00',
   },
@@ -55,7 +55,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['biancamaria-bombino'],
     sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T11:15:00+02:00',
+    startsAt: '2026-05-18T11:10:00+02:00',
   },
   {
     slug: 'panel-1-simone-tonini',
@@ -69,35 +69,21 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['simone-tonini'],
     sessionSlug: 'panel-1-ai-methods',
+    startsAt: '2026-05-18T11:20:00+02:00',
+  },
+  {
+    slug: 'panel-1-corentin-lobet',
+    title: {
+      en: 'Corentin Lobet',
+      it: 'Corentin Lobet',
+    },
+    abstract: {
+      en: 'Current panel contribution listed in the latest workshop agenda.',
+      it: 'Contributo di panel riportato nell agenda di workshop piu recente.',
+    },
+    speakerSlugs: ['corentin-lobet'],
+    sessionSlug: 'panel-1-ai-methods',
     startsAt: '2026-05-18T11:30:00+02:00',
-  },
-  {
-    slug: 'panel-1-speaker-tbd-a',
-    title: {
-      en: 'Speaker (TBD)',
-      it: 'Speaker (TBD)',
-    },
-    abstract: {
-      en: 'This speaker slot remains open in the current workshop agenda.',
-      it: 'Questo slot speaker resta aperto nell agenda attuale del workshop.',
-    },
-    speakerSlugs: ['speaker-tbd-panel-1-a'],
-    sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T11:45:00+02:00',
-  },
-  {
-    slug: 'panel-1-speaker-tbd-b',
-    title: {
-      en: 'Speaker (TBD)',
-      it: 'Speaker (TBD)',
-    },
-    abstract: {
-      en: 'This speaker slot remains open in the current workshop agenda.',
-      it: 'Questo slot speaker resta aperto nell agenda attuale del workshop.',
-    },
-    speakerSlugs: ['speaker-tbd-panel-1-b'],
-    sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T12:00:00+02:00',
   },
   {
     slug: 'panel-1-roundtable',
@@ -111,7 +97,21 @@ export const talks: Talk[] = [
     },
     speakerSlugs: [],
     sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T12:15:00+02:00',
+    startsAt: '2026-05-18T11:40:00+02:00',
+  },
+  {
+    slug: 'keynote-pagopa-ad',
+    title: {
+      en: 'Digital Transformation & Technologies — CEO, PagoPA',
+      it: 'Digital Transformation e Tecnologie — AD, PagoPA',
+    },
+    abstract: {
+      en: 'Institutional keynote by the CEO of PagoPA on digital transformation and technologies.',
+      it: 'Keynote istituzionale dell Amministratore Delegato di PagoPA su digital transformation e tecnologie.',
+    },
+    speakerSlugs: ['pagopa-ad'],
+    sessionSlug: 'keynote-pagopa',
+    startsAt: '2026-05-18T12:00:00+02:00',
   },
   {
     slug: 'keynote-prabhani-don',
@@ -153,7 +153,21 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['alice-musso'],
     sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T14:45:00+02:00',
+    startsAt: '2026-05-18T14:42:00+02:00',
+  },
+  {
+    slug: 'panel-2-giuseppe-f-squillace',
+    title: {
+      en: 'Giuseppe Squillace (online)',
+      it: 'Giuseppe Squillace (online)',
+    },
+    abstract: {
+      en: 'Current panel contribution listed in the latest workshop agenda. Participating remotely.',
+      it: 'Contributo di panel riportato nell agenda di workshop piu recente. Partecipazione da remoto.',
+    },
+    speakerSlugs: ['giuseppe-f-squillace'],
+    sessionSlug: 'panel-2-networks-nlp',
+    startsAt: '2026-05-18T14:54:00+02:00',
   },
   {
     slug: 'panel-2-riccardo-porcedda',
@@ -167,21 +181,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['riccardo-porcedda'],
     sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T15:00:00+02:00',
-  },
-  {
-    slug: 'panel-2-giuseppe-f-squillace',
-    title: {
-      en: 'Giuseppe Squillace',
-      it: 'Giuseppe Squillace',
-    },
-    abstract: {
-      en: 'Current panel contribution listed in the latest workshop agenda.',
-      it: 'Contributo di panel riportato nell agenda di workshop piu recente.',
-    },
-    speakerSlugs: ['giuseppe-f-squillace'],
-    sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T15:15:00+02:00',
+    startsAt: '2026-05-18T15:06:00+02:00',
   },
   {
     slug: 'panel-2-anna-gallo',
@@ -195,7 +195,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['anna-gallo'],
     sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T15:30:00+02:00',
+    startsAt: '2026-05-18T15:18:00+02:00',
   },
   {
     slug: 'panel-2-roundtable',
@@ -209,7 +209,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: [],
     sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T15:45:00+02:00',
+    startsAt: '2026-05-18T15:30:00+02:00',
   },
   {
     slug: 'keynote-ai-regulation-tbc',
@@ -251,7 +251,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['roberta-savella'],
     sessionSlug: 'panel-3-legal-ethics',
-    startsAt: '2026-05-18T17:15:00+02:00',
+    startsAt: '2026-05-18T17:10:00+02:00',
   },
   {
     slug: 'panel-3-vittoria-caponecchia',
@@ -265,35 +265,21 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['vittoria-caponecchia'],
     sessionSlug: 'panel-3-legal-ethics',
-    startsAt: '2026-05-18T17:30:00+02:00',
+    startsAt: '2026-05-18T17:20:00+02:00',
   },
   {
     slug: 'panel-3-elio-grande',
     title: {
-      en: 'Elio Grande',
-      it: 'Elio Grande',
+      en: 'Elio Grande (online)',
+      it: 'Elio Grande (online)',
     },
     abstract: {
-      en: 'Current panel contribution listed in the latest workshop agenda.',
-      it: 'Contributo di panel riportato nell agenda di workshop piu recente.',
+      en: 'Current panel contribution listed in the latest workshop agenda. Participating remotely.',
+      it: 'Contributo di panel riportato nell agenda di workshop piu recente. Partecipazione da remoto.',
     },
     speakerSlugs: ['elio-grande'],
     sessionSlug: 'panel-3-legal-ethics',
-    startsAt: '2026-05-18T17:45:00+02:00',
-  },
-  {
-    slug: 'panel-3-speaker-tbd-a',
-    title: {
-      en: 'Speaker (TBD)',
-      it: 'Speaker (TBD)',
-    },
-    abstract: {
-      en: 'This speaker slot remains open in the current workshop agenda.',
-      it: 'Questo slot speaker resta aperto nell agenda attuale del workshop.',
-    },
-    speakerSlugs: ['speaker-tbd-panel-3-a'],
-    sessionSlug: 'panel-3-legal-ethics',
-    startsAt: '2026-05-18T18:00:00+02:00',
+    startsAt: '2026-05-18T17:30:00+02:00',
   },
   {
     slug: 'panel-3-roundtable',
@@ -307,7 +293,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: [],
     sessionSlug: 'panel-3-legal-ethics',
-    startsAt: '2026-05-18T18:15:00+02:00',
+    startsAt: '2026-05-18T17:40:00+02:00',
   },
   {
     slug: 'closing-remarks-francesca-chiaromonte',
@@ -321,6 +307,6 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['francesca-chiaromonte'],
     sessionSlug: 'closing-remarks',
-    startsAt: '2026-05-18T18:30:00+02:00',
+    startsAt: '2026-05-18T18:00:00+02:00',
   },
 ];

@@ -1,8 +1,8 @@
 ---
-import SectionScrollNav from '../../components/SectionScrollNav.vue';
+import DarkStageSection from '../../components/home/DarkStageSection.astro';
 import FeaturedSpeakersSection from '../../components/home/FeaturedSpeakersSection.astro';
 import HeroSection from '../../components/home/HeroSection.astro';
-import HighlightsSection from '../../components/home/HighlightsSection.astro';
+import HomeNetworkBackground from '../../components/home/HomeNetworkBackground.astro';
 import MediaShowcaseSection from '../../components/home/MediaShowcaseSection.astro';
 import ProgrammePreviewSection from '../../components/home/ProgrammePreviewSection.astro';
 import RegistrationCtaSection from '../../components/home/RegistrationCtaSection.astro';
@@ -34,14 +34,14 @@ const pageMeta = getPageMetadata(locale, 'home');
   </script>
 
   <Header locale={locale} />
-  <SectionScrollNav client:load locale={locale} />
 
-  <main class="home-shell">
+  <main class="home-shell" data-home-parallax>
+    <HomeNetworkBackground />
     <HeroSection locale={locale} />
-    <WhyCompassSection locale={locale} />
-    <HighlightsSection locale={locale} />
+    <DarkStageSection locale={locale} />
     <ProgrammePreviewSection locale={locale} />
     <FeaturedSpeakersSection locale={locale} />
+    <WhyCompassSection locale={locale} />
     <MediaShowcaseSection locale={locale} />
     <VenuePreviewSection locale={locale} />
     <RegistrationCtaSection locale={locale} />
@@ -55,6 +55,7 @@ const pageMeta = getPageMetadata(locale, 'home');
         return;
       }
 
+      const parallaxRoot = document.querySelector('[data-home-parallax]');
       const sections = Array.from(document.querySelectorAll('[data-home-reveal]'));
       if (!sections.length) {
         return;
@@ -75,12 +76,51 @@ const pageMeta = getPageMetadata(locale, 'home');
       );
 
       sections.forEach((section) => observer.observe(section));
+
+      if (!parallaxRoot) {
+        return;
+      }
+
+      const parallaxNodes = Array.from(parallaxRoot.querySelectorAll('[data-scroll-shift]'));
+      if (!parallaxNodes.length) {
+        return;
+      }
+
+      const updateParallax = () => {
+        const viewportHeight = window.innerHeight || 1;
+
+        sections.forEach((section) => {
+          const rect = section.getBoundingClientRect();
+          const progress = Math.max(0, Math.min(1, 1 - rect.top / viewportHeight));
+          section.style.setProperty('--section-progress', progress.toFixed(3));
+        });
+
+        parallaxNodes.forEach((node) => {
+          const speed = Number(node.getAttribute('data-scroll-speed') ?? '24');
+          const direction = Number(node.getAttribute('data-scroll-direction') ?? '1');
+          const rect = node.getBoundingClientRect();
+          const progress = ((rect.top + rect.height * 0.5) / viewportHeight) - 0.5;
+          const offset = progress * speed * direction;
+          node.style.setProperty('--scroll-shift', `${offset.toFixed(2)}px`);
+        });
+      };
+
+      updateParallax();
+      window.addEventListener('scroll', updateParallax, { passive: true });
+      window.addEventListener('resize', updateParallax);
     })();
   </script>
 </Layout>
 
 <style>
   .home-shell {
+    position: relative;
+    isolation: isolate;
     padding-bottom: 4rem;
+  }
+
+  .home-shell > :not([data-home-network-bg]) {
+    position: relative;
+    z-index: 1;
   }
 </style>

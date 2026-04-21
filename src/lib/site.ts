@@ -23,11 +23,32 @@ export const locales = supportedLocales;
 
 type HomepageHeroContent = {
   eyebrow: string;
+  dateLine: string;
+  displayTitle: string;
+  subtitle: string;
   title: string;
   copy: string;
   supportingNote: string;
+  attendanceNote: string;
+  trustLabel: string;
+  trustItems: string[];
+  marqueeItems: Array<{
+    label: string;
+    eyebrow: string;
+  }>;
   panelLabel: string;
   panelItems: string[];
+};
+
+type HomepageDarkStageContent = {
+  eyebrow: string;
+  title: string;
+  intro: string;
+  videoLabel: string;
+  videoTitle: string;
+  videoCopy: string;
+  featuredLabel: string;
+  featuredItems: string[];
 };
 
 type HomepageWhyCompassContent = {
@@ -55,6 +76,14 @@ type HomepageProgrammeContent = {
   note: string;
   sessionLabel: string;
   talkLabel: string;
+  navCards: Array<{
+    route: 'programme' | 'speakers' | 'venue';
+    eyebrow: string;
+    title: string;
+    body: string;
+    meta: string;
+    mediaLabel: string;
+  }>;
 };
 
 type HomepageSpeakersContent = {
@@ -100,6 +129,7 @@ type HomepageFeaturedSpeakerSelection = {
 
 type HomepageContent = {
   hero: HomepageHeroContent;
+  darkStage: HomepageDarkStageContent;
   whyCompass: HomepageWhyCompassContent;
   highlights: HomepageHighlight[];
   mediaShowcase: HomepageMediaShowcaseContent;
@@ -114,17 +144,42 @@ const homepageContent = {
   en: {
     hero: {
       eyebrow: 'COMPASS 2026',
+      dateLine: `${siteConfig.eventDate} · ${siteConfig.venue}`,
+      displayTitle: 'COMPASS',
+      subtitle: 'COmplexity, Markets, Policy, and AI in Social Systems',
       title: 'A focused workshop on socio-economic complexity, AI methods, and policy.',
       copy:
         'Organized by PhD-AI.it Society doctoral researchers, COMPASS connects complexity science, markets, networks, law, and AI in a single one-day academic setting.',
       supportingNote:
-        'Current draft: opening remarks, three keynote slots, three chaired panels, two coffee breaks, a networking lunch, closing remarks, and a social dinner in Pisa.',
-      panelLabel: 'Workshop Snapshot',
+        'Applications are open now for a compact academic workshop format in Pisa.',
+      attendanceNote: 'One day, one room, and a shared interdisciplinary audience across methods, networks, law, and policy.',
+      trustLabel: 'Built with contributions across',
+      trustItems: ['Complexity Science', 'AI Methods', 'Networks & NLP', 'Law & Ethics', 'Policy Research', 'Market Design'],
+      marqueeItems: [
+        { label: 'Keynote placeholder', eyebrow: 'Morning session' },
+        { label: 'Audience placeholder', eyebrow: 'Main room' },
+        { label: 'Panel discussion placeholder', eyebrow: 'Track dialogue' },
+        { label: 'Campus moment placeholder', eyebrow: 'Sant’Anna' },
+        { label: 'Roundtable placeholder', eyebrow: 'Workshop exchange' },
+        { label: 'Speaker portrait placeholder', eyebrow: 'Invited guest' },
+      ],
+        panelLabel: 'Workshop Snapshot',
       panelItems: [
         siteConfig.eventDate,
         siteConfig.venue,
-        'Free participation · expected audience 30-40 · alternate date 18 May 2026.',
+        'Free participation · expected audience 30-40 · Aula 3 confirmed.',
       ],
+    },
+    darkStage: {
+      eyebrow: 'Beyond One Discipline',
+      title: 'Research, law, policy, and AI in one compact workshop day.',
+      intro:
+        'COMPASS is staged as a full-day sequence of keynote framing, doctoral-led panels, and roundtable discussion. The second fold of the homepage should read like the dark stage of the original template, but carry workshop themes instead of summit marketing.',
+      videoLabel: 'Workshop teaser placeholder',
+      videoTitle: 'COMPASS workshop day',
+      videoCopy: 'Use a video or still teaser here later. For now the section preserves the original template’s central media focus.',
+      featuredLabel: 'Themes in focus',
+      featuredItems: ['AI Methods & Applications', 'Networks & NLP', 'Legal & Ethics', 'Roundtables and open discussion'],
     },
     whyCompass: {
       eyebrow: 'Why COMPASS',
@@ -147,7 +202,7 @@ const homepageContent = {
       ],
       asideTitle: 'What the structure is meant to do',
       asideBody:
-        'The homepage now mirrors the actual workshop draft rather than a seed shell, while still keeping uncertain items explicit where invitations or affiliations are not finalized.',
+        'The homepage now mirrors the actual workshop draft while still keeping uncertain items explicit where invitations or affiliations are not finalized.',
       asidePoints: [
         'Bridge complexity science, AI, policy, and law',
         'Keep keynote framing adjacent to doctoral-led discussion',
@@ -162,13 +217,39 @@ const homepageContent = {
     ],
     mediaShowcase: homepageMediaShowcaseContent.en,
     programme: {
-      eyebrow: 'Programme Preview',
-      title: 'The homepage now follows the actual day structure.',
+      eyebrow: 'Explore The Day',
+      title: 'Use the homepage cards to move through the workshop.',
       intro:
-        'This preview tracks the current workshop draft from welcome remarks through keynote-panel progression, ending with the evening social dinner while leaving the third keynote slot explicitly marked TBC.',
-      note: 'The dedicated programme page carries the full twelve-block structure, including both coffee breaks, the networking lunch, and the closing remarks.',
+        'This slot replaces the original template’s event cards. It now acts as the main navigation band for programme, speakers, and venue.',
+      note: 'The dedicated programme page carries the full public agenda with the current draft timings and placeholder speakers kept explicit where needed.',
       sessionLabel: 'Programme block',
       talkLabel: 'Linked contribution',
+      navCards: [
+        {
+          route: 'programme',
+          eyebrow: 'Programme',
+          title: 'Read the full day schedule',
+          body: 'Opening remarks, keynote slots, three panels, breaks, lunch, and closing remarks in one vertical flow.',
+          meta: 'Current working agenda for 18 May 2026',
+          mediaLabel: 'Schedule overview',
+        },
+        {
+          route: 'speakers',
+          eyebrow: 'Speakers',
+          title: 'See confirmed and placeholder speakers',
+          body: 'Keynote guests, doctoral chairs, named panelists, and the remaining open speaker slots stay visible.',
+          meta: 'Speaker list with placeholders where invitations are still open',
+          mediaLabel: 'Speaker showcase',
+        },
+        {
+          route: 'venue',
+          eyebrow: 'Venue',
+          title: 'Check Aula 3 and Sant’Anna details',
+          body: 'Use the venue page for location context, travel planning, and the workshop setting in Pisa.',
+          meta: 'Aula 3, Scuola Superiore Sant’Anna, Pisa',
+          mediaLabel: 'Venue details',
+        },
+      ],
     },
     speakers: {
       eyebrow: 'Featured Speakers',
@@ -182,7 +263,7 @@ const homepageContent = {
       eyebrow: 'Venue Preview',
       title: 'Hosted at Scuola Superiore Sant’Anna in Pisa.',
       intro:
-        'The event is planned for the Scuola Superiore Sant’Anna in Pisa, with the Aula Magna Storica or Aula 3 identified as the working venue options for a compact academic setting.',
+        'The event is confirmed for Aula 3 at Scuola Superiore Sant’Anna in Pisa, keeping the workshop in a compact academic setting.',
       facts: [
         'Historic campus setting in central Pisa',
         'Working venue options already identified inside Sant’Anna',
@@ -206,9 +287,10 @@ const homepageContent = {
       secondaryCta: 'Open external registration form',
     },
     scrollSections: [
-      { id: 'why-compass', label: 'About' },
+      { id: 'dark-stage', label: 'Themes' },
       { id: 'programme-preview', label: 'Programme' },
       { id: 'featured-speakers', label: 'Speakers' },
+      { id: 'why-compass', label: 'About' },
       { id: 'venue-preview', label: 'Venue' },
       { id: 'registration-cta', label: 'Register' },
     ],
@@ -216,17 +298,42 @@ const homepageContent = {
   it: {
     hero: {
       eyebrow: 'COMPASS 2026',
+      dateLine: `${siteConfig.eventDate} · ${siteConfig.venue}`,
+      displayTitle: 'COMPASS',
+      subtitle: 'COmplexity, Mercati, Policy e AI nei sistemi sociali',
       title: 'Un workshop focalizzato su complessita socio-economica, metodi AI e policy.',
       copy:
         'Organizzato da dottorandi di PhD-AI.it Society, COMPASS mette in relazione scienza della complessita, mercati, reti, diritto e AI in un’unica giornata accademica.',
       supportingNote:
-        'Bozza attuale: saluti iniziali, tre slot keynote, tre panel con chair, due coffee break, networking lunch, closing remarks e cena sociale a Pisa.',
+        'Le candidature sono aperte per un workshop accademico compatto a Pisa.',
+      attendanceNote: 'Una giornata, una sola sala, e un pubblico interdisciplinare condiviso tra metodi, reti, diritto e policy.',
+      trustLabel: 'Costruito attorno a',
+      trustItems: ['Scienza della complessita', 'Metodi AI', 'Networks & NLP', 'Diritto ed etica', 'Ricerca su policy', 'Mercati e societa'],
+      marqueeItems: [
+        { label: 'Placeholder keynote', eyebrow: 'Sessione mattutina' },
+        { label: 'Placeholder pubblico', eyebrow: 'Sala principale' },
+        { label: 'Placeholder panel', eyebrow: 'Dialogo di track' },
+        { label: 'Placeholder campus', eyebrow: 'Sant’Anna' },
+        { label: 'Placeholder roundtable', eyebrow: 'Scambio workshop' },
+        { label: 'Placeholder ritratto speaker', eyebrow: 'Ospite invitato' },
+      ],
       panelLabel: 'Sintesi Del Workshop',
       panelItems: [
         siteConfig.eventDate,
         siteConfig.venue,
-        'Partecipazione gratuita · pubblico atteso 30-40 persone · data alternativa 18 maggio 2026.',
+        'Partecipazione gratuita · pubblico atteso 30-40 persone · Aula 3 confermata.',
       ],
+    },
+    darkStage: {
+      eyebrow: 'Oltre Una Singola Disciplina',
+      title: 'Ricerca, diritto, policy e AI in una giornata compatta di workshop.',
+      intro:
+        'COMPASS è costruito come sequenza di keynote, panel guidati dai dottorandi e roundtable finali. Questa seconda fascia della homepage deve leggere il dark stage del template originale, ma con temi di workshop e non con tono summit commerciale.',
+      videoLabel: 'Placeholder teaser workshop',
+      videoTitle: 'Giornata workshop COMPASS',
+      videoCopy: 'Qui potra entrare piu avanti un teaser video o uno still. Per ora la sezione conserva il focus mediale centrale del template originale.',
+      featuredLabel: 'Temi in evidenza',
+      featuredItems: ['AI Methods & Applications', 'Networks & NLP', 'Legal & Ethics', 'Roundtable e discussione aperta'],
     },
     whyCompass: {
       eyebrow: 'Perché COMPASS',
@@ -249,7 +356,7 @@ const homepageContent = {
       ],
       asideTitle: 'A cosa serve questa struttura',
       asideBody:
-        'La homepage riflette ora la bozza reale del workshop invece di una shell seed, mantenendo comunque espliciti gli elementi ancora incerti quando inviti o affiliazioni non sono finalizzati.',
+        'La homepage riflette ora la bozza reale del workshop, mantenendo comunque espliciti gli elementi ancora incerti quando inviti o affiliazioni non sono finalizzati.',
       asidePoints: [
         'Costruire un ponte tra complessita, AI, policy e diritto',
         'Tenere affiancati framing keynote e discussione guidata dai dottorandi',
@@ -264,13 +371,39 @@ const homepageContent = {
     ],
     mediaShowcase: homepageMediaShowcaseContent.it,
     programme: {
-      eyebrow: 'Anteprima Del Programma',
-      title: 'La homepage segue ora la struttura reale della giornata.',
+      eyebrow: 'Esplora La Giornata',
+      title: 'Usa le card della homepage per muoverti nel workshop.',
       intro:
-        'Questa anteprima segue la bozza attuale del workshop dall’apertura alla sequenza keynote-panel, fino alla cena sociale serale, mantenendo lo slot della terza keynote esplicitamente marcato come TBC.',
-      note: 'La pagina programma raccoglie l’intera struttura in dodici blocchi, comprese entrambe le pause caffe, il networking lunch e le closing remarks.',
+        'Questo slot sostituisce le event cards del template originale. Ora funziona come banda di navigazione principale verso programma, relatori e sede.',
+      note: 'La pagina programma raccoglie l agenda pubblica completa con gli orari attuali e i placeholder resi espliciti dove servono.',
       sessionLabel: 'Blocco di programma',
       talkLabel: 'Contributo collegato',
+      navCards: [
+        {
+          route: 'programme',
+          eyebrow: 'Programma',
+          title: 'Leggi la scaletta completa della giornata',
+          body: 'Saluti iniziali, keynote, tre panel, pause, lunch e closing remarks in un unico flusso verticale.',
+          meta: 'Agenda di lavoro aggiornata al 18 maggio 2026',
+          mediaLabel: 'Panoramica agenda',
+        },
+        {
+          route: 'speakers',
+          eyebrow: 'Relatori',
+          title: 'Vedi speaker confermati e placeholder',
+          body: 'Keynote, chair dottorali, panelist nominati e slot ancora aperti restano tutti visibili.',
+          meta: 'Elenco speaker con placeholder dove gli inviti sono ancora aperti',
+          mediaLabel: 'Rassegna relatori',
+        },
+        {
+          route: 'venue',
+          eyebrow: 'Sede',
+          title: 'Controlla Aula 3 e i dettagli Sant’Anna',
+          body: 'Usa la pagina sede per il contesto del luogo, il viaggio e l ambientazione del workshop a Pisa.',
+          meta: 'Aula 3, Scuola Superiore Sant’Anna, Pisa',
+          mediaLabel: 'Dettagli sede',
+        },
+      ],
     },
     speakers: {
       eyebrow: 'Relatori In Evidenza',
@@ -284,7 +417,7 @@ const homepageContent = {
       eyebrow: 'Anteprima Della Sede',
       title: 'Ospitato alla Scuola Superiore Sant’Anna di Pisa.',
       intro:
-        'L’evento è previsto alla Scuola Superiore Sant’Anna di Pisa, con Aula Magna Storica o Aula 3 indicate come opzioni di lavoro per un contesto accademico raccolto.',
+        'L’evento è confermato in Aula 3 alla Scuola Superiore Sant’Anna di Pisa, in un contesto accademico raccolto.',
       facts: [
         'Contesto storico nel centro di Pisa',
         'Opzioni di sede gia individuate all’interno di Sant’Anna',
@@ -308,9 +441,10 @@ const homepageContent = {
       secondaryCta: 'Apri il form esterno di registrazione',
     },
     scrollSections: [
-      { id: 'why-compass', label: 'Visione' },
+      { id: 'dark-stage', label: 'Temi' },
       { id: 'programme-preview', label: 'Programma' },
       { id: 'featured-speakers', label: 'Relatori' },
+      { id: 'why-compass', label: 'Visione' },
       { id: 'venue-preview', label: 'Sede' },
       { id: 'registration-cta', label: 'Registrati' },
     ],
@@ -321,7 +455,13 @@ function cloneHomepageContent(content: HomepageContent): HomepageContent {
   return {
     hero: {
       ...content.hero,
+      trustItems: [...content.hero.trustItems],
+      marqueeItems: content.hero.marqueeItems.map((item) => ({ ...item })),
       panelItems: [...content.hero.panelItems],
+    },
+    darkStage: {
+      ...content.darkStage,
+      featuredItems: [...content.darkStage.featuredItems],
     },
     whyCompass: {
       ...content.whyCompass,
@@ -333,7 +473,10 @@ function cloneHomepageContent(content: HomepageContent): HomepageContent {
       ...content.mediaShowcase,
       items: content.mediaShowcase.items.map((item) => ({ ...item })),
     },
-    programme: { ...content.programme },
+    programme: {
+      ...content.programme,
+      navCards: content.programme.navCards.map((card) => ({ ...card })),
+    },
     speakers: { ...content.speakers },
     venue: {
       ...content.venue,

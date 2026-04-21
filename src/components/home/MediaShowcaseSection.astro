@@ -14,51 +14,58 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
 ---
 
 <section class="media-showcase" data-home-reveal data-media-showcase>
-  <div class="container media-showcase__shell">
-    <div class="media-showcase__intro" data-reveal-item>
-      <p class="section-kicker">{mediaShowcase.eyebrow}</p>
-      <h2>{mediaShowcase.title}</h2>
-      <p>{mediaShowcase.intro}</p>
-    </div>
-
-    <div class="media-showcase__stage" data-reveal-item style="--reveal-delay: 80ms;">
-      <div class="media-shell media-shell--video media-showcase__video" aria-hidden="true">
-        <span class="media-shell__label">{videoLabel}</span>
-        <span class="media-shell__badge">{stageLabel}</span>
-        <span class="media-shell__grid"></span>
-        <span class="media-shell__scan"></span>
-        <span class="media-shell__orbit"></span>
-        <span class="media-shell__beam"></span>
-        <span class="media-shell__frame"></span>
-        <span class="media-shell__person media-showcase__figure media-showcase__figure--left"></span>
-        <span class="media-shell__person media-shell__person--soft media-showcase__figure media-showcase__figure--right"></span>
-        <span class="video-placeholder__play"></span>
-        <div class="media-shell__caption">
-          <span class="media-shell__eyebrow">{videoLabel}</span>
-          <strong>{mediaShowcase.title}</strong>
-          <p>{mediaShowcase.intro}</p>
-        </div>
+  <div class="media-showcase__band">
+    <div class="container media-showcase__shell">
+      <div class="media-showcase__intro" data-reveal-item>
+        <p class="section-kicker">{mediaShowcase.eyebrow}</p>
+        <h2>{mediaShowcase.title}</h2>
+        <p>{mediaShowcase.intro}</p>
       </div>
 
-      <div class="media-showcase__cards">
-        {mediaShowcase.items.map((item, index) => (
-          <article class="media-showcase__card" data-reveal-item style={`--reveal-delay: ${index * 90 + 120}ms;`}>
-            <div class="media-shell media-shell--light media-shell--landscape media-showcase__card-media" aria-hidden="true">
-              <span class="media-shell__label">{item.mediaLabel}</span>
-              <span class="media-shell__badge">{galleryLabel}</span>
-              <span class="media-shell__grid"></span>
-              <span class="media-shell__scan"></span>
-              <span class="media-shell__beam"></span>
-              <span class="media-shell__frame"></span>
-              <span class={`media-showcase__pulse media-showcase__pulse--${index + 1}`}></span>
-            </div>
+      <div class="media-showcase__stage media-showcase__stage-shell" data-reveal-item data-scroll-shift data-scroll-speed="14" style="--reveal-delay: 80ms;">
+        <div class="media-shell media-shell--video media-showcase__video" aria-hidden="true" data-scroll-shift data-scroll-speed="28">
+          <span class="media-shell__label">{videoLabel}</span>
+          <span class="media-shell__badge">{stageLabel}</span>
+          <span class="media-shell__grid"></span>
+          <span class="media-shell__scan"></span>
+          <span class="media-shell__orbit"></span>
+          <span class="media-shell__beam"></span>
+          <span class="media-shell__frame"></span>
+          <span class="media-showcase__card-media-orbit media-showcase__card-media-orbit--wide"></span>
+          <span class="media-showcase__stage-route media-showcase__stage-route--a"></span>
+          <span class="media-showcase__stage-route media-showcase__stage-route--b"></span>
+          <span class="media-shell__person media-showcase__figure media-showcase__figure--left"></span>
+          <span class="media-shell__person media-shell__person--soft media-showcase__figure media-showcase__figure--right"></span>
+          <span class="video-placeholder__play"></span>
+          <div class="media-shell__caption">
+            <span class="media-shell__eyebrow">{videoLabel}</span>
+            <strong>{mediaShowcase.title}</strong>
+            <p>{mediaShowcase.intro}</p>
+          </div>
+        </div>
 
-            <div class="media-showcase__card-copy">
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </div>
-          </article>
-        ))}
+        <div class="media-showcase__cards">
+          {mediaShowcase.items.map((item, index) => (
+            <article class="media-showcase__card" data-reveal-item data-scroll-shift data-scroll-speed={String(16 + index * 4)} data-scroll-direction={index % 2 === 0 ? '1' : '-1'} style={`--reveal-delay: ${index * 90 + 120}ms;`}>
+              <div class="media-shell media-shell--light media-shell--landscape media-showcase__card-media" aria-hidden="true">
+                <span class="media-shell__label">{item.mediaLabel}</span>
+                <span class="media-shell__badge">{galleryLabel}</span>
+                <span class="media-shell__grid"></span>
+                <span class="media-shell__scan"></span>
+                <span class="media-shell__beam"></span>
+                <span class="media-shell__frame"></span>
+                <span class="media-showcase__card-media-orbit media-showcase__card-media-orbit--card"></span>
+                <span class="media-showcase__card-media-route"></span>
+                <span class={`media-showcase__pulse media-showcase__pulse--${index + 1}`}></span>
+              </div>
+
+              <div class="media-showcase__card-copy">
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   </div>
@@ -66,10 +73,45 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
 
 <style>
   .media-showcase {
-    padding: 1rem 0 2rem;
+    padding: 0.8rem 0 2.4rem;
+  }
+
+  .media-showcase__band {
+    position: relative;
+    padding: clamp(2.4rem, 6vw, 3.6rem) 0;
+    background:
+      linear-gradient(180deg, rgba(20, 32, 51, 0.02), rgba(20, 32, 51, 0.08)),
+      linear-gradient(135deg, rgba(246, 242, 236, 0.96), rgba(255, 253, 249, 0.92));
+    overflow: hidden;
+  }
+
+  .media-showcase__band::before {
+    content: "";
+    position: absolute;
+    left: -12rem;
+    top: 8%;
+    width: 28rem;
+    height: 28rem;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(55, 95, 138, 0.14), rgba(55, 95, 138, 0) 70%);
+    pointer-events: none;
+  }
+
+  .media-showcase__band::after {
+    content: "";
+    position: absolute;
+    right: -10rem;
+    bottom: -8rem;
+    width: 22rem;
+    height: 22rem;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(126, 36, 52, 0.16), rgba(126, 36, 52, 0) 70%);
+    pointer-events: none;
   }
 
   .media-showcase__shell {
+    position: relative;
+    z-index: 1;
     display: grid;
     gap: 1.15rem;
   }
@@ -97,10 +139,48 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
     grid-template-columns: minmax(0, 1.15fr) minmax(320px, 0.85fr);
     gap: 1rem;
     align-items: stretch;
+    transform: translate3d(0, calc(var(--scroll-shift, 0px) * 0.5), 0);
   }
 
   .media-showcase__video {
     min-height: clamp(20rem, 46vw, 28rem);
+    transform: translate3d(0, var(--scroll-shift, 0px), 0);
+  }
+
+  .media-showcase__stage-shell {
+    position: relative;
+  }
+
+  .media-showcase__stage-route,
+  .media-showcase__card-media-orbit,
+  .media-showcase__card-media-route {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .media-showcase__stage-route {
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .media-showcase__stage-route--a {
+    right: 8%;
+    top: 10%;
+    width: 38%;
+    height: 38%;
+    border-top-color: rgba(255, 98, 40, 0.36);
+    border-right-color: rgba(255, 98, 40, 0.36);
+    transform: rotate(12deg);
+  }
+
+  .media-showcase__stage-route--b {
+    left: 10%;
+    bottom: 12%;
+    width: 24%;
+    height: 24%;
+    border-bottom-color: rgba(55, 95, 138, 0.34);
+    border-left-color: rgba(55, 95, 138, 0.34);
+    transform: rotate(-18deg);
   }
 
   .media-showcase__figure--left {
@@ -131,10 +211,45 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
       linear-gradient(180deg, rgba(255, 255, 255, 0.84), rgba(255, 253, 249, 0.92)),
       var(--surface);
     box-shadow: var(--shadow);
+    transform: translate3d(0, var(--scroll-shift, 0px), 0);
   }
 
   .media-showcase__card-media {
     min-height: 100%;
+  }
+
+  .media-showcase__card-media-orbit {
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: mediaOrbit 26s linear infinite;
+  }
+
+  .media-showcase__card-media-orbit--wide {
+    inset: 6% 12% auto auto;
+    width: 42%;
+    height: 42%;
+    border-top-color: rgba(255, 98, 40, 0.4);
+    border-right-color: rgba(255, 98, 40, 0.4);
+  }
+
+  .media-showcase__card-media-orbit--card {
+    inset: auto auto 10% 12%;
+    width: 34%;
+    height: 34%;
+    border-bottom-color: rgba(55, 95, 138, 0.38);
+    border-left-color: rgba(55, 95, 138, 0.38);
+    animation-duration: 18s;
+    animation-direction: reverse;
+  }
+
+  .media-showcase__card-media-route {
+    inset: 14% 12%;
+    background:
+      radial-gradient(circle at 16% 24%, rgba(255, 255, 255, 0.18) 0 3px, transparent 4px),
+      radial-gradient(circle at 76% 68%, rgba(255, 98, 40, 0.22) 0 3px, transparent 4px),
+      linear-gradient(142deg, transparent 24%, rgba(255, 255, 255, 0.16) 25%, rgba(255, 255, 255, 0.16) 26%, transparent 27%),
+      linear-gradient(34deg, transparent 54%, rgba(141, 185, 216, 0.18) 55%, rgba(141, 185, 216, 0.18) 56%, transparent 57%);
+    opacity: calc(0.38 + var(--section-progress, 0) * 0.24);
   }
 
   .media-showcase__card-copy {

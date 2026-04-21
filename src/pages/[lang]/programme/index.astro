@@ -4,7 +4,7 @@ import Footer from '../../../components/site/Footer.astro';
 import Header from '../../../components/site/Header.astro';
 import type { Locale } from '../../../data/types';
 import Layout from '../../../layouts/Layout.astro';
-import { getPageMetadata, getProgrammeSessions, locales } from '../../../lib/site';
+import { buildLocalizedPath, getPageMetadata, getProgrammeSessions, locales, siteConfig } from '../../../lib/site';
 
 export function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
@@ -23,6 +23,12 @@ const copy = {
       'Panel lineups keep the named speakers currently published and leave unresolved rows explicitly marked TBD.',
       'Descriptions stay compact so the page remains readable while the agenda continues to evolve.',
     ],
+    heroLabel: 'Workshop flow',
+    heroBadge: 'Single-room schedule',
+    timelineLabel: 'Timeline',
+    timelineValue: 'Opening to closing remarks',
+    venueLabel: 'Venue',
+    venueValue: siteConfig.venue,
   },
   it: {
     title: 'Programma',
@@ -34,6 +40,12 @@ const copy = {
       'Le scalette dei panel mantengono i relatori oggi pubblicati e lasciano i posti ancora aperti esplicitamente marcati TBD.',
       'Le descrizioni restano compatte per mantenere la pagina leggibile mentre l agenda continua a evolvere.',
     ],
+    heroLabel: 'Flusso della giornata',
+    heroBadge: 'Programma in sala unica',
+    timelineLabel: 'Timeline',
+    timelineValue: 'Dai saluti iniziali alla chiusura',
+    venueLabel: 'Sede',
+    venueValue: siteConfig.venue,
   },
 }[locale];
 const sessions = getProgrammeSessions();
@@ -41,21 +53,57 @@ const sessions = getProgrammeSessions();
 
 <Layout locale={locale} title={pageMeta.title} description={pageMeta.description}>
   <Header locale={locale} />
-  <main class="page-shell">
-    <section class="page-hero container">
-      <div class="page-hero__content">
-        <p class="eyebrow">COMPASS</p>
-        <h1>{copy.title}</h1>
-        <p class="page-lead">{copy.intro}</p>
+  <main class="programme-page">
+    <section class="programme-page__hero">
+      <div class="container programme-page__hero-shell">
+        <div class="programme-page__intro-panel">
+          <p class="eyebrow">COMPASS</p>
+          <h1>{copy.title}</h1>
+          <p class="programme-page__intro">{copy.intro}</p>
+
+          <ul class="programme-page__chips" aria-label={locale === 'it' ? 'Riferimenti programma' : 'Programme metadata'}>
+            <li>{siteConfig.eventDate}</li>
+            <li>{copy.heroBadge}</li>
+            <li>{copy.venueValue}</li>
+          </ul>
+        </div>
+
+        <aside class="programme-page__hero-media" aria-label={copy.heroLabel}>
+          <div class="programme-page__media-frame">
+            <span class="programme-page__media-kicker">{copy.heroLabel}</span>
+            <span class="programme-page__media-badge">{copy.heroBadge}</span>
+
+            <div class="programme-page__media-grid" aria-hidden="true">
+              <div class="programme-page__media-card">
+                <span class="programme-page__media-card-label">{copy.timelineLabel}</span>
+                <strong>{copy.timelineValue}</strong>
+              </div>
+              <div class="programme-page__media-card programme-page__media-card--cool">
+                <span class="programme-page__media-card-label">{copy.venueLabel}</span>
+                <strong>{copy.venueValue}</strong>
+              </div>
+            </div>
+
+            <span class="programme-page__route programme-page__route--one"></span>
+            <span class="programme-page__route programme-page__route--two"></span>
+            <span class="programme-page__orb programme-page__orb--warm"></span>
+            <span class="programme-page__orb programme-page__orb--cool"></span>
+          </div>
+        </aside>
       </div>
-      <aside class="page-hero__meta">
-        <p class="page-meta__label">{copy.section}</p>
-        <ul class="page-meta__list">
+    </section>
+
+    <section class="programme-page__summary">
+      <div class="container programme-page__summary-shell">
+        <div class="programme-page__summary-header">
+          <p class="page-meta__label">{copy.section}</p>
+        </div>
+        <ul class="programme-page__summary-list">
           {copy.cards.map((item) => (
             <li>{item}</li>
           ))}
         </ul>
-      </aside>
+      </div>
     </section>
 
     <section class="container programme-page__timeline">
@@ -66,7 +114,239 @@ const sessions = getProgrammeSessions();
 </Layout>
 
 <style>
+  .programme-page {
+    padding: 2rem 0 5rem;
+  }
+
+  .programme-page__hero {
+    position: relative;
+  }
+
+  .programme-page__hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at top left, rgba(126, 36, 52, 0.14), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(55, 95, 138, 0.14), transparent 32%);
+  }
+
+  .programme-page__hero-shell {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .programme-page__intro-panel,
+  .programme-page__hero-media,
+  .programme-page__summary-shell {
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .programme-page__intro-panel,
+  .programme-page__summary-shell {
+    padding: clamp(2rem, 4vw, 3rem);
+    background: rgba(255, 253, 249, 0.86);
+    backdrop-filter: blur(18px);
+  }
+
+  .programme-page__intro-panel h1 {
+    margin: 0.35rem 0 0.9rem;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.94;
+  }
+
+  .programme-page__intro {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 46rem;
+  }
+
+  .programme-page__chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+
+  .programme-page__actions {
+    margin-top: 1.2rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .programme-page__chips li {
+    padding: 0.58rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(20, 32, 51, 0.1);
+    background: rgba(255, 255, 255, 0.72);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
+
+  .programme-page__hero-media {
+    position: relative;
+    min-height: 22rem;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.14), transparent 24%),
+      linear-gradient(180deg, rgba(19, 35, 53, 0.96), rgba(63, 89, 120, 0.84));
+  }
+
+  .programme-page__media-frame {
+    position: relative;
+    height: 100%;
+    min-height: inherit;
+    padding: 1.35rem;
+    display: grid;
+    gap: 1rem;
+    align-content: space-between;
+  }
+
+  .programme-page__media-kicker,
+  .programme-page__media-badge,
+  .programme-page__media-card-label {
+    display: inline-flex;
+    width: fit-content;
+    padding: 0.42rem 0.68rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 250, 245, 0.92);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .programme-page__media-badge {
+    justify-self: end;
+    background: rgba(255, 248, 242, 0.9);
+    color: var(--accent);
+  }
+
+  .programme-page__media-grid {
+    display: grid;
+    gap: 1rem;
+    margin-top: auto;
+  }
+
+  .programme-page__media-card {
+    display: grid;
+    gap: 0.7rem;
+    padding: 1.1rem;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: rgba(255, 250, 245, 0.95);
+  }
+
+  .programme-page__media-card strong {
+    font-size: 1.1rem;
+    line-height: 1.25;
+  }
+
+  .programme-page__media-card--cool {
+    background: rgba(100, 149, 201, 0.14);
+  }
+
+  .programme-page__route,
+  .programme-page__orb {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .programme-page__route {
+    left: 1.4rem;
+    right: 1.4rem;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.26);
+  }
+
+  .programme-page__route--one {
+    top: 36%;
+    transform: rotate(-11deg);
+  }
+
+  .programme-page__route--two {
+    top: 60%;
+    left: 3rem;
+    right: 3rem;
+    transform: rotate(10deg);
+  }
+
+  .programme-page__orb {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 999px;
+  }
+
+  .programme-page__orb--warm {
+    top: 33%;
+    left: 26%;
+    background: rgba(210, 146, 122, 0.92);
+    box-shadow: 0 0 0 10px rgba(210, 146, 122, 0.12);
+  }
+
+  .programme-page__orb--cool {
+    top: 58%;
+    right: 24%;
+    background: rgba(174, 212, 247, 0.92);
+    box-shadow: 0 0 0 10px rgba(174, 212, 247, 0.12);
+  }
+
+  .programme-page__summary {
+    padding-top: 1.35rem;
+  }
+
+  .programme-page__summary-shell {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .programme-page__summary-list {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--ink-soft);
+  }
+
+  .programme-page__summary-list li + li {
+    margin-top: 0.5rem;
+  }
+
   .programme-page__timeline {
     margin-top: 1.5rem;
+  }
+
+  @media (max-width: 960px) {
+    .programme-page__hero-shell {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .programme-page {
+      padding-top: 1.2rem;
+    }
+
+    .programme-page__intro-panel,
+    .programme-page__summary-shell {
+      padding: 1.4rem;
+      border-radius: 24px;
+    }
+
+    .programme-page__hero-media {
+      min-height: 18rem;
+      border-radius: 24px;
+    }
   }
 </style>

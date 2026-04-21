@@ -1,0 +1,196 @@
+---
+const networkCanvasId = 'home-network-canvas';
+---
+
+<div class="home-network-background" aria-hidden="true" data-home-network-bg>
+  <div class="home-network-background__canvas" id={networkCanvasId}></div>
+  <div class="home-network-background__veil home-network-background__veil--hero"></div>
+  <div class="home-network-background__veil home-network-background__veil--lower"></div>
+</div>
+
+<script>
+  import { tsParticles } from '@tsparticles/engine';
+  import { loadFull } from 'tsparticles';
+
+  const containerId = 'home-network-canvas';
+  const networkOptions = {
+    fullScreen: {
+      enable: false,
+      zIndex: 0,
+    },
+    fpsLimit: 60,
+    background: {
+      color: 'transparent',
+    },
+    detectRetina: true,
+    interactivity: {
+      events: {
+        onClick: {
+          enable: false,
+        },
+        onHover: {
+          enable: false,
+        },
+        resize: {
+          enable: true,
+        },
+      },
+    },
+    particles: {
+      color: {
+        value: ['#1a3245', '#355f8a', '#ff6228', '#9ab7cf'],
+      },
+      links: {
+        enable: true,
+        color: '#355f8a',
+        distance: 176,
+        opacity: 0.28,
+        width: 1.25,
+        triangles: {
+          enable: false,
+        },
+      },
+      move: {
+        enable: true,
+        speed: 0.5,
+        random: true,
+        straight: false,
+        outModes: {
+          default: 'bounce',
+        },
+      },
+      number: {
+        value: 84,
+        density: {
+          enable: true,
+          width: 1440,
+          height: 960,
+        },
+      },
+      opacity: {
+        value: {
+          min: 0.18,
+          max: 0.42,
+        },
+        animation: {
+          enable: true,
+          speed: 0.8,
+          sync: false,
+        },
+      },
+      shape: {
+        type: 'circle',
+      },
+      size: {
+        value: {
+          min: 1.4,
+          max: 4.6,
+        },
+      },
+    },
+    pauseOnBlur: true,
+    pauseOnOutsideViewport: true,
+  };
+
+  const destroyNetwork = async () => {
+    const existing = tsParticles.dom().find((container) => container.id === containerId);
+
+    if (existing) {
+      await existing.destroy();
+    }
+  };
+
+  const initNetwork = async () => {
+    const root = document.querySelector('[data-home-network-bg]');
+    const canvas = document.getElementById(containerId);
+
+    if (!root || !canvas) {
+      return;
+    }
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      root.dataset.motion = 'reduced';
+      await destroyNetwork();
+      return;
+    }
+
+    delete root.dataset.motion;
+
+    await destroyNetwork();
+    await loadFull(tsParticles);
+    await tsParticles.load({ id: containerId, options: networkOptions });
+  };
+
+  const bootNetwork = () => {
+    void initNetwork();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', bootNetwork, { once: true });
+  } else {
+    bootNetwork();
+  }
+
+  document.addEventListener('astro:after-swap', bootNetwork);
+  document.addEventListener('astro:before-swap', () => {
+    void destroyNetwork();
+  });
+</script>
+
+<style>
+  .home-network-background {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .home-network-background__canvas,
+  .home-network-background__veil {
+    position: fixed;
+    inset: 0;
+  }
+
+  .home-network-background__canvas {
+    opacity: 1;
+    mix-blend-mode: multiply;
+  }
+
+  .home-network-background__canvas :global(canvas) {
+    opacity: 1;
+    filter: saturate(0.95) contrast(1.02);
+  }
+
+  .home-network-background__veil {
+    pointer-events: none;
+  }
+
+  .home-network-background__veil--hero {
+    background:
+      radial-gradient(ellipse 28% 18% at 50% 22%, rgba(246, 242, 236, 0.97) 0%, rgba(246, 242, 236, 0.9) 24%, rgba(246, 242, 236, 0.44) 42%, rgba(246, 242, 236, 0.08) 56%, rgba(246, 242, 236, 0) 68%),
+      radial-gradient(ellipse 56% 28% at 50% 9%, rgba(246, 242, 236, 0.54) 0%, rgba(246, 242, 236, 0.12) 58%, rgba(246, 242, 236, 0) 78%);
+  }
+
+  .home-network-background__veil--lower {
+    background:
+      radial-gradient(circle at 12% 80%, rgba(246, 242, 236, 0.44) 0%, rgba(246, 242, 236, 0.08) 36%, rgba(246, 242, 236, 0) 62%),
+      radial-gradient(circle at 88% 74%, rgba(246, 242, 236, 0.4) 0%, rgba(246, 242, 236, 0.06) 34%, rgba(246, 242, 236, 0) 58%);
+  }
+
+  .home-network-background[data-motion='reduced'] .home-network-background__canvas {
+    opacity: 0.34;
+  }
+
+  @media (max-width: 900px) {
+    .home-network-background__canvas {
+      opacity: 0.9;
+    }
+
+    .home-network-background__veil--hero {
+      background:
+        radial-gradient(ellipse 52% 16% at 50% 18%, rgba(246, 242, 236, 0.98) 0%, rgba(246, 242, 236, 0.92) 24%, rgba(246, 242, 236, 0.36) 46%, rgba(246, 242, 236, 0.08) 62%, rgba(246, 242, 236, 0) 76%),
+        radial-gradient(ellipse 88% 28% at 50% 10%, rgba(246, 242, 236, 0.52) 0%, rgba(246, 242, 236, 0.12) 58%, rgba(246, 242, 236, 0) 80%);
+    }
+  }
+</style>

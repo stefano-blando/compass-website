@@ -11,6 +11,9 @@ const { locale } = Astro.props as Props;
 const chrome = getChromeLabels(locale);
 const labels = getLabels(locale);
 const currentPath = Astro.url.pathname;
+const mobileMenuId = `site-header-panel-${locale}`;
+const menuLabel = locale === 'it' ? 'Menu' : 'Menu';
+const closeLabel = locale === 'it' ? 'Chiudi' : 'Close';
 
 const links = [
   { key: 'programme', href: buildLocalizedPath(locale, 'programme'), label: labels.programme },
@@ -34,21 +37,70 @@ function isActive(href: string) {
       <span class="site-brand__subline">{siteConfig.eventDate} · Pisa</span>
     </a>
 
-    <nav aria-label={chrome.mainNavigation} class="site-nav">
-      <ul>
-        {links.map((link) => (
-          <li>
-            <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
-              {link.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <button
+      type="button"
+      class="site-header__menu-toggle"
+      aria-expanded="false"
+      aria-controls={mobileMenuId}
+      data-mobile-nav-toggle
+      data-open-label={menuLabel}
+      data-close-label={closeLabel}
+    >
+      {menuLabel}
+    </button>
 
-    <div class="site-header__actions">
-      <LanguageSwitcher locale={locale} />
-      <a href={buildLocalizedPath(locale, 'registration')} class="btn-primary">{labels.register}</a>
+    <div class="site-header__panel" id={mobileMenuId} data-mobile-nav-panel>
+      <nav aria-label={chrome.mainNavigation} class="site-nav">
+        <ul>
+          {links.map((link) => (
+            <li>
+              <a href={link.href} aria-current={isActive(link.href) ? 'page' : undefined}>
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      <div class="site-header__actions">
+        <LanguageSwitcher locale={locale} />
+        <a href={buildLocalizedPath(locale, 'registration')} class="btn-primary">{labels.register}</a>
+      </div>
     </div>
   </div>
 </header>
+
+<script is:inline>
+  (() => {
+    const headers = Array.from(document.querySelectorAll('.site-header__inner'));
+    headers.forEach((header) => {
+      const toggle = header.querySelector('[data-mobile-nav-toggle]');
+      const panel = header.querySelector('[data-mobile-nav-panel]');
+      if (!(toggle instanceof HTMLButtonElement) || !(panel instanceof HTMLElement)) {
+        return;
+      }
+
+      const setOpen = (next) => {
+        header.dataset.mobileNavOpen = next ? 'true' : 'false';
+        toggle.setAttribute('aria-expanded', next ? 'true' : 'false');
+        toggle.textContent = next ? (toggle.dataset.closeLabel ?? 'Close') : (toggle.dataset.openLabel ?? 'Menu');
+      };
+
+      setOpen(false);
+
+      toggle.addEventListener('click', () => {
+        setOpen(toggle.getAttribute('aria-expanded') !== 'true');
+      });
+
+      panel.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setOpen(false));
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth > 720) {
+          setOpen(false);
+        }
+      });
+    });
+  })();
+</script>

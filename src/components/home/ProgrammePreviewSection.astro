@@ -1,105 +1,42 @@
 ---
 import type { Locale } from '../../data/types';
-import { buildLocalizedPath, getHomepageContent, getHomepageProgrammePreview, getLabels } from '../../lib/site';
+import { buildLocalizedPath, getHomepageContent } from '../../lib/site';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
-const labels = getLabels(locale);
 const { programme } = getHomepageContent(locale);
-const sessions = getHomepageProgrammePreview(locale);
-const timeFormatter = new Intl.DateTimeFormat(locale === 'it' ? 'it-IT' : 'en-GB', {
-  hour: '2-digit',
-  minute: '2-digit',
-});
-const sessionTypeLabels = {
-  en: {
-    opening: 'Opening',
-    keynote: 'Keynote',
-    panel: 'Panel',
-    social: 'Social',
-  },
-  it: {
-    opening: 'Apertura',
-    keynote: 'Keynote',
-    panel: 'Panel',
-    social: 'Sociale',
-  },
-} as const;
-const routeEyebrow = locale === 'it' ? 'Timeline completa' : 'Full timeline';
-const routeCopy = locale === 'it' ? 'Apri il programma per vedere tutti i dodici blocchi della giornata.' : 'Open the programme page to see all twelve workshop blocks in sequence.';
-const previewLabel = locale === 'it' ? 'Preview visivo' : 'Visual preview';
 ---
 
 <section id="programme-preview" class="programme-preview" data-home-reveal>
   <div class="container programme-preview__shell">
-    <div class="programme-preview__top">
-      <div class="programme-preview__intro" data-reveal-item>
-        <p class="section-kicker">{programme.eyebrow}</p>
-        <h2>{programme.title}</h2>
-        <p>{programme.intro}</p>
-      </div>
-
-      <a class="route-card programme-preview__route" href={buildLocalizedPath(locale, 'programme')} data-reveal-item style="--reveal-delay: 80ms;">
-        <span class="route-card__eyebrow">{routeEyebrow}</span>
-        <h2>{labels.viewProgramme}</h2>
-        <p>{routeCopy}</p>
-      </a>
-    </div>
-
-    <div class="programme-preview__lead" data-reveal-item style="--reveal-delay: 110ms;">
-      <div class="media-shell media-shell--video programme-preview__lead-media" aria-hidden="true">
-        <span class="media-shell__label">{previewLabel}</span>
-        <span class="media-shell__badge">{programme.sessionLabel}</span>
-        <span class="media-shell__grid"></span>
-        <span class="media-shell__scan"></span>
-        <span class="media-shell__orbit"></span>
-        <span class="media-shell__beam"></span>
-        <span class="media-shell__frame"></span>
-        <span class="media-shell__person programme-preview__lead-figure programme-preview__lead-figure--left"></span>
-        <span class="media-shell__person media-shell__person--soft programme-preview__lead-figure programme-preview__lead-figure--right"></span>
-        <div class="media-shell__caption">
-          <span class="media-shell__eyebrow">{programme.note}</span>
-          <strong>{sessions[0]?.title}</strong>
-          <p>{sessions[0]?.description}</p>
-        </div>
-      </div>
+    <div class="programme-preview__intro" data-reveal-item>
+      <p class="section-kicker">{programme.eyebrow}</p>
+      <h2>{programme.title}</h2>
+      <p>{programme.intro}</p>
     </div>
 
     <div class="programme-preview__grid">
-      {sessions.map((session, index) => (
-        <article class="programme-preview__card" style={`--reveal-delay: ${index * 85 + 140}ms;`} data-reveal-item>
-          <div class="media-shell programme-preview__card-media" aria-hidden="true">
-            <span class="media-shell__label">{programme.sessionLabel}</span>
-            <span class="media-shell__badge">{sessionTypeLabels[locale][session.type as keyof typeof sessionTypeLabels.en]}</span>
-            <span class="media-shell__grid"></span>
-            <span class="media-shell__scan"></span>
-            <span class="media-shell__beam"></span>
-            <span class="media-shell__frame"></span>
-            <span class={`programme-preview__marker programme-preview__marker--${(index % 3) + 1}`}></span>
+      {programme.navCards.map((card, index) => (
+        <a
+          class="programme-preview__nav-card"
+          href={buildLocalizedPath(locale, card.route)}
+          data-reveal-item
+          style={`--reveal-delay: ${index * 0.1 + 0.1}s;`}
+        >
+          <div class={`programme-preview__media programme-preview__media--${(index % 3) + 1}`} aria-hidden="true">
+            <span class="programme-preview__media-label">{card.mediaLabel}</span>
+            <span class="programme-preview__media-glow"></span>
+            <span class="programme-preview__media-figure programme-preview__media-figure--left"></span>
+            <span class="programme-preview__media-figure programme-preview__media-figure--right"></span>
           </div>
-
-          <p class="programme-preview__time">
-            {timeFormatter.format(new Date(session.startsAt))} - {timeFormatter.format(new Date(session.endsAt))}
-          </p>
-          <h3>{session.title}</h3>
-          <p>{session.description}</p>
-
-          {session.chairNames.length > 0 && (
-            <p class="programme-preview__meta">
-              {session.chairLabel}: {session.chairNames.join(', ')}
-            </p>
-          )}
-
-          {session.featuredTalkTitle && (
-            <div class="programme-preview__talk">
-              <span>{programme.talkLabel}</span>
-              <strong>{session.featuredTalkTitle}</strong>
-            </div>
-          )}
-        </article>
+          <p class="programme-preview__card-eyebrow">{card.eyebrow}</p>
+          <h3>{card.title}</h3>
+          <p>{card.body}</p>
+          <span class="programme-preview__meta">{card.meta}</span>
+        </a>
       ))}
     </div>
   </div>
@@ -107,188 +44,189 @@ const previewLabel = locale === 'it' ? 'Preview visivo' : 'Visual preview';
 
 <style>
   .programme-preview {
-    padding: 1.2rem 0 2rem;
+    position: relative;
+    background-color: #14232f;
+    background-image: linear-gradient(180deg, #14232f 0%, #182833 44%, #1f3444 100%);
+    padding: 4.6rem 0 3.8rem;
+    color: #f2f4f7;
+  }
+
+  .programme-preview::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -140px;
+    transform: translateX(-50%);
+    width: min(980px, 94vw);
+    height: 520px;
+    background: repeating-radial-gradient(ellipse at 50% 0%, rgba(218, 227, 234, 0.1) 0 1px, transparent 1px 23px);
+    opacity: 0.18;
+    pointer-events: none;
   }
 
   .programme-preview__shell {
     position: relative;
-    overflow: hidden;
-    display: grid;
-    gap: 1rem;
-    border-radius: 34px;
-    padding: clamp(1.6rem, 4vw, 2.2rem);
-    background:
-      radial-gradient(circle at top right, rgba(55, 95, 138, 0.24), transparent 32%),
-      radial-gradient(circle at bottom left, rgba(126, 36, 52, 0.22), transparent 28%),
-      linear-gradient(180deg, #142033, #1d2d45);
-    color: #f7f3ee;
-    box-shadow: var(--shadow-strong);
-  }
-
-  .programme-preview__shell::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-    background-size: 34px 34px;
-    opacity: 0.16;
-    pointer-events: none;
-  }
-
-  .programme-preview__top,
-  .programme-preview__lead,
-  .programme-preview__grid {
-    position: relative;
     z-index: 1;
   }
 
-  .programme-preview__top {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.64fr);
-    gap: 1rem;
-    align-items: end;
+  .programme-preview__intro {
+    text-align: center;
+    max-width: 50rem;
+    margin: 0 auto 1.8rem;
   }
 
   .programme-preview__intro h2 {
-    margin: 0.3rem 0 0.75rem;
-    font-size: clamp(2.3rem, 5vw, 4rem);
-    line-height: 0.93;
-    max-width: 13ch;
+    margin: 0.35rem 0 0.75rem;
+    font-size: clamp(2.2rem, 4.8vw, 4rem);
+    line-height: 0.95;
+    color: #f3f6f8;
   }
 
   .programme-preview__intro p {
     margin: 0;
-    max-width: 54rem;
-    color: rgba(247, 243, 238, 0.82);
-  }
-
-  .programme-preview__route {
-    min-height: 100%;
-    background:
-      linear-gradient(180deg, rgba(255, 253, 249, 0.18), rgba(255, 253, 249, 0.08)),
-      rgba(255, 253, 249, 0.08);
-    border-color: rgba(255, 255, 255, 0.14);
-    color: #f7f3ee;
-  }
-
-  .programme-preview__route .route-card__eyebrow,
-  .programme-preview__route p {
-    color: rgba(247, 243, 238, 0.72);
-  }
-
-  .programme-preview__lead-media {
-    min-height: clamp(16rem, 32vw, 22rem);
-  }
-
-  .programme-preview__lead-figure--left {
-    left: 22%;
-    --person-width: 5rem;
-    --person-height: 8.5rem;
-  }
-
-  .programme-preview__lead-figure--right {
-    right: 20%;
-    --person-width: 4.2rem;
-    --person-height: 7.4rem;
+    color: rgba(242, 244, 247, 0.76);
   }
 
   .programme-preview__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 0.9rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.8rem;
   }
 
-  .programme-preview__card {
+  .programme-preview__nav-card {
     position: relative;
-    overflow: hidden;
-    border-radius: 24px;
+    display: grid;
+    align-content: start;
+    gap: 0.6rem;
     padding: 1rem;
+    border-radius: 14px;
+    text-decoration: none;
+    background: #e7e7e7;
+    color: #212528;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: 0 14px 32px rgba(2, 8, 14, 0.18);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+
+  .programme-preview__nav-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 26px 44px rgba(1, 10, 18, 0.24);
+  }
+
+  .programme-preview__media {
+    position: relative;
+    min-height: 13rem;
+    overflow: hidden;
+    border-radius: 10px;
     background:
-      linear-gradient(180deg, rgba(255, 253, 249, 0.16), rgba(255, 253, 249, 0.08)),
-      rgba(255, 253, 249, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    box-shadow: 0 18px 36px rgba(5, 10, 16, 0.18);
-    backdrop-filter: blur(12px);
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0)),
+      linear-gradient(135deg, #3c5168, #223445 58%, #172636);
   }
 
-  .programme-preview__card-media {
-    min-height: 8.4rem;
-    margin-bottom: 0.9rem;
-    box-shadow: none;
+  .programme-preview__media--2 {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0)),
+      linear-gradient(135deg, #7b5a58, #aa8165 58%, #6b4a47);
   }
 
-  .programme-preview__marker {
+  .programme-preview__media--3 {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0)),
+      linear-gradient(135deg, #233142, #14232f 58%, #35546d);
+  }
+
+  .programme-preview__media-label {
     position: absolute;
-    inset: auto;
-    width: 4.4rem;
-    height: 4.4rem;
-    border-radius: 999px;
-    filter: blur(3px);
-  }
-
-  .programme-preview__marker--1 {
-    left: 16%;
-    bottom: 20%;
-    background: radial-gradient(circle, rgba(236, 193, 201, 0.44), rgba(236, 193, 201, 0) 72%);
-  }
-
-  .programme-preview__marker--2 {
-    right: 16%;
-    top: 18%;
-    background: radial-gradient(circle, rgba(55, 95, 138, 0.34), rgba(55, 95, 138, 0) 72%);
-  }
-
-  .programme-preview__marker--3 {
-    left: calc(50% - 2.2rem);
-    top: calc(50% - 2.2rem);
-    background: radial-gradient(circle, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 72%);
-  }
-
-  .programme-preview__time,
-  .programme-preview__meta,
-  .programme-preview__card p,
-  .programme-preview__talk span {
-    color: rgba(247, 243, 238, 0.8);
-  }
-
-  .programme-preview__time {
-    margin: 0;
-    font-size: 0.82rem;
+    left: 0.85rem;
+    top: 0.85rem;
+    z-index: 2;
+    font-size: 0.72rem;
     font-weight: 800;
-    text-transform: uppercase;
     letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.82);
   }
 
-  .programme-preview__card h3 {
-    margin: 0.55rem 0 0.45rem;
-    font-size: 2rem;
-    line-height: 0.96;
+  .programme-preview__media-glow {
+    position: absolute;
+    right: -12%;
+    bottom: -20%;
+    width: 68%;
+    height: 68%;
+    border-radius: 999px;
+    background: radial-gradient(circle, rgba(255, 98, 40, 0.3), rgba(255, 98, 40, 0) 72%);
+    filter: blur(16px);
+  }
+
+  .programme-preview__media-figure {
+    position: absolute;
+    bottom: 1rem;
+    width: 3.7rem;
+    height: 6.7rem;
+    border-radius: 999px 999px 20px 20px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0)),
+      linear-gradient(180deg, rgba(251, 232, 224, 0.88), rgba(86, 37, 39, 0.95));
+    box-shadow: 0 18px 32px rgba(5, 10, 16, 0.22);
+  }
+
+  .programme-preview__media-figure::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -1.5rem;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    background:
+      radial-gradient(circle at 35% 35%, rgba(255, 255, 255, 0.75), rgba(255, 255, 255, 0.08)),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.02));
+  }
+
+  .programme-preview__media-figure--left {
+    left: 18%;
+  }
+
+  .programme-preview__media-figure--right {
+    right: 16%;
+    width: 3.2rem;
+    height: 5.8rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0)),
+      linear-gradient(180deg, rgba(211, 225, 240, 0.88), rgba(55, 95, 138, 0.94));
+  }
+
+  .programme-preview__card-eyebrow {
+    margin: 0;
+    color: #7c8489;
+    font-size: 0.92rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .programme-preview__nav-card h3 {
+    margin: 0;
+    font-size: clamp(1.28rem, 1.8vw, 1.84rem);
+    line-height: 1.05;
+  }
+
+  .programme-preview__nav-card p {
+    margin: 0;
+    color: #31363d;
   }
 
   .programme-preview__meta {
-    margin: 0.9rem 0 0;
-    font-size: 0.95rem;
-  }
-
-  .programme-preview__talk {
-    margin-top: 1rem;
-    padding-top: 0.9rem;
-    border-top: 1px solid rgba(255, 255, 255, 0.14);
-    display: grid;
-    gap: 0.15rem;
-  }
-
-  .programme-preview__talk span {
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    margin-top: auto;
+    color: #61686d;
+    font-size: 0.92rem;
+    font-weight: 700;
   }
 
   @media (max-width: 980px) {
-    .programme-preview__top {
+    .programme-preview__grid {
       grid-template-columns: 1fr;
     }
   }

@@ -1,0 +1,697 @@
+---
+import type { RichPageContent, RichPageSection, SitePageKey } from '../../data/site';
+import type { Locale } from '../../data/types';
+import { buildLocalizedPath, getLabels, siteConfig } from '../../lib/site';
+
+type RichRenderablePage = Exclude<SitePageKey, 'home' | 'programme'>;
+
+interface Props {
+  locale: Locale;
+  page: RichRenderablePage;
+  content: RichPageContent;
+}
+
+const { locale, page, content } = Astro.props as Props;
+const labels = getLabels(locale);
+const quickLinks = [
+  { href: buildLocalizedPath(locale, 'programme'), label: labels.programme },
+  { href: buildLocalizedPath(locale, 'speakers'), label: labels.speakers },
+  { href: buildLocalizedPath(locale, 'venue'), label: labels.venue },
+];
+
+const ctaTargets: Partial<Record<RichRenderablePage, { href: string; external?: boolean }>> = {
+  about: { href: buildLocalizedPath(locale, 'programme') },
+  speakers: { href: buildLocalizedPath(locale, 'programme') },
+  venue: { href: '#rich-page-sections' },
+  registration: { href: siteConfig.registrationUrl, external: true },
+  organizers: { href: buildLocalizedPath(locale, 'about') },
+  faq: { href: buildLocalizedPath(locale, 'organizers') },
+};
+
+const pageTarget = ctaTargets[page];
+const heroMeta = [
+  siteConfig.eventDate,
+  siteConfig.venue,
+  locale === 'it' ? 'Placeholder media e dettagli in evoluzione.' : 'Placeholder media and details still evolving.',
+];
+
+function getMediaTone(index: number) {
+  return index % 2 === 0 ? 'warm' : 'cool';
+}
+
+function getMediaBadge(section: RichPageSection, index: number) {
+  const fallback = locale === 'it' ? 'Sezione' : 'Section';
+  return section.bullets?.[0] ?? `${fallback} ${index + 1}`;
+}
+---
+
+<div class="rich-page">
+  <section class="rich-page__hero">
+    <div class="container rich-page__hero-shell" data-rich-page-reveal>
+      <div class="rich-page__hero-copy">
+        <p class="eyebrow">{content.hero.eyebrow}</p>
+        <h1>{content.hero.title}</h1>
+        <p class="rich-page__hero-intro">{content.hero.intro}</p>
+
+        <div class="rich-page__hero-actions">
+          {quickLinks.map((link) => (
+            <a class="btn-secondary" href={link.href}>{link.label}</a>
+          ))}
+        </div>
+
+        <ul class="rich-page__hero-meta" aria-label={locale === 'it' ? 'Meta del workshop' : 'Workshop metadata'}>
+          {heroMeta.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class={`rich-page__hero-media rich-page__hero-media--${content.hero.mediaType}`} aria-label={content.hero.mediaLabel}>
+        <div class="rich-page__media-frame rich-page__media-frame--primary">
+          <span class="rich-page__media-kicker">{content.hero.mediaLabel}</span>
+          {content.hero.mediaType === 'portrait-grid' ? (
+            <div class="rich-page__portrait-grid" aria-hidden="true">
+              <span class="rich-page__portrait"></span>
+              <span class="rich-page__portrait rich-page__portrait--cool"></span>
+              <span class="rich-page__portrait rich-page__portrait--small"></span>
+              <span class="rich-page__portrait rich-page__portrait--cool rich-page__portrait--small"></span>
+            </div>
+          ) : content.hero.mediaType === 'video' ? (
+            <div class="rich-page__video-shell" aria-hidden="true">
+              <span class="rich-page__video-play"></span>
+              <span class="rich-page__video-line"></span>
+              <span class="rich-page__video-line rich-page__video-line--short"></span>
+            </div>
+          ) : (
+            <div class="rich-page__landscape-shell" aria-hidden="true">
+              <span class="rich-page__landscape-arc"></span>
+              <span class="rich-page__landscape-route"></span>
+              <span class="rich-page__landscape-route rich-page__landscape-route--secondary"></span>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="rich-page__sections" id="rich-page-sections">
+    <div class="container rich-page__sections-shell">
+      {content.sections.map((section, index) => (
+        <section
+          class:list={['rich-page__section', index % 2 === 1 && 'rich-page__section--reverse']}
+          data-rich-page-reveal
+          style={`--section-delay:${index * 90}ms;`}
+        >
+          <div class="rich-page__section-copy">
+            <p class="eyebrow">{section.eyebrow}</p>
+            <h2>{section.title}</h2>
+            <p>{section.body}</p>
+            {section.bullets && (
+              <ul class="rich-page__section-list">
+                {section.bullets.map((bullet) => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+
+          <div
+            class:list={[
+              'rich-page__section-media',
+              `rich-page__section-media--${section.mediaType}`,
+              `rich-page__section-media--${getMediaTone(index)}`,
+            ]}
+            aria-label={section.mediaLabel}
+          >
+            <div class="rich-page__media-frame">
+              <span class="rich-page__media-kicker">{section.mediaLabel}</span>
+              <span class="rich-page__media-badge">{getMediaBadge(section, index)}</span>
+
+              {section.mediaType === 'portrait-grid' ? (
+                <div class="rich-page__portrait-grid rich-page__portrait-grid--section" aria-hidden="true">
+                  <span class="rich-page__portrait"></span>
+                  <span class="rich-page__portrait rich-page__portrait--cool"></span>
+                  <span class="rich-page__portrait rich-page__portrait--small"></span>
+                </div>
+              ) : section.mediaType === 'video' ? (
+                <div class="rich-page__video-shell" aria-hidden="true">
+                  <span class="rich-page__video-play"></span>
+                  <span class="rich-page__video-line"></span>
+                  <span class="rich-page__video-line rich-page__video-line--short"></span>
+                </div>
+              ) : section.mediaType === 'info-panel' ? (
+                <div class="rich-page__info-panel" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              ) : (
+                <div class="rich-page__landscape-shell" aria-hidden="true">
+                  <span class="rich-page__landscape-arc"></span>
+                  <span class="rich-page__landscape-route"></span>
+                  <span class="rich-page__landscape-route rich-page__landscape-route--secondary"></span>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+
+  {content.ctaLabel && pageTarget && (
+    <section class="rich-page__cta-band" data-rich-page-reveal>
+      <div class="container rich-page__cta-shell">
+        <div>
+          <p class="eyebrow">{locale === 'it' ? 'Prossimo passo' : 'Next step'}</p>
+          <h2>{content.ctaLabel}</h2>
+          <p>
+            {locale === 'it'
+              ? 'Le pagine interne restano ricche ma ordinate: questo blocco chiude la lettura con un passaggio chiaro verso il contenuto o l azione successiva.'
+              : 'The internal pages stay rich but ordered: this band closes the reading flow with a clear next action.'}
+          </p>
+        </div>
+
+        <div class="rich-page__cta-actions">
+          <a
+            class="btn-primary"
+            href={pageTarget.href}
+            target={pageTarget.external ? '_blank' : undefined}
+            rel={pageTarget.external ? 'noreferrer' : undefined}
+          >
+            {content.ctaLabel}
+          </a>
+          <a class="btn-secondary" href={buildLocalizedPath(locale)}>
+            {labels.home}
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
+</div>
+
+<script>
+  if (typeof window !== 'undefined') {
+    const nodes = Array.from(document.querySelectorAll('[data-rich-page-reveal]'));
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              (entry.target as HTMLElement).dataset.inView = 'true';
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { threshold: 0.18, rootMargin: '0px 0px -8% 0px' },
+      );
+
+      nodes.forEach((node) => observer.observe(node));
+    } else {
+      nodes.forEach((node) => ((node as HTMLElement).dataset.inView = 'true'));
+    }
+  }
+</script>
+
+<style>
+  .rich-page {
+    padding: 2rem 0 5rem;
+  }
+
+  .rich-page__hero,
+  .rich-page__cta-band {
+    position: relative;
+  }
+
+  .rich-page__hero::before,
+  .rich-page__cta-band::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at top left, rgba(126, 36, 52, 0.14), transparent 30%),
+      radial-gradient(circle at bottom right, rgba(55, 95, 138, 0.12), transparent 30%);
+    opacity: 0.9;
+  }
+
+  .rich-page__hero-shell,
+  .rich-page__cta-shell {
+    position: relative;
+    z-index: 1;
+  }
+
+  .rich-page__hero-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    gap: 1.5rem;
+    align-items: stretch;
+  }
+
+  .rich-page__hero-copy,
+  .rich-page__hero-media,
+  .rich-page__section-copy,
+  .rich-page__section-media,
+  .rich-page__cta-shell {
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .rich-page__hero-copy,
+  .rich-page__section-copy {
+    background: rgba(255, 253, 249, 0.84);
+    backdrop-filter: blur(18px);
+  }
+
+  .rich-page__hero-copy {
+    padding: clamp(2rem, 4vw, 3.4rem);
+  }
+
+  .rich-page__hero-copy h1,
+  .rich-page__cta-shell h2 {
+    margin: 0.4rem 0 0.9rem;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.94;
+  }
+
+  .rich-page__hero-intro,
+  .rich-page__cta-shell p,
+  .rich-page__section-copy p {
+    color: var(--ink-soft);
+    font-size: 1.02rem;
+  }
+
+  .rich-page__hero-actions,
+  .rich-page__cta-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.6rem;
+  }
+
+  .rich-page__hero-meta {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+
+  .rich-page__hero-meta li {
+    padding: 0.58rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(20, 32, 51, 0.1);
+    background: rgba(255, 255, 255, 0.72);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
+
+  .rich-page__hero-media,
+  .rich-page__section-media {
+    position: relative;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 28%),
+      linear-gradient(180deg, rgba(19, 35, 53, 0.94), rgba(19, 35, 53, 0.82));
+    min-height: 21rem;
+  }
+
+  .rich-page__hero-media::before,
+  .rich-page__section-media::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(115deg, rgba(255, 255, 255, 0.08), transparent 32%),
+      radial-gradient(circle at 18% 20%, rgba(126, 36, 52, 0.26), transparent 18%),
+      radial-gradient(circle at 82% 76%, rgba(100, 149, 201, 0.28), transparent 18%);
+  }
+
+  .rich-page__hero-media--landscape,
+  .rich-page__section-media--landscape {
+    min-height: 20rem;
+  }
+
+  .rich-page__hero-media--video,
+  .rich-page__section-media--video {
+    min-height: 23rem;
+  }
+
+  .rich-page__media-frame {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    align-content: space-between;
+    gap: 1rem;
+    height: 100%;
+    min-height: inherit;
+    padding: 1.3rem;
+  }
+
+  .rich-page__media-frame--primary {
+    padding: 1.5rem;
+  }
+
+  .rich-page__media-kicker,
+  .rich-page__media-badge {
+    display: inline-flex;
+    width: fit-content;
+    padding: 0.42rem 0.68rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 250, 245, 0.92);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .rich-page__media-badge {
+    justify-self: end;
+    background: rgba(255, 248, 242, 0.9);
+    color: var(--accent);
+  }
+
+  .rich-page__portrait-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: end;
+    min-height: 16rem;
+  }
+
+  .rich-page__portrait-grid--section {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    min-height: 13rem;
+  }
+
+  .rich-page__portrait {
+    position: relative;
+    display: block;
+    height: clamp(8rem, 32vw, 12rem);
+    border-radius: 999px 999px 24px 24px;
+    background: linear-gradient(180deg, #f3e5df 0%, rgba(126, 36, 52, 0.24) 58%, rgba(126, 36, 52, 0.84) 100%);
+    box-shadow: inset 0 -24px 36px rgba(20, 32, 51, 0.18);
+  }
+
+  .rich-page__portrait::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -1.55rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle at 35% 30%, #ffffff, rgba(226, 216, 210, 0.92));
+    box-shadow: 0 12px 24px rgba(20, 32, 51, 0.18);
+  }
+
+  .rich-page__portrait--cool {
+    background: linear-gradient(180deg, #e7eef6 0%, rgba(55, 95, 138, 0.28) 58%, rgba(55, 95, 138, 0.84) 100%);
+  }
+
+  .rich-page__portrait--small {
+    height: clamp(6.2rem, 24vw, 9.4rem);
+  }
+
+  .rich-page__video-shell,
+  .rich-page__landscape-shell,
+  .rich-page__info-panel {
+    position: relative;
+    min-height: 12.5rem;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    overflow: hidden;
+  }
+
+  .rich-page__video-shell {
+    display: grid;
+    place-items: center;
+  }
+
+  .rich-page__video-shell::before,
+  .rich-page__landscape-shell::before,
+  .rich-page__info-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.08), transparent 36%),
+      linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.06));
+  }
+
+  .rich-page__video-play {
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 999px;
+    background: rgba(255, 248, 242, 0.9);
+    box-shadow: 0 16px 36px rgba(20, 32, 51, 0.18);
+  }
+
+  .rich-page__video-play::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-40%, -50%);
+    border-left: 1rem solid var(--accent);
+    border-top: 0.65rem solid transparent;
+    border-bottom: 0.65rem solid transparent;
+  }
+
+  .rich-page__video-line,
+  .rich-page__landscape-route,
+  .rich-page__info-panel span {
+    position: absolute;
+    left: 1.25rem;
+    right: 1.25rem;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.32);
+  }
+
+  .rich-page__video-line {
+    bottom: 1.8rem;
+  }
+
+  .rich-page__video-line--short {
+    right: 46%;
+    bottom: 1.05rem;
+  }
+
+  .rich-page__landscape-arc {
+    position: absolute;
+    right: -1.5rem;
+    bottom: -2rem;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 999px;
+    border: 1.3rem solid rgba(255, 248, 242, 0.18);
+    border-left-color: transparent;
+    border-top-color: rgba(126, 36, 52, 0.52);
+  }
+
+  .rich-page__landscape-route {
+    top: 34%;
+    left: 1.5rem;
+    right: 3.5rem;
+    transform: rotate(-11deg);
+  }
+
+  .rich-page__landscape-route--secondary {
+    top: 58%;
+    left: 4.6rem;
+    right: 1.2rem;
+    transform: rotate(12deg);
+  }
+
+  .rich-page__info-panel {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+    padding: 1.2rem;
+  }
+
+  .rich-page__info-panel span {
+    position: static;
+    display: block;
+    height: auto;
+    min-height: 4.6rem;
+    border-radius: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .rich-page__sections {
+    padding-top: 1.85rem;
+  }
+
+  .rich-page__sections-shell {
+    display: grid;
+    gap: 1.6rem;
+  }
+
+  .rich-page__section {
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(300px, 0.96fr);
+    gap: 1.5rem;
+    align-items: stretch;
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 480ms ease,
+      transform 480ms ease;
+    transition-delay: var(--section-delay, 0ms);
+  }
+
+  .rich-page__section[data-in-view='true'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .rich-page__section--reverse {
+    grid-template-columns: minmax(300px, 0.96fr) minmax(0, 1.04fr);
+  }
+
+  .rich-page__section--reverse .rich-page__section-copy {
+    order: 2;
+  }
+
+  .rich-page__section--reverse .rich-page__section-media {
+    order: 1;
+  }
+
+  .rich-page__section-copy {
+    padding: 2rem;
+  }
+
+  .rich-page__section-copy h2 {
+    margin: 0.35rem 0 0.9rem;
+    font-size: clamp(2.35rem, 4vw, 3.4rem);
+    line-height: 0.98;
+  }
+
+  .rich-page__section-list {
+    margin: 1.3rem 0 0;
+    padding-left: 1.1rem;
+    color: var(--ink-soft);
+  }
+
+  .rich-page__section-list li + li {
+    margin-top: 0.5rem;
+  }
+
+  .rich-page__section-media--warm {
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 26%),
+      linear-gradient(180deg, rgba(95, 22, 36, 0.94), rgba(200, 150, 132, 0.78));
+  }
+
+  .rich-page__section-media--cool {
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.16), transparent 26%),
+      linear-gradient(180deg, rgba(19, 35, 53, 0.96), rgba(62, 91, 123, 0.84));
+  }
+
+  .rich-page__cta-band {
+    padding-top: 1.85rem;
+  }
+
+  .rich-page__cta-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1rem;
+    padding: clamp(1.8rem, 4vw, 2.6rem);
+    align-items: end;
+    background:
+      linear-gradient(125deg, rgba(19, 35, 53, 0.96), rgba(19, 35, 53, 0.86)),
+      radial-gradient(circle at top left, rgba(126, 36, 52, 0.42), transparent 34%);
+    color: rgba(255, 250, 245, 0.96);
+  }
+
+  .rich-page__cta-shell .eyebrow {
+    color: rgba(255, 232, 224, 0.78);
+  }
+
+  .rich-page__cta-shell p {
+    color: rgba(255, 248, 242, 0.78);
+    max-width: 42rem;
+  }
+
+  .rich-page__hero-shell,
+  .rich-page__cta-band[data-in-view='true'] .rich-page__cta-shell {
+    opacity: 1;
+  }
+
+  [data-rich-page-reveal] {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+      opacity 480ms ease,
+      transform 480ms ease;
+  }
+
+  [data-rich-page-reveal][data-in-view='true'] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (max-width: 960px) {
+    .rich-page__hero-shell,
+    .rich-page__section,
+    .rich-page__section--reverse,
+    .rich-page__cta-shell {
+      grid-template-columns: 1fr;
+    }
+
+    .rich-page__section--reverse .rich-page__section-copy,
+    .rich-page__section--reverse .rich-page__section-media {
+      order: initial;
+    }
+
+    .rich-page__hero-copy h1,
+    .rich-page__cta-shell h2 {
+      font-size: clamp(2.7rem, 10vw, 4rem);
+    }
+
+    .rich-page__hero-media,
+    .rich-page__section-media {
+      min-height: 18rem;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .rich-page {
+      padding-top: 1.2rem;
+    }
+
+    .rich-page__hero-copy,
+    .rich-page__section-copy,
+    .rich-page__cta-shell {
+      padding: 1.4rem;
+      border-radius: 24px;
+    }
+
+    .rich-page__hero-media,
+    .rich-page__section-media {
+      min-height: 16rem;
+      border-radius: 24px;
+    }
+
+    .rich-page__portrait-grid {
+      min-height: 12rem;
+    }
+
+    .rich-page__hero-actions,
+    .rich-page__cta-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  }
+</style>

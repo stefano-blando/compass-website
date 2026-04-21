@@ -9,268 +9,346 @@ interface Props {
 const { locale } = Astro.props;
 const labels = getLabels(locale);
 const { venue } = getHomepageContent(locale);
-const venueVisualLabel = locale === 'it' ? 'Visual della sede Sant’Anna' : 'Sant’Anna venue visual';
 const venueRouteEyebrow = locale === 'it' ? 'Apri la pagina sede' : 'Open venue page';
-const travelTags =
-  locale === 'it'
-    ? ['Pisa Centrale', 'Galileo Galilei Airport', 'Centro storico']
-    : ['Pisa Centrale', 'Galileo Galilei Airport', 'Historic centre'];
+const venueVisualLabel = locale === 'it' ? 'Visual della sede Sant’Anna' : 'Sant’Anna venue visual';
+const slides = [
+  {
+    title: venueVisualLabel,
+    body: venue.facts[0],
+  },
+  {
+    title: locale === 'it' ? 'Aula 3 placeholder' : 'Aula 3 placeholder',
+    body: venue.facts[1],
+  },
+  {
+    title: locale === 'it' ? 'Pisa context placeholder' : 'Pisa context placeholder',
+    body: venue.travelBody,
+  },
+];
 ---
 
 <section id="venue-preview" class="venue-preview" data-home-reveal>
-  <div class="venue-preview__stage">
-    <div class="container venue-preview__layout">
-      <div class="venue-preview__copy" data-reveal-item>
-        <p class="section-kicker">{venue.eyebrow}</p>
-        <h2>{venue.title}</h2>
-        <p>{venue.intro}</p>
-
-        <div class="venue-preview__facts">
-          {venue.facts.map((fact, index) => (
-            <article class="venue-preview__fact" style={`--reveal-delay: ${index * 80 + 90}ms;`} data-reveal-item>
-              <span>0{index + 1}</span>
-              <p>{fact}</p>
-            </article>
-          ))}
-        </div>
-      </div>
-
-      <div class="media-shell media-shell--video venue-preview__visual" aria-hidden="true" data-reveal-item style="--reveal-delay: 120ms;">
-        <span class="media-shell__label">{venueVisualLabel}</span>
-        <span class="media-shell__badge">{labels.venue}</span>
-        <span class="media-shell__grid"></span>
-        <span class="media-shell__scan"></span>
-        <span class="media-shell__orbit"></span>
-        <span class="media-shell__beam"></span>
-        <span class="media-shell__frame"></span>
-        <span class="venue-preview__arch"></span>
-        <span class="venue-preview__tile venue-preview__tile--a"></span>
-        <span class="venue-preview__tile venue-preview__tile--b"></span>
-        <div class="media-shell__caption">
-          <span class="media-shell__eyebrow">{siteConfig.eventDate}</span>
-          <strong>{siteConfig.venue}</strong>
-          <p>{venue.travelBody}</p>
-        </div>
-      </div>
-
-      <div class="venue-preview__side">
-        <aside class="venue-preview__card" data-reveal-item style="--reveal-delay: 180ms;">
-          <p class="venue-preview__card-label">{labels.venue}</p>
-          <h3>{siteConfig.venue}</h3>
-          <p class="venue-preview__date">{siteConfig.eventDate}</p>
-          <p class="venue-preview__travel-title">{venue.travelTitle}</p>
-          <p>{venue.travelBody}</p>
-
-          <div class="venue-preview__tags">
-            {travelTags.map((tag, index) => (
-              <span style={`--reveal-delay: ${index * 60 + 200}ms;`} data-reveal-item>{tag}</span>
-            ))}
+  <div class="venue-preview__carousel" data-venue-carousel>
+    <div class="venue-preview__slides">
+      {slides.map((slide, index) => (
+        <figure
+          class:list={[
+            'venue-preview__slide',
+            'venue-preview__visual-shell',
+            `venue-preview__slide--${index + 1}`,
+            index === 0 && 'is-active',
+          ]}
+          aria-hidden={index === 0 ? 'false' : 'true'}
+        >
+          <div class="venue-preview__slide-overlay">
+            <span class="venue-preview__route-line venue-preview__route-line--a"></span>
+            <span class="venue-preview__route-line venue-preview__route-line--b"></span>
+            <span class="venue-preview__slide-label">{slide.title}</span>
+            <p>{slide.body}</p>
           </div>
-        </aside>
+        </figure>
+      ))}
+    </div>
 
-        <a class="route-card venue-preview__route" href={buildLocalizedPath(locale, 'venue')} data-reveal-item style="--reveal-delay: 230ms;">
-          <span class="route-card__eyebrow">{venueRouteEyebrow}</span>
-          <h2>{labels.venue}</h2>
-          <p>{locale === 'it' ? 'Logistica, arrivi e dettagli della sede raccolti in un’unica pagina.' : 'Logistics, arrival notes, and venue details collected on one page.'}</p>
-        </a>
+    <aside class="venue-preview__card" data-reveal-item data-scroll-shift data-scroll-speed="14" data-scroll-direction="-1">
+      <p class="venue-preview__card-label">{venue.eyebrow}</p>
+      <h2>{siteConfig.venue}</h2>
+      <p class="venue-preview__date">{siteConfig.eventDate}</p>
+      <p class="venue-preview__copy">{venue.intro}</p>
+
+      <div class="venue-preview__facts">
+        {venue.facts.map((fact, index) => (
+          <article class="venue-preview__fact" style={`--reveal-delay: ${index * 80 + 70}ms;`} data-reveal-item>
+            <span>0{index + 1}</span>
+            <p>{fact}</p>
+          </article>
+        ))}
       </div>
+
+      <a class="maps-link venue-preview__maps-link" href={buildLocalizedPath(locale, 'venue')}>
+        {venueRouteEyebrow} →
+      </a>
+    </aside>
+
+    <div class="venue-preview__dots" role="tablist" aria-label={labels.venue}>
+      {slides.map((_, index) => (
+        <button class:list={['venue-preview__dot', index === 0 && 'is-active']} type="button" aria-label={`${labels.venue} ${index + 1}`}></button>
+      ))}
     </div>
   </div>
 </section>
 
+<script is:inline>
+  (() => {
+    const root = document.querySelector('[data-venue-carousel]');
+    if (!root) {
+      return;
+    }
+
+    const slides = Array.from(root.querySelectorAll('.venue-preview__slide'));
+    const dots = Array.from(root.querySelectorAll('.venue-preview__dot'));
+    if (!slides.length || !dots.length) {
+      return;
+    }
+
+    let current = 0;
+    let timer;
+
+    const apply = (index) => {
+      slides.forEach((slide, slideIndex) => {
+        const active = slideIndex === index;
+        slide.classList.toggle('is-active', active);
+        slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+      });
+
+      dots.forEach((dot, dotIndex) => {
+        dot.classList.toggle('is-active', dotIndex === index);
+      });
+
+      current = index;
+    };
+
+    const next = () => {
+      apply((current + 1) % slides.length);
+    };
+
+    const start = () => {
+      stop();
+      timer = window.setInterval(next, 4200);
+    };
+
+    const stop = () => {
+      if (timer) {
+        window.clearInterval(timer);
+      }
+    };
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        apply(index);
+        start();
+      });
+    });
+
+    root.addEventListener('mouseenter', stop);
+    root.addEventListener('mouseleave', start);
+
+    start();
+  })();
+</script>
+
 <style>
   .venue-preview {
-    padding: 1.2rem 0 2rem;
+    padding: 0;
+    background: #e9e6e2;
   }
 
-  .venue-preview__stage {
+  .venue-preview__carousel {
     position: relative;
-    width: min(1240px, 96%);
-    margin: 0 auto;
-    padding: clamp(2rem, 4vw, 2.8rem) 0;
-    border-radius: 38px;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    min-height: min(92vh, 880px);
     overflow: hidden;
-    background:
-      radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 28%),
-      radial-gradient(circle at bottom right, rgba(55, 95, 138, 0.34), transparent 32%),
-      linear-gradient(135deg, rgba(126, 36, 52, 0.88), rgba(20, 32, 51, 0.92));
-    box-shadow: var(--shadow-strong);
+    background: #162433;
   }
 
-  .venue-preview__stage::before {
-    content: "";
+  .venue-preview__slides {
     position: absolute;
     inset: 0;
+  }
+
+  .venue-preview__slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: scale(1.04);
+    transition: opacity 900ms ease, transform 5200ms ease;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .venue-preview__slide.is-active {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .venue-preview__slide--1 {
     background:
-      linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
-    background-size: 42px 42px;
-    opacity: 0.18;
+      linear-gradient(180deg, rgba(10, 18, 27, 0.3), rgba(10, 18, 27, 0.1)),
+      linear-gradient(135deg, #405268, #223445 56%, #162433);
+  }
+
+  .venue-preview__slide--2 {
+    background:
+      linear-gradient(180deg, rgba(10, 18, 27, 0.24), rgba(10, 18, 27, 0.12)),
+      linear-gradient(135deg, #73514f, #b78d7e 52%, #4a3035);
+  }
+
+  .venue-preview__slide--3 {
+    background:
+      linear-gradient(180deg, rgba(10, 18, 27, 0.24), rgba(10, 18, 27, 0.14)),
+      linear-gradient(135deg, #243140, #162433 58%, #546e86);
+  }
+
+  .venue-preview__slide-overlay {
+    position: absolute;
+    inset: auto auto 1.6rem 1.6rem;
+    width: min(360px, calc(100% - 3.2rem));
+    padding: 1rem 1.05rem;
+    border-radius: 18px;
+    background: rgba(245, 245, 246, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(10px);
+    color: #f7f4ef;
+  }
+
+  .venue-preview__slide-label,
+  .venue-preview__card-label {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.78);
+  }
+
+  .venue-preview__slide-overlay p {
+    margin: 0.55rem 0 0;
+  }
+
+  .venue-preview__route-line {
+    position: absolute;
     pointer-events: none;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
   }
 
-  .venue-preview__layout {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.95fr) minmax(280px, 0.78fr);
-    gap: 1rem;
-    align-items: stretch;
+  .venue-preview__route-line--a {
+    right: -6%;
+    top: -16%;
+    width: 38%;
+    height: 68%;
+    border-top-color: rgba(255, 98, 40, 0.42);
+    border-right-color: rgba(255, 98, 40, 0.42);
+    transform: rotate(10deg);
+    animation: mediaOrbit 30s linear infinite;
   }
 
-  .venue-preview__copy,
+  .venue-preview__route-line--b {
+    left: -10%;
+    bottom: -18%;
+    width: 28%;
+    height: 54%;
+    border-bottom-color: rgba(141, 185, 216, 0.36);
+    border-left-color: rgba(141, 185, 216, 0.36);
+    transform: rotate(-18deg);
+    animation: mediaOrbit 22s linear infinite reverse;
+  }
+
   .venue-preview__card {
-    color: #f8f4ef;
+    position: absolute;
+    z-index: 2;
+    right: clamp(1rem, 4vw, 4rem);
+    top: 50%;
+    transform: translate3d(0, calc(-50% + var(--scroll-shift, 0px)), 0);
+    width: min(420px, calc(100% - 2rem));
+    padding: 1.3rem 1.25rem 1.1rem;
+    border-radius: 24px;
+    background: rgba(245, 245, 246, 0.95);
+    box-shadow: 0 18px 48px rgba(6, 9, 12, 0.2);
   }
 
-  .venue-preview__copy h2 {
-    margin: 0.3rem 0 0.8rem;
-    font-size: clamp(2.5rem, 5vw, 4.3rem);
-    line-height: 0.93;
-    max-width: 11ch;
+  .venue-preview__card-label {
+    color: var(--accent);
   }
 
-  .venue-preview__copy p {
-    max-width: 42rem;
-    color: rgba(248, 244, 239, 0.84);
+  .venue-preview__card h2 {
+    margin: 0.25rem 0 0;
+    color: #1e252b;
+    font-size: clamp(2rem, 2.4vw, 2.8rem);
+    line-height: 0.95;
+  }
+
+  .venue-preview__date,
+  .venue-preview__copy {
+    color: var(--ink-soft);
+  }
+
+  .venue-preview__date {
+    margin: 0.55rem 0 0;
+    font-weight: 700;
+  }
+
+  .venue-preview__copy {
+    margin: 0.8rem 0 0;
   }
 
   .venue-preview__facts {
     display: grid;
     gap: 0.75rem;
-    margin-top: 1.4rem;
+    margin-top: 1rem;
   }
 
   .venue-preview__fact {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.8rem;
-    align-items: start;
-    padding: 0.9rem 1rem;
+    padding: 0.85rem 0.95rem;
     border-radius: 18px;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(20, 32, 51, 0.08);
   }
 
   .venue-preview__fact span {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 0.14em;
+    color: var(--accent);
   }
 
   .venue-preview__fact p {
     margin: 0;
   }
 
-  .venue-preview__visual {
-    min-height: 100%;
-  }
-
-  .venue-preview__arch,
-  .venue-preview__tile {
-    position: absolute;
-    pointer-events: none;
-  }
-
-  .venue-preview__arch {
-    left: 18%;
-    right: 18%;
-    bottom: 20%;
-    height: 42%;
-    border-radius: 999px 999px 0 0;
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    border-bottom: 0;
-  }
-
-  .venue-preview__tile {
-    width: 7rem;
-    height: 7rem;
-    border-radius: 24px;
-    background: rgba(255, 255, 255, 0.14);
-    border: 1px solid rgba(255, 255, 255, 0.16);
-    box-shadow: 0 16px 30px rgba(5, 10, 16, 0.16);
-  }
-
-  .venue-preview__tile--a {
-    left: 14%;
-    top: 16%;
-  }
-
-  .venue-preview__tile--b {
-    right: 16%;
-    top: 24%;
-  }
-
-  .venue-preview__side {
-    display: grid;
-    gap: 0.9rem;
-  }
-
-  .venue-preview__card {
-    border-radius: 28px;
-    padding: 1.4rem;
-    background: rgba(255, 253, 249, 0.9);
-    color: var(--ink);
-    box-shadow: 0 22px 46px rgba(5, 10, 16, 0.22);
-  }
-
-  .venue-preview__card-label,
-  .venue-preview__travel-title {
-    margin: 0;
-    color: var(--accent);
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-  }
-
-  .venue-preview__card h3 {
-    margin: 0.45rem 0 0;
-    font-size: 2.1rem;
-    line-height: 0.95;
-  }
-
-  .venue-preview__date {
-    margin: 0.45rem 0 1rem;
-    color: var(--ink-soft);
-    font-weight: 700;
-  }
-
-  .venue-preview__travel-title {
-    margin-top: 0.95rem;
-  }
-
-  .venue-preview__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
+  .venue-preview__maps-link {
     margin-top: 1rem;
   }
 
-  .venue-preview__tags span {
-    display: inline-flex;
-    align-items: center;
-    min-height: 2.2rem;
-    padding: 0.35rem 0.85rem;
+  .venue-preview__dots {
+    position: absolute;
+    left: 50%;
+    bottom: 1rem;
+    transform: translateX(-50%);
+    z-index: 3;
+    display: flex;
+    gap: 0.42rem;
+  }
+
+  .venue-preview__dot {
+    width: 10px;
+    height: 10px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.82);
-    border: 1px solid rgba(20, 32, 51, 0.08);
-    color: var(--ink);
-    font-size: 0.8rem;
-    font-weight: 700;
+    border: 0;
+    background: rgba(255, 255, 255, 0.62);
+    cursor: pointer;
   }
 
-  .venue-preview__route {
-    background: rgba(255, 253, 249, 0.88);
+  .venue-preview__dot.is-active {
+    background: #fff;
+    transform: scale(1.2);
   }
 
-  @media (max-width: 1080px) {
-    .venue-preview__layout {
-      grid-template-columns: 1fr;
+  @media (max-width: 900px) {
+    .venue-preview__carousel {
+      min-height: clamp(640px, 92vh, 860px);
     }
 
-    .venue-preview__visual {
-      min-height: 14rem;
+    .venue-preview__card {
+      position: relative;
+      right: auto;
+      top: auto;
+      transform: translate3d(0, var(--scroll-shift, 0px), 0);
+      margin: 10rem auto 2.5rem;
     }
   }
 </style>

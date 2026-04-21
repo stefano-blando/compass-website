@@ -76,14 +76,15 @@ onBeforeUnmount(() => {
 <style scoped>
   .scroll-nav {
     position: fixed;
-    top: 18px;
+    top: 104px;
     left: 50%;
     transform: translateX(-50%) translateY(-12px);
     z-index: 60;
     display: flex;
     align-items: center;
     gap: 0.45rem;
-    width: min(1120px, calc(100% - 16px));
+    width: fit-content;
+    max-width: calc(100% - 16px);
     opacity: 0;
     pointer-events: none;
     transition:
@@ -93,7 +94,6 @@ onBeforeUnmount(() => {
 
   .scroll-nav.is-visible {
     opacity: 1;
-    pointer-events: auto;
     transform: translateX(-50%) translateY(0);
   }
 
@@ -105,6 +105,7 @@ onBeforeUnmount(() => {
     background: rgba(255, 253, 249, 0.88);
     backdrop-filter: blur(14px);
     box-shadow: 0 18px 30px rgba(20, 32, 51, 0.12);
+    pointer-events: auto;
   }
 
   .logo-pill {
@@ -147,6 +148,7 @@ onBeforeUnmount(() => {
     .scroll-nav {
       left: 0.5rem;
       width: calc(100% - 1rem);
+      max-width: calc(100% - 1rem);
       transform: translateX(0) translateY(-12px);
       overflow-x: auto;
       padding-bottom: 0.25rem;

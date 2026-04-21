@@ -42,6 +42,9 @@ const copy = {
     materials: 'Materials',
     openLink: 'Open link',
     missingSession: 'Programme session to be confirmed',
+    talkLens: 'Talk detail',
+    speakerLens: 'Contributors',
+    abstractLens: 'Abstract',
   },
   it: {
     back: 'Programma',
@@ -51,6 +54,9 @@ const copy = {
     materials: 'Materiali',
     openLink: 'Apri il link',
     missingSession: 'Sessione del programma in aggiornamento',
+    talkLens: 'Dettaglio talk',
+    speakerLens: 'Contributori',
+    abstractLens: 'Abstract',
   },
 } as const satisfies Record<
   Locale,
@@ -62,56 +68,84 @@ const copy = {
     materials: string;
     openLink: string;
     missingSession: string;
+    talkLens: string;
+    speakerLens: string;
+    abstractLens: string;
   }
 >;
 const pageCopy = copy[locale];
+const timelineValue = talk.startsAt
+  ? session
+    ? `${talk.startsAt.slice(11, 16)} · ${session.startsAt.slice(11, 16)} - ${session.endsAt.slice(11, 16)}`
+    : talk.startsAt.slice(11, 16)
+  : null;
 ---
 
 <Layout locale={locale} title={`${talk.title[locale]} | COMPASS`} description={talk.abstract[locale]}>
   <Header locale={locale} />
-  <main class="page-shell">
-    <section class="page-hero container talk-page">
-      <div class="page-hero__content talk-page__hero">
-        <p class="eyebrow">
-          <a href={buildLocalizedPath(locale, 'programme')}>{pageCopy.back}</a>
-        </p>
-        <h1>{talk.title[locale]}</h1>
-        <p class="page-lead">{talk.abstract[locale]}</p>
-      </div>
+  <main class="talk-detail">
+    <section class="talk-detail__hero">
+      <div class="container talk-detail__hero-shell">
+        <div class="talk-detail__hero-copy">
+          <p class="eyebrow">
+            <a href={buildLocalizedPath(locale, 'programme')}>{pageCopy.back}</a>
+          </p>
+          <h1>{talk.title[locale]}</h1>
+          <p class="talk-detail__hero-intro">{talk.abstract[locale]}</p>
 
-      <aside class="page-hero__meta talk-page__meta">
-        <div>
-          <p class="page-meta__label">{pageCopy.session}</p>
-          <p class="talk-page__meta-value">{session?.title[locale] ?? pageCopy.missingSession}</p>
+          <ul class="talk-detail__chips" aria-label={locale === 'it' ? 'Meta del talk' : 'Talk metadata'}>
+            <li>{pageCopy.talkLens}</li>
+            <li>{session?.title[locale] ?? pageCopy.missingSession}</li>
+            {timelineValue && <li>{timelineValue}</li>}
+          </ul>
         </div>
 
-        {talk.startsAt && (
+        <aside class="talk-detail__hero-media" aria-label={pageCopy.speakerLens}>
+          <div class="talk-detail__media-frame">
+            <span class="talk-detail__media-kicker">{pageCopy.speakerLens}</span>
+            <span class="talk-detail__media-badge">{pageCopy.abstractLens}</span>
+
+            <div class="talk-detail__portrait-grid" aria-hidden="true">
+              <span class="talk-detail__portrait"></span>
+              <span class="talk-detail__portrait talk-detail__portrait--cool"></span>
+              <span class="talk-detail__portrait talk-detail__portrait--small"></span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="talk-detail__meta-band">
+      <div class="container talk-detail__meta-shell">
+        <div>
+          <p class="page-meta__label">{pageCopy.session}</p>
+          <p class="talk-detail__meta-value">{session?.title[locale] ?? pageCopy.missingSession}</p>
+        </div>
+
+        {timelineValue && (
           <div>
             <p class="page-meta__label">{pageCopy.time}</p>
-            <p class="talk-page__meta-value">
-              {talk.startsAt.slice(11, 16)}
-              {session ? ` · ${session.startsAt.slice(11, 16)} - ${session.endsAt.slice(11, 16)}` : ''}
-            </p>
+            <p class="talk-detail__meta-value">{timelineValue}</p>
           </div>
         )}
 
         {talk.materialsUrl && (
           <div>
             <p class="page-meta__label">{pageCopy.materials}</p>
-            <a class="talk-page__materials" href={talk.materialsUrl}>{pageCopy.openLink}</a>
+            <a class="talk-detail__materials" href={talk.materialsUrl}>{pageCopy.openLink}</a>
           </div>
         )}
-      </aside>
+      </div>
     </section>
 
-    <section class="container talk-page__details">
-      <article class="content-card talk-page__abstract">
+    <section class="container talk-detail__content">
+      <article class="talk-detail__abstract-panel">
         <p class="page-meta__label">{pageCopy.speakers}</p>
-        <div class="talk-page__speaker-grid">
+        <div class="talk-detail__speaker-grid">
           {speakers.map((speaker) => (
-            <div class="talk-page__speaker-card">
+            <div class="talk-detail__speaker-card">
               <h2>{speaker.name}</h2>
-              <p class="talk-page__speaker-affiliation">{speaker.affiliation}</p>
+              <p class="talk-detail__speaker-affiliation">{speaker.affiliation}</p>
               <p>{speaker.bio[locale]}</p>
             </div>
           ))}
@@ -123,66 +157,243 @@ const pageCopy = copy[locale];
 </Layout>
 
 <style>
-  .talk-page {
+  .talk-detail {
+    padding: 2rem 0 5rem;
+  }
+
+  .talk-detail__hero {
+    position: relative;
+  }
+
+  .talk-detail__hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(circle at top left, rgba(126, 36, 52, 0.14), transparent 28%),
+      radial-gradient(circle at bottom right, rgba(55, 95, 138, 0.14), transparent 32%);
+  }
+
+  .talk-detail__hero-shell {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    gap: 1.5rem;
     align-items: stretch;
   }
 
-  .talk-page__hero h1 {
-    margin-bottom: 1rem;
+  .talk-detail__hero-copy,
+  .talk-detail__hero-media,
+  .talk-detail__meta-shell,
+  .talk-detail__abstract-panel {
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    box-shadow: var(--shadow);
+    overflow: hidden;
   }
 
-  .talk-page__hero .eyebrow a {
+  .talk-detail__hero-copy,
+  .talk-detail__meta-shell,
+  .talk-detail__abstract-panel {
+    background: rgba(255, 253, 249, 0.86);
+    backdrop-filter: blur(18px);
+  }
+
+  .talk-detail__hero-copy,
+  .talk-detail__abstract-panel {
+    padding: clamp(2rem, 4vw, 3rem);
+  }
+
+  .talk-detail__hero-copy .eyebrow a {
     text-decoration: none;
+    color: inherit;
   }
 
-  .talk-page__meta {
-    gap: 1.2rem;
+  .talk-detail__hero-copy h1 {
+    margin: 0.35rem 0 0.9rem;
+    font-size: clamp(3rem, 6vw, 5rem);
+    line-height: 0.94;
   }
 
-  .talk-page__meta-value {
+  .talk-detail__hero-intro {
+    color: var(--ink-soft);
+    font-size: 1.05rem;
+    max-width: 48rem;
+  }
+
+  .talk-detail__chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    padding: 0;
+    margin: 1.5rem 0 0;
+  }
+
+  .talk-detail__chips li {
+    padding: 0.58rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(20, 32, 51, 0.1);
+    background: rgba(255, 255, 255, 0.72);
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--ink-soft);
+  }
+
+  .talk-detail__hero-media {
+    position: relative;
+    min-height: 22rem;
+    background:
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.14), transparent 24%),
+      linear-gradient(180deg, rgba(19, 35, 53, 0.96), rgba(63, 89, 120, 0.84));
+  }
+
+  .talk-detail__media-frame {
+    position: relative;
+    height: 100%;
+    min-height: inherit;
+    padding: 1.35rem;
+    display: grid;
+    gap: 1rem;
+    align-content: space-between;
+  }
+
+  .talk-detail__media-kicker,
+  .talk-detail__media-badge {
+    display: inline-flex;
+    width: fit-content;
+    padding: 0.42rem 0.68rem;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: rgba(255, 250, 245, 0.92);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .talk-detail__media-badge {
+    justify-self: end;
+    background: rgba(255, 248, 242, 0.9);
+    color: var(--accent);
+  }
+
+  .talk-detail__portrait-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    align-items: end;
+    min-height: 14rem;
+    margin-top: auto;
+  }
+
+  .talk-detail__portrait {
+    position: relative;
+    display: block;
+    height: clamp(8rem, 30vw, 11rem);
+    border-radius: 999px 999px 24px 24px;
+    background: linear-gradient(180deg, #f3e5df 0%, rgba(126, 36, 52, 0.24) 58%, rgba(126, 36, 52, 0.84) 100%);
+    box-shadow: inset 0 -24px 36px rgba(20, 32, 51, 0.18);
+  }
+
+  .talk-detail__portrait::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -1.55rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 999px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle at 35% 30%, #ffffff, rgba(226, 216, 210, 0.92));
+    box-shadow: 0 12px 24px rgba(20, 32, 51, 0.18);
+  }
+
+  .talk-detail__portrait--cool {
+    background: linear-gradient(180deg, #e7eef6 0%, rgba(55, 95, 138, 0.28) 58%, rgba(55, 95, 138, 0.84) 100%);
+  }
+
+  .talk-detail__portrait--small {
+    height: clamp(6.4rem, 24vw, 8.8rem);
+  }
+
+  .talk-detail__meta-band {
+    padding-top: 1.35rem;
+  }
+
+  .talk-detail__meta-shell {
+    padding: 1.2rem 1.4rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .talk-detail__meta-value {
     margin: 0.35rem 0 0;
     color: var(--ink);
     font-weight: 700;
   }
 
-  .talk-page__materials {
+  .talk-detail__materials {
     display: inline-flex;
     margin-top: 0.35rem;
     color: var(--accent);
     font-weight: 700;
   }
 
-  .talk-page__details {
+  .talk-detail__content {
     margin-top: 1.5rem;
   }
 
-  .talk-page__abstract {
-    padding: clamp(1.5rem, 4vw, 2rem);
-  }
-
-  .talk-page__speaker-grid {
+  .talk-detail__speaker-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     gap: 1rem;
     margin-top: 1rem;
   }
 
-  .talk-page__speaker-card {
+  .talk-detail__speaker-card {
     padding: 1.2rem;
     border-radius: 24px;
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.72);
     border: 1px solid rgba(20, 32, 51, 0.08);
   }
 
-  .talk-page__speaker-card h2 {
+  .talk-detail__speaker-card h2 {
     margin: 0;
     font-size: 2rem;
     line-height: 0.95;
   }
 
-  .talk-page__speaker-affiliation {
+  .talk-detail__speaker-affiliation {
     margin: 0.55rem 0 0.8rem;
     color: var(--accent);
     font-weight: 700;
+  }
+
+  @media (max-width: 960px) {
+    .talk-detail__hero-shell {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .talk-detail {
+      padding-top: 1.2rem;
+    }
+
+    .talk-detail__hero-copy,
+    .talk-detail__abstract-panel,
+    .talk-detail__meta-shell {
+      padding: 1.4rem;
+      border-radius: 24px;
+    }
+
+    .talk-detail__hero-media {
+      min-height: 18rem;
+      border-radius: 24px;
+    }
   }
 </style>

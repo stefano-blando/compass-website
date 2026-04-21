@@ -31,8 +31,12 @@ const identity = getSiteIdentity(locale);
     </div>
 
     <div>
-      <p class="site-footer__eyebrow">{locale === 'it' ? 'Contatti' : 'Contact'}</p>
-      <p><a href="mailto:compass-workshop@example.org">compass-workshop@example.org</a></p>
+      <p class="site-footer__eyebrow">{locale === 'it' ? 'Istituzioni' : 'Institutions'}</p>
+      <div class="site-footer__logos">
+        <img src="/images/logos/sssa-color.png" alt="Scuola Superiore Sant’Anna" class="footer-logo" />
+        <img src="/images/logos/unipi-white.png" alt="Università di Pisa" class="footer-logo" />
+        <img src="/images/logos/ai_society_logo.png" alt="AI Society" class="footer-logo footer-logo--ai" />
+      </div>
       <p>
         <a href={siteConfig.registrationUrl} target="_blank" rel="noreferrer">
           {locale === 'it' ? 'Modulo di registrazione esterno' : 'External registration form'}
@@ -41,3 +45,20 @@ const identity = getSiteIdentity(locale);
     </div>
   </div>
 </footer>
+
+<style>
+  .site-footer__logos {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+  .footer-logo {
+    height: 38px;
+    width: auto;
+    object-fit: contain;
+  }
+  .footer-logo--ai {
+    height: 45px;
+  }
+</style>

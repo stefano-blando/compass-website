@@ -1,9 +1,10 @@
 ---
+import RichContentPage from '../../../components/site/RichContentPage.astro';
 import Footer from '../../../components/site/Footer.astro';
 import Header from '../../../components/site/Header.astro';
 import type { Locale } from '../../../data/types';
 import Layout from '../../../layouts/Layout.astro';
-import { getPageMetadata, locales, siteConfig } from '../../../lib/site';
+import { getPageMetadata, getRichPageContent, locales } from '../../../lib/site';
 
 export function getStaticPaths() {
   return locales.map((lang) => ({ params: { lang } }));
@@ -11,48 +12,13 @@ export function getStaticPaths() {
 
 const locale = Astro.params.lang as Locale;
 const pageMeta = getPageMetadata(locale, 'venue');
-const copy = {
-  en: {
-    title: 'Venue',
-    intro: 'This route shell is reserved for venue details, travel information, and attendee logistics.',
-    section: 'Current anchors',
-    cards: [
-      siteConfig.venue,
-      'Travel notes for arriving in Pisa and moving around the campus.',
-      'Practical access information for the workshop day.',
-    ],
-  },
-  it: {
-    title: 'Sede',
-    intro: 'Questa shell e riservata a sede, indicazioni di viaggio e logistica per i partecipanti.',
-    section: 'Riferimenti attuali',
-    cards: [
-      siteConfig.venue,
-      'Note di viaggio per raggiungere Pisa e muoversi nel campus.',
-      'Informazioni pratiche di accesso per la giornata del workshop.',
-    ],
-  },
-}[locale];
+const content = getRichPageContent(locale, 'venue');
 ---
 
 <Layout locale={locale} title={pageMeta.title} description={pageMeta.description}>
   <Header locale={locale} />
-  <main class="page-shell">
-    <section class="page-hero container">
-      <div class="page-hero__content">
-        <p class="eyebrow">COMPASS</p>
-        <h1>{copy.title}</h1>
-        <p class="page-lead">{copy.intro}</p>
-      </div>
-      <aside class="page-hero__meta">
-        <p class="page-meta__label">{copy.section}</p>
-        <ul class="page-meta__list">
-          {copy.cards.map((item) => (
-            <li>{item}</li>
-          ))}
-        </ul>
-      </aside>
-    </section>
+  <main>
+    <RichContentPage locale={locale} page="venue" content={content} />
   </main>
   <Footer locale={locale} />
 </Layout>

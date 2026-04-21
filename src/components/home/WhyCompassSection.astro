@@ -8,50 +8,78 @@ interface Props {
 
 const { locale } = Astro.props;
 const { whyCompass } = getHomepageContent(locale);
+
 const flowLabels =
   locale === 'it'
     ? ['Metodi AI', 'Networks & NLP', 'Diritto ed etica']
     : ['AI methods', 'Networks & NLP', 'Law and ethics'];
+
+const editorialTopRow = whyCompass.pillars.map((pillar, index) => ({
+  eyebrow: flowLabels[index] ?? whyCompass.eyebrow,
+  title: pillar.title,
+  body: pillar.body,
+}));
+
+const editorialBottomRow = [
+  {
+    eyebrow: whyCompass.asideTitle,
+    title: locale === 'it' ? 'Orientarsi nella complessita' : 'Orienting through complexity',
+    body: whyCompass.asideBody,
+  },
+  ...whyCompass.asidePoints.map((point, index) => ({
+    eyebrow: flowLabels[index] ?? whyCompass.eyebrow,
+    title: locale === 'it' ? `Linea di lavoro 0${index + 1}` : `Workstream 0${index + 1}`,
+    body: point,
+  })),
+];
 ---
 
 <section id="why-compass" class="why-compass" data-home-reveal>
-  <div class="why-compass__glow why-compass__glow--warm" aria-hidden="true"></div>
-  <div class="why-compass__glow why-compass__glow--cool" aria-hidden="true"></div>
+  <div class="why-compass__band">
+    <div class="container why-compass__shell">
+      <div class="why-compass__header">
+        <div class="why-compass__copy" data-reveal-item data-scroll-shift data-scroll-speed="18" data-scroll-direction="-1">
+          <p class="section-kicker">{whyCompass.eyebrow}</p>
+          <h2>{whyCompass.title}</h2>
+          <p class="why-compass__lead">{whyCompass.intro}</p>
+        </div>
 
-  <div class="container why-compass__layout">
-    <div class="why-compass__intro" data-reveal-item>
-      <p class="section-kicker">{whyCompass.eyebrow}</p>
-      <h2>{whyCompass.title}</h2>
-      <p class="why-compass__lead">{whyCompass.intro}</p>
+        <aside class="why-compass__manifesto" data-reveal-item data-scroll-shift data-scroll-speed="14" style="--reveal-delay: 90ms;">
+          <p class="why-compass__manifesto-label">{whyCompass.asideTitle}</p>
+          <p class="why-compass__manifesto-copy">{whyCompass.asideBody}</p>
+          <ul class="why-compass__manifesto-list">
+            {whyCompass.asidePoints.map((point) => (
+              <li>{point}</li>
+            ))}
+          </ul>
+        </aside>
+      </div>
+    </div>
+  </div>
 
-      <div class="why-compass__flow" aria-hidden="true">
-        {flowLabels.map((label, index) => (
-          <div class="why-compass__flow-item" style={`--reveal-delay: ${index * 80 + 120}ms;`} data-reveal-item>
-            <span>0{index + 1}</span>
-            <strong>{label}</strong>
-          </div>
+  <div class="why-compass__editorial-marquee" aria-hidden="true">
+    <div class="why-compass__marquee-row">
+      <div class="why-compass__marquee-track why-compass__marquee-track--forward">
+        {[...editorialTopRow, ...editorialTopRow].map((item) => (
+          <article class="why-compass__editorial-card">
+            <p class="why-compass__editorial-eyebrow">{item.eyebrow}</p>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
         ))}
       </div>
     </div>
 
-    <aside class="why-compass__aside" data-reveal-item style="--reveal-delay: 120ms;">
-      <p class="section-kicker">{whyCompass.asideTitle}</p>
-      <p class="why-compass__aside-copy">{whyCompass.asideBody}</p>
-      <ul class="why-compass__list">
-        {whyCompass.asidePoints.map((point) => (
-          <li>{point}</li>
+    <div class="why-compass__marquee-row">
+      <div class="why-compass__marquee-track why-compass__marquee-track--reverse">
+        {[...editorialBottomRow, ...editorialBottomRow].map((item) => (
+          <article class="why-compass__editorial-card why-compass__editorial-card--soft">
+            <p class="why-compass__editorial-eyebrow">{item.eyebrow}</p>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
         ))}
-      </ul>
-    </aside>
-
-    <div class="why-compass__pillars">
-      {whyCompass.pillars.map((pillar, index) => (
-        <article class="why-compass__card" style={`--reveal-delay: ${index * 95 + 100}ms;`} data-reveal-item>
-          <p class="why-compass__card-index">0{index + 1}</p>
-          <h3>{pillar.title}</h3>
-          <p>{pillar.body}</p>
-        </article>
-      ))}
+      </div>
     </div>
   </div>
 </section>
@@ -59,204 +87,186 @@ const flowLabels =
 <style>
   .why-compass {
     position: relative;
-    padding: 1rem 0 1.8rem;
-    opacity: 0;
-    transform: translateY(28px);
-    transition:
-      opacity 540ms ease,
-      transform 540ms ease;
+    padding: 1rem 0 2.6rem;
   }
 
-  .why-compass.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  .why-compass__glow {
-    position: absolute;
-    border-radius: 999px;
-    filter: blur(54px);
-    opacity: 0.22;
-    pointer-events: none;
-  }
-
-  .why-compass__glow--warm {
-    top: 6%;
-    left: 4%;
-    width: 16rem;
-    height: 16rem;
-    background: rgba(126, 36, 52, 0.28);
-  }
-
-  .why-compass__glow--cool {
-    right: 8%;
-    bottom: 2%;
-    width: 18rem;
-    height: 18rem;
-    background: rgba(55, 95, 138, 0.24);
-  }
-
-  .why-compass__layout {
-    position: relative;
-    display: grid;
-    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.9fr);
-    gap: 1.2rem;
-  }
-
-  .why-compass__intro,
-  .why-compass__card,
-  .why-compass__aside {
-    position: relative;
-    overflow: hidden;
-    border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.62);
-    background: var(--surface);
-    box-shadow: var(--shadow);
-  }
-
-  .why-compass__intro,
-  .why-compass__aside {
-    padding: clamp(1.6rem, 3vw, 2rem);
-  }
-
-  .why-compass__intro {
+  .why-compass__band {
     background:
-      radial-gradient(circle at top right, rgba(55, 95, 138, 0.14), transparent 26%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 253, 249, 0.72)),
-      var(--surface);
+      radial-gradient(circle at 12% 16%, rgba(126, 36, 52, 0.08), transparent 24%),
+      radial-gradient(circle at 86% 24%, rgba(55, 95, 138, 0.08), transparent 28%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.46), rgba(255, 255, 255, 0));
+    padding-bottom: 0.4rem;
   }
 
-  .why-compass__intro h2 {
+  .why-compass__shell {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .why-compass__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.8fr);
+    gap: 1rem;
+    align-items: start;
+  }
+
+  .why-compass__copy h2 {
     margin: 0.3rem 0 0.8rem;
-    font-size: clamp(2.4rem, 5vw, 4.4rem);
+    font-size: clamp(2.4rem, 5vw, 4.3rem);
     line-height: 0.93;
-    max-width: 13ch;
+    max-width: 12ch;
   }
 
   .why-compass__lead,
-  .why-compass__card p,
-  .why-compass__aside-copy,
-  .why-compass__list li {
+  .why-compass__manifesto-copy,
+  .why-compass__manifesto-list li,
+  .why-compass__editorial-card p {
     color: var(--ink-soft);
   }
 
-  .why-compass__flow {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    margin-top: 1.5rem;
-  }
-
-  .why-compass__flow-item {
+  .why-compass__manifesto {
     position: relative;
-    min-height: 7.4rem;
-    padding: 1rem;
-    border-radius: 22px;
+    overflow: hidden;
+    padding: 1.4rem;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.62);
     background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.16)),
-      rgba(20, 32, 51, 0.03);
-    border: 1px solid rgba(20, 32, 51, 0.08);
-    display: grid;
-    align-content: end;
-    gap: 0.35rem;
-  }
-
-  .why-compass__flow-item::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(rgba(20, 32, 51, 0.05) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(20, 32, 51, 0.05) 1px, transparent 1px);
-    background-size: 22px 22px;
-    opacity: 0.38;
-    mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.9), transparent);
-  }
-
-  .why-compass__flow-item span,
-  .why-compass__card-index {
-    position: relative;
-    z-index: 1;
-    margin: 0;
-    font-size: 0.8rem;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    color: var(--accent-cool);
-  }
-
-  .why-compass__flow-item strong {
-    position: relative;
-    z-index: 1;
-    font-size: 1.12rem;
-    line-height: 1.15;
-  }
-
-  .why-compass__pillars {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-    grid-column: 1 / -1;
-  }
-
-  .why-compass__card {
-    padding: 1.35rem;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 253, 249, 0.96)),
+      radial-gradient(circle at top right, rgba(55, 95, 138, 0.14), transparent 26%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(255, 253, 249, 0.94)),
       var(--surface);
-    transition:
-      transform 220ms ease,
-      box-shadow 220ms ease,
-      border-color 220ms ease;
+    box-shadow: var(--shadow);
+    transform: translate3d(0, var(--scroll-shift, 0px), 0);
   }
 
-  .why-compass__card::before {
-    content: "";
-    position: absolute;
-    inset: -18% 42% 42% -10%;
-    background: radial-gradient(circle, rgba(126, 36, 52, 0.14), transparent 70%);
-    opacity: 0;
-    transition: opacity 220ms ease;
+  .why-compass__manifesto-label,
+  .why-compass__editorial-eyebrow {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
   }
 
-  .why-compass__card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow-strong);
-    border-color: rgba(55, 95, 138, 0.16);
+  .why-compass__manifesto-copy {
+    margin: 0.55rem 0 0;
   }
 
-  .why-compass__card:hover::before {
-    opacity: 1;
-  }
-
-  .why-compass__card h3 {
-    position: relative;
-    z-index: 1;
-    margin: 0.45rem 0 0.55rem;
-    font-size: 1.9rem;
-    line-height: 0.98;
-  }
-
-  .why-compass__aside {
-    background:
-      radial-gradient(circle at top left, rgba(126, 36, 52, 0.12), transparent 30%),
-      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.76)),
-      var(--surface-strong);
-  }
-
-  .why-compass__list {
+  .why-compass__manifesto-list {
     margin: 1rem 0 0;
     padding-left: 1.1rem;
   }
 
-  .why-compass__list li + li {
+  .why-compass__manifesto-list li + li {
     margin-top: 0.55rem;
   }
 
+  .why-compass__editorial-marquee {
+    display: grid;
+    gap: 0.95rem;
+    margin-top: 1.4rem;
+  }
+
+  .why-compass__marquee-row {
+    position: relative;
+    overflow: hidden;
+    padding-inline: 0.8rem;
+  }
+
+  .why-compass__marquee-row::before,
+  .why-compass__marquee-row::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 56px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .why-compass__marquee-row::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--page-bg), rgba(246, 242, 236, 0));
+  }
+
+  .why-compass__marquee-row::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--page-bg), rgba(246, 242, 236, 0));
+  }
+
+  .why-compass__marquee-track {
+    display: flex;
+    gap: 0.95rem;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .why-compass__marquee-track--forward {
+    animation: whyCompassMarquee 28s linear infinite;
+  }
+
+  .why-compass__marquee-track--reverse {
+    animation: whyCompassMarquee 30s linear infinite reverse;
+  }
+
+  .why-compass__editorial-card {
+    width: clamp(270px, 29vw, 410px);
+    min-height: 206px;
+    padding: 1.15rem;
+    border-radius: 18px;
+    border: 1px solid rgba(20, 32, 51, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 253, 249, 0.98)),
+      var(--surface);
+    box-shadow: var(--shadow);
+    display: grid;
+    align-content: start;
+  }
+
+  .why-compass__editorial-card--soft {
+    background:
+      linear-gradient(180deg, rgba(236, 229, 220, 0.9), rgba(255, 253, 249, 0.96)),
+      var(--surface);
+  }
+
+  .why-compass__editorial-card h3 {
+    margin: 0.45rem 0 0;
+    font-size: clamp(1.55rem, 2vw, 2.05rem);
+    line-height: 0.96;
+    max-width: 12ch;
+  }
+
+  .why-compass__editorial-card p:last-child {
+    margin: 0.75rem 0 0;
+  }
+
+  @keyframes whyCompassMarquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-50% - 0.475rem));
+    }
+  }
+
   @media (max-width: 980px) {
-    .why-compass__layout,
-    .why-compass__pillars,
-    .why-compass__flow {
+    .why-compass__header {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .why-compass__editorial-card {
+      width: clamp(244px, 76vw, 320px);
+      min-height: 190px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .why-compass__marquee-track--forward,
+    .why-compass__marquee-track--reverse {
+      animation: none;
     }
   }
 </style>
