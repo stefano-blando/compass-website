@@ -106,9 +106,22 @@ const timelineValue = talk.startsAt
             <span class="talk-detail__media-badge">{pageCopy.abstractLens}</span>
 
             <div class="talk-detail__portrait-grid" aria-hidden="true">
-              <span class="talk-detail__portrait"></span>
-              <span class="talk-detail__portrait talk-detail__portrait--cool"></span>
-              <span class="talk-detail__portrait talk-detail__portrait--small"></span>
+              {speakers.slice(0, 3).map((speaker, idx) => (
+                speaker.image ? (
+                   <div class:list={["talk-detail__portrait", idx === 1 && "talk-detail__portrait--cool", idx === 2 && "talk-detail__portrait--small"]}>
+                    <img src={speaker.image} alt={speaker.name} class="talk-detail__portrait-img" />
+                   </div>
+                ) : (
+                  <span class:list={["talk-detail__portrait", idx === 1 && "talk-detail__portrait--cool", idx === 2 && "talk-detail__portrait--small"]}></span>
+                )
+              ))}
+              {speakers.length === 0 && (
+                <>
+                  <span class="talk-detail__portrait"></span>
+                  <span class="talk-detail__portrait talk-detail__portrait--cool"></span>
+                  <span class="talk-detail__portrait talk-detail__portrait--small"></span>
+                </>
+              )}
             </div>
           </div>
         </aside>
@@ -144,8 +157,17 @@ const timelineValue = talk.startsAt
         <div class="talk-detail__speaker-grid">
           {speakers.map((speaker) => (
             <div class="talk-detail__speaker-card">
-              <h2>{speaker.name}</h2>
-              <p class="talk-detail__speaker-affiliation">{speaker.affiliation}</p>
+              <div class="talk-detail__speaker-head">
+                {speaker.image && (
+                  <div class="talk-detail__speaker-photo">
+                    <img src={speaker.image} alt={speaker.name} />
+                  </div>
+                )}
+                <div>
+                  <h2>{speaker.name}</h2>
+                  <p class="talk-detail__speaker-affiliation">{speaker.affiliation}</p>
+                </div>
+              </div>
               <p>{speaker.bio[locale]}</p>
             </div>
           ))}
@@ -296,6 +318,22 @@ const timelineValue = talk.startsAt
     border-radius: 999px 999px 24px 24px;
     background: linear-gradient(180deg, #f3e5df 0%, rgba(126, 36, 52, 0.24) 58%, rgba(126, 36, 52, 0.84) 100%);
     box-shadow: inset 0 -24px 36px rgba(20, 32, 51, 0.18);
+    overflow: hidden;
+  }
+
+  .talk-detail__portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    mix-blend-mode: luminosity;
+    opacity: 0.82;
+    transition: opacity 220ms ease, mix-blend-mode 220ms ease;
+  }
+
+  .talk-detail__portrait:hover .talk-detail__portrait-img {
+    mix-blend-mode: normal;
+    opacity: 1;
   }
 
   .talk-detail__portrait::before {
@@ -359,6 +397,29 @@ const timelineValue = talk.startsAt
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.72);
     border: 1px solid rgba(20, 32, 51, 0.08);
+  }
+
+  .talk-detail__speaker-head {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    margin-bottom: 1.2rem;
+  }
+
+  .talk-detail__speaker-photo {
+    width: 4.8rem;
+    height: 4.8rem;
+    border-radius: 999px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid var(--accent);
+    box-shadow: 0 8px 16px rgba(20, 32, 51, 0.12);
+  }
+
+  .talk-detail__speaker-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .talk-detail__speaker-card h2 {

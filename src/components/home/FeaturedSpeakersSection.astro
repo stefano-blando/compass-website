@@ -54,15 +54,28 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
                 <span class="featured-speakers__card-media-orbit featured-speakers__card-media-orbit--outer"></span>
                 <span class="featured-speakers__card-media-orbit featured-speakers__card-media-orbit--inner"></span>
                 <span class="featured-speakers__card-media-route"></span>
-                <span class="media-shell__person media-shell__person--soft featured-speakers__figure featured-speakers__figure--left"></span>
-                <span class="media-shell__person featured-speakers__figure featured-speakers__figure--right"></span>
-                <div class="featured-speakers__monogram">
-                  {speaker.name
-                    .split(' ')
-                    .map((part) => part[0])
-                    .slice(0, 2)
-                    .join('')}
-                </div>
+                
+                {speaker.slug === 'guido-germano' || speaker.slug === 'prabhani-don' ? (
+                   <>
+                    <span class="media-shell__person media-shell__person--soft featured-speakers__figure featured-speakers__figure--left"></span>
+                    <span class="media-shell__person featured-speakers__figure featured-speakers__figure--right"></span>
+                   </>
+                ) : null}
+
+                {getSpeakerBySlug(speaker.slug)?.image ? (
+                  <div class="featured-speakers__photo">
+                    <img src={getSpeakerBySlug(speaker.slug)?.image} alt={speaker.name} />
+                  </div>
+                ) : (
+                  <div class="featured-speakers__monogram">
+                    {speaker.name
+                      .split(' ')
+                      .map((part) => part[0])
+                      .slice(0, 2)
+                      .join('')}
+                  </div>
+                )}
+
                 <div class="media-shell__caption">
                   <span class="media-shell__eyebrow">{portraitLabel}</span>
                   <strong>{speaker.name}</strong>
@@ -259,6 +272,27 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
     right: 18%;
     --person-width: 4.6rem;
     --person-height: 8rem;
+  }
+
+  .featured-speakers__photo {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .featured-speakers__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 20%;
+    mix-blend-mode: luminosity;
+    opacity: 0.88;
+    transition: opacity 220ms ease, mix-blend-mode 220ms ease;
+  }
+
+  .featured-speakers__card:hover .featured-speakers__photo img {
+    mix-blend-mode: normal;
+    opacity: 1;
   }
 
   .featured-speakers__monogram {
