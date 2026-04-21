@@ -572,8 +572,10 @@ const homepageCuration = {
 };
 
 export function buildLocalizedPath(locale: Locale, pathname = '') {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
   const cleanPath = pathname.replace(/\/+/g, '/').replace(/^\/|\/$/g, '');
-  return cleanPath ? `/${locale}/${cleanPath}/` : `/${locale}/`;
+  const localized = cleanPath ? `/${locale}/${cleanPath}/` : `/${locale}/`;
+  return `${base}${localized}`.replace(/\/+/g, '/');
 }
 
 export function getLabels(locale: Locale) {
@@ -617,7 +619,8 @@ export function getRichPageContent(locale: Locale, page: Exclude<SitePageKey, 'h
 }
 
 export function getRootRedirect() {
-  const target = `./${defaultLocale}/`;
+  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+  const target = `${base}/${defaultLocale}/`.replace(/\/+/g, '/');
   return {
     target,
     metaRefresh: `0;url=${target}`,

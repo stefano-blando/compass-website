@@ -13,8 +13,8 @@ const rootRedirect = getRootRedirect();
     <meta name="robots" content="noindex" />
     <link rel="canonical" href={rootRedirect.target} />
     <title>Redirecting to COMPASS</title>
-    <script is:inline>
-      window.location.replace('./en/');
+    <script define:vars={{ target: rootRedirect.target }}>
+      window.location.replace(target);
     </script>
   </head>
   <body>
