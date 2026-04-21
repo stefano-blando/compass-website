@@ -179,7 +179,7 @@ export const speakers: Speaker[] = [
       en: 'Panel 1 speaker',
       it: 'Relatore del Panel 1',
     },
-    image: '/images/speakers/corentin_lobet.png',
+    image: '/images/speakers/corentin-lobet.png',
     bio: {
       en: 'Corentin Lobet is a Ph.D. Student in Economics at the Scuola Superiore Sant’Anna. His research spans from statistical modelling and explainable AI to the role of model errors in shaping inequalities and instability in society.',
       it: 'Corentin Lobet è un dottorando in Economia presso la Scuola Superiore Sant’Anna. La sua ricerca spazia dalla modellazione statistica e l’IA spiegabile al ruolo degli errori dei modelli nel plasmare le disuguaglianze e l’instabilità nella società.',
