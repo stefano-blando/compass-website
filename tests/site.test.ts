@@ -193,12 +193,11 @@ describe('site helpers', () => {
   it('exports the supported locales', () => {
     expect(locales).toEqual(['en', 'it']);
   });
-
   it('defines a zero-delay static root redirect for the default locale', () => {
     const redirect = getRootRedirect();
 
-    expect(redirect.target).toBe('./en/');
-    expect(redirect.metaRefresh).toBe('0;url=./en/');
+    expect(redirect.target).toBe('/en/');
+    expect(redirect.metaRefresh).toBe('0;url=/en/');
     expect(rootIndexSource).toContain('<meta http-equiv="refresh"');
     expect(rootIndexSource).toContain('window.location.replace');
     expect(rootIndexSource).not.toContain('Astro.redirect');
