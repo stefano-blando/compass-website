@@ -52,6 +52,7 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
               data-scroll-direction={index % 2 === 0 ? '-1' : '1'}
             >
               <div class="media-shell media-shell--light media-shell--portrait featured-speakers__media featured-speakers__media-shell" aria-hidden="true" data-scroll-shift data-scroll-speed={String(10 + (index % 3) * 4)} data-scroll-direction={index % 2 === 0 ? '1' : '-1'}>
+                <span class="media-shell__badge">{speaker.role}</span>
                 <span class="media-shell__grid"></span>
                 <span class="media-shell__scan"></span>
                 <span class="media-shell__beam"></span>
@@ -73,6 +74,11 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
                       .join('')}
                   </div>
                 )}
+
+                <div class="media-shell__caption">
+                  <strong>{speaker.name}</strong>
+                  <p>{speaker.affiliation}</p>
+                </div>
               </div>
 
               <p class="featured-speakers__role">{speaker.role}</p>
