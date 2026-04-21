@@ -105,15 +105,22 @@ const timelineValue = talk.startsAt
             <span class="talk-detail__media-kicker">{pageCopy.speakerLens}</span>
             <span class="talk-detail__media-badge">{pageCopy.abstractLens}</span>
 
-            <div class="talk-detail__portrait-grid" aria-hidden="true">
+            <div class:list={["talk-detail__portrait-grid", speakers.length === 1 && "talk-detail__portrait-grid--single"]} aria-hidden="true">
               {speakers.slice(0, 3).map((speaker, idx) => (
-                speaker.image ? (
-                   <div class:list={["talk-detail__portrait", idx === 1 && "talk-detail__portrait--cool", idx === 2 && "talk-detail__portrait--small"]}>
+                <div class:list={[
+                  "talk-detail__portrait", 
+                  idx === 1 && "talk-detail__portrait--cool", 
+                  idx === 2 && "talk-detail__portrait--small",
+                  speaker.image && "talk-detail__portrait--has-image"
+                ]}>
+                  {speaker.image ? (
                     <img src={speaker.image} alt={speaker.name} class="talk-detail__portrait-img" />
-                   </div>
-                ) : (
-                  <span class:list={["talk-detail__portrait", idx === 1 && "talk-detail__portrait--cool", idx === 2 && "talk-detail__portrait--small"]}></span>
-                )
+                  ) : (
+                    <div class="talk-detail__portrait-placeholder">
+                      {speaker.name.split(' ').map(n => n[0]).join('')}
+                    </div>
+                  )}
+                </div>
               ))}
               {speakers.length === 0 && (
                 <>
@@ -305,35 +312,66 @@ const timelineValue = talk.startsAt
   .talk-detail__portrait-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
+    gap: 1.25rem;
     align-items: end;
-    min-height: 14rem;
+    min-height: 15rem;
     margin-top: auto;
+  }
+
+  .talk-detail__portrait-grid--single {
+    grid-template-columns: 1fr;
+    place-items: center;
   }
 
   .talk-detail__portrait {
     position: relative;
     display: block;
-    height: clamp(8rem, 30vw, 11rem);
+    width: 100%;
+    height: clamp(9rem, 32vw, 13rem);
     border-radius: 999px 999px 24px 24px;
     background: linear-gradient(180deg, #f3e5df 0%, rgba(126, 36, 52, 0.24) 58%, rgba(126, 36, 52, 0.84) 100%);
     box-shadow: inset 0 -24px 36px rgba(20, 32, 51, 0.18);
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .talk-detail__portrait-grid--single .talk-detail__portrait {
+    max-width: 16rem;
+    height: clamp(14rem, 40vw, 20rem);
+  }
+
+  .talk-detail__portrait--cool {
+    background: linear-gradient(180deg, #e7eef6 0%, rgba(55, 95, 138, 0.28) 58%, rgba(55, 95, 138, 0.84) 100%);
+  }
+
+  .talk-detail__portrait--small {
+    height: clamp(7.5rem, 28vw, 11rem);
   }
 
   .talk-detail__portrait-img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center 20%;
+    object-position: center 15%;
     mix-blend-mode: luminosity;
-    opacity: 0.82;
-    transition: opacity 220ms ease, mix-blend-mode 220ms ease;
+    opacity: 0.9;
+    transition: opacity 220ms ease, mix-blend-mode 220ms ease, transform 300ms ease;
   }
 
   .talk-detail__portrait:hover .talk-detail__portrait-img {
     mix-blend-mode: normal;
     opacity: 1;
+    transform: scale(1.04);
+  }
+
+  .talk-detail__portrait-placeholder {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    font-size: 2rem;
+    font-weight: 800;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.05em;
   }
 
   .talk-detail__portrait::before {
