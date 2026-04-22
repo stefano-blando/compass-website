@@ -92,7 +92,6 @@ const timelineValue = talk.startsAt
             <a href={buildLocalizedPath(locale, 'programme')}>{pageCopy.back}</a>
           </p>
           <h1>{talk.title[locale]}</h1>
-          <p class="talk-detail__hero-intro">{talk.abstract[locale]}</p>
 
           <ul class="talk-detail__chips" aria-label={locale === 'it' ? 'Meta del talk' : 'Talk metadata'}>
             <li>{pageCopy.talkLens}</li>
@@ -157,6 +156,13 @@ const timelineValue = talk.startsAt
 
     <section class="container talk-detail__content">
       <article class="talk-detail__abstract-panel">
+        <p class="page-meta__label">{pageCopy.abstractLens}</p>
+        <div class="talk-detail__abstract-text">
+          <p>{talk.abstract[locale]}</p>
+        </div>
+      </article>
+
+      <article class="talk-detail__abstract-panel" style="margin-top: 1.5rem;">
         <p class="page-meta__label">{pageCopy.speakers}</p>
         <div class="talk-detail__speaker-grid">
           {speakers.map((speaker) => (
@@ -394,6 +400,13 @@ const timelineValue = talk.startsAt
     margin: 0.35rem 0 0;
     color: var(--ink);
     font-weight: 700;
+  }
+
+  .talk-detail__abstract-text {
+    margin-top: 1rem;
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink);
   }
 
   .talk-detail__materials {
