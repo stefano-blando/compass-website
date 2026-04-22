@@ -24,8 +24,6 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
 
       <div class="media-showcase__stage media-showcase__stage-shell" data-reveal-item data-scroll-shift data-scroll-speed="14" style="--reveal-delay: 80ms;">
         <div class="media-shell media-shell--video media-showcase__video" aria-hidden="true" data-scroll-shift data-scroll-speed="28">
-          <span class="media-shell__label">{videoLabel}</span>
-          <span class="media-shell__badge">{stageLabel}</span>
           <span class="media-shell__grid"></span>
           <span class="media-shell__scan"></span>
           <span class="media-shell__orbit"></span>
@@ -38,7 +36,6 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
           <span class="media-shell__person media-shell__person--soft media-showcase__figure media-showcase__figure--right"></span>
           <span class="video-placeholder__play"></span>
           <div class="media-shell__caption">
-            <span class="media-shell__eyebrow">{videoLabel}</span>
             <strong>{mediaShowcase.title}</strong>
             <p>{mediaShowcase.intro}</p>
           </div>
@@ -48,8 +45,6 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
           {mediaShowcase.items.map((item, index) => (
             <article class="media-showcase__card" data-reveal-item data-scroll-shift data-scroll-speed={String(16 + index * 4)} data-scroll-direction={index % 2 === 0 ? '1' : '-1'} style={`--reveal-delay: ${index * 90 + 120}ms;`}>
               <div class="media-shell media-shell--light media-shell--landscape media-showcase__card-media" aria-hidden="true">
-                <span class="media-shell__label">{item.mediaLabel}</span>
-                <span class="media-shell__badge">{galleryLabel}</span>
                 <span class="media-shell__grid"></span>
                 <span class="media-shell__scan"></span>
                 <span class="media-shell__beam"></span>
