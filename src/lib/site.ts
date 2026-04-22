@@ -182,32 +182,27 @@ const homepageContent = {
       featuredItems: ['AI Methods & Applications', 'Networks & NLP', 'Legal & Ethics', 'Roundtables and open discussion'],
     },
     whyCompass: {
-      eyebrow: 'Why COMPASS',
-      title: 'Structured for an interdisciplinary day that still feels academically tight.',
+      eyebrow: 'Workshop Vision',
+      title: 'A focused environment for interdisciplinary dialogue.',
       intro:
-        'COMPASS is designed as a compact workshop where keynote framing and doctoral-led panels move through predictive methods, networks, and legal-ethical debate without splitting the room into parallel tracks.',
+        'COMPASS is designed as a single-room workshop where keynote framing and doctoral-led panels move through predictive methods, networks, and legal-ethical debate without splitting the audience into parallel tracks.',
       pillars: [
         {
-          title: 'One room, three tracks',
-          body: 'The programme advances from AI methods to networks and NLP, then to legal and ethical questions, so the same audience shares the whole scientific arc.',
+          title: 'Unified Scientific Arc',
+          body: 'The programme flows from AI methods to networks and NLP, ending with normative and ethical reflections, ensuring a shared context for all participants.',
         },
         {
-          title: 'Doctoral leadership with invited depth',
-          body: 'Six doctoral organizers chair the tracks while confirmed keynote guests and named discussants widen the methodological and institutional perspective.',
+          title: 'Doctoral Leadership',
+          body: 'Chaired by PhD candidates with invited international experts, the workshop fosters a peer-to-peer exchange between established scholars and emerging researchers.',
         },
         {
-          title: 'Designed for discussion',
-          body: 'Coffee breaks, lunch, and the social dinner are part of the workshop architecture, giving the day space for Q&A, comparison, and follow-up collaboration.',
+          title: 'Designed for Comparison',
+          body: 'Every session includes dedicated discussion time and roundtables, prioritizing the exchange of ideas over formal presentations.',
         },
       ],
-      asideTitle: 'What the structure is meant to do',
-      asideBody:
-        'The homepage now mirrors the actual workshop draft while still keeping uncertain items explicit where invitations or affiliations are not finalized.',
-      asidePoints: [
-        'Bridge complexity science, AI, policy, and law',
-        'Keep keynote framing adjacent to doctoral-led discussion',
-        'Leave TBC items visible instead of implying false certainty',
-      ],
+      asideTitle: '',
+      asideBody: '',
+      asidePoints: [],
     },
     highlights: [
       { value: 'Interdisciplinary', label: 'Bridge between AI, Economics & Law' },
@@ -335,32 +330,27 @@ const homepageContent = {
       featuredItems: ['AI Methods & Applications', 'Networks & NLP', 'Legal & Ethics', 'Roundtable e discussione aperta'],
     },
     whyCompass: {
-      eyebrow: 'Perché COMPASS',
-      title: 'Progettato per una giornata interdisciplinare che resti scientificamente compatta.',
+      eyebrow: 'Visione del Workshop',
+      title: 'Un ambiente focalizzato per il dialogo interdisciplinare.',
       intro:
-        'COMPASS è disegnato come workshop compatto in cui keynote e panel guidati dai dottorandi attraversano metodi predittivi, networks e dibattito giuridico-etico senza dividere il pubblico in tracce parallele.',
+        'COMPASS è disegnato come un workshop in aula unica in cui keynote e panel guidati dai dottorandi attraversano metodi predittivi, networks e dibattito giuridico-etico senza dividere il pubblico in tracce parallele.',
       pillars: [
         {
-          title: 'Un’unica sala, tre track',
-          body: 'Il programma avanza dai metodi AI a networks e NLP, fino a diritto ed etica, cosi lo stesso pubblico condivide l’intero arco scientifico.',
+          title: 'Arco Scientifico Unificato',
+          body: 'Il programma fluisce dai metodi AI ai network e NLP, terminando con riflessioni normative ed etiche, garantendo un contesto condiviso per tutti i partecipanti.',
         },
         {
-          title: 'Leadership dottorale con ospiti invitati',
-          body: 'Sei dottorandi organizzatori coordinano le track mentre keynote confermate e discussant nominati ampliano la prospettiva metodologica e istituzionale.',
+          title: 'Leadership Dottorale',
+          body: 'Coordinato da dottorandi con esperti internazionali invitati, il workshop favorisce uno scambio peer-to-peer tra studiosi affermati e ricercatori emergenti.',
         },
         {
-          title: 'Pensato per la discussione',
-          body: 'Coffee break, lunch e cena sociale fanno parte dell’architettura del workshop e aprono spazio a Q&A, confronto e collaborazioni successive.',
+          title: 'Pensato per il Confronto',
+          body: 'Ogni sessione include tempo dedicato alla discussione e roundtable, dando priorità allo scambio di idee rispetto alle presentazioni formali.',
         },
       ],
-      asideTitle: 'A cosa serve questa struttura',
-      asideBody:
-        'La homepage riflette ora la bozza reale del workshop, mantenendo comunque espliciti gli elementi ancora incerti quando inviti o affiliazioni non sono finalizzati.',
-      asidePoints: [
-        'Costruire un ponte tra complessita, AI, policy e diritto',
-        'Tenere affiancati framing keynote e discussione guidata dai dottorandi',
-        'Lasciare visibili i TBC senza simulare una certezza non ancora acquisita',
-      ],
+      asideTitle: '',
+      asideBody: '',
+      asidePoints: [],
     },
     highlights: [
       { value: 'Interdisciplinare', label: 'IA, Economia e Diritto' },
