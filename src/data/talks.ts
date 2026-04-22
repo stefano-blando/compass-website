@@ -256,12 +256,12 @@ export const talks: Talk[] = [
   {
     slug: 'panel-3-vittoria-caponecchia',
     title: {
-      en: 'Vittoria Caponecchia',
-      it: 'Vittoria Caponecchia',
+      en: 'Significant Harm in EU Law: When Voice-Based Virtual Assistants Are Prohibited',
+      it: 'Il danno significativo nel diritto dell’UE: quando gli assistenti virtuali vocali sono proibiti',
     },
     abstract: {
-      en: 'Current panel contribution listed in the latest workshop agenda.',
-      it: 'Contributo di panel riportato nell agenda di workshop piu recente.',
+      en: 'In a world pervaded by artificial intelligence, the law must maintain a predominant role in safeguarding human rights, interests, and legal certainty. A key issue concerns the interpretation of the AI Act, particularly Article 5(1)(a), which prohibits AI systems using manipulative, deceptive, or subliminal techniques that cause significant harm. This analysis aims to identify when such behaviors amount to manipulation, deception, or subliminal influence, providing guidance both ex ante for developers and ex post for affected users.',
+      it: 'In un mondo pervaso dall’intelligenza artificiale, il diritto deve mantenere un ruolo predominante nella salvaguardia dei diritti umani, degli interessi e della certezza del diritto. Una questione chiave riguarda l’interpretazione dell’AI Act, in particolare l’articolo 5(1)(a), che vieta i sistemi di IA che utilizzano tecniche manipolatorie, ingannevoli o subliminali che causano danni significativi. Questa analisi mira a identificare quando tali comportamenti costituiscano manipolazione, inganno o influenza subliminale, fornendo una guida sia ex ante per gli sviluppatori che ex post per gli utenti interessati.',
     },
     speakerSlugs: ['vittoria-caponecchia'],
     sessionSlug: 'panel-3-legal-ethics',

@@ -249,14 +249,14 @@ export const speakers: Speaker[] = [
   {
     slug: 'vittoria-caponecchia',
     name: 'Vittoria Caponecchia',
-    affiliation: 'Affiliation to be confirmed',
+    affiliation: 'Scuola Superiore Sant’Anna',
     roleLabel: {
       en: 'Panel 3 speaker',
       it: 'Relatrice del Panel 3',
     },
     bio: {
-      en: 'Current named speaker in the third panel lineup.',
-      it: 'Relatrice attualmente indicata nella scaletta del terzo panel.',
+      en: 'Vittoria Caponecchia is a PhD candidate in Artificial Intelligence for Society at the Sant’Anna School of Advanced Studies in Pisa. She holds a Law degree from the University of Florence and completed her legal traineeship at a law firm in Pistoia. Her doctoral research focuses on the classification of AI systems based on the concept of significant harm, with particular attention to consumer protection.',
+      it: 'Vittoria Caponecchia è una dottoranda in Artificial Intelligence for Society presso la Scuola Superiore Sant’Anna di Pisa. Ha conseguito la laurea in Giurisprudenza presso l’Università di Firenze e ha completato il tirocinio forense presso uno studio legale di Pistoia. La sua ricerca dottorale si concentra sulla classificazione dei sistemi di IA basata sul concetto di danno significativo, con particolare attenzione alla tutela dei consumatori.',
     },
     type: ['panelist'],
   },
