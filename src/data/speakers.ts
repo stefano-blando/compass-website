@@ -269,8 +269,8 @@ export const speakers: Speaker[] = [
     slug: 'giuseppe-f-squillace',
     name: 'Giuseppe Squillace',
     affiliation: {
-      en: 'Sant’Anna School of Advanced Studies',
-      it: 'Scuola Superiore Sant’Anna',
+      en: 'Sant’Anna School of Advanced Studies and Université Paris-Saclay',
+      it: 'Scuola Superiore Sant’Anna e Université Paris-Saclay',
     },
     roleLabel: {
       en: 'Panel 2 speaker',
