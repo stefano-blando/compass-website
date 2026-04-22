@@ -103,7 +103,6 @@ const timelineValue = talk.startsAt
         <aside class="talk-detail__hero-media" aria-label={pageCopy.speakerLens}>
           <div class="talk-detail__media-frame">
             <span class="talk-detail__media-kicker">{pageCopy.speakerLens}</span>
-            <span class="talk-detail__media-badge">{pageCopy.abstractLens}</span>
 
             <div class:list={["talk-detail__portrait-grid", speakers.length === 1 && "talk-detail__portrait-grid--single"]} aria-hidden="true">
               {speakers.slice(0, 3).map((speaker, idx) => (
@@ -245,8 +244,8 @@ const timelineValue = talk.startsAt
 
   .talk-detail__hero-copy h1 {
     margin: 0.35rem 0 0.9rem;
-    font-size: clamp(3rem, 6vw, 5rem);
-    line-height: 0.94;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    line-height: 0.96;
   }
 
   .talk-detail__hero-intro {
