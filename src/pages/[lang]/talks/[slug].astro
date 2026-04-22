@@ -75,10 +75,9 @@ const copy = {
   }
 >;
 const pageCopy = copy[locale];
-const timelineValue = talk.startsAt
-  ? session
-    ? `${talk.startsAt.slice(11, 16)} · ${session.startsAt.slice(11, 16)} - ${session.endsAt.slice(11, 16)}`
-    : talk.startsAt.slice(11, 16)
+const talkTime = talk.startsAt?.slice(11, 16);
+const sessionWindow = session
+  ? `${session.startsAt.slice(11, 16)} - ${session.endsAt.slice(11, 16)}`
   : null;
 ---
 
@@ -95,8 +94,7 @@ const timelineValue = talk.startsAt
 
           <ul class="talk-detail__chips" aria-label={locale === 'it' ? 'Meta del talk' : 'Talk metadata'}>
             <li>{pageCopy.talkLens}</li>
-            <li>{session?.title[locale] ?? pageCopy.missingSession}</li>
-            {timelineValue && <li>{timelineValue}</li>}
+            {talkTime && <li>{talkTime}</li>}
           </ul>
         </div>
 
@@ -137,10 +135,17 @@ const timelineValue = talk.startsAt
           <p class="talk-detail__meta-value">{session?.title[locale] ?? pageCopy.missingSession}</p>
         </div>
 
-        {timelineValue && (
+        {talkTime && (
           <div>
             <p class="page-meta__label">{pageCopy.time}</p>
-            <p class="talk-detail__meta-value">{timelineValue}</p>
+            <p class="talk-detail__meta-value">{talkTime}</p>
+          </div>
+        )}
+
+        {sessionWindow && (
+          <div>
+            <p class="page-meta__label">{locale === 'it' ? 'Finestra sessione' : 'Session window'}</p>
+            <p class="talk-detail__meta-value">{sessionWindow}</p>
           </div>
         )}
 
