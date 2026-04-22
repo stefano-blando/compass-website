@@ -622,7 +622,7 @@ describe('site helpers', () => {
       'Roundtable',
     ]);
     expect(getTalksForSession('panel-2-networks-nlp').map((talk) => talk.title.en)).toEqual([
-      'Lorenzo Emer',
+      'The hidden structure of innovation networks',
       'Alice Musso',
       'Giuseppe Squillace (online)',
       'Riccardo Porcedda',

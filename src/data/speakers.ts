@@ -134,9 +134,10 @@ export const speakers: Speaker[] = [
       en: 'Panel 2 chair and speaker',
       it: 'Chair e relatore del Panel 2',
     },
+    image: '/images/speakers/lorenzo_emer.png',
     bio: {
-      en: 'Organizer and current chair-speaker for the second panel.',
-      it: 'Organizzatore e attuale chair-relatore del secondo panel.',
+      en: 'Lorenzo Emer is a PhD student in Artificial Intelligence for Society at the Sant’Anna School of Advanced Studies. His academic background lies in economics and innovation management, with degrees from the University of Trento, Sant’Anna School of Advanced Studies, and the Technical University of Dresden (Germany). His research focuses on the computational analysis of science, technology, and innovation (STI), drawing on methods from network science, natural language processing, and econometrics.',
+      it: 'Lorenzo Emer è un dottorando in Artificial Intelligence for Society presso la Scuola Superiore Sant’Anna. Il suo percorso accademico si concentra sull’economia e la gestione dell’innovazione, con titoli conseguiti presso l’Università di Trento, la Scuola Superiore Sant’Anna e la Technical University di Dresda (Germania). La sua ricerca si focalizza sull’analisi computazionale della scienza, della tecnologia e dell’innovazione (STI), utilizzando metodi provenienti dalla scienza delle reti, dall’elaborazione del linguaggio naturale e dall’econometria.',
     },
     type: ['panelist', 'chair', 'organizer'],
   },
