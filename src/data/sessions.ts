@@ -49,12 +49,12 @@ export const sessions: Session[] = [
   {
     slug: 'panel-1-ai-methods',
     title: {
-      en: 'Panel 1: AI Methods & Applications',
-      it: 'Panel 1: Metodi e applicazioni dell AI',
+      en: 'Panel 1: AI for Predictions',
+      it: 'Panel 1: AI per le previsioni',
     },
     description: {
-      en: 'Working panel title from the workshop PDF. Four panel talks followed by a roundtable close.',
-      it: 'Titolo provvisorio tratto dal PDF del workshop. Quattro interventi di panel seguiti da una roundtable finale.',
+      en: 'Understanding the foundations and applications of AI in the predictive field is essential for evaluating socio-economic impacts. This session bridges the gap between algorithmic innovation and the real-world impact of predictive systems.',
+      it: 'Comprendere i fondamenti e le applicazioni dell’AI in ambito predittivo è essenziale per valutare le ricadute socio-economiche. Questa sessione colma il divario tra l’innovazione algoritmica e l’impatto reale dei sistemi predittivi.',
     },
     type: 'panel',
     startsAt: '2026-05-18T11:00:00+02:00',
@@ -68,8 +68,8 @@ export const sessions: Session[] = [
       it: 'Keynote istituzionale — PagoPA',
     },
     description: {
-      en: 'Institutional speech by the CEO of PagoPA on digital transformation and technologies.',
-      it: 'Intervento istituzionale dell Amministratore Delegato di PagoPA su digital transformation e tecnologie.',
+      en: 'Institutional speech on digital transformation and technologies.',
+      it: 'Intervento istituzionale su digital transformation e tecnologie.',
     },
     type: 'keynote',
     startsAt: '2026-05-18T12:00:00+02:00',
@@ -109,12 +109,12 @@ export const sessions: Session[] = [
   {
     slug: 'panel-2-networks-nlp',
     title: {
-      en: 'Panel 2: Networks & NLP',
-      it: 'Panel 2: Networks e NLP',
+      en: 'Panel 2: AI to Study Emergent Phenomena',
+      it: 'Panel 2: AI per lo studio dei fenomeni emergenti',
     },
     description: {
-      en: 'Working panel title from the workshop PDF. Five panel talks followed by a roundtable close.',
-      it: 'Titolo provvisorio tratto dal PDF del workshop. Cinque interventi di panel seguiti da una roundtable finale.',
+      en: 'Social, financial, and innovation networks are the fabric of society. Network analysis combined with NLP allows for deducing emergent phenomena and extracting value from complex and disaggregated data.',
+      it: 'Le reti — sociali, finanziarie, dell’innovazione — sono il tessuto della società. L’analisi dei network unita alla NLP permette di dedurre fenomeni emergenti e dunque estrarre valore da dati complessi e disaggregati.',
     },
     type: 'panel',
     startsAt: '2026-05-18T14:30:00+02:00',
@@ -154,12 +154,12 @@ export const sessions: Session[] = [
   {
     slug: 'panel-3-legal-ethics',
     title: {
-      en: 'Panel 3: Legal & Ethics',
-      it: 'Panel 3: Diritto ed etica',
+      en: 'Panel 3: AI for Legal & Legal for AI Ethics',
+      it: 'Panel 3: AI for Legal e Legal for AI Ethics',
     },
     description: {
-      en: 'Working panel title from the workshop PDF. Four panel talks followed by a roundtable close.',
-      it: 'Titolo provvisorio tratto dal PDF del workshop. Quattro interventi di panel seguiti da una roundtable finale.',
+      en: 'This session explores the relationship between AI and the legal sector from two complementary perspectives: the use of AI for legal purposes (e.g., predictive justice) and how regulations favor research and innovation in AI.',
+      it: 'Questa sessione esplora il rapporto tra AI e settore legale sotto due prospettive complementari: l’uso dell’AI per finalità legate al settore legale (ad es. giustizia predittiva) e come le normative favoriscono la ricerca e l’innovazione sull’AI.',
     },
     type: 'panel',
     startsAt: '2026-05-18T17:00:00+02:00',

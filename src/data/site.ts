@@ -8,6 +8,7 @@ export type SitePageKey = (typeof sitePageKeys)[number];
 export const siteConfig = {
   name: 'COMPASS',
   fullTitle: 'COmplexity, Markets, Policy, and AI in Social Systems',
+  subtitle: 'Navigating the Complexity of Socio-Economic Systems',
   eventDate: '18 May 2026',
   alternateDate: '',
   venue: 'Aula 3, Scuola Superiore Sant’Anna, Pisa',
