@@ -49,8 +49,8 @@ export const sessions: Session[] = [
   {
     slug: 'panel-1-ai-methods',
     title: {
-      en: 'Panel 1: AI for Predictions',
-      it: 'Panel 1: AI per le previsioni',
+      en: 'Panel 1: AI for Modeling and Forecasting',
+      it: 'Panel 1: AI per la modellazione e la previsione',
     },
     description: {
       en: 'Understanding the foundations and applications of AI in the predictive field is essential for evaluating socio-economic impacts. This session bridges the gap between algorithmic innovation and the real-world impact of predictive systems.',

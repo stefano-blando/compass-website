@@ -488,8 +488,12 @@ describe('site helpers', () => {
       'panel-3-legal-ethics',
     ]);
     expect(english[2]).toMatchObject({
+      title: 'Panel 1: AI for Modeling and Forecasting',
       chairLabel: 'Session chairs',
       chairNames: ['Stefano Blando', 'Biancamaria Bombino'],
+    });
+    expect(italian[2]).toMatchObject({
+      title: 'Panel 1: AI per la modellazione e la previsione',
     });
     expect(italian[4]).toMatchObject({
       chairLabel: 'Coordinamento',
