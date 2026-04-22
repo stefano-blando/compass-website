@@ -41,7 +41,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['stefano-blando'],
     sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T11:00:00+02:00',
+    startsAt: '2026-05-18T10:30:00+02:00',
   },
   {
     slug: 'panel-1-biancamaria-bombino',
@@ -55,7 +55,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['biancamaria-bombino'],
     sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T11:10:00+02:00',
+    startsAt: '2026-05-18T10:45:00+02:00',
   },
   {
     slug: 'panel-1-simone-tonini',
