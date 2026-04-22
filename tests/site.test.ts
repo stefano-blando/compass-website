@@ -549,42 +549,42 @@ describe('site helpers', () => {
     }))).toEqual([
       {
         slug: 'opening-remarks',
-        startsAt: '2026-05-18T09:00:00+02:00',
-        endsAt: '2026-05-18T09:15:00+02:00',
+        startsAt: '2026-05-18T09:30:00+02:00',
+        endsAt: '2026-05-18T09:45:00+02:00',
       },
       {
         slug: 'keynote-1',
-        startsAt: '2026-05-18T09:15:00+02:00',
-        endsAt: '2026-05-18T10:00:00+02:00',
-      },
-      {
-        slug: 'coffee-break-1',
-        startsAt: '2026-05-18T10:00:00+02:00',
+        startsAt: '2026-05-18T09:45:00+02:00',
         endsAt: '2026-05-18T10:30:00+02:00',
       },
       {
-        slug: 'panel-1-ai-methods',
+        slug: 'coffee-break-1',
         startsAt: '2026-05-18T10:30:00+02:00',
-        endsAt: '2026-05-18T12:15:00+02:00',
+        endsAt: '2026-05-18T11:00:00+02:00',
+      },
+      {
+        slug: 'panel-1-ai-methods',
+        startsAt: '2026-05-18T11:00:00+02:00',
+        endsAt: '2026-05-18T12:00:00+02:00',
       },
       {
         slug: 'keynote-pagopa',
-        startsAt: '2026-05-18T12:15:00+02:00',
-        endsAt: '2026-05-18T13:15:00+02:00',
+        startsAt: '2026-05-18T12:00:00+02:00',
+        endsAt: '2026-05-18T12:45:00+02:00',
       },
       {
         slug: 'networking-lunch',
-        startsAt: '2026-05-18T12:15:00+02:00',
-        endsAt: '2026-05-18T13:15:00+02:00',
+        startsAt: '2026-05-18T12:45:00+02:00',
+        endsAt: '2026-05-18T13:45:00+02:00',
       },
       {
         slug: 'keynote-2',
-        startsAt: '2026-05-18T13:15:00+02:00',
-        endsAt: '2026-05-18T14:00:00+02:00',
+        startsAt: '2026-05-18T13:45:00+02:00',
+        endsAt: '2026-05-18T14:30:00+02:00',
       },
       {
         slug: 'panel-2-networks-nlp',
-        startsAt: '2026-05-18T14:00:00+02:00',
+        startsAt: '2026-05-18T14:30:00+02:00',
         endsAt: '2026-05-18T15:45:00+02:00',
       },
       {
@@ -600,12 +600,12 @@ describe('site helpers', () => {
       {
         slug: 'panel-3-legal-ethics',
         startsAt: '2026-05-18T17:00:00+02:00',
-        endsAt: '2026-05-18T18:45:00+02:00',
+        endsAt: '2026-05-18T18:00:00+02:00',
       },
       {
         slug: 'closing-remarks',
-        startsAt: '2026-05-18T18:45:00+02:00',
-        endsAt: '2026-05-18T19:00:00+02:00',
+        startsAt: '2026-05-18T18:00:00+02:00',
+        endsAt: '2026-05-18T18:15:00+02:00',
       },
     ]);
   });

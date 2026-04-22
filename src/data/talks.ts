@@ -13,7 +13,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['andrea-vandin', 'rettore-sssa'],
     sessionSlug: 'opening-remarks',
-    startsAt: '2026-05-18T09:00:00+02:00',
+    startsAt: '2026-05-18T09:30:00+02:00',
   },
   {
     slug: 'keynote-guido-germano',
@@ -27,7 +27,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['guido-germano'],
     sessionSlug: 'keynote-1',
-    startsAt: '2026-05-18T09:15:00+02:00',
+    startsAt: '2026-05-18T09:45:00+02:00',
   },
   {
     slug: 'panel-1-stefano-blando',
@@ -41,7 +41,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['stefano-blando'],
     sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T10:30:00+02:00',
+    startsAt: '2026-05-18T11:00:00+02:00',
   },
   {
     slug: 'panel-1-biancamaria-bombino',
@@ -55,7 +55,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['biancamaria-bombino'],
     sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T10:45:00+02:00',
+    startsAt: '2026-05-18T11:15:00+02:00',
   },
   {
     slug: 'panel-1-simone-tonini',
@@ -69,7 +69,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['simone-tonini'],
     sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T11:00:00+02:00',
+    startsAt: '2026-05-18T11:30:00+02:00',
   },
   {
     slug: 'panel-1-corentin-lobet',
@@ -83,7 +83,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['corentin-lobet'],
     sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T11:15:00+02:00',
+    startsAt: '2026-05-18T11:45:00+02:00',
   },
   {
     slug: 'panel-1-roundtable',
@@ -97,7 +97,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: [],
     sessionSlug: 'panel-1-ai-methods',
-    startsAt: '2026-05-18T11:30:00+02:00',
+    startsAt: '2026-05-18T11:55:00+02:00',
   },
   {
     slug: 'keynote-pagopa-ad',
@@ -111,7 +111,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['pagopa-ad'],
     sessionSlug: 'keynote-pagopa',
-    startsAt: '2026-05-18T12:15:00+02:00',
+    startsAt: '2026-05-18T12:00:00+02:00',
   },
   {
     slug: 'keynote-prabhani-don',
@@ -125,7 +125,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['prabhani-don'],
     sessionSlug: 'keynote-2',
-    startsAt: '2026-05-18T13:15:00+02:00',
+    startsAt: '2026-05-18T13:45:00+02:00',
   },
   {
     slug: 'panel-2-lorenzo-emer',
@@ -139,7 +139,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['lorenzo-emer'],
     sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T14:00:00+02:00',
+    startsAt: '2026-05-18T14:30:00+02:00',
   },
   {
     slug: 'panel-2-alice-musso',
@@ -153,7 +153,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['alice-musso'],
     sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T14:15:00+02:00',
+    startsAt: '2026-05-18T14:42:00+02:00',
   },
   {
     slug: 'panel-2-giuseppe-f-squillace',
@@ -167,7 +167,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['giuseppe-f-squillace'],
     sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T14:30:00+02:00',
+    startsAt: '2026-05-18T14:54:00+02:00',
   },
   {
     slug: 'panel-2-riccardo-porcedda',
@@ -181,7 +181,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['riccardo-porcedda'],
     sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T14:45:00+02:00',
+    startsAt: '2026-05-18T15:06:00+02:00',
   },
   {
     slug: 'panel-2-anna-gallo',
@@ -195,7 +195,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['anna-gallo'],
     sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T15:00:00+02:00',
+    startsAt: '2026-05-18T15:18:00+02:00',
   },
   {
     slug: 'panel-2-roundtable',
@@ -209,7 +209,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: [],
     sessionSlug: 'panel-2-networks-nlp',
-    startsAt: '2026-05-18T15:15:00+02:00',
+    startsAt: '2026-05-18T15:30:00+02:00',
   },
   {
     slug: 'keynote-ai-regulation-tbc',
@@ -293,7 +293,7 @@ export const talks: Talk[] = [
     },
     speakerSlugs: [],
     sessionSlug: 'panel-3-legal-ethics',
-    startsAt: '2026-05-18T18:00:00+02:00',
+    startsAt: '2026-05-18T17:55:00+02:00',
   },
   {
     slug: 'closing-remarks-francesca-chiaromonte',
@@ -307,6 +307,6 @@ export const talks: Talk[] = [
     },
     speakerSlugs: ['francesca-chiaromonte'],
     sessionSlug: 'closing-remarks',
-    startsAt: '2026-05-18T18:45:00+02:00',
+    startsAt: '2026-05-18T18:00:00+02:00',
   },
 ];
