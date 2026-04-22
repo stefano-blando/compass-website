@@ -4,7 +4,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'andrea-vandin',
     name: 'Andrea Vandin',
-    affiliation: 'Scuola Superiore Sant’Anna',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
     roleLabel: {
       en: 'Opening remarks',
       it: 'Saluti introduttivi',
@@ -18,7 +21,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'rettore-sssa',
     name: 'Rettore, Scuola Superiore Sant’Anna',
-    affiliation: 'Scuola Superiore Sant’Anna',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
     roleLabel: {
       en: 'Opening remarks',
       it: 'Saluti introduttivi',
@@ -32,7 +38,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'guido-germano',
     name: 'Guido Germano',
-    affiliation: 'University College London · Visiting Professor at Scuola Superiore Sant’Anna',
+    affiliation: {
+      en: 'University College London · Visiting Professor at Sant’Anna School of Advanced Studies',
+      it: 'University College London · Visiting Professor presso la Scuola Superiore Sant’Anna',
+    },
     roleLabel: {
       en: 'Keynote speaker',
       it: 'Relatore keynote',
@@ -47,14 +56,16 @@ export const speakers: Speaker[] = [
   {
     slug: 'prabhani-don',
     name: 'Prabhani Kuruppumullage Don',
-    affiliation: 'Pennsylvania State University',
+    affiliation: {
+      en: 'Pennsylvania State University',
+      it: 'Pennsylvania State University',
+    },
     roleLabel: {
       en: 'Keynote speaker',
       it: 'Relatrice keynote',
     },
     image: '/images/keynote/prabhani_don.png',
     bio: {
-
       en: 'Prabhani Kuruppumullage Don is an Associate Research Professor and Director of Online Programs in the Department of Statistics at Pennsylvania State University. Her research focuses on computational statistics and statistical methodology for complex biological data, including bioinformatics, statistical genetics, and biostatistics. She previously held positions at the University of Rhode Island and the Harvard/Dana-Farber Cancer Institute.',
       it: 'Prabhani Kuruppumullage Don è Associate Research Professor e Direttrice dei Programmi Online presso il Dipartimento di Statistica della Pennsylvania State University. La sua ricerca si concentra sulla statistica computazionale e sulla metodologia statistica per dati biologici complessi, includendo bioinformatica, genetica statistica e biostatistica. In precedenza ha ricoperto incarichi presso la University of Rhode Island e l\'Harvard/Dana-Farber Cancer Institute.',
     },
@@ -63,7 +74,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'senior-expert-ai-regulation-tbc',
     name: 'Senior Expert on AI Regulation & Ethics',
-    affiliation: 'To be confirmed',
+    affiliation: {
+      en: 'To be confirmed',
+      it: 'In fase di conferma',
+    },
     roleLabel: {
       en: 'Keynote speaker',
       it: 'Relatore keynote',
@@ -77,7 +91,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'stefano-blando',
     name: 'Stefano Blando',
-    affiliation: 'Scuola Superiore Sant’Anna · PhD-AI.it, Pillar Society',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
+      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
+    },
     roleLabel: {
       en: 'Panel 1 chair and speaker',
       it: 'Chair e relatore del Panel 1',
@@ -92,7 +109,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'biancamaria-bombino',
     name: 'Biancamaria Bombino',
-    affiliation: 'IIT-CNR · PhD-AI.it, Pillar Society',
+    affiliation: {
+      en: 'IIT-CNR · PhD-AI.it, Pillar Society',
+      it: 'IIT-CNR · PhD-AI.it, Pillar Society',
+    },
     roleLabel: {
       en: 'Panel 1 chair and speaker',
       it: 'Chair e relatrice del Panel 1',
@@ -106,7 +126,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'lorenzo-emer',
     name: 'Lorenzo Emer',
-    affiliation: 'Scuola Superiore Sant’Anna · PhD-AI.it, Pillar Society',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
+      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
+    },
     roleLabel: {
       en: 'Panel 2 chair and speaker',
       it: 'Chair e relatore del Panel 2',
@@ -120,7 +143,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'alice-musso',
     name: 'Alice Musso',
-    affiliation: 'ISTI-CNR · PhD-AI.it, Pillar Society',
+    affiliation: {
+      en: 'ISTI-CNR · PhD-AI.it, Pillar Society',
+      it: 'ISTI-CNR · PhD-AI.it, Pillar Society',
+    },
     roleLabel: {
       en: 'Panel 2 chair and speaker',
       it: 'Chair e relatrice del Panel 2',
@@ -135,7 +161,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'roberta-romano',
     name: 'Roberta Romano',
-    affiliation: 'Scuola Superiore Sant’Anna · PhD-AI.it, Pillar Society',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
     roleLabel: {
       en: 'Panel 3 chair and speaker',
       it: 'Chair e relatrice del Panel 3',
@@ -150,7 +179,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'roberta-savella',
     name: 'Roberta Savella',
-    affiliation: 'CNR/ISTI · PhD-AI.it, Pillar Society',
+    affiliation: {
+      en: 'CNR/ISTI · PhD-AI.it, Pillar Society',
+      it: 'CNR/ISTI · PhD-AI.it, Pillar Society',
+    },
     roleLabel: {
       en: 'Panel 3 chair and speaker',
       it: 'Chair e relatrice del Panel 3',
@@ -165,7 +197,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'simone-tonini',
     name: 'Simone Tonini',
-    affiliation: 'Affiliation to be confirmed',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
     roleLabel: {
       en: 'Panel 1 speaker',
       it: 'Relatore del Panel 1',
@@ -180,7 +215,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'corentin-lobet',
     name: 'Corentin Lobet',
-    affiliation: 'Scuola Superiore Sant’Anna',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
     roleLabel: {
       en: 'Panel 1 speaker',
       it: 'Relatore del Panel 1',
@@ -195,7 +233,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'pagopa-ad',
     name: 'Alessandro Moricca',
-    affiliation: 'CEO, PagoPA S.p.A.',
+    affiliation: {
+      en: 'CEO, PagoPA S.p.A.',
+      it: 'CEO, PagoPA S.p.A.',
+    },
     roleLabel: {
       en: 'Keynote speaker',
       it: 'Relatore keynote',
@@ -209,7 +250,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'riccardo-porcedda',
     name: 'Riccardo Porcedda',
-    affiliation: 'Affiliation to be confirmed',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
+      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
+    },
     roleLabel: {
       en: 'Panel 2 speaker',
       it: 'Relatore del Panel 2',
@@ -224,7 +268,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'giuseppe-f-squillace',
     name: 'Giuseppe Squillace',
-    affiliation: 'Affiliation to be confirmed',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
     roleLabel: {
       en: 'Panel 2 speaker',
       it: 'Relatore del Panel 2',
@@ -239,7 +286,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'anna-gallo',
     name: 'Anna Gallo',
-    affiliation: 'Enrico Fermi Research Center (CREF)',
+    affiliation: {
+      en: 'Enrico Fermi Research Center (CREF)',
+      it: 'Centro Ricerche Enrico Fermi (CREF)',
+    },
     roleLabel: {
       en: 'Panel 2 speaker',
       it: 'Relatrice del Panel 2',
@@ -254,7 +304,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'vittoria-caponecchia',
     name: 'Vittoria Caponecchia',
-    affiliation: 'Scuola Superiore Sant’Anna',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
     roleLabel: {
       en: 'Panel 3 speaker',
       it: 'Relatrice del Panel 3',
@@ -269,7 +322,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'elio-grande',
     name: 'Elio Grande',
-    affiliation: 'Affiliation to be confirmed',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
     roleLabel: {
       en: 'Panel 3 speaker',
       it: 'Relatore del Panel 3',
@@ -283,7 +339,10 @@ export const speakers: Speaker[] = [
   {
     slug: 'francesca-chiaromonte',
     name: 'Francesca Chiaromonte',
-    affiliation: 'Affiliation to be confirmed',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
     roleLabel: {
       en: 'Closing remarks speaker (provisional)',
       it: 'Relatrice della chiusura (provvisorio)',

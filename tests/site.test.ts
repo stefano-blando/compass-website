@@ -494,7 +494,7 @@ describe('site helpers', () => {
     });
     expect(italian[4]).toMatchObject({
       chairLabel: 'Coordinamento',
-      title: 'Panel 2: Networks e NLP',
+      title: 'Panel 2: AI per lo studio dei fenomeni emergenti',
     });
     expect(english[5]).toMatchObject({
       title: 'Keynote 3',
@@ -510,22 +510,16 @@ describe('site helpers', () => {
       'guido-germano',
       'prabhani-don',
       'senior-expert-ai-regulation-tbc',
-      'stefano-blando',
-      'biancamaria-bombino',
-      'lorenzo-emer',
-      'alice-musso',
-      'roberta-romano',
-      'roberta-savella',
+      'pagopa-ad',
     ]);
     expect(english[0]?.role).toBe('Keynote speaker');
     expect(italian[0]?.role).toBe('Relatore keynote');
-    expect(english[1]?.role).toBe('Confirmed keynote speaker');
-    expect(italian[1]?.role).toBe('Relatrice keynote confermata');
-    expect(english[2]?.role).toBe('Keynote slot in confirmation');
-    expect(italian[2]?.role).toBe('Slot keynote in conferma');
-    expect(italian[3]?.role).toBe('Relatore e co-chair della Track 1');
-    expect(italian[4]?.role).toBe('Relatrice e co-chair della Track 1');
-    expect(italian[8]?.role).toBe('Relatrice e co-chair della Track 3');
+    expect(english[1]?.role).toBe('Keynote speaker');
+    expect(italian[1]?.role).toBe('Relatrice keynote');
+    expect(english[2]?.role).toBe('Keynote speaker');
+    expect(italian[2]?.role).toBe('Relatore keynote');
+    expect(english[3]?.role).toBe('Keynote speaker');
+    expect(italian[3]?.role).toBe('Relatore keynote');
   });
 
   it('keeps localized homepage scroll section labels available for future reuse', () => {
@@ -555,42 +549,42 @@ describe('site helpers', () => {
     }))).toEqual([
       {
         slug: 'opening-remarks',
-        startsAt: '2026-05-18T09:30:00+02:00',
-        endsAt: '2026-05-18T09:45:00+02:00',
+        startsAt: '2026-05-18T09:00:00+02:00',
+        endsAt: '2026-05-18T09:15:00+02:00',
       },
       {
         slug: 'keynote-1',
-        startsAt: '2026-05-18T09:45:00+02:00',
-        endsAt: '2026-05-18T10:30:00+02:00',
+        startsAt: '2026-05-18T09:15:00+02:00',
+        endsAt: '2026-05-18T10:00:00+02:00',
       },
       {
         slug: 'coffee-break-1',
-        startsAt: '2026-05-18T10:30:00+02:00',
-        endsAt: '2026-05-18T11:00:00+02:00',
+        startsAt: '2026-05-18T10:00:00+02:00',
+        endsAt: '2026-05-18T10:30:00+02:00',
       },
       {
         slug: 'panel-1-ai-methods',
-        startsAt: '2026-05-18T11:00:00+02:00',
-        endsAt: '2026-05-18T12:00:00+02:00',
+        startsAt: '2026-05-18T10:30:00+02:00',
+        endsAt: '2026-05-18T12:15:00+02:00',
       },
       {
         slug: 'keynote-pagopa',
-        startsAt: '2026-05-18T12:00:00+02:00',
-        endsAt: '2026-05-18T12:45:00+02:00',
+        startsAt: '2026-05-18T12:15:00+02:00',
+        endsAt: '2026-05-18T13:15:00+02:00',
       },
       {
         slug: 'networking-lunch',
-        startsAt: '2026-05-18T12:45:00+02:00',
-        endsAt: '2026-05-18T13:45:00+02:00',
+        startsAt: '2026-05-18T12:15:00+02:00',
+        endsAt: '2026-05-18T13:15:00+02:00',
       },
       {
         slug: 'keynote-2',
-        startsAt: '2026-05-18T13:45:00+02:00',
-        endsAt: '2026-05-18T14:30:00+02:00',
+        startsAt: '2026-05-18T13:15:00+02:00',
+        endsAt: '2026-05-18T14:00:00+02:00',
       },
       {
         slug: 'panel-2-networks-nlp',
-        startsAt: '2026-05-18T14:30:00+02:00',
+        startsAt: '2026-05-18T14:00:00+02:00',
         endsAt: '2026-05-18T15:45:00+02:00',
       },
       {
@@ -606,12 +600,12 @@ describe('site helpers', () => {
       {
         slug: 'panel-3-legal-ethics',
         startsAt: '2026-05-18T17:00:00+02:00',
-        endsAt: '2026-05-18T18:00:00+02:00',
+        endsAt: '2026-05-18T18:45:00+02:00',
       },
       {
         slug: 'closing-remarks',
-        startsAt: '2026-05-18T18:00:00+02:00',
-        endsAt: '2026-05-18T18:15:00+02:00',
+        startsAt: '2026-05-18T18:45:00+02:00',
+        endsAt: '2026-05-18T19:00:00+02:00',
       },
     ]);
   });
@@ -635,7 +629,7 @@ describe('site helpers', () => {
     expect(getTalksForSession('panel-3-legal-ethics').map((talk) => talk.title.en)).toEqual([
       'Roberta Romano',
       'Roberta Savella',
-      'Vittoria Caponecchia',
+      'Significant Harm in EU Law: When Voice-Based Virtual Assistants Are Prohibited',
       'Elio Grande (online)',
       'Roundtable',
     ]);

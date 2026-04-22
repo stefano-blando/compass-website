@@ -14,8 +14,8 @@ const speakers = talk.speakerSlugs
 const titleMatchesSingleSpeaker =
   speakers.length === 1 && talk.title[locale].trim().toLowerCase() === speakers[0].name.trim().toLowerCase();
 const speakerLine = titleMatchesSingleSpeaker
-  ? speakers.map((speaker) => speaker.affiliation).join(' / ')
-  : speakers.map((speaker) => `${speaker.name} · ${speaker.affiliation}`).join(' / ');
+  ? speakers.map((speaker) => speaker.affiliation[locale]).join(' / ')
+  : speakers.map((speaker) => `${speaker.name} · ${speaker.affiliation[locale]}`).join(' / ');
 const startsAt = talk.startsAt?.slice(11, 16);
 ---
 

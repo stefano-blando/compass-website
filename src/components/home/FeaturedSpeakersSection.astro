@@ -77,13 +77,13 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
 
                 <div class="media-shell__caption">
                   <strong>{speaker.name}</strong>
-                  <p>{speaker.affiliation}</p>
+                  <p>{speaker.affiliation[locale]}</p>
                 </div>
               </div>
 
               <p class="featured-speakers__role">{speaker.role}</p>
               <h3>{speaker.name}</h3>
-              <p class="featured-speakers__affiliation">{speaker.affiliation}</p>
+              <p class="featured-speakers__affiliation">{speaker.affiliation[locale]}</p>
               <p class="featured-speakers__bio">{speaker.bio}</p>
 
               <div class="featured-speakers__talk">

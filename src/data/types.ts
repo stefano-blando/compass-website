@@ -7,7 +7,7 @@ export type SpeakerRole = 'keynote' | 'panelist' | 'chair' | 'organizer';
 export type Speaker = {
   slug: string;
   name: string;
-  affiliation: string;
+  affiliation: LocalizedText;
   roleLabel: LocalizedText;
   bio: LocalizedText;
   image?: string;
