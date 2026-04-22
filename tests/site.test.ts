@@ -2,14 +2,15 @@ import { describe, expect, it } from 'vitest';
 import homePageSource from '../src/pages/[lang]/index.astro?raw';
 import programmePageSource from '../src/pages/[lang]/programme/index.astro?raw';
 import talkDetailPageSource from '../src/pages/[lang]/talks/[slug].astro?raw';
+import speakersPageSource from '../src/pages/[lang]/speakers/index.astro?raw';
 import aboutPageSource from '../src/pages/[lang]/about/index.astro?raw';
 import faqPageSource from '../src/pages/[lang]/faq/index.astro?raw';
 import organizersPageSource from '../src/pages/[lang]/organizers/index.astro?raw';
 import registrationPageSource from '../src/pages/[lang]/registration/index.astro?raw';
-import speakersPageSource from '../src/pages/[lang]/speakers/index.astro?raw';
-import abstractsPageSource from '../src/pages/[lang]/abstracts/index.astro?raw';
+import organizersPageSource from '../src/pages/[lang]/organizers/index.astro?raw';
 import venuePageSource from '../src/pages/[lang]/venue/index.astro?raw';
 import richContentPageSource from '../src/components/site/RichContentPage.astro?raw';
+
 import headerSource from '../src/components/site/Header.astro?raw';
 import darkStageSectionSource from '../src/components/home/DarkStageSection.astro?raw';
 import featuredSpeakersSectionSource from '../src/components/home/FeaturedSpeakersSection.astro?raw';
@@ -67,10 +68,11 @@ describe('site helpers', () => {
     expect(faqPageSource).toContain('<RichContentPage');
   });
 
-  it('adds dedicated abstracts routes without putting them into the main navigation', () => {
-    expect(abstractsPageSource).toContain('abstracts-page');
-    expect(abstractsPageSource).toContain('publication');
-    expect(headerSource).not.toContain("buildLocalizedPath(locale, 'abstracts')");
+  it('adds dedicated venue and faq routes to the main navigation', () => {
+    expect(venuePageSource).toContain("page=\"venue\"");
+    expect(faqPageSource).toContain("page=\"faq\"");
+    expect(headerSource).toContain("buildLocalizedPath(locale, 'venue')");
+    expect(headerSource).toContain("buildLocalizedPath(locale, 'faq')");
   });
 
   it('uses a dedicated mobile header toggle instead of forcing the full desktop nav into small screens', () => {
@@ -213,7 +215,6 @@ describe('site helpers', () => {
       buildLocalizedPath(locale, 'about'),
       buildLocalizedPath(locale, 'organizers'),
       buildLocalizedPath(locale, 'faq'),
-      buildLocalizedPath(locale, 'abstracts'),
     ]);
 
     expect(routes).toEqual([
@@ -225,7 +226,6 @@ describe('site helpers', () => {
       '/en/about/',
       '/en/organizers/',
       '/en/faq/',
-      '/en/abstracts/',
       '/it/',
       '/it/programme/',
       '/it/speakers/',
@@ -234,7 +234,6 @@ describe('site helpers', () => {
       '/it/about/',
       '/it/organizers/',
       '/it/faq/',
-      '/it/abstracts/',
     ]);
   });
 

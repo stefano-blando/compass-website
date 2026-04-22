@@ -3,6 +3,7 @@ import type { Locale } from './types';
 export const locales: Locale[] = ['en', 'it'];
 export const defaultLocale: Locale = 'en';
 export const sitePageKeys = ['home', 'programme', 'speakers', 'venue', 'registration', 'about', 'organizers', 'faq'] as const;
+
 export type SitePageKey = (typeof sitePageKeys)[number];
 
 export const siteConfig = {
@@ -380,14 +381,6 @@ export const richPageContent = {
           bullets: ['Mandatory for all participants.', 'Secure external registration portal.'],
         },
         {
-          eyebrow: 'Abstracts',
-          title: 'Submitting your Research',
-          body: 'Doctoral researchers wishing to contribute to the panels should submit their abstracts directly via email to the organizing committee.',
-          mediaLabel: 'Abstract submission',
-          mediaType: 'info-panel',
-          bullets: ['Submission via email.', 'Include title, affiliation, and a short summary.'],
-        },
-        {
           eyebrow: 'Checklist',
           title: 'Before you Register',
           body: 'Ensure your travel plans align with the workshop date. Once registered, you will receive confirmation and arrival details.',
@@ -426,7 +419,7 @@ export const richPageContent = {
         {
           eyebrow: 'Contact',
           title: 'Get in Touch',
-          body: 'For general inquiries or abstract submissions, please reach out to the organizing committee directly via email.',
+          body: 'For general inquiries or operational clarifications, please reach out to the organizing committee directly via email.',
           mediaLabel: 'Contact information',
           mediaType: 'info-panel',
           bullets: ['General workshop inquiries.', 'Operational follow-up.'],
@@ -605,14 +598,6 @@ export const richPageContent = {
           bullets: ['Obbligatorio per tutti i partecipanti.', 'Portale di registrazione esterno sicuro.'],
         },
         {
-          eyebrow: 'Abstract',
-          title: 'Invia la tua Ricerca',
-          body: 'I dottorandi che desiderano contribuire ai panel devono inviare i propri abstract direttamente via email al comitato organizzatore.',
-          mediaLabel: 'Invio abstract',
-          mediaType: 'info-panel',
-          bullets: ['Invio tramite email.', 'Includi titolo, affiliazione e un breve riassunto.'],
-        },
-        {
           eyebrow: 'Checklist',
           title: 'Prima di registrarti',
           body: 'Assicurati che i tuoi piani di viaggio coincidano con la data del workshop. Una volta registrato, riceverai una conferma e i dettagli per l’arrivo.',
@@ -651,7 +636,7 @@ export const richPageContent = {
         {
           eyebrow: 'Contatti',
           title: 'Contattaci',
-          body: 'Per domande generali o per l’invio di abstract, si prega di rivolgersi direttamente al comitato organizzatore via email.',
+          body: 'Per domande generali o chiarimenti operativi, si prega di rivolgersi direttamente al comitato organizzatore via email.',
           mediaLabel: 'Informazioni di contatto',
           mediaType: 'info-panel',
           bullets: ['Richieste generali sul workshop.', 'Follow-up operativo.'],
