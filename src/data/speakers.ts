@@ -39,8 +39,8 @@ export const speakers: Speaker[] = [
     slug: 'guido-germano',
     name: 'Guido Germano',
     affiliation: {
-      en: 'University College London · Visiting Professor at Sant’Anna School of Advanced Studies',
-      it: 'University College London · Visiting Professor presso la Scuola Superiore Sant’Anna',
+      en: 'University College London',
+      it: 'University College London',
     },
     roleLabel: {
       en: 'Keynote speaker',
