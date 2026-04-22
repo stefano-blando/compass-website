@@ -631,7 +631,7 @@ describe('site helpers', () => {
     ]);
     expect(getTalksForSession('panel-3-legal-ethics').map((talk) => talk.title.en)).toEqual([
       'Roberta Romano',
-      'Roberta Savella',
+      'Regulation vs Innovation? Unpacking the dichotomy to foster responsible research',
       'Significant Harm in EU Law: When Voice-Based Virtual Assistants Are Prohibited',
       'Elio Grande (online)',
       'Roundtable',

@@ -180,8 +180,8 @@ export const speakers: Speaker[] = [
     slug: 'roberta-savella',
     name: 'Roberta Savella',
     affiliation: {
-      en: 'CNR/ISTI · PhD-AI.it, Pillar Society',
-      it: 'CNR/ISTI · PhD-AI.it, Pillar Society',
+      en: 'University of Pisa and CNR-ISTI',
+      it: 'Università di Pisa e CNR-ISTI',
     },
     roleLabel: {
       en: 'Panel 3 chair and speaker',
@@ -189,11 +189,12 @@ export const speakers: Speaker[] = [
     },
     image: '/images/speakers/roberta_savella.png',
     bio: {
-      en: 'Organizer and current chair-speaker for the third panel.',
-      it: 'Organizzatrice e attuale chair-relatrice del terzo panel.',
+      en: 'Roberta Savella is a PhD Student at the Italian National PhD on AI for Society. She graduated in law at University of Pisa, completed her legal traineeship at a law firm in Lucca, and has worked for two years as a research fellow at the Italian National Research Council (CNR-ISTI). Her research topics are the legal and ethical aspects of Artificial Intelligence and Big Data analysis. She is particularly interested in the interplay between regulation and innovation in the European Union and how the new digital laws can foster responsible research to create ethical technologies and protect fundamental rights.',
+      it: 'Roberta Savella è una dottoranda del Dottorato Nazionale in IA per la Società. Si è laureata in giurisprudenza presso l’Università di Pisa, ha completato il tirocinio forense a Lucca e ha lavorato per due anni come assegnista di ricerca presso il CNR-ISTI. I suoi temi di ricerca riguardano gli aspetti legali ed etici dell’Intelligenza Artificiale e l’analisi dei Big Data. Si interessa in particolare dell’interazione tra regolamentazione e innovazione nell’Unione Europea e di come le nuove leggi digitali possano favorire una ricerca responsabile per creare tecnologie etiche e proteggere i diritti fondamentali.',
     },
     type: ['panelist', 'chair', 'organizer'],
   },
+
   {
     slug: 'simone-tonini',
     name: 'Simone Tonini',

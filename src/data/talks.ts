@@ -242,12 +242,12 @@ export const talks: Talk[] = [
   {
     slug: 'panel-3-roberta-savella',
     title: {
-      en: 'Roberta Savella',
-      it: 'Roberta Savella',
+      en: 'Regulation vs Innovation? Unpacking the dichotomy to foster responsible research',
+      it: 'Regolamentazione vs Innovazione? Analisi della dicotomia per favorire una ricerca responsabile',
     },
     abstract: {
-      en: 'Current panel contribution listed in the latest workshop agenda.',
-      it: 'Contributo di panel riportato nell agenda di workshop piu recente.',
+      en: 'The regulatory landscape in the European Union has seen two different trends in the past few years: after a wave of regulations which left us with the AI Act, the Digital Services Act, the Data Governance Act, the Data Act and other landmark pieces of legislation, the new direction is going towards simplification, following the narrative that “regulation stifles innovation”. This talk will challenge this assumption and discuss responsible research practices to foster ethical innovation in the field of new technologies.',
+      it: 'Il panorama normativo dell’Unione Europea ha visto due tendenze diverse negli ultimi anni: dopo un’ondata di regolamenti che ci ha lasciato l’AI Act, il Digital Services Act, il Data Governance Act, il Data Act e altri atti legislativi storici, la nuova direzione va verso la semplificazione, seguendo la narrativa secondo cui “la regolamentazione soffoca l’innovazione”. Questo intervento metterà in discussione questo presupposto e discuterà pratiche di ricerca responsabile per favorire l’innovazione etica nel campo delle nuove tecnologie.',
     },
     speakerSlugs: ['roberta-savella'],
     sessionSlug: 'panel-3-legal-ethics',
