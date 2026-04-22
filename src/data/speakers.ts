@@ -140,6 +140,7 @@ export const speakers: Speaker[] = [
       en: 'Panel 3 chair and speaker',
       it: 'Chair e relatrice del Panel 3',
     },
+    image: '/images/speakers/roberta_romano.png',
     bio: {
       en: 'Organizer and current chair-speaker for the third panel.',
       it: 'Organizzatrice e attuale chair-relatrice del terzo panel.',
@@ -154,6 +155,7 @@ export const speakers: Speaker[] = [
       en: 'Panel 3 chair and speaker',
       it: 'Chair e relatrice del Panel 3',
     },
+    image: '/images/speakers/roberta_savella.png',
     bio: {
       en: 'Organizer and current chair-speaker for the third panel.',
       it: 'Organizzatrice e attuale chair-relatrice del terzo panel.',
@@ -168,6 +170,7 @@ export const speakers: Speaker[] = [
       en: 'Panel 1 speaker',
       it: 'Relatore del Panel 1',
     },
+    image: '/images/speakers/simone_tonini.png',
     bio: {
       en: 'Current named speaker in the first panel lineup.',
       it: 'Relatore attualmente indicato nella scaletta del primo panel.',
@@ -211,6 +214,7 @@ export const speakers: Speaker[] = [
       en: 'Panel 2 speaker',
       it: 'Relatore del Panel 2',
     },
+    image: '/images/speakers/riccardo_porcedda.png',
     bio: {
       en: 'Current named speaker in the second panel lineup.',
       it: 'Relatore attualmente indicato nella scaletta del secondo panel.',
@@ -225,6 +229,7 @@ export const speakers: Speaker[] = [
       en: 'Panel 2 speaker',
       it: 'Relatore del Panel 2',
     },
+    image: '/images/speakers/giuseppe_squillace.png',
     bio: {
       en: 'Current named speaker in the second panel lineup.',
       it: 'Relatore attualmente indicato nella scaletta del secondo panel.',
@@ -254,6 +259,7 @@ export const speakers: Speaker[] = [
       en: 'Panel 3 speaker',
       it: 'Relatrice del Panel 3',
     },
+    image: '/images/speakers/vittoria_caponecchia.png',
     bio: {
       en: 'Vittoria Caponecchia is a PhD candidate in Artificial Intelligence for Society at the Sant’Anna School of Advanced Studies in Pisa. She holds a Law degree from the University of Florence and completed her legal traineeship at a law firm in Pistoia. Her doctoral research focuses on the classification of AI systems based on the concept of significant harm, with particular attention to consumer protection.',
       it: 'Vittoria Caponecchia è una dottoranda in Artificial Intelligence for Society presso la Scuola Superiore Sant’Anna di Pisa. Ha conseguito la laurea in Giurisprudenza presso l’Università di Firenze e ha completato il tirocinio forense presso uno studio legale di Pistoia. La sua ricerca dottorale si concentra sulla classificazione dei sistemi di IA basata sul concetto di danno significativo, con particolare attenzione alla tutela dei consumatori.',
