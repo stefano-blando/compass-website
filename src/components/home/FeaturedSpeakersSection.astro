@@ -29,10 +29,12 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
         <h2>{speakers.title}</h2>
       </div>
 
-      <div class="featured-speakers__head-copy" data-reveal-item style="--reveal-delay: 90ms;">
-        <p>{speakers.intro}</p>
-        <p>{speakers.note}</p>
-      </div>
+      {speakers.intro && (
+        <div class="featured-speakers__head-copy" data-reveal-item style="--reveal-delay: 90ms;">
+          <p>{speakers.intro}</p>
+          <p>{speakers.note}</p>
+        </div>
+      )}
     </div>
 
     <div class="featured-speakers__carousel" data-speaker-carousel>
@@ -145,16 +147,17 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
 
   .featured-speakers__head {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.82fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
-    align-items: end;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
   }
 
   .featured-speakers__head h2 {
     margin: 0.3rem 0 0;
     font-size: clamp(2.4rem, 5vw, 4.3rem);
     line-height: 0.93;
-    max-width: 12ch;
   }
 
   .featured-speakers__head-copy p {
