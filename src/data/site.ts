@@ -158,6 +158,7 @@ export type HomepageMediaShowcaseContent = {
     title: string;
     body: string;
     mediaLabel: string;
+    image?: string;
   }>;
 };
 
@@ -168,9 +169,9 @@ export const homepageMediaShowcaseContent = {
     intro: 'A gathering at Scuola Superiore Sant’Anna, pairing the historic venue with the interdisciplinary conversations that define COMPASS.',
     videoLabel: 'Workshop overview',
     items: [
-      { title: 'The venue', body: 'Aula 3 and the academic setting of Sant’Anna, Pisa.', mediaLabel: 'Aula 3 Campus' },
-      { title: 'The programme', body: 'A shared scientific arc across methods, networks, and policy.', mediaLabel: 'Workshop Sessions' },
-      { title: 'The team', body: 'Doctoral organizers and invited speakers working together.', mediaLabel: 'Organizing Committee' },
+      { title: 'The venue', body: 'Aula 3 and the academic setting of Sant’Anna, Pisa.', mediaLabel: 'Aula 3 Campus', image: '/images/venue/aula3_a.jpg' },
+      { title: 'The programme', body: 'A shared scientific arc across methods, networks, and policy.', mediaLabel: 'Workshop Sessions', image: '/images/venue/SSSA_vista_alto.png' },
+      { title: 'The team', body: 'Doctoral organizers and invited speakers working together.', mediaLabel: 'Organizing Committee', image: '/images/venue/SSSA_chiostro_interno.png' },
     ],
   },
   it: {
@@ -179,9 +180,9 @@ export const homepageMediaShowcaseContent = {
     intro: 'Un incontro alla Scuola Superiore Sant’Anna, dove la sede storica incontra le conversazioni interdisciplinari di COMPASS.',
     videoLabel: 'Panoramica del workshop',
     items: [
-      { title: 'La sede', body: 'L’Aula 3 e il contesto accademico della Sant’Anna a Pisa.', mediaLabel: 'Aula 3 Campus' },
-      { title: 'Il programma', body: 'Un arco scientifico condiviso tra metodi, reti e policy.', mediaLabel: 'Sessioni Workshop' },
-      { title: 'Il team', body: 'Dottorandi organizzatori e relatori che lavorano insieme.', mediaLabel: 'Comitato Organizzatore' },
+      { title: 'La sede', body: 'L’Aula 3 e il contesto accademico della Sant’Anna a Pisa.', mediaLabel: 'Aula 3 Campus', image: '/images/venue/aula3_a.jpg' },
+      { title: 'Il programma', body: 'Un arco scientifico condiviso tra metodi, reti e policy.', mediaLabel: 'Sessioni Workshop', image: '/images/venue/SSSA_vista_alto.png' },
+      { title: 'Il team', body: 'Dottorandi organizzatori e relatori che lavorano insieme.', mediaLabel: 'Comitato Organizzatore', image: '/images/venue/SSSA_chiostro_interno.png' },
     ],
   },
 } as const satisfies Record<Locale, HomepageMediaShowcaseContent>;
@@ -255,7 +256,8 @@ export const richPageContent = {
         title: 'Defining a new interdisciplinary boundary',
         intro: 'COMPASS brings together complexity science, AI, economics, law, philosophy, and statistics to investigate how emerging technologies are reshaping social and market structures.',
         mediaLabel: 'About COMPASS mission',
-        mediaType: 'video',
+        mediaType: 'landscape',
+        image: '/images/venue/SSSA_chiostro_interno.png',
       },
       sections: [
         {
@@ -336,7 +338,7 @@ export const richPageContent = {
         intro: 'Scuola Superiore Sant’Anna provides the historic and intellectual backdrop for COMPASS sessions and networking.',
         mediaLabel: 'Sant’Anna campus',
         mediaType: 'landscape',
-        image: '/images/venue/venue/aula_3_SSSA.jpg',
+        image: '/images/venue/SSSA_vista_alto.png',
       },
       sections: [
         {
@@ -345,7 +347,7 @@ export const richPageContent = {
           body: 'The workshop is held at the historic campus of Sant’Anna, an institution dedicated to high-level research and education in the heart of Pisa.',
           mediaLabel: 'Sant’Anna location',
           mediaType: 'landscape',
-          image: '/images/venue/venue/aula_3_SSSA.jpg',
+          image: '/images/venue/aula3_a.jpg',
           bullets: ['Central Pisa location.', 'Aula 3 and nearby networking areas.'],
         },
         {
@@ -354,7 +356,7 @@ export const richPageContent = {
           body: 'The campus is easily accessible from Pisa Centrale station and Galileo Galilei airport, making it convenient for international attendees.',
           mediaLabel: 'Travel and directions',
           mediaType: 'landscape',
-          image: '/images/venue/venue/IMG_20260422_102249.jpg',
+          image: '/images/venue/SSSA_entrata_arco.png',
           bullets: ['Rail: Pisa Centrale Station.', 'Air: Galileo Galilei International Airport.'],
         },
         {
@@ -362,8 +364,8 @@ export const richPageContent = {
           title: 'Workshop Attendance',
           body: 'On-site registration and session access will be managed at the main entrance, with short walking distances between all workshop areas.',
           mediaLabel: 'On-site logistics',
-          mediaType: 'info-panel',
-          image: '/images/venue/venue/IMG_20260422_102256.jpg',
+          mediaType: 'landscape',
+          image: '/images/venue/SSSA_parco.png',
           bullets: ['Checked-in attendee access.', 'Walking campus layout.'],
         },
       ],
@@ -375,7 +377,8 @@ export const richPageContent = {
         title: 'Secure your place at COMPASS',
         intro: 'Participation is free but registration is mandatory. Join us for a day of interdisciplinary exchange at Scuola Superiore Sant’Anna.',
         mediaLabel: 'Registration portal',
-        mediaType: 'portrait-grid',
+        mediaType: 'landscape',
+        image: '/images/venue/aula3_b.jpg',
       },
       sections: [
         {
@@ -403,7 +406,8 @@ export const richPageContent = {
         title: 'Academic and operational coordination',
         intro: 'COMPASS is organized by the six panel chairs, all doctoral researchers from the National PhD Program in AI, with the support of our partner institutions.',
         mediaLabel: 'Organizing committee',
-        mediaType: 'portrait-grid',
+        mediaType: 'landscape',
+        image: '/images/venue/SSSA_parco_vista_colonne.png',
       },
       sections: [
         {
@@ -438,7 +442,8 @@ export const richPageContent = {
         title: 'Essential information for participants',
         intro: 'Quick answers to common questions about logistics, participation, and workshop materials.',
         mediaLabel: 'FAQ overview',
-        mediaType: 'video',
+        mediaType: 'landscape',
+        image: '/images/venue/SSSA_vista_alto.png',
       },
       sections: [
         {
@@ -476,7 +481,8 @@ export const richPageContent = {
         title: 'Definire un nuovo confine interdisciplinare',
         intro: 'COMPASS unisce scienza della complessità, AI, economia, diritto, filosofia e statistica per indagare come le tecnologie emergenti stiano rimodellando le strutture sociali e di mercato.',
         mediaLabel: 'Missione di COMPASS',
-        mediaType: 'video',
+        mediaType: 'landscape',
+        image: '/images/venue/SSSA_chiostro_interno.png',
       },
       sections: [
         {
@@ -557,7 +563,7 @@ export const richPageContent = {
         intro: 'La Scuola Superiore Sant’Anna offre la cornice storica e intellettuale per le sessioni e il networking di COMPASS.',
         mediaLabel: 'Campus Sant’Anna',
         mediaType: 'landscape',
-        image: '/images/venue/venue/aula_3_SSSA.jpg',
+        image: '/images/venue/SSSA_vista_alto.png',
       },
       sections: [
         {
@@ -566,7 +572,7 @@ export const richPageContent = {
           body: 'Il workshop si tiene presso lo storico campus della Sant’Anna, un’istituzione dedicata alla ricerca e alla formazione di alto livello nel centro di Pisa.',
           mediaLabel: 'Sede Sant’Anna',
           mediaType: 'landscape',
-          image: '/images/venue/venue/aula_3_SSSA.jpg',
+          image: '/images/venue/aula3_a.jpg',
           bullets: ['Posizione nel centro di Pisa.', 'Aula 3 e aree di networking limitrofe.'],
         },
         {
@@ -575,7 +581,7 @@ export const richPageContent = {
           body: 'Il campus è facilmente raggiungibile dalla stazione di Pisa Centrale e dall’aeroporto Galileo Galilei, rendendo agevole la partecipazione anche per gli ospiti internazionali.',
           mediaLabel: 'Viaggio e direzioni',
           mediaType: 'landscape',
-          image: '/images/venue/venue/IMG_20260422_102249.jpg',
+          image: '/images/venue/SSSA_entrata_arco.png',
           bullets: ['Treno: Stazione Pisa Centrale.', 'Aereo: Aeroporto Internazionale Galileo Galilei.'],
         },
         {
@@ -583,8 +589,8 @@ export const richPageContent = {
           title: 'Partecipazione al Workshop',
           body: 'La registrazione in loco e l’accesso alle sessioni saranno gestiti presso l’ingresso principale, con brevi distanze a piedi tra tutte le aree del workshop.',
           mediaLabel: 'Logistica in loco',
-          mediaType: 'info-panel',
-          image: '/images/venue/venue/IMG_20260422_102256.jpg',
+          mediaType: 'landscape',
+          image: '/images/venue/SSSA_parco.png',
           bullets: ['Accesso per partecipanti registrati.', 'Layout del campus compatto.'],
         },
       ],
@@ -596,7 +602,8 @@ export const richPageContent = {
         title: 'Assicura il tuo posto a COMPASS',
         intro: 'La partecipazione è gratuita ma la registrazione è obbligatoria. Unisciti a noi per una giornata di scambio interdisciplinare alla Scuola Superiore Sant’Anna.',
         mediaLabel: 'Portale di registrazione',
-        mediaType: 'portrait-grid',
+        mediaType: 'landscape',
+        image: '/images/venue/aula3_b.jpg',
       },
       sections: [
         {
@@ -624,7 +631,8 @@ export const richPageContent = {
         title: 'Coordinamento accademico e operativo',
         intro: 'COMPASS è organizzato dai sei panel chair, tutti ricercatori dottorali del Dottorato Nazionale in AI, con il supporto delle nostre istituzioni partner.',
         mediaLabel: 'Comitato organizzatore',
-        mediaType: 'portrait-grid',
+        mediaType: 'landscape',
+        image: '/images/venue/SSSA_parco_vista_colonne.png',
       },
       sections: [
         {
@@ -659,7 +667,8 @@ export const richPageContent = {
         title: 'Informazioni essenziali per i partecipanti',
         intro: 'Risposte rapide alle domande comuni su logistica, partecipazione e materiali del workshop.',
         mediaLabel: 'Panoramica FAQ',
-        mediaType: 'video',
+        mediaType: 'landscape',
+        image: '/images/venue/SSSA_vista_alto.png',
       },
       sections: [
         {

@@ -1,6 +1,6 @@
 ---
 import type { Locale } from '../../data/types';
-import { getHomepageContent } from '../../lib/site';
+import { getHomepageContent, resolvePublicPath } from '../../lib/site';
 
 interface Props {
   locale: Locale;
@@ -9,8 +9,7 @@ interface Props {
 const { locale } = Astro.props;
 const { mediaShowcase } = getHomepageContent(locale);
 const videoLabel = mediaShowcase.videoLabel;
-const stageLabel = locale === 'it' ? 'Video segnaposto' : 'Video placeholder';
-const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
+const videoPath = resolvePublicPath('/images/venue/aula3_video.mp4');
 ---
 
 <section class="media-showcase" data-home-reveal data-media-showcase>
@@ -23,7 +22,8 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
       </div>
 
       <div class="media-showcase__stage media-showcase__stage-shell" data-reveal-item data-scroll-shift data-scroll-speed="14" style="--reveal-delay: 80ms;">
-        <div class="media-shell media-shell--video media-showcase__video" aria-hidden="true" data-scroll-shift data-scroll-speed="28">
+        <div class="media-shell media-shell--video media-showcase__video" data-scroll-shift data-scroll-speed="28">
+          <video src={videoPath} autoplay muted loop playsinline class="media-showcase__video-element"></video>
           <span class="media-shell__grid"></span>
           <span class="media-shell__scan"></span>
           <span class="media-shell__orbit"></span>
@@ -32,9 +32,6 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
           <span class="media-showcase__card-media-orbit media-showcase__card-media-orbit--wide"></span>
           <span class="media-showcase__stage-route media-showcase__stage-route--a"></span>
           <span class="media-showcase__stage-route media-showcase__stage-route--b"></span>
-          <span class="media-shell__person media-showcase__figure media-showcase__figure--left"></span>
-          <span class="media-shell__person media-shell__person--soft media-showcase__figure media-showcase__figure--right"></span>
-          <span class="video-placeholder__play"></span>
           <div class="media-shell__caption">
             <strong>{mediaShowcase.title}</strong>
             <p>{mediaShowcase.intro}</p>
@@ -44,7 +41,10 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
         <div class="media-showcase__cards">
           {mediaShowcase.items.map((item, index) => (
             <article class="media-showcase__card" data-reveal-item data-scroll-shift data-scroll-speed={String(16 + index * 4)} data-scroll-direction={index % 2 === 0 ? '1' : '-1'} style={`--reveal-delay: ${index * 90 + 120}ms;`}>
-              <div class="media-shell media-shell--light media-shell--landscape media-showcase__card-media" aria-hidden="true">
+              <div class="media-shell media-shell--light media-shell--landscape media-showcase__card-media" aria-label={item.mediaLabel}>
+                {item.image && (
+                  <img src={resolvePublicPath(item.image)} alt={item.title} class="media-showcase__card-image" />
+                )}
                 <span class="media-shell__grid"></span>
                 <span class="media-shell__scan"></span>
                 <span class="media-shell__beam"></span>
@@ -67,8 +67,24 @@ const galleryLabel = locale === 'it' ? 'Frame della galleria' : 'Gallery frame';
 </section>
 
 <style>
-  .media-showcase {
-    padding: 0.8rem 0 2.4rem;
+  .media-showcase__video-element {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    mix-blend-mode: luminosity;
+  }
+
+  .media-showcase__card-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.5;
+    mix-blend-mode: luminosity;
   }
 
   .media-showcase__band {
