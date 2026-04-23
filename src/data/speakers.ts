@@ -145,8 +145,8 @@ export const speakers: Speaker[] = [
     slug: 'alice-musso',
     name: 'Alice Musso',
     affiliation: {
-      en: 'ISTI-CNR · PhD-AI.it, Pillar Society',
-      it: 'ISTI-CNR · PhD-AI.it, Pillar Society',
+      en: 'University of Pisa and ISTI-CNR · PhD-AI.it, Pillar Society',
+      it: 'Università di Pisa e ISTI-CNR · PhD-AI.it, Pillar Society',
     },
     roleLabel: {
       en: 'Panel 2 chair and speaker',
