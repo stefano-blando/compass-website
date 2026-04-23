@@ -24,6 +24,7 @@ jobs:
       - run: npm run build
         env:
           SITE_URL: https://compass-workshop-ai.github.io
+          BASE_PATH: /compass-workshop
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
