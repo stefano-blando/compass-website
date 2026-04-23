@@ -305,47 +305,7 @@ export const richPageContent = {
         mediaLabel: 'Speakers network',
         mediaType: 'speaker-network',
       },
-      sections: [
-        {
-          eyebrow: 'Keynotes',
-          title: 'Invited Keynote Lectures',
-          body: 'The workshop features three major keynote sessions. Currently, we have confirmed Guido Germano (UCL) and Prabhani Kuruppumullage Don (Penn State), with a third high-profile speaker under final confirmation.',
-          mediaLabel: 'Keynote speakers',
-          mediaType: 'portrait-grid',
-          images: [
-            '/images/keynote/guido_germano.png',
-            '/images/keynote/prabhani_don.png',
-            '/images/speakers/stefano_blando.jpg',
-          ],
-          bullets: ['Guido Germano (UCL)', 'Prabhani Kuruppumullage Don (Penn State)', 'Third Keynote (TBC)'],
-        },
-        {
-          eyebrow: 'Tracks',
-          title: 'Thematic Track Chairs',
-          body: 'Three thematic tracks guide the doctoral contributions, covering AI methods, complex networks and NLP, and the intersection of law, ethics, and social systems.',
-          mediaLabel: 'Thematic tracks',
-          mediaType: 'portrait-grid',
-          images: [
-            '/images/speakers/lorenzo_emer.png',
-            '/images/speakers/alice_musso.png',
-            '/images/speakers/roberta_romano.png',
-          ],
-          bullets: ['Track 1: AI Methods & Economic Complexity', 'Track 2: Networks & NLP for Social Sciences', 'Track 3: Law, Ethics & Regulation'],
-        },
-        {
-          eyebrow: 'Contributors',
-          title: 'Panel & Discussant Roles',
-          body: 'A network of doctoral researchers and faculty members contribute to the panels, fostering a deep exchange between quantitative and normative perspectives.',
-          mediaLabel: 'Contributors and panelists',
-          mediaType: 'portrait-grid',
-          images: [
-            '/images/speakers/riccardo_porcedda.png',
-            '/images/speakers/roberta_savella.png',
-            '/images/speakers/corentin-lobet.png',
-          ],
-          bullets: ['Doctoral panelists from the SSSA-IIT network.', 'Faculty discussants and closing voices.'],
-        },
-      ],
+      sections: [],
     },
     venue: {
       hero: {
@@ -545,47 +505,7 @@ export const richPageContent = {
         mediaLabel: 'Rete dei relatori',
         mediaType: 'speaker-network',
       },
-      sections: [
-        {
-          eyebrow: 'Keynote',
-          title: 'Keynote Lecture su invito',
-          body: 'Il workshop ospita tre sessioni keynote principali. Al momento abbiamo confermato Guido Germano (UCL) e Prabhani Kuruppumullage Don (Penn State), con un terzo relatore di alto profilo in fase di conferma finale.',
-          mediaLabel: 'Relatori keynote',
-          mediaType: 'portrait-grid',
-          images: [
-            '/images/keynote/guido_germano.png',
-            '/images/keynote/prabhani_don.png',
-            '/images/speakers/stefano_blando.jpg',
-          ],
-          bullets: ['Guido Germano (UCL)', 'Prabhani Kuruppumullage Don (Penn State)', 'Terzo Keynote (TBC)'],
-        },
-        {
-          eyebrow: 'Track',
-          title: 'Chair delle Track Tematiche',
-          body: 'Tre track tematiche guidano i contributi dottorali, coprendo i metodi AI, le reti complesse e il NLP, e l’intersezione tra diritto, etica e sistemi sociali.',
-          mediaLabel: 'Track tematiche',
-          mediaType: 'portrait-grid',
-          images: [
-            '/images/speakers/lorenzo_emer.png',
-            '/images/speakers/alice_musso.png',
-            '/images/speakers/roberta_romano.png',
-          ],
-          bullets: ['Track 1: Metodi AI e Complessità Economica', 'Track 2: Reti e NLP per le Scienze Sociali', 'Track 3: Diritto, Etica e Regolamentazione'],
-        },
-        {
-          eyebrow: 'Contributori',
-          title: 'Ruoli di Panel e Discussant',
-          body: 'Una rete di dottorandi e docenti contribuisce ai panel, favorendo uno scambio profondo tra prospettive quantitative e normative.',
-          mediaLabel: 'Contributori e panelist',
-          mediaType: 'portrait-grid',
-          images: [
-            '/images/speakers/riccardo_porcedda.png',
-            '/images/speakers/roberta_savella.png',
-            '/images/speakers/corentin-lobet.png',
-          ],
-          bullets: ['Panelist dottorali della rete SSSA-IIT.', 'Discussant e voci conclusive dal mondo accademico.'],
-        },
-      ],
+      sections: [],
     },
     venue: {
       hero: {
