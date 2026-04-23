@@ -239,7 +239,7 @@ export type RichPageContent = {
     title: string;
     intro: string;
     mediaLabel: string;
-    mediaType: 'portrait-grid' | 'landscape' | 'video';
+    mediaType: 'portrait-grid' | 'landscape' | 'video' | 'speaker-network';
     image?: string;
   };
   sections: RichPageSection[];
@@ -301,8 +301,8 @@ export const richPageContent = {
         eyebrow: 'Speakers',
         title: 'Leading voices at the intersection of AI and Society',
         intro: 'A gathering of international keynote guests, academic organizers, and doctoral researchers driving the interdisciplinary dialogue.',
-        mediaLabel: 'Speakers hero image',
-        mediaType: 'portrait-grid',
+        mediaLabel: 'Speakers network',
+        mediaType: 'speaker-network',
       },
       sections: [
         {
@@ -526,8 +526,8 @@ export const richPageContent = {
         eyebrow: 'Relatori',
         title: 'Voci di rilievo all’intersezione tra AI e Società',
         intro: 'Un incontro di ospiti keynote internazionali, organizzatori accademici e ricercatori dottorali che guidano il dialogo interdisciplinare.',
-        mediaLabel: 'Immagine hero relatori',
-        mediaType: 'portrait-grid',
+        mediaLabel: 'Rete dei relatori',
+        mediaType: 'speaker-network',
       },
       sections: [
         {

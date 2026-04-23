@@ -1,0 +1,161 @@
+---
+import { speakers } from '../../data/speakers';
+import { resolvePublicPath } from '../../lib/site';
+
+const featuredSpeakers = speakers.filter(s => 
+  ['guido-germano', 'prabhani-don', 'stefano-blando', 'biancamaria-bombino', 'lorenzo-emer', 'alice-musso', 'roberta-romano', 'roberta-savella'].includes(s.slug)
+);
+
+// Map slugs to positions for a nice constellation
+const positions: Record<string, { top: string, left: string, size: string }> = {
+  'guido-germano': { top: '20%', left: '20%', size: '100px' },
+  'prabhani-don': { top: '15%', left: '70%', size: '100px' },
+  'stefano-blando': { top: '50%', left: '10%', size: '80px' },
+  'biancamaria-bombino': { top: '75%', left: '25%', size: '80px' },
+  'lorenzo-emer': { top: '45%', left: '45%', size: '90px' },
+  'alice-musso': { top: '80%', left: '65%', size: '80px' },
+  'roberta-romano': { top: '40%', left: '85%', size: '85px' },
+  'roberta-savella': { top: '70%', left: '90%', size: '80px' },
+};
+---
+
+<div class="speaker-network">
+  <svg class="network-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+    <line x1="20" y1="20" x2="45" y2="45" class="line-a" />
+    <line x1="70" y1="15" x2="45" y2="45" class="line-b" />
+    <line x1="45" y1="45" x2="10" y2="50" class="line-c" />
+    <line x1="45" y1="45" x2="85" y2="40" class="line-d" />
+    <line x1="10" y1="50" x2="25" y2="75" class="line-e" />
+    <line x1="25" y1="75" x2="65" y2="80" class="line-f" />
+    <line x1="65" y1="80" x2="90" y2="70" class="line-g" />
+    <line x1="85" y1="40" x2="90" y2="70" class="line-h" />
+  </svg>
+
+  {featuredSpeakers.map(speaker => {
+    const pos = positions[speaker.slug] || { top: '50%', left: '50%', size: '80px' };
+    return (
+      <div 
+        class="speaker-node" 
+        style={`top: ${pos.top}; left: ${pos.left}; --size: ${pos.size}; --delay: ${Math.random() * 2}s;`}
+      >
+        <div class="node-image-wrap">
+          {speaker.image ? (
+            <img src={resolvePublicPath(speaker.image)} alt={speaker.name} />
+          ) : (
+            <span class="node-placeholder">{speaker.name.charAt(0)}</span>
+          )}
+        </div>
+        <span class="node-name">{speaker.name.split(' ').pop()}</span>
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .speaker-network {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    overflow: hidden;
+    background: radial-gradient(circle at center, rgba(53, 95, 138, 0.1), transparent 70%);
+  }
+
+  .network-lines {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  .network-lines line {
+    stroke: var(--accent);
+    stroke-width: 0.15;
+    stroke-opacity: 0.25;
+    stroke-dasharray: 0.5 1;
+    animation: dash 20s linear infinite;
+  }
+
+  @keyframes dash {
+    to {
+      stroke-dashoffset: -20;
+    }
+  }
+
+  .speaker-node {
+    position: absolute;
+    width: var(--size);
+    height: var(--size);
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    animation: float 6s ease-in-out infinite;
+    animation-delay: var(--delay);
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translate(-50%, -52%); }
+    50% { transform: translate(-50%, -48%); }
+  }
+
+  .node-image-wrap {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #fff;
+    box-shadow: 0 8px 24px rgba(20, 32, 51, 0.15);
+    background: var(--surface-strong);
+    transition: transform 300ms ease, box-shadow 300ms ease;
+  }
+
+  .speaker-node:hover .node-image-wrap {
+    transform: scale(1.1);
+    box-shadow: 0 12px 32px rgba(255, 98, 40, 0.25);
+    border-color: var(--accent);
+  }
+
+  .node-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .node-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .node-name {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink-soft);
+    background: rgba(255, 255, 255, 0.8);
+    padding: 2px 6px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0.8;
+  }
+
+  @media (max-width: 600px) {
+    .speaker-node {
+      --size: 60px !important;
+    }
+    .node-name {
+      display: none;
+    }
+  }
+</style>

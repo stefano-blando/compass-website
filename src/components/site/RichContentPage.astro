@@ -1,5 +1,6 @@
 ---
 import type { RichPageContent, RichPageSection, SitePageKey } from '../../data/site';
+import SpeakerNetworkHero from './SpeakerNetworkHero.astro';
 import type { Locale } from '../../data/types';
 import { buildLocalizedPath, getLabels, resolvePublicPath, siteConfig } from '../../lib/site';
 
@@ -87,6 +88,8 @@ function getMediaBadge(section: RichPageSection, index: number) {
               <span class="rich-page__video-line"></span>
               <span class="rich-page__video-line rich-page__video-line--short"></span>
             </div>
+          ) : content.hero.mediaType === 'speaker-network' ? (
+            <SpeakerNetworkHero />
           ) : (
             <div class="rich-page__landscape-shell" aria-hidden="true">
               <span class="rich-page__landscape-arc"></span>
