@@ -8,6 +8,25 @@ interface Props {
 
 const { locale } = Astro.props;
 const { whyCompass } = getHomepageContent(locale);
+
+const flowLabels =
+  locale === 'it'
+    ? ['Metodi AI', 'Networks & NLP', 'Diritto ed etica']
+    : ['AI methods', 'Networks & NLP', 'Law and ethics'];
+
+const editorialTopRow = whyCompass.pillars.map((pillar, index) => ({
+  eyebrow: flowLabels[index] ?? whyCompass.eyebrow,
+  title: pillar.title,
+  body: pillar.body,
+}));
+
+const editorialBottomRow = [
+  ...whyCompass.asidePoints.map((point, index) => ({
+    eyebrow: flowLabels[index % 3] ?? whyCompass.eyebrow,
+    title: point,
+    body: locale === 'it' ? 'Ambito di ricerca della track.' : 'Track research area.',
+  })),
+];
 ---
 
 <section id="why-compass" class="why-compass" data-home-reveal>
@@ -32,6 +51,32 @@ const { whyCompass } = getHomepageContent(locale);
       </div>
     </div>
   </div>
+
+  <div class="why-compass__editorial-marquee" aria-hidden="true">
+    <div class="why-compass__marquee-row">
+      <div class="why-compass__marquee-track why-compass__marquee-track--forward">
+        {[...editorialTopRow, ...editorialTopRow].map((item) => (
+          <article class="why-compass__editorial-card">
+            <p class="why-compass__editorial-eyebrow">{item.eyebrow}</p>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <div class="why-compass__marquee-row">
+      <div class="why-compass__marquee-track why-compass__marquee-track--reverse">
+        {[...editorialBottomRow, ...editorialBottomRow].map((item) => (
+          <article class="why-compass__editorial-card why-compass__editorial-card--soft">
+            <p class="why-compass__editorial-eyebrow">{item.eyebrow}</p>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </div>
 </section>
 
 <style>
@@ -45,6 +90,7 @@ const { whyCompass } = getHomepageContent(locale);
     background:
       radial-gradient(circle at 10% 20%, rgba(126, 36, 52, 0.05), transparent 30%),
       radial-gradient(circle at 90% 80%, rgba(55, 95, 138, 0.05), transparent 30%);
+    padding-bottom: 2rem;
   }
 
   .why-compass__shell {
@@ -119,6 +165,105 @@ const { whyCompass } = getHomepageContent(locale);
     color: var(--ink-soft);
   }
 
+  .why-compass__editorial-marquee {
+    display: grid;
+    gap: 0.95rem;
+    margin-top: 3rem;
+  }
+
+  .why-compass__marquee-row {
+    position: relative;
+    overflow: hidden;
+    padding-inline: 0.8rem;
+  }
+
+  .why-compass__marquee-row::before,
+  .why-compass__marquee-row::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 56px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .why-compass__marquee-row::before {
+    left: 0;
+    background: linear-gradient(90deg, var(--page-bg), rgba(246, 242, 236, 0));
+  }
+
+  .why-compass__marquee-row::after {
+    right: 0;
+    background: linear-gradient(270deg, var(--page-bg), rgba(246, 242, 236, 0));
+  }
+
+  .why-compass__marquee-track {
+    display: flex;
+    gap: 0.95rem;
+    width: max-content;
+    will-change: transform;
+  }
+
+  .why-compass__marquee-track--forward {
+    animation: whyCompassMarquee 28s linear infinite;
+  }
+
+  .why-compass__marquee-track--reverse {
+    animation: whyCompassMarquee 30s linear infinite reverse;
+  }
+
+  .why-compass__editorial-card {
+    width: clamp(270px, 29vw, 410px);
+    min-height: 206px;
+    padding: 1.15rem;
+    border-radius: 18px;
+    border: 1px solid rgba(20, 32, 51, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 253, 249, 0.98)),
+      var(--surface);
+    box-shadow: var(--shadow);
+    display: grid;
+    align-content: start;
+  }
+
+  .why-compass__editorial-card--soft {
+    background:
+      linear-gradient(180deg, rgba(236, 229, 220, 0.9), rgba(255, 253, 249, 0.96)),
+      var(--surface);
+  }
+
+  .why-compass__editorial-card h3 {
+    margin: 0.45rem 0 0;
+    font-size: clamp(1.55rem, 2vw, 2.05rem);
+    line-height: 0.96;
+    max-width: 12ch;
+  }
+
+  .why-compass__editorial-card p:last-child {
+    margin: 0.75rem 0 0;
+    color: var(--ink-soft);
+  }
+
+  .why-compass__editorial-eyebrow {
+    margin: 0;
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+
+  @keyframes whyCompassMarquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-50% - 0.475rem));
+    }
+  }
+
   @media (max-width: 980px) {
     .why-compass__pillars {
       grid-template-columns: 1fr;
@@ -128,6 +273,24 @@ const { whyCompass } = getHomepageContent(locale);
     
     .why-compass {
       padding: 3rem 0;
+    }
+
+    .why-compass__header {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .why-compass__editorial-card {
+      width: clamp(244px, 76vw, 320px);
+      min-height: 190px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .why-compass__marquee-track--forward,
+    .why-compass__marquee-track--reverse {
+      animation: none;
     }
   }
 </style>
