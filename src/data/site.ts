@@ -13,7 +13,7 @@ export const siteConfig = {
   eventDate: '18 May 2026',
   alternateDate: '',
   venue: 'Aula 3, Scuola Superiore Sant’Anna, Pisa',
-  registrationUrl: 'https://tally.so/r/compass-registration',
+  registrationUrl: '/registration',
 } as const;
 
 export const navLabels = {
@@ -384,7 +384,7 @@ export const richPageContent = {
           body: 'Registration is required for all attendees to ensure proper room capacity and logistics management.',
           mediaLabel: 'Registration form',
           mediaType: 'info-panel',
-          bullets: ['Mandatory for all participants.', 'Secure external registration portal.'],
+          bullets: ['Mandatory for all participants.', 'Complete the form below to secure your place.'],
         },
         {
           eyebrow: 'Checklist',
@@ -605,7 +605,7 @@ export const richPageContent = {
           body: 'La registrazione è necessaria per tutti i partecipanti per garantire la corretta gestione della capienza della sala e della logistica.',
           mediaLabel: 'Modulo di registrazione',
           mediaType: 'info-panel',
-          bullets: ['Obbligatorio per tutti i partecipanti.', 'Portale di registrazione esterno sicuro.'],
+          bullets: ['Obbligatorio per tutti i partecipanti.', 'Compila il modulo sottostante per assicurarti il posto.'],
         },
         {
           eyebrow: 'Checklist',

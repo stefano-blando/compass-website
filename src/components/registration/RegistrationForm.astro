@@ -1,0 +1,264 @@
+---
+import type { Locale } from '../../data/types';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const labels = {
+  en: {
+    title: 'Register for COMPASS 2026',
+    fullName: 'Full Name',
+    email: 'Email Address',
+    affiliation: 'Affiliation',
+    position: 'Position',
+    researchArea: 'Primary Research Area',
+    lunch: 'Will you attend the networking lunch (12:45)?',
+    dietary: 'Dietary requirements (allergies, preferences)',
+    consent: 'I consent to the processing of my personal data for the organization of this workshop.',
+    submit: 'Submit Registration',
+    other: 'Other',
+    yes: 'Yes',
+    no: 'No',
+    positions: [
+      'Doctoral Researcher',
+      'Faculty Member / Professor',
+      'Master\'s Student',
+      'Industry Professional',
+      'Other'
+    ],
+    areas: [
+      'AI & Machine Learning',
+      'Economic Complexity',
+      'Law & Ethics',
+      'Social Networks / NLP',
+      'Other'
+    ]
+  },
+  it: {
+    title: 'Registrati a COMPASS 2026',
+    fullName: 'Nome e Cognome',
+    email: 'Indirizzo Email',
+    affiliation: 'Affiliazione',
+    position: 'Posizione',
+    researchArea: 'Area di ricerca principale',
+    lunch: 'Parteciperai al networking lunch (12:45)?',
+    dietary: 'Requisiti alimentari (allergie, preferenze)',
+    consent: 'Acconsento al trattamento dei miei dati personali per l\'organizzazione del workshop.',
+    submit: 'Invia Registrazione',
+    other: 'Altro',
+    yes: 'Sì',
+    no: 'No',
+    positions: [
+      'Dottorando/a',
+      'Docente / Ricercatore',
+      'Studente Magistrale',
+      'Professionista / Azienda',
+      'Altro'
+    ],
+    areas: [
+      'AI & Machine Learning',
+      'Complessità Economica',
+      'Diritto ed Etica',
+      'Reti Sociali / NLP',
+      'Altro'
+    ]
+  }
+};
+
+const t = labels[locale];
+---
+
+<section class="registration-form-section">
+  <div class="content-card registration-card">
+    <h2 class="display-serif">{t.title}</h2>
+    
+    <form 
+      action="https://formspree.io/f/xaqalrkg" 
+      method="POST" 
+      class="registration-form"
+    >
+      <div class="form-grid">
+        <!-- Full Name -->
+        <div class="form-group">
+          <label for="full-name">{t.fullName} *</label>
+          <input type="text" id="full-name" name="name" required placeholder="John Doe" />
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">{t.email} *</label>
+          <input type="email" id="email" name="email" required placeholder="john@example.com" />
+        </div>
+
+        <!-- Affiliation -->
+        <div class="form-group">
+          <label for="affiliation">{t.affiliation} *</label>
+          <input type="text" id="affiliation" name="affiliation" required placeholder="University of Pisa" />
+        </div>
+
+        <!-- Position -->
+        <div class="form-group">
+          <label for="position">{t.position} *</label>
+          <select id="position" name="position" required>
+            <option value="" disabled selected>{t.position}...</option>
+            {t.positions.map(p => <option value={p}>{p}</option>)}
+          </select>
+        </div>
+
+        <!-- Research Area -->
+        <div class="form-group">
+          <label for="research-area">{t.researchArea} *</label>
+          <select id="research-area" name="research_area" required>
+            <option value="" disabled selected>{t.researchArea}...</option>
+            {t.areas.map(a => <option value={a}>{a}</option>)}
+          </select>
+        </div>
+
+        <!-- Networking Lunch -->
+        <div class="form-group">
+          <label>{t.lunch} *</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="lunch" value="yes" required />
+              <span>{t.yes}</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="lunch" value="no" required />
+              <span>{t.no}</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Dietary Requirements -->
+        <div class="form-group full-width">
+          <label for="dietary">{t.dietary}</label>
+          <textarea id="dietary" name="dietary" rows="2" placeholder="e.g. Vegetarian, Gluten-free..."></textarea>
+        </div>
+
+        <!-- Consent -->
+        <div class="form-group full-width checkbox-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="consent" required />
+            <span>{t.consent} *</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">{t.submit}</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .registration-form-section {
+    margin-top: 2rem;
+  }
+
+  .registration-card {
+    padding: clamp(1.5rem, 5vw, 3rem);
+  }
+
+  .registration-card h2 {
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 2.5rem;
+    color: var(--accent);
+  }
+
+  .registration-form {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .form-group.full-width {
+    grid-column: 1 / -1;
+  }
+
+  .form-group label {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--ink);
+  }
+
+  input[type="text"],
+  input[type="email"],
+  select,
+  textarea {
+    padding: 0.8rem 1rem;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    background: var(--surface-strong);
+    color: var(--ink);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .radio-label, .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    font-size: 0.95rem;
+  }
+
+  .radio-label input, .checkbox-label input {
+    width: 1.2rem;
+    height: 1.2rem;
+    accent-color: var(--accent);
+  }
+
+  .checkbox-group {
+    margin-top: 0.5rem;
+  }
+
+  .form-actions {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .btn-primary {
+    cursor: pointer;
+    border: none;
+    font-size: 1.1rem;
+    padding: 1rem 2rem;
+  }
+</style>
