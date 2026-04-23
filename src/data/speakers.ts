@@ -172,8 +172,8 @@ export const speakers: Speaker[] = [
     },
     image: '/images/speakers/roberta_romano.png',
     bio: {
-      en: 'Organizer and current chair-speaker for the third panel.',
-      it: 'Organizzatrice e attuale chair-relatrice del terzo panel.',
+      en: 'Roberta Romano is a PhD student in Artificial Intelligence for Society at the Sant’Anna School of Advanced Studies in Pisa. She earned her Law degree from the University of Trento and has been admitted to the Bar at the Court of Appeal of Milan. She has worked for one year as a research fellow at Sant’Anna School, contributing to the PRIN project "CURA" (Children as Vulnerable Users of IoT and AI-based Technologies). Her doctoral research focuses on the protection of minors, specifically exploring the digital identity of children and adolescents through AI-based age assurance systems.',
+      it: 'Roberta Romano è una dottoranda in Artificial Intelligence for Society presso la Scuola Superiore Sant’Anna di Pisa. Ha conseguito la laurea in Giurisprudenza presso l’Università di Trento ed è abilitata all’esercizio della professione forense presso la Corte d’Appello di Milano. Ha lavorato per un anno come assegnista di ricerca presso la Scuola Sant’Anna, contribuendo al progetto PRIN "CURA" (Children as Vulnerable Users of IoT and AI-based Technologies). La sua ricerca dottorale si concentra sulla protezione dei minori, esplorando specificamente l’identità digitale di bambini e adolescenti attraverso sistemi di age assurance basati sull’IA.',
     },
     type: ['panelist', 'chair', 'organizer'],
   },
@@ -314,7 +314,7 @@ export const speakers: Speaker[] = [
       en: 'Panel 3 speaker',
       it: 'Relatrice del Panel 3',
     },
-    image: '/images/speakers/vittoria_caponecchia.png',
+    image: '/images/speakers/vittoria_caponecchia.jpeg',
     bio: {
       en: 'Vittoria Caponecchia is a PhD candidate in Artificial Intelligence for Society at the Sant’Anna School of Advanced Studies in Pisa. She holds a Law degree from the University of Florence and completed her legal traineeship at a law firm in Pistoia. Her doctoral research focuses on the classification of AI systems based on the concept of significant harm, with particular attention to consumer protection.',
       it: 'Vittoria Caponecchia è una dottoranda in Artificial Intelligence for Society presso la Scuola Superiore Sant’Anna di Pisa. Ha conseguito la laurea in Giurisprudenza presso l’Università di Firenze e ha completato il tirocinio forense presso uno studio legale di Pistoia. La sua ricerca dottorale si concentra sulla classificazione dei sistemi di IA basata sul concetto di danno significativo, con particolare attenzione alla tutela dei consumatori.',
@@ -325,16 +325,17 @@ export const speakers: Speaker[] = [
     slug: 'elio-grande',
     name: 'Elio Grande',
     affiliation: {
-      en: 'Sant’Anna School of Advanced Studies',
-      it: 'Scuola Superiore Sant’Anna',
+      en: 'University of Pisa',
+      it: 'Università di Pisa',
     },
     roleLabel: {
       en: 'Panel 3 speaker',
       it: 'Relatore del Panel 3',
     },
+    image: '/images/speakers/elio_grande.png',
     bio: {
-      en: 'Current named speaker in the third panel lineup.',
-      it: 'Relatore attualmente indicato nella scaletta del terzo panel.',
+      en: 'Elio Grande is an AI ethicist, now PhD Candidate in artificial intelligence at the University of Pisa. He obtained a master’s degree in moral philosophy, focused on ethics in cybernetics, and a postgraduate master in digital philosophy. His latest project concerns a double-mirror design of artificial intelligence systems, called the Endless Tuning, which allows adopting models of any depth without replacing the user and being able to trace back responsibilities in the context of decision-making. His endeavours are aimed at spreading the ethics of artificial intelligence as a policy advisor, in order to help to build fair digital ecosystems.',
+      it: 'Elio Grande è un eticista dell’IA, attualmente dottorando in Intelligenza Artificiale presso l’Università di Pisa. Ha conseguito una laurea magistrale in filosofia morale, con focus sull’etica nella cibernetica, e un master di secondo livello in filosofia digitale. Il suo ultimo progetto riguarda un design a "doppio specchio" dei sistemi di intelligenza artificiale, chiamato Endless Tuning, che permette di adottare modelli di qualsiasi profondità senza sostituire l’utente e potendo risalire alle responsabilità nel contesto decisionale. Il suo impegno è volto a diffondere l’etica dell’intelligenza artificiale come consulente politico, al fine di aiutare a costruire ecosistemi digitali equi.',
     },
     type: ['panelist'],
   },

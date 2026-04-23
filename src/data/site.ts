@@ -228,6 +228,7 @@ export type RichPageSection = {
   body: string;
   mediaLabel: string;
   mediaType: 'portrait-grid' | 'landscape' | 'video' | 'info-panel';
+  image?: string;
   bullets?: string[];
 };
 
@@ -238,6 +239,7 @@ export type RichPageContent = {
     intro: string;
     mediaLabel: string;
     mediaType: 'portrait-grid' | 'landscape' | 'video';
+    image?: string;
   };
   sections: RichPageSection[];
   ctaLabel?: string;
@@ -334,6 +336,7 @@ export const richPageContent = {
         intro: 'Scuola Superiore Sant’Anna provides the historic and intellectual backdrop for COMPASS sessions and networking.',
         mediaLabel: 'Sant’Anna campus',
         mediaType: 'landscape',
+        image: '/images/venue/venue/aula_3_SSSA.jpg',
       },
       sections: [
         {
@@ -342,6 +345,7 @@ export const richPageContent = {
           body: 'The workshop is held at the historic campus of Sant’Anna, an institution dedicated to high-level research and education in the heart of Pisa.',
           mediaLabel: 'Sant’Anna location',
           mediaType: 'landscape',
+          image: '/images/venue/venue/aula_3_SSSA.jpg',
           bullets: ['Central Pisa location.', 'Aula 3 and nearby networking areas.'],
         },
         {
@@ -349,7 +353,8 @@ export const richPageContent = {
           title: 'Reaching the Campus',
           body: 'The campus is easily accessible from Pisa Centrale station and Galileo Galilei airport, making it convenient for international attendees.',
           mediaLabel: 'Travel and directions',
-          mediaType: 'video',
+          mediaType: 'landscape',
+          image: '/images/venue/venue/IMG_20260422_102249.jpg',
           bullets: ['Rail: Pisa Centrale Station.', 'Air: Galileo Galilei International Airport.'],
         },
         {
@@ -358,6 +363,7 @@ export const richPageContent = {
           body: 'On-site registration and session access will be managed at the main entrance, with short walking distances between all workshop areas.',
           mediaLabel: 'On-site logistics',
           mediaType: 'info-panel',
+          image: '/images/venue/venue/IMG_20260422_102256.jpg',
           bullets: ['Checked-in attendee access.', 'Walking campus layout.'],
         },
       ],
@@ -551,6 +557,7 @@ export const richPageContent = {
         intro: 'La Scuola Superiore Sant’Anna offre la cornice storica e intellettuale per le sessioni e il networking di COMPASS.',
         mediaLabel: 'Campus Sant’Anna',
         mediaType: 'landscape',
+        image: '/images/venue/venue/aula_3_SSSA.jpg',
       },
       sections: [
         {
@@ -559,6 +566,7 @@ export const richPageContent = {
           body: 'Il workshop si tiene presso lo storico campus della Sant’Anna, un’istituzione dedicata alla ricerca e alla formazione di alto livello nel centro di Pisa.',
           mediaLabel: 'Sede Sant’Anna',
           mediaType: 'landscape',
+          image: '/images/venue/venue/aula_3_SSSA.jpg',
           bullets: ['Posizione nel centro di Pisa.', 'Aula 3 e aree di networking limitrofe.'],
         },
         {
@@ -566,7 +574,8 @@ export const richPageContent = {
           title: 'Come raggiungere il Campus',
           body: 'Il campus è facilmente raggiungibile dalla stazione di Pisa Centrale e dall’aeroporto Galileo Galilei, rendendo agevole la partecipazione anche per gli ospiti internazionali.',
           mediaLabel: 'Viaggio e direzioni',
-          mediaType: 'video',
+          mediaType: 'landscape',
+          image: '/images/venue/venue/IMG_20260422_102249.jpg',
           bullets: ['Treno: Stazione Pisa Centrale.', 'Aereo: Aeroporto Internazionale Galileo Galilei.'],
         },
         {
@@ -575,6 +584,7 @@ export const richPageContent = {
           body: 'La registrazione in loco e l’accesso alle sessioni saranno gestiti presso l’ingresso principale, con brevi distanze a piedi tra tutte le aree del workshop.',
           mediaLabel: 'Logistica in loco',
           mediaType: 'info-panel',
+          image: '/images/venue/venue/IMG_20260422_102256.jpg',
           bullets: ['Accesso per partecipanti registrati.', 'Layout del campus compatto.'],
         },
       ],

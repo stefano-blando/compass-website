@@ -1,7 +1,7 @@
 ---
 import type { RichPageContent, RichPageSection, SitePageKey } from '../../data/site';
 import type { Locale } from '../../data/types';
-import { buildLocalizedPath, getLabels, siteConfig } from '../../lib/site';
+import { buildLocalizedPath, getLabels, resolvePublicPath, siteConfig } from '../../lib/site';
 
 type RichRenderablePage = Exclude<SitePageKey, 'home' | 'programme'>;
 
@@ -67,6 +67,11 @@ function getMediaBadge(section: RichPageSection, index: number) {
       </div>
 
       <div class={`rich-page__hero-media rich-page__hero-media--${content.hero.mediaType}`} aria-label={content.hero.mediaLabel}>
+        {content.hero.image && (
+          <div class="rich-page__media-bg">
+            <img src={resolvePublicPath(content.hero.image)} alt={content.hero.mediaLabel} />
+          </div>
+        )}
         <div class="rich-page__media-frame rich-page__media-frame--primary">
           <span class="rich-page__media-kicker">{content.hero.mediaLabel}</span>
           {content.hero.mediaType === 'portrait-grid' ? (
@@ -123,6 +128,11 @@ function getMediaBadge(section: RichPageSection, index: number) {
             ]}
             aria-label={section.mediaLabel}
           >
+            {section.image && (
+              <div class="rich-page__media-bg">
+                <img src={resolvePublicPath(section.image)} alt={section.mediaLabel} />
+              </div>
+            )}
             <div class="rich-page__media-frame">
               <span class="rich-page__media-kicker">{section.mediaLabel}</span>
               <span class="rich-page__media-badge">{getMediaBadge(section, index)}</span>
@@ -329,6 +339,21 @@ function getMediaBadge(section: RichPageSection, index: number) {
       linear-gradient(115deg, rgba(255, 255, 255, 0.08), transparent 32%),
       radial-gradient(circle at 18% 20%, rgba(126, 36, 52, 0.26), transparent 18%),
       radial-gradient(circle at 82% 76%, rgba(100, 149, 201, 0.28), transparent 18%);
+    z-index: 1;
+  }
+
+  .rich-page__media-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .rich-page__media-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: luminosity;
+    opacity: 0.6;
   }
 
   .rich-page__hero-media--landscape,

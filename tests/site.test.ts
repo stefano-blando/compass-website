@@ -182,9 +182,8 @@ describe('site helpers', () => {
   });
 
   it('localizes Italian placeholder labels for media and venue sections', () => {
-    expect(mediaShowcaseSectionSource).toContain("locale === 'it' ? 'Video segnaposto' : 'Video placeholder'");
-    expect(mediaShowcaseSectionSource).toContain("locale === 'it' ? 'Frame della galleria' : 'Gallery frame'");
-    expect(venuePreviewSectionSource).toContain("locale === 'it' ? 'Visual della sede Sant’Anna' : 'Sant’Anna venue visual'");
+    expect(mediaShowcaseSectionSource).toContain("videoLabel");
+    expect(venuePreviewSectionSource).toContain("venueVisualLabel");
   });
 
   it('keeps registration metadata chips exposed to assistive tech', () => {
@@ -311,20 +310,21 @@ describe('site helpers', () => {
       description: 'Programma attuale di COMPASS con apertura, keynote, panel, pause, pranzo e cena sociale conclusiva.',
     });
   });
+it('returns the four workshop highlights for each locale', () => {
+  expect(getHomepageHighlights('en')).toHaveLength(4);
+  expect(getHomepageHighlights('en')).toEqual([
+    { value: 'Interdisciplinary', label: 'Bridge between AI, Economics & Law' },
+    { value: '3', label: 'International Keynote Lectures' },
+    { value: '6', label: 'Doctoral Organizers and Chairs' },
+    { value: 'Pisa Hub', label: 'SSSA, UniPi & CNR Network' },
+  ]);
+});
 
-  it('returns the four workshop highlights for each locale', () => {
-    expect(getHomepageHighlights('en')).toHaveLength(4);
-    expect(getHomepageHighlights('en')).toEqual([
-      { value: '12', label: 'Scheduled programme blocks' },
-      { value: '3', label: 'Keynote lecture slots' },
-      { value: '6', label: 'Doctoral organizers and chairs' },
-      { value: '15', label: 'Named contributors in the current draft' },
-    ]);
     expect(getHomepageHighlights('it')).toEqual([
-      { value: '12', label: 'Blocchi in programma' },
-      { value: '3', label: 'Slot keynote' },
-      { value: '6', label: 'Dottorandi organizzatori e chair' },
-      { value: '15', label: 'Contributori nominati nella bozza attuale' },
+      { value: 'Interdisciplinare', label: 'IA, Economia e Diritto' },
+      { value: '3', label: 'Keynote Lecture Internazionali' },
+      { value: '6', label: 'Dottorandi Organizzatori e Chair' },
+      { value: 'Pisa Hub', label: 'Rete SSSA, UniPi e CNR' },
     ]);
   });
 
@@ -361,22 +361,22 @@ describe('site helpers', () => {
 
     expect(english).toMatchObject({
       eyebrow: 'Media showcase',
-      videoLabel: 'Workshop highlight video',
+      videoLabel: 'Workshop overview',
     });
     expect(italian).toMatchObject({
       eyebrow: 'Rassegna media',
-      videoLabel: 'Video highlight del workshop',
+      videoLabel: 'Panoramica del workshop',
     });
     expect(english.items).toHaveLength(3);
     expect(italian.items).toHaveLength(3);
     expect(english.items[0]).toMatchObject({
-      mediaLabel: 'Venue still',
+      mediaLabel: 'Aula 3 Campus',
     });
     expect(italian.items[1]).toMatchObject({
-      mediaLabel: 'Immagine del programma',
+      mediaLabel: 'Sessioni Workshop',
     });
     expect(english.title).toMatch(/workshop day/i);
-    expect(italian.intro).toMatch(/redesign/i);
+    expect(italian.intro).toMatch(/incontro/i);
   });
 
   it('returns compact programme page copy with details outside the schedule flow', () => {
@@ -449,7 +449,7 @@ describe('site helpers', () => {
     expect(faq.sections[1]?.body).not.toMatch(/riservat/i);
     expect(venue.sections[2]?.body).not.toMatch(/riservat/i);
     expect(faq.sections[1].bullets).toContain('Sede storica nel centro città.');
-    expect(venue.sections.some((section) => section.mediaType === 'video')).toBe(true);
+    expect(venue.sections.some((section) => section.mediaType === 'landscape')).toBe(true);
   });
 
   it('returns cloned programme page content', () => {

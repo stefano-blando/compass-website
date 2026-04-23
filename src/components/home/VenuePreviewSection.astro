@@ -1,6 +1,6 @@
 ---
 import type { Locale } from '../../data/types';
-import { buildLocalizedPath, getHomepageContent, getLabels, siteConfig } from '../../lib/site';
+import { buildLocalizedPath, getHomepageContent, getLabels, resolvePublicPath, siteConfig } from '../../lib/site';
 
 interface Props {
   locale: Locale;
@@ -10,19 +10,22 @@ const { locale } = Astro.props;
 const labels = getLabels(locale);
 const { venue } = getHomepageContent(locale);
 const venueRouteEyebrow = locale === 'it' ? 'Apri la pagina sede' : 'Open venue page';
-const venueVisualLabel = locale === 'it' ? 'Visual della sede Sant’Anna' : 'Sant’Anna venue visual';
+const venueVisualLabel = locale === 'it' ? 'Scuola Superiore Sant’Anna' : 'Sant’Anna School';
 const slides = [
   {
     title: venueVisualLabel,
     body: venue.facts[0],
+    image: resolvePublicPath('/images/venue/venue/IMG_20260422_102249.jpg'),
   },
   {
-    title: locale === 'it' ? 'Aula 3 placeholder' : 'Aula 3 placeholder',
+    title: locale === 'it' ? 'Aula 3' : 'Aula 3',
     body: venue.facts[1],
+    image: resolvePublicPath('/images/venue/venue/aula_3_SSSA.jpg'),
   },
   {
-    title: locale === 'it' ? 'Pisa context placeholder' : 'Pisa context placeholder',
+    title: locale === 'it' ? 'Campus Storico' : 'Historic Campus',
     body: venue.travelBody,
+    image: resolvePublicPath('/images/venue/venue/IMG_20260422_102256.jpg'),
   },
 ];
 ---
@@ -39,6 +42,7 @@ const slides = [
             index === 0 && 'is-active',
           ]}
           aria-hidden={index === 0 ? 'false' : 'true'}
+          style={slide.image ? `background-image: linear-gradient(180deg, rgba(10, 18, 27, 0.4), rgba(10, 18, 27, 0.2)), url(${slide.image})` : undefined}
         >
           <div class="venue-preview__slide-overlay">
             <span class="venue-preview__route-line venue-preview__route-line--a"></span>
@@ -173,21 +177,12 @@ const slides = [
   }
 
   .venue-preview__slide--1 {
-    background:
-      linear-gradient(180deg, rgba(10, 18, 27, 0.3), rgba(10, 18, 27, 0.1)),
-      linear-gradient(135deg, #405268, #223445 56%, #162433);
   }
 
   .venue-preview__slide--2 {
-    background:
-      linear-gradient(180deg, rgba(10, 18, 27, 0.24), rgba(10, 18, 27, 0.12)),
-      linear-gradient(135deg, #73514f, #b78d7e 52%, #4a3035);
   }
 
   .venue-preview__slide--3 {
-    background:
-      linear-gradient(180deg, rgba(10, 18, 27, 0.24), rgba(10, 18, 27, 0.14)),
-      linear-gradient(135deg, #243140, #162433 58%, #546e86);
   }
 
   .venue-preview__slide-overlay {

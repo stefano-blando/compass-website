@@ -228,12 +228,12 @@ export const talks: Talk[] = [
   {
     slug: 'panel-3-roberta-romano',
     title: {
-      en: 'Roberta Romano',
-      it: 'Roberta Romano',
+      en: 'From Risk to Protection: Vulnerability as a Benchmark for European AI Governance',
+      it: 'Dal rischio alla protezione: la vulnerabilità come benchmark per la governance europea dell’IA',
     },
     abstract: {
-      en: 'Current panel contribution listed in the latest workshop agenda.',
-      it: 'Contributo di panel riportato nell agenda di workshop piu recente.',
+      en: 'The advent of AI, particularly generative AI, raises numerous concerns regarding the protection of individuals most exposed to the risks arising from the pervasive use of new technologies. The EU legislator has mandated respect for the category of so-called "vulnerable" subjects. This discussion aims to address the concept of vulnerability in light of the AI Act, envisaging a governance model in which the protection of fragility becomes the fundamental benchmark for the legitimacy of technological innovation.',
+      it: 'L’avvento dell’IA, in particolare dell’IA generativa, solleva numerose preoccupazioni riguardo alla protezione degli individui più esposti ai rischi derivanti dall’uso pervasivo delle nuove tecnologie. Il legislatore UE ha imposto il rispetto della categoria dei cosiddetti soggetti "vulnerabili". Questa discussione mira ad affrontare il concetto di vulnerabilità alla luce dell’AI Act, prefigurando un modello di governance in cui la protezione della fragilità diventi il benchmark fondamentale per la legittimità stessa dell’innovazione tecnologica.',
     },
     speakerSlugs: ['roberta-romano'],
     sessionSlug: 'panel-3-legal-ethics',
@@ -270,12 +270,12 @@ export const talks: Talk[] = [
   {
     slug: 'panel-3-elio-grande',
     title: {
-      en: 'Elio Grande (online)',
-      it: 'Elio Grande (online)',
+      en: 'Acting without action: Ethics and responsibility in AI systems',
+      it: 'Agire senza azione: etica e responsabilità nei sistemi di IA',
     },
     abstract: {
-      en: 'Current panel contribution listed in the latest workshop agenda. Participating remotely.',
-      it: 'Contributo di panel riportato nell agenda di workshop piu recente. Partecipazione da remoto.',
+      en: 'What kind of acting and responsibility arises with AI? AI systems appear capable of an “acting without action” which calls for a regime of moral responsibility different from that of fault tout court. Building upon the recognition of the vulnerabilities of the agents involved, a kind of dynamically negotiated responsibility arises, aligning with legal trends toward objective liability. This approach could do justice to solutions like the logging of interactions provided for in the EU Artificial Intelligence Act.',
+      it: 'Che tipo di azione e responsabilità sorge con l’IA? I sistemi di IA appaiono capaci di un "agire senza azione" che richiede un regime di responsabilità morale diverso dalla colpa tout court. Partendo dal riconoscimento delle vulnerabilità degli agenti coinvolti, emerge una sorta di responsabilità negoziata dinamicamente, allineandosi alle tendenze giuridiche verso la responsabilità oggettiva. Tale approccio potrebbe valorizzare soluzioni come la registrazione delle interazioni prevista dall’AI Act dell’UE.',
     },
     speakerSlugs: ['elio-grande'],
     sessionSlug: 'panel-3-legal-ethics',
