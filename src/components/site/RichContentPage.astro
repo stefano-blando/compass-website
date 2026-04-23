@@ -20,10 +20,10 @@ const quickLinks = [
 ];
 
 const ctaTargets: Partial<Record<RichRenderablePage, { href: string; external?: boolean }>> = {
-  about: { href: buildLocalizedPath(locale, 'programme') },
-  speakers: { href: buildLocalizedPath(locale, 'programme') },
+  about: { href: buildLocalizedPath(locale, 'registration') },
+  speakers: { href: buildLocalizedPath(locale, 'registration') },
   venue: { href: '#rich-page-sections' },
-  registration: { href: siteConfig.registrationUrl, external: true },
+  registration: { href: '#registration-form' },
   organizers: { href: buildLocalizedPath(locale, 'about') },
   faq: { href: buildLocalizedPath(locale, 'organizers') },
 };

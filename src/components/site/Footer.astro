@@ -37,8 +37,8 @@ const identity = getSiteIdentity(locale);
         <img src={resolvePublicPath("/images/logos/unipi-color.png")} alt="Università di Pisa" class="footer-logo" />
       </div>
       <p>
-        <a href={siteConfig.registrationUrl} target="_blank" rel="noreferrer">
-          {locale === 'it' ? 'Modulo di registrazione esterno' : 'External registration form'}
+        <a href={buildLocalizedPath(locale, 'registration')}>
+          {labels.register}
         </a>
       </p>
     </div>

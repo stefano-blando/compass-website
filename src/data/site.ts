@@ -98,7 +98,7 @@ export const pageMetadata = {
     },
     registration: {
       title: 'Registration | COMPASS',
-      description: 'Participation guidance and access to the external registration form.',
+      description: 'Participation guidance and registration form for the COMPASS workshop.',
     },
     about: {
       title: 'About | COMPASS',
@@ -132,7 +132,7 @@ export const pageMetadata = {
     },
     registration: {
       title: 'Registrazione | COMPASS',
-      description: 'Modalita di partecipazione e accesso al modulo esterno di registrazione.',
+      description: 'Modalità di partecipazione e modulo di registrazione per il workshop COMPASS.',
     },
     about: {
       title: 'Chi siamo | COMPASS',

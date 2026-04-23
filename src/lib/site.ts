@@ -283,9 +283,9 @@ const homepageContent = {
       checklist: [
         'Review the full twelve-block workshop structure',
         'Confirm travel feasibility for Pisa and the selected date',
-        'Use the registration page or external form to complete signup',
+        'Use the registration form to complete signup',
       ],
-      secondaryCta: 'Open external registration form',
+      secondaryCta: 'View details',
     },
     scrollSections: [
       { id: 'dark-stage', label: 'Themes' },
@@ -438,9 +438,9 @@ const homepageContent = {
       checklist: [
         'Rivedi la struttura completa del workshop in dodici blocchi',
         'Verifica la fattibilita del viaggio verso Pisa e della data scelta',
-        'Usa la pagina di registrazione o il form esterno per completare l’iscrizione',
+        'Usa il modulo di registrazione per completare l’iscrizione',
       ],
-      secondaryCta: 'Apri il form esterno di registrazione',
+      secondaryCta: 'Vedi i dettagli',
     },
     scrollSections: [
       { id: 'dark-stage', label: 'Temi' },
