@@ -279,7 +279,7 @@ const homepageContent = {
       intro:
         'Participation is free, but the event is designed for a focused in-person audience. Register early to secure your spot in Aula 3.',
       deadlineLabel: 'Registration deadline',
-      deadlineValue: '1 May 2026',
+      deadlineValue: '10 May 2026',
       checklist: [
         'Review the vertical workshop schedule',
         'Confirm your availability for the full day in Pisa',
@@ -434,7 +434,7 @@ const homepageContent = {
       intro:
         'La partecipazione è gratuita, ma l’evento è pensato per un pubblico in presenza contenuto. Registrati per assicurarti un posto in Aula 3.',
       deadlineLabel: 'Scadenza iscrizioni',
-      deadlineValue: '1 maggio 2026',
+      deadlineValue: '10 maggio 2026',
       checklist: [
         'Rivedi il programma verticale del workshop',
         'Verifica la tua disponibilità per l’intera giornata a Pisa',
