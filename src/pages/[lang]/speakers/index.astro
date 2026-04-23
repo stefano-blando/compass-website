@@ -1,8 +1,10 @@
 ---
 import { buildLocalizedPath } from '../../../lib/site';
 import RichContentPage from '../../../components/site/RichContentPage.astro';
+import SpeakerCard from '../../../components/site/SpeakerCard.astro';
 import Footer from '../../../components/site/Footer.astro';
 import Header from '../../../components/site/Header.astro';
+import { speakers } from '../../../data/speakers';
 import type { Locale } from '../../../data/types';
 import Layout from '../../../layouts/Layout.astro';
 import { getPageMetadata, getRichPageContent, locales } from '../../../lib/site';
@@ -14,15 +16,77 @@ export function getStaticPaths() {
 const locale = Astro.params.lang as Locale;
 const pageMeta = getPageMetadata(locale, 'speakers');
 const content = getRichPageContent(locale, 'speakers');
+
+const keynotes = speakers.filter(s => s.type.includes('keynote'));
+const organizers = speakers.filter(s => s.type.includes('chair') || s.type.includes('organizer'));
+const contributors = speakers.filter(s => s.type.includes('panelist') && !s.type.includes('chair'));
+
+const t = {
+  en: {
+    keynotes: 'Keynote Speakers',
+    organizers: 'Organizers & Track Chairs',
+    contributors: 'Panel Contributors',
+  },
+  it: {
+    keynotes: 'Relatori Keynote',
+    organizers: 'Organizzatori e Chair delle Track',
+    contributors: 'Contributori dei Panel',
+  }
+}[locale];
 ---
 
 <Layout locale={locale} title={pageMeta.title} description={pageMeta.description}>
   <Header locale={locale} />
   <main>
     <RichContentPage locale={locale} page="speakers" content={content} />
+    
+    <div class="container speaker-directory">
+      <section class="directory-section">
+        <h2 class="section-kicker">{t.keynotes}</h2>
+        <div class="speaker-grid">
+          {keynotes.map(speaker => <SpeakerCard speaker={speaker} locale={locale} />)}
+        </div>
+      </section>
+
+      <section class="directory-section">
+        <h2 class="section-kicker">{t.organizers}</h2>
+        <div class="speaker-grid">
+          {organizers.map(speaker => <SpeakerCard speaker={speaker} locale={locale} />)}
+        </div>
+      </section>
+
+      <section class="directory-section">
+        <h2 class="section-kicker">{t.contributors}</h2>
+        <div class="speaker-grid">
+          {contributors.map(speaker => <SpeakerCard speaker={speaker} locale={locale} />)}
+        </div>
+      </section>
+    </div>
   </main>
   <Footer locale={locale} />
 </Layout>
 
 <style>
+  .speaker-directory {
+    padding: 0 0 5rem;
+    display: grid;
+    gap: 4rem;
+  }
+
+  .directory-section {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .speaker-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .speaker-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>

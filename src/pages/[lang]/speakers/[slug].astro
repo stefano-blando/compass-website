@@ -1,0 +1,235 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import Header from '../../../components/site/Header.astro';
+import Footer from '../../../components/site/Footer.astro';
+import { speakers } from '../../../data/speakers';
+import { talks } from '../../../data/talks';
+import { locales, buildLocalizedPath, resolvePublicPath } from '../../../lib/site';
+import type { Locale } from '../../../data/types';
+
+export function getStaticPaths() {
+  return locales.flatMap((lang) => {
+    return speakers.map((speaker) => ({
+      params: { lang, slug: speaker.slug },
+      props: { speaker },
+    }));
+  });
+}
+
+const { lang } = Astro.params;
+const { speaker } = Astro.props;
+const locale = lang as Locale;
+
+const speakerTalks = talks.filter(talk => talk.speakerSlugs.includes(speaker.slug));
+
+const labels = {
+  en: {
+    back: 'Back to speakers',
+    affiliation: 'Affiliation',
+    bio: 'Biography',
+    contributions: 'Workshop contributions',
+  },
+  it: {
+    back: 'Torna ai relatori',
+    affiliation: 'Affiliazione',
+    bio: 'Biografia',
+    contributions: 'Contributi al workshop',
+  }
+};
+
+const t = labels[locale];
+---
+
+<Layout locale={locale} title={`${speaker.name} | COMPASS`} description={speaker.bio[locale]}>
+  <Header locale={locale} />
+  
+  <main class="container speaker-detail">
+    <div class="speaker-detail__header">
+      <a href={buildLocalizedPath(locale, 'speakers')} class="back-link">
+        ← {t.back}
+      </a>
+    </div>
+
+    <div class="speaker-detail__grid">
+      <div class="speaker-detail__sidebar">
+        <div class="speaker-detail__image-frame">
+          {speaker.image ? (
+            <img src={resolvePublicPath(speaker.image)} alt={speaker.name} class="speaker-detail__image" />
+          ) : (
+            <div class="speaker-detail__placeholder">{speaker.name.charAt(0)}</div>
+          )}
+        </div>
+        
+        <div class="speaker-detail__meta-card">
+          <p class="eyebrow">{t.affiliation}</p>
+          <p class="speaker-detail__affiliation-text">{speaker.affiliation[locale]}</p>
+          
+          <p class="eyebrow mt-4">{speaker.roleLabel[locale]}</p>
+        </div>
+      </div>
+
+      <div class="speaker-detail__main">
+        <h1 class="display-serif">{speaker.name}</h1>
+        
+        <div class="speaker-detail__bio">
+          <h2 class="section-kicker">{t.bio}</h2>
+          <p>{speaker.bio[locale]}</p>
+        </div>
+
+        {speakerTalks.length > 0 && (
+          <div class="speaker-detail__talks">
+            <h2 class="section-kicker">{t.contributions}</h2>
+            <div class="talks-list">
+              {speakerTalks.map(talk => (
+                <a href={buildLocalizedPath(locale, `talks/${talk.slug}`)} class="talk-card">
+                  <h3>{talk.title[locale]}</h3>
+                  <p>{talk.abstract[locale].substring(0, 150)}...</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </main>
+
+  <Footer locale={locale} />
+</Layout>
+
+<style>
+  .speaker-detail {
+    padding: 2rem 0 5rem;
+  }
+
+  .speaker-detail__header {
+    margin-bottom: 2rem;
+  }
+
+  .back-link {
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: transform 160ms ease;
+    display: inline-block;
+  }
+
+  .back-link:hover {
+    transform: translateX(-4px);
+  }
+
+  .speaker-detail__grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.35fr) minmax(0, 1fr);
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .speaker-detail__image-frame {
+    aspect-ratio: 1;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: var(--shadow);
+    margin-bottom: 1.5rem;
+    background: var(--surface-muted);
+  }
+
+  .speaker-detail__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .speaker-detail__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    font-weight: 800;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .speaker-detail__meta-card {
+    padding: 1.5rem;
+    border-radius: 24px;
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: var(--shadow);
+  }
+
+  .speaker-detail__affiliation-text {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .mt-4 { margin-top: 1.5rem; }
+
+  .speaker-detail__main h1 {
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    margin: 0 0 2rem;
+    line-height: 1;
+  }
+
+  .speaker-detail__bio {
+    margin-bottom: 3rem;
+  }
+
+  .speaker-detail__bio p {
+    font-size: 1.15rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+
+  .talks-list {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.25rem;
+  }
+
+  .talk-card {
+    display: block;
+    padding: 1.5rem;
+    text-decoration: none;
+    border-radius: 20px;
+    background: var(--surface);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: var(--shadow);
+    transition: transform 160ms ease, box-shadow 160ms ease;
+  }
+
+  .talk-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-strong);
+    border-color: var(--accent-soft);
+  }
+
+  .talk-card h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.25rem;
+    color: var(--ink);
+    font-family: 'Manrope', sans-serif;
+  }
+
+  .talk-card p {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+  }
+
+  @media (max-width: 900px) {
+    .speaker-detail__grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .speaker-detail__sidebar {
+      max-width: 320px;
+      margin: 0 auto;
+    }
+  }
+</style>

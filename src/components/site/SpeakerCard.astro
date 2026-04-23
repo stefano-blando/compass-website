@@ -1,0 +1,105 @@
+---
+import type { Speaker } from '../../data/types';
+import type { Locale } from '../../data/types';
+import { buildLocalizedPath, resolvePublicPath } from '../../lib/site';
+
+interface Props {
+  speaker: Speaker;
+  locale: Locale;
+}
+
+const { speaker, locale } = Astro.props;
+const profilePath = buildLocalizedPath(locale, `speakers/${speaker.slug}`);
+---
+
+<a href={profilePath} class="speaker-card">
+  <div class="speaker-card__image-container">
+    {speaker.image ? (
+      <img src={resolvePublicPath(speaker.image)} alt={speaker.name} class="speaker-card__image" />
+    ) : (
+      <div class="speaker-card__placeholder">
+        {speaker.name.charAt(0)}
+      </div>
+    )}
+  </div>
+  <div class="speaker-card__content">
+    <h3 class="speaker-card__name">{speaker.name}</h3>
+    <p class="speaker-card__role">{speaker.roleLabel[locale]}</p>
+    <p class="speaker-card__affiliation">{speaker.affiliation[locale]}</p>
+  </div>
+</a>
+
+<style>
+  .speaker-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.5rem;
+    text-decoration: none;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+  }
+
+  .speaker-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-strong);
+    border-color: var(--accent-soft);
+  }
+
+  .speaker-card__image-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    border: 3px solid #fff;
+    box-shadow: 0 8px 24px rgba(20, 32, 51, 0.12);
+    background: var(--surface-muted);
+  }
+
+  .speaker-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .speaker-card__placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .speaker-card__name {
+    margin: 0;
+    font-size: 1.4rem;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  .speaker-card__role {
+    margin: 0.25rem 0 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+
+  .speaker-card__affiliation {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+</style>
