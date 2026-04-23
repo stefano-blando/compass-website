@@ -233,19 +233,19 @@ export const speakers: Speaker[] = [
     type: ['panelist'],
   },
   {
-    slug: 'pagopa-ad',
-    name: 'Alessandro Moricca',
+    slug: 'institutional-keynote-tbc',
+    name: 'Institutional Keynote',
     affiliation: {
-      en: 'CEO, PagoPA S.p.A.',
-      it: 'CEO, PagoPA S.p.A.',
+      en: 'To be confirmed',
+      it: 'In fase di conferma',
     },
     roleLabel: {
       en: 'Keynote speaker',
       it: 'Relatore keynote',
     },
     bio: {
-      en: 'Keynote on digital transformation and technologies from the CEO of PagoPA.',
-      it: 'Keynote su digital transformation e tecnologie a cura dell Amministratore Delegato di PagoPA.',
+      en: 'Institutional keynote (TBC) on digital transformation and emerging technologies.',
+      it: 'Keynote istituzionale (TBC) su digital transformation e tecnologie emergenti.',
     },
     type: ['keynote'],
   },

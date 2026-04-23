@@ -526,7 +526,7 @@ const homepageCuration = {
       },
     },
     {
-      speakerSlug: 'pagopa-ad',
+      speakerSlug: 'institutional-keynote-tbc',
       roleLabel: {
         en: 'Keynote speaker',
         it: 'Relatore keynote',
@@ -586,7 +586,7 @@ export function getRichPageContent(locale: Locale, page: Exclude<SitePageKey, 'h
       ...section,
       ...(section.bullets ? { bullets: [...section.bullets] } : {}),
     })),
-    ...(content.ctaLabel ? { ctaLabel: content.ctaLabel } : {}),
+    ...((content as RichPageContent).ctaLabel ? { ctaLabel: (content as RichPageContent).ctaLabel } : {}),
   };
 }
 

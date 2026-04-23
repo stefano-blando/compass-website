@@ -100,17 +100,17 @@ export const talks: Talk[] = [
     startsAt: '2026-05-18T11:55:00+02:00',
   },
   {
-    slug: 'keynote-pagopa-ad',
+    slug: 'keynote-institutional-tbc',
     title: {
-      en: 'Digital Transformation & Technologies — CEO, PagoPA',
-      it: 'Digital Transformation e Tecnologie — AD, PagoPA',
+      en: 'Institutional Keynote (TBC)',
+      it: 'Keynote istituzionale (TBC)',
     },
     abstract: {
-      en: 'Institutional keynote by the CEO of PagoPA on digital transformation and technologies.',
-      it: 'Keynote istituzionale dell Amministratore Delegato di PagoPA su digital transformation e tecnologie.',
+      en: 'Institutional keynote contribution on digital transformation and technologies (TBC).',
+      it: 'Contributo keynote istituzionale su digital transformation e tecnologie (TBC).',
     },
-    speakerSlugs: ['pagopa-ad'],
-    sessionSlug: 'keynote-pagopa',
+    speakerSlugs: ['institutional-keynote-tbc'],
+    sessionSlug: 'keynote-institutional-tbc',
     startsAt: '2026-05-18T12:00:00+02:00',
   },
   {

@@ -62,10 +62,10 @@ export const sessions: Session[] = [
     chairSlugs: ['stefano-blando', 'biancamaria-bombino'],
   },
   {
-    slug: 'keynote-pagopa',
+    slug: 'keynote-institutional-tbc',
     title: {
-      en: 'Institutional Keynote — PagoPA',
-      it: 'Keynote istituzionale — PagoPA',
+      en: 'Institutional Keynote (TBC)',
+      it: 'Keynote istituzionale (TBC)',
     },
     description: {
       en: 'Institutional speech on digital transformation and technologies.',

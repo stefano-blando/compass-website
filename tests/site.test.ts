@@ -7,7 +7,6 @@ import aboutPageSource from '../src/pages/[lang]/about/index.astro?raw';
 import faqPageSource from '../src/pages/[lang]/faq/index.astro?raw';
 import organizersPageSource from '../src/pages/[lang]/organizers/index.astro?raw';
 import registrationPageSource from '../src/pages/[lang]/registration/index.astro?raw';
-import organizersPageSource from '../src/pages/[lang]/organizers/index.astro?raw';
 import venuePageSource from '../src/pages/[lang]/venue/index.astro?raw';
 import richContentPageSource from '../src/components/site/RichContentPage.astro?raw';
 
@@ -310,15 +309,15 @@ describe('site helpers', () => {
       description: 'Programma attuale di COMPASS con apertura, keynote, panel, pause, pranzo e cena sociale conclusiva.',
     });
   });
-it('returns the four workshop highlights for each locale', () => {
-  expect(getHomepageHighlights('en')).toHaveLength(4);
-  expect(getHomepageHighlights('en')).toEqual([
-    { value: 'Interdisciplinary', label: 'Bridge between AI, Economics & Law' },
-    { value: '3', label: 'International Keynote Lectures' },
-    { value: '6', label: 'Doctoral Organizers and Chairs' },
-    { value: 'Pisa Hub', label: 'SSSA, UniPi & CNR Network' },
-  ]);
-});
+
+  it('returns the four workshop highlights for each locale', () => {
+    expect(getHomepageHighlights('en')).toHaveLength(4);
+    expect(getHomepageHighlights('en')).toEqual([
+      { value: 'Interdisciplinary', label: 'Bridge between AI, Economics & Law' },
+      { value: '3', label: 'International Keynote Lectures' },
+      { value: '6', label: 'Doctoral Organizers and Chairs' },
+      { value: 'Pisa Hub', label: 'SSSA, UniPi & CNR Network' },
+    ]);
 
     expect(getHomepageHighlights('it')).toEqual([
       { value: 'Interdisciplinare', label: 'IA, Economia e Diritto' },
@@ -513,7 +512,7 @@ it('returns the four workshop highlights for each locale', () => {
       'guido-germano',
       'prabhani-don',
       'senior-expert-ai-regulation-tbc',
-      'pagopa-ad',
+      'institutional-keynote-tbc',
     ]);
     expect(english[0]?.role).toBe('Keynote speaker');
     expect(italian[0]?.role).toBe('Relatore keynote');
@@ -571,7 +570,7 @@ it('returns the four workshop highlights for each locale', () => {
         endsAt: '2026-05-18T12:00:00+02:00',
       },
       {
-        slug: 'keynote-pagopa',
+        slug: 'keynote-institutional-tbc',
         startsAt: '2026-05-18T12:00:00+02:00',
         endsAt: '2026-05-18T12:45:00+02:00',
       },
@@ -630,10 +629,10 @@ it('returns the four workshop highlights for each locale', () => {
       'Roundtable',
     ]);
     expect(getTalksForSession('panel-3-legal-ethics').map((talk) => talk.title.en)).toEqual([
-      'Roberta Romano',
+      'From Risk to Protection: Vulnerability as a Benchmark for European AI Governance',
       'Regulation vs Innovation? Unpacking the dichotomy to foster responsible research',
       'Significant Harm in EU Law: When Voice-Based Virtual Assistants Are Prohibited',
-      'Elio Grande (online)',
+      'Acting without action: Ethics and responsibility in AI systems',
       'Roundtable',
     ]);
   });
@@ -653,7 +652,7 @@ it('returns the four workshop highlights for each locale', () => {
       'keynote-1',
       'coffee-break-1',
       'panel-1-ai-methods',
-      'keynote-pagopa',
+      'keynote-institutional-tbc',
       'networking-lunch',
       'keynote-2',
       'panel-2-networks-nlp',
@@ -667,7 +666,7 @@ it('returns the four workshop highlights for each locale', () => {
       'andrea-vandin',
       'rettore-sssa',
       'guido-germano',
-      'pagopa-ad',
+      'institutional-keynote-tbc',
       'prabhani-don',
       'senior-expert-ai-regulation-tbc',
       'stefano-blando',
