@@ -142,9 +142,19 @@ function getMediaBadge(section: RichPageSection, index: number) {
 
               {section.mediaType === 'portrait-grid' ? (
                 <div class="rich-page__portrait-grid rich-page__portrait-grid--section" aria-hidden="true">
-                  <span class="rich-page__portrait"></span>
-                  <span class="rich-page__portrait rich-page__portrait--cool"></span>
-                  <span class="rich-page__portrait rich-page__portrait--small"></span>
+                  {section.images ? (
+                    section.images.map((img, i) => (
+                      <span class:list={['rich-page__portrait', i % 2 === 1 && 'rich-page__portrait--cool']}>
+                        <img src={resolvePublicPath(img)} alt="" class="rich-page__portrait-img" />
+                      </span>
+                    ))
+                  ) : (
+                    <>
+                      <span class="rich-page__portrait"></span>
+                      <span class="rich-page__portrait rich-page__portrait--cool"></span>
+                      <span class="rich-page__portrait rich-page__portrait--small"></span>
+                    </>
+                  )}
                 </div>
               ) : section.mediaType === 'video' ? (
                 <div class="rich-page__video-shell" aria-hidden="true">
@@ -445,6 +455,20 @@ function getMediaBadge(section: RichPageSection, index: number) {
 
   .rich-page__portrait--small {
     height: clamp(6.2rem, 24vw, 9.4rem);
+  }
+
+  .rich-page__portrait-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mix-blend-mode: luminosity;
+    opacity: 0.85;
+    transition: opacity 220ms ease, mix-blend-mode 220ms ease;
+  }
+
+  .rich-page__portrait:hover .rich-page__portrait-img {
+    opacity: 1;
+    mix-blend-mode: normal;
   }
 
   .rich-page__video-shell,
