@@ -37,8 +37,19 @@ const t = {
 
 <Layout locale={locale} title={pageMeta.title} description={pageMeta.description}>
   <Header locale={locale} />
-  <main>
-    <RichContentPage locale={locale} page="speakers" content={content} />
+  <main class="speakers-page">
+    <section class="speakers-hero">
+      <div class="container speakers-hero__inner">
+        <div class="speakers-hero__copy">
+          <p class="eyebrow">{content.hero.eyebrow}</p>
+          <h1 class="display-serif">{content.hero.title}</h1>
+          <p class="intro-text">{content.hero.intro}</p>
+        </div>
+        <div class="speakers-hero__visual">
+          <SpeakerNetworkHero />
+        </div>
+      </div>
+    </section>
     
     <div class="container speaker-directory">
       <section class="directory-section">
@@ -67,10 +78,56 @@ const t = {
 </Layout>
 
 <style>
-  .speaker-directory {
-    padding: 0 0 5rem;
+  .speakers-page {
+    padding: 2rem 0 5rem;
+  }
+
+  .speakers-hero {
+    margin-bottom: 4rem;
+  }
+
+  .speakers-hero__inner {
     display: grid;
-    gap: 4rem;
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    gap: 2rem;
+    align-items: stretch;
+  }
+
+  .speakers-hero__copy,
+  .speakers-hero__visual {
+    border-radius: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .speakers-hero__copy {
+    background: rgba(255, 253, 249, 0.84);
+    backdrop-filter: blur(18px);
+    padding: clamp(2rem, 4vw, 3.4rem);
+  }
+
+  .speakers-hero__copy h1 {
+    margin: 0.4rem 0 0.9rem;
+    font-size: clamp(3rem, 6vw, 4.5rem);
+    line-height: 0.94;
+    color: var(--ink);
+  }
+
+  .intro-text {
+    font-size: 1.1rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .speakers-hero__visual {
+    background: var(--ink);
+    min-height: 400px;
+  }
+
+  .speaker-directory {
+    display: grid;
+    gap: 5rem;
   }
 
   .directory-section {
@@ -82,6 +139,16 @@ const t = {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
+  }
+
+  @media (max-width: 960px) {
+    .speakers-hero__inner {
+      grid-template-columns: 1fr;
+    }
+    
+    .speakers-hero__visual {
+      min-height: 320px;
+    }
   }
 
   @media (max-width: 600px) {
