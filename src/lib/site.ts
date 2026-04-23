@@ -83,6 +83,7 @@ type HomepageProgrammeContent = {
     body: string;
     meta: string;
     mediaLabel: string;
+    image?: string;
   }>;
 };
 
@@ -234,6 +235,7 @@ const homepageContent = {
           body: 'Opening remarks, keynote slots, three panels, and closing remarks in one vertical flow.',
           meta: '18 May 2026 · Aula 3',
           mediaLabel: 'Schedule overview',
+          image: '/images/venue/SSSA_chiostro_interno.png',
         },
         {
           route: 'speakers',
@@ -242,6 +244,7 @@ const homepageContent = {
           body: 'International keynotes, doctoral chairs, and named panelists driving the discussion.',
           meta: 'SSSA · UniPi · CNR · UCL · Penn State',
           mediaLabel: 'Speaker showcase',
+          image: '/images/keynote/guido_germano.png',
         },
         {
           route: 'venue',
@@ -250,6 +253,7 @@ const homepageContent = {
           body: 'Historic center of Pisa at Scuola Superiore Sant’Anna.',
           meta: 'Aula 3 · Main Campus',
           mediaLabel: 'Venue details',
+          image: '/images/venue/aula3_b.jpg',
         },
       ],
     },
@@ -389,6 +393,7 @@ const homepageContent = {
           body: 'Saluti iniziali, keynote, tre panel e closing remarks in un unico flusso verticale.',
           meta: '18 Maggio 2026 · Aula 3',
           mediaLabel: 'Panoramica agenda',
+          image: '/images/venue/SSSA_chiostro_interno.png',
         },
         {
           route: 'speakers',
@@ -397,6 +402,7 @@ const homepageContent = {
           body: 'Keynote internazionali, chair dottorali e panelist che guidano la discussione.',
           meta: 'SSSA · UniPi · CNR · UCL · Penn State',
           mediaLabel: 'Rassegna relatori',
+          image: '/images/keynote/guido_germano.png',
         },
         {
           route: 'venue',
@@ -405,6 +411,7 @@ const homepageContent = {
           body: 'Centro storico di Pisa presso la Scuola Superiore Sant’Anna.',
           meta: 'Aula 3 · Campus Principale',
           mediaLabel: 'Dettagli sede',
+          image: '/images/venue/aula3_b.jpg',
         },
       ],
     },
