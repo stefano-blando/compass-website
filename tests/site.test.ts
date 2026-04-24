@@ -483,9 +483,9 @@ describe('site helpers', () => {
       'keynote-1',
       'panel-1-ai-methods',
       'keynote-2',
-      'panel-2-networks-nlp',
-      'keynote-3-tbc',
       'panel-3-legal-ethics',
+      'panel-2-networks-nlp',
+      'pagopa-session',
       'social-dinner',
     ]);
     expect(english[2]).toMatchObject({
@@ -498,11 +498,21 @@ describe('site helpers', () => {
     });
     expect(italian[4]).toMatchObject({
       chairLabel: 'Coordinamento',
+      title: 'Panel 3: AI for Legal e Legal for AI Ethics',
+    });
+    expect(italian[5]).toMatchObject({
+      chairLabel: 'Coordinamento',
       title: 'Panel 2: Complessità, innovazione e mondo digitale',
     });
+    expect(english[4]).toMatchObject({
+      title: 'Panel 3: AI for Legal & Legal for AI Ethics',
+    });
     expect(english[5]).toMatchObject({
-      title: 'Keynote 3',
-      featuredTalkTitle: 'Senior Expert on AI Regulation & Ethics (TBC)',
+      title: 'Panel 2: Complexity, Innovation, and the Digital World',
+      featuredTalkTitle: 'The hidden structure of innovation networks',
+    });
+    expect(english[6]).toMatchObject({
+      title: 'PagoPA Special Session',
     });
   });
 
@@ -572,11 +582,6 @@ describe('site helpers', () => {
         endsAt: '2026-05-18T12:00:00+02:00',
       },
       {
-        slug: 'keynote-institutional-tbc',
-        startsAt: '2026-05-18T12:00:00+02:00',
-        endsAt: '2026-05-18T12:45:00+02:00',
-      },
-      {
         slug: 'networking-lunch',
         startsAt: '2026-05-18T12:45:00+02:00',
         endsAt: '2026-05-18T13:45:00+02:00',
@@ -587,29 +592,34 @@ describe('site helpers', () => {
         endsAt: '2026-05-18T14:30:00+02:00',
       },
       {
-        slug: 'panel-2-networks-nlp',
+        slug: 'panel-3-legal-ethics',
         startsAt: '2026-05-18T14:30:00+02:00',
-        endsAt: '2026-05-18T15:45:00+02:00',
+        endsAt: '2026-05-18T15:30:00+02:00',
       },
       {
         slug: 'coffee-break-2',
-        startsAt: '2026-05-18T15:45:00+02:00',
-        endsAt: '2026-05-18T16:15:00+02:00',
+        startsAt: '2026-05-18T15:30:00+02:00',
+        endsAt: '2026-05-18T16:00:00+02:00',
       },
       {
-        slug: 'keynote-3-tbc',
-        startsAt: '2026-05-18T16:15:00+02:00',
-        endsAt: '2026-05-18T17:00:00+02:00',
+        slug: 'panel-2-networks-nlp',
+        startsAt: '2026-05-18T16:00:00+02:00',
+        endsAt: '2026-05-18T17:30:00+02:00',
       },
       {
-        slug: 'panel-3-legal-ethics',
-        startsAt: '2026-05-18T17:00:00+02:00',
-        endsAt: '2026-05-18T18:00:00+02:00',
+        slug: 'rector-remarks',
+        startsAt: '2026-05-18T17:30:00+02:00',
+        endsAt: '2026-05-18T17:45:00+02:00',
+      },
+      {
+        slug: 'pagopa-session',
+        startsAt: '2026-05-18T17:45:00+02:00',
+        endsAt: '2026-05-18T18:15:00+02:00',
       },
       {
         slug: 'closing-remarks',
-        startsAt: '2026-05-18T18:00:00+02:00',
-        endsAt: '2026-05-18T18:15:00+02:00',
+        startsAt: '2026-05-18T18:15:00+02:00',
+        endsAt: '2026-05-18T18:30:00+02:00',
       },
       {
         slug: 'social-dinner',
@@ -639,7 +649,7 @@ describe('site helpers', () => {
       'From Risk to Protection: Vulnerability as a Benchmark for European AI Governance',
       'Regulation vs Innovation? Unpacking the dichotomy to foster responsible research',
       'Significant Harm in EU Law: When Voice-Based Virtual Assistants Are Prohibited',
-      'Acting without action: Ethics and responsibility in AI systems',
+      'Acting without action: Ethics and responsibility in AI systems (online)',
       'Roundtable',
     ]);
   });
@@ -651,7 +661,7 @@ describe('site helpers', () => {
 
   it('keeps the published programme aligned with the current workshop agenda', () => {
     expect(sessions).toHaveLength(13);
-    expect(speakers).toHaveLength(21);
+    expect(speakers).toHaveLength(22);
     expect(talks).toHaveLength(22);
 
     expect(sessions.map((session) => session.slug)).toEqual([
@@ -659,13 +669,13 @@ describe('site helpers', () => {
       'keynote-1',
       'coffee-break-1',
       'panel-1-ai-methods',
-      'keynote-institutional-tbc',
       'networking-lunch',
       'keynote-2',
-      'panel-2-networks-nlp',
-      'coffee-break-2',
-      'keynote-3-tbc',
       'panel-3-legal-ethics',
+      'coffee-break-2',
+      'panel-2-networks-nlp',
+      'rector-remarks',
+      'pagopa-session',
       'closing-remarks',
       'social-dinner',
     ]);
@@ -692,6 +702,7 @@ describe('site helpers', () => {
       'elio-grande',
       'francesca-chiaromonte',
       'panelist-tbc',
+      'pagopa-speaker',
     ]));
     expect(speakers.map((speaker) => speaker.slug)).not.toContain('benedetta-tessa');
   });

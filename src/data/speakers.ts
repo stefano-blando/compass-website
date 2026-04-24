@@ -358,6 +358,23 @@ export const speakers: Speaker[] = [
     type: ['panelist'],
   },
   {
+    slug: 'pagopa-speaker',
+    name: 'PagoPA',
+    affiliation: {
+      en: 'PagoPA S.p.A.',
+      it: 'PagoPA S.p.A.',
+    },
+    roleLabel: {
+      en: 'Keynote speaker',
+      it: 'Relatore keynote',
+    },
+    bio: {
+      en: 'Institutional contribution from PagoPA S.p.A. on AI and digital public services.',
+      it: 'Contributo istituzionale di PagoPA S.p.A. su AI e servizi pubblici digitali.',
+    },
+    type: ['keynote'],
+  },
+  {
     slug: 'francesca-chiaromonte',
     name: 'Francesca Chiaromonte',
     affiliation: {
@@ -365,13 +382,13 @@ export const speakers: Speaker[] = [
       it: 'Scuola Superiore Sant’Anna',
     },
     roleLabel: {
-      en: 'Closing remarks speaker (provisional)',
-      it: 'Relatrice della chiusura (provvisorio)',
+      en: 'Opening and Closing remarks',
+      it: 'Saluti iniziali e conclusivi',
     },
     bio: {
-      en: 'Current working agenda lists Francesca Chiaromonte for the closing remarks, pending final confirmation.',
-      it: 'L agenda di lavoro attuale indica Francesca Chiaromonte per i saluti finali, in attesa di conferma finale.',
+      en: 'Francesca Chiaromonte is a Professor of Statistics at the Sant’Anna School of Advanced Studies and at Pennsylvania State University.',
+      it: 'Francesca Chiaromonte è professoressa di Statistica presso la Scuola Superiore Sant’Anna e la Pennsylvania State University.',
     },
-    type: [],
+    type: ['organizer'],
   },
 ];

@@ -505,9 +505,9 @@ const homepageCuration = {
     { sessionSlug: 'keynote-1' },
     { sessionSlug: 'panel-1-ai-methods' },
     { sessionSlug: 'keynote-2' },
-    { sessionSlug: 'panel-2-networks-nlp' },
-    { sessionSlug: 'keynote-3-tbc' },
     { sessionSlug: 'panel-3-legal-ethics' },
+    { sessionSlug: 'panel-2-networks-nlp' },
+    { sessionSlug: 'pagopa-session' },
     { sessionSlug: 'social-dinner' },
   ],
   featuredSpeakers: [
