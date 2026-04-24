@@ -387,22 +387,6 @@ export const richPageContent = {
       },
       sections: [
         {
-          eyebrow: 'Scientific Committee',
-          title: 'Doctoral Panel Chairs',
-          body: 'The scientific program and thematic panels are coordinated by six doctoral researchers representing the interdisciplinary breadth of the National PhD Program in Artificial Intelligence (PhD-AI.it).',
-          mediaLabel: 'Committee overview',
-          mediaType: 'portrait-grid',
-          images: [
-            '/images/speakers/stefano_blando.jpg',
-            '/images/speakers/lorenzo_emer.png',
-            '/images/speakers/alice_musso.png',
-            '/images/speakers/roberta_romano.png',
-            '/images/speakers/roberta_savella.png',
-            '/images/speakers/biancamaria-bombino.jpg',
-          ],
-          bullets: ['Six Doctoral Panel Chairs.', 'National PhD Program in AI (PhD-AI.it).'],
-        },
-        {
           eyebrow: 'Partners',
           title: 'Supporting Institutions',
           body: 'This event is made possible by a scientific initiative grant from the University of Pisa, the hosting and support of Scuola Superiore Sant’Anna, and the coordination of the National PhD Program in AI.',
@@ -425,7 +409,7 @@ export const richPageContent = {
           body: 'For general inquiries or operational clarifications, please reach out to the organizing committee directly via email.',
           mediaLabel: 'Contact information',
           mediaType: 'info-panel',
-          bullets: ['General workshop inquiries: compass.workshop.pisa@gmail.com', 'Operational follow-up for registered participants.'],
+          bullets: ['General workshop inquiries: stefano.blando@santannapisa.it', 'Operational follow-up for registered participants.'],
         },
       ],
     },
@@ -604,22 +588,6 @@ export const richPageContent = {
       },
       sections: [
         {
-          eyebrow: 'Comitato Scientifico',
-          title: 'Doctoral Panel Chairs',
-          body: 'Il programma scientifico e i panel tematici sono coordinati da sei ricercatori dottorali che rappresentano l’ampiezza interdisciplinare del Dottorato Nazionale in Intelligenza Artificiale (PhD-AI.it).',
-          mediaLabel: 'Panoramica del comitato',
-          mediaType: 'portrait-grid',
-          images: [
-            '/images/speakers/stefano_blando.jpg',
-            '/images/speakers/lorenzo_emer.png',
-            '/images/speakers/alice_musso.png',
-            '/images/speakers/roberta_romano.png',
-            '/images/speakers/roberta_savella.png',
-            '/images/speakers/biancamaria-bombino.jpg',
-          ],
-          bullets: ['Sei Doctoral Panel Chair.', 'Dottorato Nazionale in AI (PhD-AI.it).'],
-        },
-        {
           eyebrow: 'Partner',
           title: 'Istituzioni di Supporto',
           body: 'L’evento è reso possibile da un bando per iniziative scientifiche dell’Università di Pisa, dall’ospitalità e dal supporto della Scuola Superiore Sant’Anna e dal coordinamento del Dottorato Nazionale in AI.',
@@ -642,7 +610,7 @@ export const richPageContent = {
           body: 'Per domande generali o chiarimenti operativi, si prega di rivolgersi direttamente al comitato organizzatore via email.',
           mediaLabel: 'Informazioni di contatto',
           mediaType: 'info-panel',
-          bullets: ['Richieste generali sul workshop: compass.workshop.pisa@gmail.com', 'Follow-up operativo per i partecipanti registrati.'],
+          bullets: ['Richieste generali sul workshop: stefano.blando@santannapisa.it', 'Follow-up operativo per i partecipanti registrati.'],
         },
       ],
     },
