@@ -403,15 +403,8 @@ export const richPageContent = {
             'National PhD Program in AI (Coordination).',
           ],
         },
-        {
-          eyebrow: 'Contact',
-          title: 'Get in Touch',
-          body: 'For general inquiries or operational clarifications, please reach out to the organizing committee directly via email.',
-          mediaLabel: 'Contact information',
-          mediaType: 'info-panel',
-          bullets: ['General workshop inquiries: stefano.blando@santannapisa.it', 'Operational follow-up for registered participants.'],
-        },
       ],
+      ctaLabel: 'Register for the workshop',
     },
     faq: {
       hero: {
@@ -604,15 +597,8 @@ export const richPageContent = {
             'Dottorato Nazionale in AI (Coordinamento).',
           ],
         },
-        {
-          eyebrow: 'Contatti',
-          title: 'Contattaci',
-          body: 'Per domande generali o chiarimenti operativi, si prega di rivolgersi direttamente al comitato organizzatore via email.',
-          mediaLabel: 'Informazioni di contatto',
-          mediaType: 'info-panel',
-          bullets: ['Richieste generali sul workshop: stefano.blando@santannapisa.it', 'Follow-up operativo per i partecipanti registrati.'],
-        },
       ],
+      ctaLabel: 'Iscriviti al workshop',
     },
     faq: {
       hero: {
