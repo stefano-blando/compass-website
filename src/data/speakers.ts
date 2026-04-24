@@ -314,18 +314,18 @@ export const speakers: Speaker[] = [
   },
   {
     slug: 'pagopa-speaker',
-    name: 'Senior Legal AI Expert (TBC)',
+    name: 'Institutional AI Expert (TBC)',
     affiliation: {
-      en: 'To be confirmed',
-      it: 'In fase di conferma',
+      en: 'Institutional Partner',
+      it: 'Partner Istituzionale',
     },
     roleLabel: {
       en: 'Keynote speaker',
       it: 'Relatore keynote',
     },
     bio: {
-      en: 'Expert keynote contribution (TBC).',
-      it: 'Contributo keynote esperto (TBC).',
+      en: 'Expert institutional contribution (TBC) on digitalization and artificial intelligence.',
+      it: 'Contributo istituzionale esperto (TBC) su digitalizzazione e intelligenza artificiale.',
     },
     type: ['keynote'],
   },

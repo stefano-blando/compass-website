@@ -284,12 +284,12 @@ export const talks: Talk[] = [
   {
     slug: 'pagopa-contribution',
     title: {
-      en: 'Institutional Keynote (TBC)',
-      it: 'Keynote istituzionale (TBC)',
+      en: 'Institutional Speaker on Digitalization and AI (TBC)',
+      it: 'Relatore Istituzionale su Digitalizzazione e AI (TBC)',
     },
     abstract: {
-      en: 'Institutional contribution on the impact of AI in digital public services (TBC).',
-      it: 'Contributo istituzionale sull’impatto dell’AI nei servizi pubblici digitali (TBC).',
+      en: 'Expert institutional perspective on the impact of digitalization and artificial intelligence (TBC).',
+      it: 'Prospettiva istituzionale esperta sull’impatto della digitalizzazione e dell’intelligenza artificiale (TBC).',
     },
     speakerSlugs: ['pagopa-speaker'],
     sessionSlug: 'pagopa-session',
