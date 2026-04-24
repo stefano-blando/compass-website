@@ -8,30 +8,34 @@ const featuredSpeakers = speakers.filter(s =>
 
 // Map slugs to positions for a nice constellation
 const positions: Record<string, { top: string, left: string, size: string }> = {
-  'guido-germano': { top: '20%', left: '20%', size: '100px' },
-  'prabhani-don': { top: '15%', left: '70%', size: '100px' },
-  'federica-casarosa': { top: '25%', left: '88%', size: '100px' },
-  'stefano-blando': { top: '45%', left: '45%', size: '90px' },
-  'biancamaria-bombino': { top: '75%', left: '25%', size: '80px' },
-  'lorenzo-emer': { top: '50%', left: '10%', size: '80px' },
-  'alice-musso': { top: '80%', left: '65%', size: '80px' },
-  'roberta-romano': { top: '48%', left: '85%', size: '85px' },
-  'roberta-savella': { top: '70%', left: '90%', size: '80px' },
+  'guido-germano': { top: '22%', left: '18%', size: '100px' },
+  'prabhani-don': { top: '78%', left: '18%', size: '100px' },
+  'federica-casarosa': { top: '50%', left: '82%', size: '100px' },
+  'stefano-blando': { top: '40%', left: '45%', size: '90px' },
+  'lorenzo-emer': { top: '15%', left: '42%', size: '80px' },
+  'biancamaria-bombino': { top: '65%', left: '35%', size: '80px' },
+  'alice-musso': { top: '85%', left: '55%', size: '80px' },
+  'roberta-romano': { top: '25%', left: '70%', size: '85px' },
+  'roberta-savella': { top: '75%', left: '70%', size: '80px' },
 };
 ---
 
 <div class="speaker-network">
   <svg class="network-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
-    <line x1="20" y1="20" x2="45" y2="45" class="line-a" />
-    <line x1="70" y1="15" x2="45" y2="45" class="line-b" />
-    <line x1="88" y1="25" x2="45" y2="45" class="line-i" />
-    <line x1="88" y1="25" x2="85" y2="48" class="line-j" />
-    <line x1="45" y1="45" x2="10" y2="50" class="line-c" />
-    <line x1="45" y1="45" x2="85" y2="48" class="line-d" />
-    <line x1="10" y1="50" x2="25" y2="75" class="line-e" />
-    <line x1="25" y1="75" x2="65" y2="80" class="line-f" />
-    <line x1="65" y1="80" x2="90" y2="70" class="line-g" />
-    <line x1="85" y1="48" x2="90" y2="70" class="line-h" />
+    <!-- Hub Blando connections -->
+    <line x1="45" y1="40" x2="18" y2="22" class="line-a" />
+    <line x1="45" y1="40" x2="18" y2="78" class="line-b" />
+    <line x1="45" y1="40" x2="70" y2="25" class="line-c" />
+    <line x1="45" y1="40" x2="70" y2="75" class="line-d" />
+    <line x1="45" y1="40" x2="42" y2="15" class="line-e" />
+    <line x1="45" y1="40" x2="35" y2="65" class="line-f" />
+    
+    <!-- Periphery connections -->
+    <line x1="42" y1="15" x2="18" y2="22" class="line-g" />
+    <line x1="35" y1="65" x2="18" y2="78" class="line-h" />
+    <line x1="55" y1="85" x2="18" y2="78" class="line-i" />
+    <line x1="70" y1="25" x2="82" y2="50" class="line-j" />
+    <line x1="70" y1="75" x2="82" y2="50" class="line-k" />
   </svg>
 
   {featuredSpeakers.map(speaker => {
