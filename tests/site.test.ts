@@ -265,6 +265,7 @@ describe('site helpers', () => {
       home: 'Inizio',
       about: 'Chi siamo',
       speakers: 'Relatori',
+      abstracts: 'Abstract',
       organizers: 'Organizzatori',
     });
   });
