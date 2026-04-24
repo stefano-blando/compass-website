@@ -507,7 +507,7 @@ const homepageCuration = {
     { sessionSlug: 'keynote-2' },
     { sessionSlug: 'panel-3-legal-ethics' },
     { sessionSlug: 'panel-2-networks-nlp' },
-    { sessionSlug: 'pagopa-session' },
+    { sessionSlug: 'keynote-legal' },
     { sessionSlug: 'social-dinner' },
   ],
   featuredSpeakers: [
@@ -526,10 +526,10 @@ const homepageCuration = {
       },
     },
     {
-      speakerSlug: 'pagopa-speaker',
+      speakerSlug: 'federica-casarosa',
       roleLabel: {
         en: 'Keynote speaker',
-        it: 'Relatore keynote',
+        it: 'Relatrice keynote',
       },
     },
   ],

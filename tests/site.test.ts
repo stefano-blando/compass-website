@@ -486,7 +486,7 @@ describe('site helpers', () => {
       'keynote-2',
       'panel-3-legal-ethics',
       'panel-2-networks-nlp',
-      'pagopa-session',
+      'keynote-legal',
       'social-dinner',
     ]);
     expect(english[2]).toMatchObject({
@@ -513,7 +513,7 @@ describe('site helpers', () => {
       featuredTalkTitle: 'The hidden structure of innovation networks',
     });
     expect(english[6]).toMatchObject({
-      title: 'Keynote: Legal AI & Regulation (TBC)',
+      title: 'Keynote 3',
     });
   });
 
@@ -524,14 +524,14 @@ describe('site helpers', () => {
     expect(english.map((speaker) => speaker.slug)).toEqual([
       'guido-germano',
       'prabhani-don',
-      'pagopa-speaker',
+      'federica-casarosa',
     ]);
     expect(english[0]?.role).toBe('Keynote speaker');
     expect(italian[0]?.role).toBe('Relatore keynote');
     expect(english[1]?.role).toBe('Keynote speaker');
     expect(italian[1]?.role).toBe('Relatrice keynote');
     expect(english[2]?.role).toBe('Keynote speaker');
-    expect(italian[2]?.role).toBe('Relatore keynote');
+    expect(italian[2]?.role).toBe('Relatrice keynote');
   });
 
   it('keeps localized homepage scroll section labels available for future reuse', () => {
@@ -610,7 +610,7 @@ describe('site helpers', () => {
         endsAt: '2026-05-18T17:45:00+02:00',
       },
       {
-        slug: 'pagopa-session',
+        slug: 'keynote-legal',
         startsAt: '2026-05-18T17:45:00+02:00',
         endsAt: '2026-05-18T18:15:00+02:00',
       },
@@ -673,7 +673,7 @@ describe('site helpers', () => {
       'coffee-break-2',
       'panel-2-networks-nlp',
       'rector-remarks',
-      'pagopa-session',
+      'keynote-legal',
       'closing-remarks',
       'social-dinner',
     ]);
@@ -698,7 +698,7 @@ describe('site helpers', () => {
       'elio-grande',
       'francesca-chiaromonte',
       'panelist-tbc',
-      'pagopa-speaker',
+      'federica-casarosa',
     ]));
     expect(speakers.map((speaker) => speaker.slug)).not.toContain('benedetta-tessa');
   });

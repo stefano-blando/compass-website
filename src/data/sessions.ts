@@ -152,14 +152,14 @@ export const sessions: Session[] = [
     chairSlugs: [],
   },
   {
-    slug: 'pagopa-session',
+    slug: 'keynote-legal',
     title: {
-      en: 'Keynote: Legal AI & Regulation (TBC)',
-      it: 'Keynote: Legal AI e Regolazione (TBC)',
+      en: 'Keynote 3',
+      it: 'Keynote 3',
     },
     description: {
-      en: 'Special session featuring expert perspectives on the intersection of Law and Artificial Intelligence.',
-      it: 'Sessione speciale con prospettive esperte sull’intersezione tra Diritto e Intelligenza Artificiale.',
+      en: 'Keynote lecture by Federica Casarosa (Scuola Superiore Sant’Anna).',
+      it: 'Lezione keynote di Federica Casarosa (Scuola Superiore Sant’Anna).',
     },
     type: 'keynote',
     startsAt: '2026-05-18T17:45:00+02:00',

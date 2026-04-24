@@ -282,17 +282,17 @@ export const talks: Talk[] = [
     startsAt: '2026-05-18T17:30:00+02:00',
   },
   {
-    slug: 'pagopa-contribution',
+    slug: 'keynote-federica-casarosa',
     title: {
-      en: 'Legal AI & Regulation (TBC)',
-      it: 'Legal AI e Regolazione (TBC)',
+      en: 'Federica Casarosa',
+      it: 'Federica Casarosa',
     },
     abstract: {
-      en: 'Expert contribution on the impact of AI in the legal sector and current regulatory frameworks (TBC).',
-      it: 'Contributo esperto sull’impatto dell’AI nel settore legale e gli attuali quadri normativi (TBC).',
+      en: 'Confirmed keynote contribution by Federica Casarosa on law and emerging technologies.',
+      it: 'Contributo keynote confermato di Federica Casarosa su diritto e tecnologie emergenti.',
     },
-    speakerSlugs: ['pagopa-speaker'],
-    sessionSlug: 'pagopa-session',
+    speakerSlugs: ['federica-casarosa'],
+    sessionSlug: 'keynote-legal',
     startsAt: '2026-05-18T17:45:00+02:00',
   },
   {

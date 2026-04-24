@@ -328,19 +328,22 @@ export const speakers: Speaker[] = [
     type: ['panelist'],
   },
   {
-    slug: 'pagopa-speaker',
-    name: 'Senior Legal AI Expert (TBC)',
+    slug: 'federica-casarosa',
+    name: 'Federica Casarosa',
     affiliation: {
-      en: 'To be confirmed',
-      it: 'In fase di conferma',
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
     },
     roleLabel: {
       en: 'Keynote speaker',
-      it: 'Relatore keynote',
+      it: 'Relatrice keynote',
     },
     bio: {
-      en: 'Expert keynote contribution (TBC) on AI regulation and the legal sector.',
-      it: 'Contributo keynote esperto (TBC) sulla regolamentazione dell’IA e il settore legale.',
+      en: 'Federica Casarosa is a Research Fellow at the Sant’Anna School of Advanced Studies. Her research focuses on the intersection of law and technology, specifically on judicial cooperation, data protection, and consumer rights.',
+      it: 'Federica Casarosa è Ricercatrice presso la Scuola Superiore Sant’Anna. La sua ricerca si concentra sull’intersezione tra diritto e tecnologia, specificamente su cooperazione giudiziaria, protezione dei dati e diritti dei consumatori.',
+    },
+    links: {
+      website: 'https://www.santannapisa.it/it/federica-casarosa',
     },
     type: ['keynote'],
   },
