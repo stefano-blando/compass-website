@@ -397,8 +397,8 @@ export const richPageContent = {
           mediaType: 'portrait-grid',
           images: [
             '/images/venue/aula3_a.jpg',
-            '/images/venue/SSSA_entrata_arco.png',
-            '/images/venue/SSSA_parco.png',
+            '/images/venue/SSSA_chiostro_interno.png',
+            '/images/venue/SSSA_parco_2.png',
           ],
           bullets: ['Confirm availability for 18 May 2026.', 'Prepare your affiliation details.', 'Check travel routes to Pisa.'],
         },
@@ -453,8 +453,8 @@ export const richPageContent = {
           mediaType: 'info-panel',
           bullets: [
             'Registration is mandatory for all attendees.',
-            'Deadline: 10 May 2026.',
-            'Language: All sessions will be held in English.',
+            'Registration Deadline: 10 May 2026.',
+            'Workshop Hours: 09:30 to 18:30.',
             'Format: In-person only (no streaming available).',
           ],
         },
@@ -616,8 +616,8 @@ export const richPageContent = {
           mediaType: 'portrait-grid',
           images: [
             '/images/venue/aula3_a.jpg',
-            '/images/venue/SSSA_entrata_arco.png',
-            '/images/venue/SSSA_parco.png',
+            '/images/venue/SSSA_chiostro_interno.png',
+            '/images/venue/SSSA_parco_2.png',
           ],
           bullets: ['Conferma la disponibilità per il 18 Maggio 2026.', 'Prepara i dettagli della tua affiliazione.', 'Verifica i percorsi per Pisa.'],
         },
@@ -672,8 +672,8 @@ export const richPageContent = {
           mediaType: 'info-panel',
           bullets: [
             'Registrazione obbligatoria per tutti i partecipanti.',
-            'Scadenza: 10 Maggio 2026.',
-            'Lingua: Tutte le sessioni si terranno in inglese.',
+            'Scadenza registrazioni: 10 Maggio 2026.',
+            'Orario Workshop: dalle 09:30 alle 18:30.',
             'Formato: Solo in presenza (non è prevista la diretta streaming).',
           ],
         },

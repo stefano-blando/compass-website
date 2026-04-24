@@ -58,7 +58,7 @@ const t = {
     <div class="container speaker-directory">
       <section class="directory-section">
         <h2 class="section-kicker">{t.institutional}</h2>
-        <div class="speaker-grid">
+        <div class="speaker-grid speaker-grid--institutional">
           {institutional.map(speaker => <SpeakerCard speaker={speaker} locale={locale} />)}
         </div>
       </section>
@@ -150,6 +150,16 @@ const t = {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 2rem;
+  }
+
+  .speaker-grid--institutional {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .speaker-grid--institutional > :global(*) {
+    flex: 0 1 320px;
   }
 
   @media (max-width: 960px) {
