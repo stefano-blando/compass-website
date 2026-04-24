@@ -403,9 +403,9 @@ describe('site helpers', () => {
     expect(italian.cards[2]).toMatch(/cena sociale|supporto/i);
   });
 
-  it('keeps the published programme page copy aligned with the working agenda language', () => {
+  it('keeps the published programme page copy aligned with the workshop schedule language', () => {
     expect(programmePageSource).not.toMatch(/seeded agenda|agenda seed/i);
-    expect(programmePageSource).toMatch(/working agenda|agenda in lavorazione|current agenda/i);
+    expect(programmePageSource).toMatch(/comprehensive one-day schedule|agenda completa/i);
   });
 
   it('returns rich placeholder-backed secondary page sections without future-state shell copy', () => {
