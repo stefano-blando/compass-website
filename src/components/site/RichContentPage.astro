@@ -70,7 +70,18 @@ function getMediaBadge(section: RichPageSection, index: number) {
       <div class={`rich-page__hero-media rich-page__hero-media--${content.hero.mediaType}`} aria-label={content.hero.mediaLabel}>
         {content.hero.image && (
           <div class="rich-page__media-bg">
-            <img src={resolvePublicPath(content.hero.image)} alt={content.hero.mediaLabel} />
+            {content.hero.mediaType === 'video' && content.hero.image.endsWith('.mp4') ? (
+              <video 
+                src={resolvePublicPath(content.hero.image)} 
+                autoplay 
+                muted 
+                loop 
+                playsinline 
+                class="rich-page__video-bg"
+              />
+            ) : (
+              <img src={resolvePublicPath(content.hero.image)} alt={content.hero.mediaLabel} />
+            )}
           </div>
         )}
         <div class="rich-page__media-frame rich-page__media-frame--primary">
@@ -369,12 +380,17 @@ function getMediaBadge(section: RichPageSection, index: number) {
     z-index: 0;
   }
 
-  .rich-page__media-bg img {
+  .rich-page__media-bg img,
+  .rich-page__video-bg {
     width: 100%;
     height: 100%;
     object-fit: cover;
     mix-blend-mode: luminosity;
     opacity: 0.6;
+  }
+
+  .rich-page__video-bg {
+    filter: brightness(0.8) contrast(1.1);
   }
 
   .rich-page__hero-media--landscape,

@@ -2,7 +2,17 @@ import type { Locale } from './types';
 
 export const locales: Locale[] = ['en', 'it'];
 export const defaultLocale: Locale = 'en';
-export const sitePageKeys = ['home', 'programme', 'speakers', 'venue', 'registration', 'about', 'organizers', 'faq'] as const;
+export const sitePageKeys = [
+  'home',
+  'programme',
+  'speakers',
+  'abstracts',
+  'venue',
+  'registration',
+  'about',
+  'organizers',
+  'faq',
+] as const;
 
 export type SitePageKey = (typeof sitePageKeys)[number];
 
@@ -21,6 +31,7 @@ export const navLabels = {
     home: 'Home',
     programme: 'Programme',
     speakers: 'Speakers',
+    abstracts: 'Abstracts',
     venue: 'Venue',
     registration: 'Registration',
     about: 'About',
@@ -33,6 +44,7 @@ export const navLabels = {
     home: 'Inizio',
     programme: 'Programma',
     speakers: 'Relatori',
+    abstracts: 'Abstract',
     venue: 'Sede',
     registration: 'Registrazione',
     about: 'Chi siamo',
