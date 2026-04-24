@@ -526,14 +526,7 @@ const homepageCuration = {
       },
     },
     {
-      speakerSlug: 'senior-expert-ai-regulation-tbc',
-      roleLabel: {
-        en: 'Keynote speaker',
-        it: 'Relatore keynote',
-      },
-    },
-    {
-      speakerSlug: 'institutional-keynote-tbc',
+      speakerSlug: 'pagopa-speaker',
       roleLabel: {
         en: 'Keynote speaker',
         it: 'Relatore keynote',

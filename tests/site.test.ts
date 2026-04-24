@@ -523,8 +523,7 @@ describe('site helpers', () => {
     expect(english.map((speaker) => speaker.slug)).toEqual([
       'guido-germano',
       'prabhani-don',
-      'senior-expert-ai-regulation-tbc',
-      'institutional-keynote-tbc',
+      'pagopa-speaker',
     ]);
     expect(english[0]?.role).toBe('Keynote speaker');
     expect(italian[0]?.role).toBe('Relatore keynote');
@@ -532,8 +531,6 @@ describe('site helpers', () => {
     expect(italian[1]?.role).toBe('Relatrice keynote');
     expect(english[2]?.role).toBe('Keynote speaker');
     expect(italian[2]?.role).toBe('Relatore keynote');
-    expect(english[3]?.role).toBe('Keynote speaker');
-    expect(italian[3]?.role).toBe('Relatore keynote');
   });
 
   it('keeps localized homepage scroll section labels available for future reuse', () => {
@@ -661,7 +658,7 @@ describe('site helpers', () => {
 
   it('keeps the published programme aligned with the current workshop agenda', () => {
     expect(sessions).toHaveLength(13);
-    expect(speakers).toHaveLength(22);
+    expect(speakers).toHaveLength(20);
     expect(talks).toHaveLength(22);
 
     expect(sessions.map((session) => session.slug)).toEqual([
@@ -684,9 +681,7 @@ describe('site helpers', () => {
       'andrea-vandin',
       'rettore-sssa',
       'guido-germano',
-      'institutional-keynote-tbc',
       'prabhani-don',
-      'senior-expert-ai-regulation-tbc',
       'stefano-blando',
       'biancamaria-bombino',
       'lorenzo-emer',

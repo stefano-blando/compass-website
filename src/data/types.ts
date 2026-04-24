@@ -2,7 +2,7 @@ export type Locale = 'en' | 'it';
 
 export type LocalizedText = Record<Locale, string>;
 
-export type SpeakerRole = 'keynote' | 'panelist' | 'chair' | 'organizer';
+export type SpeakerRole = 'keynote' | 'panelist' | 'chair' | 'organizer' | 'institutional';
 
 export type Speaker = {
   slug: string;
