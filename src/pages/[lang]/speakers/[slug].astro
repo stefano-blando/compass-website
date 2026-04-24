@@ -65,6 +65,14 @@ const t = labels[locale];
           <p class="speaker-detail__affiliation-text">{speaker.affiliation[locale]}</p>
           
           <p class="eyebrow mt-4">{speaker.roleLabel[locale]}</p>
+
+          {speaker.links?.website && (
+            <div class="speaker-detail__links mt-4">
+              <a href={speaker.links.website} target="_blank" rel="noopener noreferrer" class="link-button">
+                {locale === 'it' ? 'Sito web personale' : 'Personal website'}
+              </a>
+            </div>
+          )}
         </div>
       </div>
 
@@ -169,6 +177,24 @@ const t = labels[locale];
   }
 
   .mt-4 { margin-top: 1.5rem; }
+
+  .link-button {
+    display: inline-block;
+    padding: 0.6rem 1.2rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    text-decoration: none;
+    border-radius: 99px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    transition: background 180ms ease, transform 180ms ease;
+  }
+
+  .link-button:hover {
+    background: var(--accent);
+    color: white;
+    transform: translateY(-1px);
+  }
 
   .speaker-detail__main h1 {
     font-size: clamp(3rem, 6vw, 4.5rem);

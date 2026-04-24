@@ -89,6 +89,9 @@ export const speakers: Speaker[] = [
       en: 'Stefano Blando is a PhD student in the National PhD Program in Artificial Intelligence.',
       it: 'Stefano Blando è un dottorando del Dottorato Nazionale in Intelligenza Artificiale.',
     },
+    links: {
+      website: 'https://stefano-blando.github.io/en/',
+    },
     type: ['panelist', 'chair', 'organizer'],
   },
   {
