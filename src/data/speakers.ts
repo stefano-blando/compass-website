@@ -92,8 +92,8 @@ export const speakers: Speaker[] = [
     slug: 'stefano-blando',
     name: 'Stefano Blando',
     affiliation: {
-      en: 'University of Pisa and Sant’Anna School of Advanced Studies',
-      it: 'Università di Pisa e Scuola Superiore Sant’Anna',
+      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
+      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
     },
     roleLabel: {
       en: 'Panel 1 chair and speaker',
@@ -110,8 +110,8 @@ export const speakers: Speaker[] = [
     slug: 'biancamaria-bombino',
     name: 'Biancamaria Bombino',
     affiliation: {
-      en: 'University of Pisa and IIT-CNR · PhD-AI.it, Pillar Society',
-      it: 'Università di Pisa e IIT-CNR · PhD-AI.it, Pillar Society',
+      en: 'University of Pisa and IIT-CNR',
+      it: 'Università di Pisa e IIT-CNR',
     },
     roleLabel: {
       en: 'Panel 1 chair and speaker',
@@ -128,8 +128,8 @@ export const speakers: Speaker[] = [
     slug: 'lorenzo-emer',
     name: 'Lorenzo Emer',
     affiliation: {
-      en: 'University of Pisa and Sant’Anna School of Advanced Studies',
-      it: 'Università di Pisa e Scuola Superiore Sant’Anna',
+      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
+      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
     },
     roleLabel: {
       en: 'Panel 2 chair and speaker',
@@ -146,8 +146,8 @@ export const speakers: Speaker[] = [
     slug: 'alice-musso',
     name: 'Alice Musso',
     affiliation: {
-      en: 'University of Pisa and ISTI-CNR · PhD-AI.it, Pillar Society',
-      it: 'Università di Pisa e ISTI-CNR · PhD-AI.it, Pillar Society',
+      en: 'University of Pisa and ISTI-CNR',
+      it: 'Università di Pisa e ISTI-CNR',
     },
     roleLabel: {
       en: 'Panel 2 chair and speaker',
@@ -271,8 +271,8 @@ export const speakers: Speaker[] = [
     slug: 'riccardo-porcedda',
     name: 'Riccardo Porcedda',
     affiliation: {
-      en: 'University of Pisa and Sant’Anna School of Advanced Studies',
-      it: 'Università di Pisa e Scuola Superiore Sant’Anna',
+      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
+      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
     },
     roleLabel: {
       en: 'Panel 2 speaker',
