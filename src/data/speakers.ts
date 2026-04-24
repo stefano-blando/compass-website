@@ -86,8 +86,8 @@ export const speakers: Speaker[] = [
     },
     image: '/images/speakers/stefano_blando.jpg',
     bio: {
-      en: 'Stefano Blando is a PhD student in the National PhD Program in Artificial Intelligence.',
-      it: 'Stefano Blando è un dottorando del Dottorato Nazionale in Intelligenza Artificiale.',
+      en: 'Stefano Blando is a PhD student in the National PhD Program in Artificial Intelligence at Scuola Superiore Sant’Anna and the University of Pisa. His research lies at the intersection of AI, agent-based modeling, and economics. He studies adaptive multi-agent systems, statistical verification of economic simulations, and robust quantitative methods for financial and socio-economic data.',
+      it: 'Stefano Blando è un dottorando del Dottorato Nazionale in Intelligenza Artificiale presso la Scuola Superiore Sant’Anna e l’Università di Pisa. La sua ricerca si colloca all’intersezione tra IA, modellazione ad agenti ed economia. Studia sistemi multi-agente adattivi, verifica statistica di simulazioni economiche e metodi quantitativi robusti per dati finanziari e socio-economici.',
     },
     links: {
       website: 'https://stefano-blando.github.io/en/',
