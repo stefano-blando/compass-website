@@ -109,8 +109,8 @@ export const sessions: Session[] = [
   {
     slug: 'panel-2-networks-nlp',
     title: {
-      en: 'Panel 2: AI to Study Emergent Phenomena',
-      it: 'Panel 2: AI per lo studio dei fenomeni emergenti',
+      en: 'Panel 2: Complexity, Innovation, and the Digital World',
+      it: 'Panel 2: Complessità, innovazione e mondo digitale',
     },
     description: {
       en: 'Social, financial, and innovation networks are the fabric of society. Network analysis combined with NLP allows for deducing emergent phenomena and extracting value from complex and disaggregated data.',
@@ -179,6 +179,21 @@ export const sessions: Session[] = [
     type: 'closing',
     startsAt: '2026-05-18T18:00:00+02:00',
     endsAt: '2026-05-18T18:15:00+02:00',
+    chairSlugs: [],
+  },
+  {
+    slug: 'social-dinner',
+    title: {
+      en: 'Social Dinner',
+      it: 'Cena Sociale',
+    },
+    description: {
+      en: 'Closing dinner for speakers and invited guests. Location and details will be shared during the workshop.',
+      it: 'Cena conclusiva per relatori e ospiti invitati. Luogo e dettagli saranno condivisi durante il workshop.',
+    },
+    type: 'social',
+    startsAt: '2026-05-18T20:00:00+02:00',
+    endsAt: '2026-05-18T22:30:00+02:00',
     chairSlugs: [],
   },
 ];

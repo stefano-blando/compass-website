@@ -64,11 +64,15 @@ const labels = {
       'Diritto ed Etica',
       'Reti Sociali / NLP',
       'Altro'
-    ]
+    ],
+    privacyNote: 'Your data will be used exclusively for the organization of this workshop and will not be shared with third parties.'
   }
 };
 
 const t = labels[locale];
+const privacyNote = locale === 'it' 
+  ? 'I tuoi dati saranno utilizzati esclusivamente per l’organizzazione del workshop e non saranno condivisi con terze parti.'
+  : 'Your data will be used exclusively for the organization of this workshop and will not be shared with third parties.';
 ---
 
 <section id="registration-form" class="registration-form-section">
@@ -79,7 +83,9 @@ const t = labels[locale];
       action="https://formspree.io/f/xaqalrkg" 
       method="POST" 
       class="registration-form"
+      id="registration-form-element"
     >
+      <input type="hidden" name="_next" id="form-next-redirect" />
       <div class="form-grid">
         <!-- Full Name -->
         <div class="form-group">
@@ -150,9 +156,20 @@ const t = labels[locale];
       <div class="form-actions">
         <button type="submit" class="btn-primary">{t.submit}</button>
       </div>
+      <p class="form-privacy-note">{privacyNote}</p>
     </form>
   </div>
 </section>
+
+<script is:inline define:vars={{ locale }}>
+  (() => {
+    const nextInput = document.getElementById('form-next-redirect');
+    if (nextInput) {
+      const path = locale === 'it' ? '/it/registration/success' : '/en/registration/success';
+      nextInput.value = window.location.origin + path;
+    }
+  })();
+</script>
 
 <style>
   .registration-form-section {
@@ -260,5 +277,12 @@ const t = labels[locale];
     border: none;
     font-size: 1.1rem;
     padding: 1rem 2rem;
+  }
+
+  .form-privacy-note {
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
   }
 </style>

@@ -486,6 +486,7 @@ describe('site helpers', () => {
       'panel-2-networks-nlp',
       'keynote-3-tbc',
       'panel-3-legal-ethics',
+      'social-dinner',
     ]);
     expect(english[2]).toMatchObject({
       title: 'Panel 1: AI for Modeling and Forecasting',
@@ -497,7 +498,7 @@ describe('site helpers', () => {
     });
     expect(italian[4]).toMatchObject({
       chairLabel: 'Coordinamento',
-      title: 'Panel 2: AI per lo studio dei fenomeni emergenti',
+      title: 'Panel 2: Complessità, innovazione e mondo digitale',
     });
     expect(english[5]).toMatchObject({
       title: 'Keynote 3',
@@ -610,6 +611,11 @@ describe('site helpers', () => {
         startsAt: '2026-05-18T18:00:00+02:00',
         endsAt: '2026-05-18T18:15:00+02:00',
       },
+      {
+        slug: 'social-dinner',
+        startsAt: '2026-05-18T20:00:00+02:00',
+        endsAt: '2026-05-18T22:30:00+02:00',
+      },
     ]);
   });
 
@@ -644,7 +650,7 @@ describe('site helpers', () => {
   });
 
   it('keeps the published programme aligned with the current workshop agenda', () => {
-    expect(sessions).toHaveLength(12);
+    expect(sessions).toHaveLength(13);
     expect(speakers).toHaveLength(21);
     expect(talks).toHaveLength(22);
 
@@ -661,6 +667,7 @@ describe('site helpers', () => {
       'keynote-3-tbc',
       'panel-3-legal-ethics',
       'closing-remarks',
+      'social-dinner',
     ]);
 
     expect(speakers.map((speaker) => speaker.slug)).toEqual(expect.arrayContaining([

@@ -148,14 +148,14 @@ const homepageContent = {
       dateLine: `${siteConfig.eventDate} · ${siteConfig.venue}`,
       displayTitle: 'COMPASS',
       subtitle: 'COmplexity, Markets, Policy, and AI in Social Systems',
-      title: 'A focused workshop on socio-economic complexity, AI methods, and policy.',
+      title: 'A focused workshop on socio-economic complexity, AI Methods, and policy.',
       copy:
         'Organized by PhD-AI.it Society doctoral researchers, COMPASS connects complexity science, markets, networks, law, and AI in a single one-day academic setting.',
       supportingNote:
         'Applications are open now for a compact academic workshop format in Pisa.',
       attendanceNote: 'One day, one room, and a shared interdisciplinary audience across methods, networks, law, and policy.',
       trustLabel: 'Built with contributions across',
-      trustItems: ['Complexity Science', 'AI Methods', 'Networks & NLP', 'Law & Ethics', 'Policy Research', 'Market Design'],
+      trustItems: ['Complexity Science', 'AI Methods', 'Complexity & Innovation', 'Law & Ethics', 'Policy Research', 'Market Design'],
       marqueeItems: [
         { label: 'Keynote Lecture', eyebrow: 'Morning session' },
         { label: 'Interdisciplinary Audience', eyebrow: 'Main room' },
@@ -180,7 +180,7 @@ const homepageContent = {
       videoTitle: 'Aula 3, Scuola Superiore Sant’Anna',
       videoCopy: 'The historic venue in the heart of Pisa where the workshop sessions will take place.',
       featuredLabel: 'Themes in focus',
-      featuredItems: ['AI Methods & Applications', 'Networks & NLP', 'Legal & Ethics', 'Roundtables and open discussion'],
+      featuredItems: ['AI Methods & Applications', 'Complexity & Innovation', 'Legal & Ethics', 'Roundtables and open discussion'],
     },
     whyCompass: {
       eyebrow: 'Workshop Vision',
@@ -190,7 +190,7 @@ const homepageContent = {
       pillars: [
         {
           title: 'Unified Scientific Arc',
-          body: 'The programme flows from AI methods to networks and NLP, ending with normative and ethical reflections, ensuring a shared context for all participants.',
+          body: 'The programme flows from AI Methods to complexity and innovation, ending with normative and ethical reflections, ensuring a shared context for all participants.',
         },
         {
           title: 'Doctoral Leadership',
@@ -313,7 +313,7 @@ const homepageContent = {
         'Le candidature sono aperte per un workshop accademico compatto a Pisa.',
       attendanceNote: 'Una giornata, una sola sala, e un pubblico interdisciplinare condiviso tra metodi, reti, diritto e policy.',
       trustLabel: 'Costruito attorno a',
-      trustItems: ['Scienza della complessita', 'Metodi AI', 'Networks & NLP', 'Diritto ed etica', 'Ricerca su policy', 'Mercati e societa'],
+      trustItems: ['Scienza della complessita', 'Metodi IA', 'Complessità e Innovazione', 'Diritto ed etica', 'Ricerca su policy', 'Mercati e societa'],
       marqueeItems: [
         { label: 'Lezione Keynote', eyebrow: 'Sessione mattutina' },
         { label: 'Pubblico Interdisciplinare', eyebrow: 'Sala principale' },
@@ -338,7 +338,7 @@ const homepageContent = {
       videoTitle: 'Aula 3, Scuola Superiore Sant’Anna',
       videoCopy: 'La sede storica nel cuore di Pisa dove si terranno le sessioni del workshop.',
       featuredLabel: 'Temi in primo piano',
-      featuredItems: ['Metodi AI e Applicazioni', 'Networks & NLP', 'Diritto ed Etica', 'Roundtable e discussione aperta'],
+      featuredItems: ['Metodi IA e Applicazioni', 'Complessità e Innovazione', 'Diritto ed Etica', 'Roundtable e discussione aperta'],
     },
     whyCompass: {
       eyebrow: 'Visione del Workshop',
