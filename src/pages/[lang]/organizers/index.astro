@@ -16,19 +16,14 @@ const locale = Astro.params.lang as Locale;
 const pageMeta = getPageMetadata(locale, 'organizers');
 const content = getRichPageContent(locale, 'organizers');
 
-const institutional = speakers.filter(s => s.type.includes('institutional'));
 const organizers = speakers.filter(s => s.type.includes('organizer'));
 
 const labels = {
   en: {
-    committeeTitle: 'Scientific Committee',
-    committeeIntro: 'Senior academic faculty and institutional representatives providing oversight and scientific framing.',
     teamTitle: 'Organizing Team',
     teamIntro: 'Meet the doctoral researchers coordinating the COMPASS workshop operations and panel tracks.'
   },
   it: {
-    committeeTitle: 'Comitato Scientifico',
-    committeeIntro: 'Docenti senior e rappresentanti istituzionali che curano la visione scientifica e il coordinamento.',
     teamTitle: 'Team Organizzativo',
     teamIntro: 'I ricercatori dottorali che coordinano le operazioni e le sessioni del workshop COMPASS.'
   }
@@ -43,17 +38,6 @@ const labels = {
     <section class="organizers-team">
       <div class="container">
         <div class="organizers-team__header">
-          <p class="eyebrow">{labels.committeeTitle}</p>
-          <h2>{labels.committeeTitle}</h2>
-          <p>{labels.committeeIntro}</p>
-        </div>
-        <div class="organizers-team__grid organizers-team__grid--institutional">
-          {institutional.map(member => (
-            <SpeakerCard speaker={member} locale={locale} />
-          ))}
-        </div>
-
-        <div class="organizers-team__header" style="margin-top: 6rem;">
           <p class="eyebrow">{labels.teamTitle}</p>
           <h2>{labels.teamTitle}</h2>
           <p>{labels.teamIntro}</p>
@@ -99,16 +83,6 @@ const labels = {
     gap: 2rem;
   }
 
-  .organizers-team__grid--institutional {
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .organizers-team__grid--institutional > :global(*) {
-    flex: 0 1 320px;
-  }
-
   @media (max-width: 720px) {
     .organizers-team {
       padding: 3rem 0 4rem;
@@ -116,10 +90,6 @@ const labels = {
     
     .organizers-team__grid {
       grid-template-columns: 1fr;
-    }
-
-    .organizers-team__grid--institutional {
-      display: grid;
     }
   }
 </style>

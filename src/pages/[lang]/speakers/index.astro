@@ -18,17 +18,20 @@ const locale = Astro.params.lang as Locale;
 const pageMeta = getPageMetadata(locale, 'speakers');
 const content = getRichPageContent(locale, 'speakers');
 
+const institutional = speakers.filter(s => s.type.includes('institutional'));
 const keynotes = speakers.filter(s => s.type.includes('keynote'));
 const organizers = speakers.filter(s => s.type.includes('chair') || s.type.includes('organizer'));
 const contributors = speakers.filter(s => s.type.includes('panelist') && !s.type.includes('chair'));
 
 const t = {
   en: {
+    institutional: 'Institutional Speakers',
     keynotes: 'Keynote Speakers',
     organizers: 'Organizers & Track Chairs',
     contributors: 'Panel Contributors',
   },
   it: {
+    institutional: 'Relatori Istituzionali',
     keynotes: 'Relatori Keynote',
     organizers: 'Organizzatori e Chair delle Track',
     contributors: 'Contributori dei Panel',
@@ -53,6 +56,13 @@ const t = {
     </section>
     
     <div class="container speaker-directory">
+      <section class="directory-section">
+        <h2 class="section-kicker">{t.institutional}</h2>
+        <div class="speaker-grid">
+          {institutional.map(speaker => <SpeakerCard speaker={speaker} locale={locale} />)}
+        </div>
+      </section>
+
       <section class="directory-section">
         <h2 class="section-kicker">{t.keynotes}</h2>
         <div class="speaker-grid">
