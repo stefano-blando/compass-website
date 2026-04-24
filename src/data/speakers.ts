@@ -198,6 +198,23 @@ export const speakers: Speaker[] = [
   },
 
   {
+    slug: 'panelist-tbc',
+    name: 'Panelist (TBC)',
+    affiliation: {
+      en: 'To be confirmed',
+      it: 'In fase di conferma',
+    },
+    roleLabel: {
+      en: 'Panel speaker',
+      it: 'Relatore di panel',
+    },
+    bio: {
+      en: 'Reserved slot for a panel contributor, currently being finalized.',
+      it: 'Slot riservato per un contributore del panel, in fase di definizione.',
+    },
+    type: ['panelist'],
+  },
+  {
     slug: 'simone-tonini',
     name: 'Simone Tonini',
     affiliation: {
@@ -205,15 +222,15 @@ export const speakers: Speaker[] = [
       it: 'Scuola Superiore Sant’Anna',
     },
     roleLabel: {
-      en: 'Panel 1 speaker',
-      it: 'Relatore del Panel 1',
+      en: 'PhD Student',
+      it: 'Dottorando',
     },
     image: '/images/speakers/simone_tonini.png',
     bio: {
-      en: 'Current named speaker in the first panel lineup.',
-      it: 'Relatore attualmente indicato nella scaletta del primo panel.',
+      en: 'Simone Tonini is a PhD student at Scuola Superiore Sant’Anna.',
+      it: 'Simone Tonini è un dottorando presso la Scuola Superiore Sant’Anna.',
     },
-    type: ['panelist'],
+    type: [],
   },
   {
     slug: 'corentin-lobet',

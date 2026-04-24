@@ -617,7 +617,7 @@ describe('site helpers', () => {
     expect(getTalksForSession('panel-1-ai-methods').map((talk) => talk.title.en)).toEqual([
       'Stefano Blando',
       'Biancamaria Bombino',
-      'Simone Tonini',
+      'Panel Contributor (TBC)',
       'Corentin Lobet',
       'Roundtable',
     ]);
@@ -645,7 +645,7 @@ describe('site helpers', () => {
 
   it('keeps the published programme aligned with the current workshop agenda', () => {
     expect(sessions).toHaveLength(12);
-    expect(speakers).toHaveLength(20);
+    expect(speakers).toHaveLength(21);
     expect(talks).toHaveLength(22);
 
     expect(sessions.map((session) => session.slug)).toEqual([
@@ -684,6 +684,7 @@ describe('site helpers', () => {
       'vittoria-caponecchia',
       'elio-grande',
       'francesca-chiaromonte',
+      'panelist-tbc',
     ]));
     expect(speakers.map((speaker) => speaker.slug)).not.toContain('benedetta-tessa');
   });

@@ -58,16 +58,16 @@ export const talks: Talk[] = [
     startsAt: '2026-05-18T11:15:00+02:00',
   },
   {
-    slug: 'panel-1-simone-tonini',
+    slug: 'panel-1-tbc',
     title: {
-      en: 'Simone Tonini',
-      it: 'Simone Tonini',
+      en: 'Panel Contributor (TBC)',
+      it: 'Contributo di Panel (TBC)',
     },
     abstract: {
-      en: 'Current panel contribution listed in the latest workshop agenda.',
-      it: 'Contributo di panel riportato nell agenda di workshop piu recente.',
+      en: 'Slot for a panel presentation, details to be confirmed.',
+      it: 'Slot per una presentazione di panel, dettagli in fase di conferma.',
     },
-    speakerSlugs: ['simone-tonini'],
+    speakerSlugs: ['panelist-tbc'],
     sessionSlug: 'panel-1-ai-methods',
     startsAt: '2026-05-18T11:30:00+02:00',
   },
