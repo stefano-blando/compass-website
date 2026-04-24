@@ -264,12 +264,12 @@ export const richPageContent = {
         {
           eyebrow: 'Mission',
           title: 'Why this workshop exists',
-          body: 'The workshop provides a shared stage for complexity science, AI, markets, policy, and law, ensuring that academic discussion remains truly interdisciplinary from the outset.',
+          body: 'The workshop provides a shared stage for complexity science, AI methods, innovation, and legal-ethical frameworks, ensuring that academic discussion remains truly interdisciplinary from the outset.',
           mediaLabel: 'Mission and Vision',
           mediaType: 'info-panel',
           bullets: [
-            'Rigorous academic focus on emerging technologies.',
-            'Bridging the gap between quantitative methods and institutional frameworks.',
+            'Rigorous academic focus on complexity and innovation.',
+            'Bridging quantitative methods and institutional frameworks.',
           ],
         },
         {
@@ -310,21 +310,23 @@ export const richPageContent = {
     venue: {
       hero: {
         eyebrow: 'Venue',
-        title: 'Academic excellence in the heart of Pisa',
-        intro: 'Scuola Superiore Sant’Anna provides the historic and intellectual backdrop for COMPASS sessions and networking.',
-        mediaLabel: 'Sant’Anna campus',
-        mediaType: 'landscape',
-        image: '/images/venue/SSSA_vista_alto.png',
+        title: 'Aula 3, Scuola Superiore Sant’Anna',
+        intro: 'The workshop is held in the historic heart of Pisa, at the main campus of Scuola Superiore Sant’Anna.',
+        mediaLabel: 'Aula 3 video',
+        mediaType: 'video',
+        image: '/images/venue/aula3_video.mp4',
       },
       sections: [
         {
           eyebrow: 'Location',
-          title: 'Scuola Superiore Sant’Anna',
-          body: 'The workshop is held at the historic campus of Sant’Anna, an institution dedicated to high-level research and education in the heart of Pisa.',
-          mediaLabel: 'Sant’Anna location',
-          mediaType: 'landscape',
-          image: '/images/venue/aula3_a.jpg',
-          bullets: ['Central Pisa location.', 'Aula 3 and nearby networking areas.'],
+          title: 'How to Reach Us',
+          body: 'Aula 3 is located in the main building of Scuola Superiore Sant’Anna (Piazza Martiri della Libertà, 33). The campus is easily reachable on foot from the city center.',
+          mediaLabel: 'Google Maps link',
+          mediaType: 'info-panel',
+          bullets: [
+            'Address: Piazza Martiri della Libertà, 33, Pisa.',
+            'Open in Maps: https://maps.app.goo.gl/PZ2m1S6uUjS3T3T8',
+          ],
         },
         {
           eyebrow: 'Travel',
@@ -476,11 +478,11 @@ export const richPageContent = {
         {
           eyebrow: 'Missione',
           title: 'Perché esiste questo workshop',
-          body: 'Il workshop offre un palcoscenico condiviso per la scienza della complessità, l’AI, i mercati, le policy e il diritto, garantendo che il confronto accademico resti autenticamente interdisciplinare fin dall’inizio.',
+          body: 'Il workshop offre un palcoscenico condiviso per la scienza della complessità, i metodi AI, l’innovazione e i quadri giuridico-etici, garantendo che il confronto resti autenticamente interdisciplinare fin dall’inizio.',
           mediaLabel: 'Visione e Missione',
           mediaType: 'info-panel',
           bullets: [
-            'Focus accademico rigoroso sulle tecnologie emergenti.',
+            'Focus accademico su complessità e innovazione.',
             'Un ponte tra metodi quantitativi e quadri istituzionali.',
           ],
         },
@@ -522,21 +524,23 @@ export const richPageContent = {
     venue: {
       hero: {
         eyebrow: 'Sede',
-        title: 'Eccellenza accademica nel cuore di Pisa',
-        intro: 'La Scuola Superiore Sant’Anna offre la cornice storica e intellettuale per le sessioni e il networking di COMPASS.',
-        mediaLabel: 'Campus Sant’Anna',
-        mediaType: 'landscape',
-        image: '/images/venue/SSSA_vista_alto.png',
+        title: 'Aula 3, Scuola Superiore Sant’Anna',
+        intro: 'Il workshop si terrà nel cuore storico di Pisa, presso il campus principale della Scuola Superiore Sant’Anna.',
+        mediaLabel: 'Video dell’Aula 3',
+        mediaType: 'video',
+        image: '/images/venue/aula3_video.mp4',
       },
       sections: [
         {
           eyebrow: 'Posizione',
-          title: 'Scuola Superiore Sant’Anna',
-          body: 'Il workshop si tiene presso lo storico campus della Sant’Anna, un’istituzione dedicata alla ricerca e alla formazione di alto livello nel centro di Pisa.',
-          mediaLabel: 'Sede Sant’Anna',
-          mediaType: 'landscape',
-          image: '/images/venue/aula3_a.jpg',
-          bullets: ['Posizione nel centro di Pisa.', 'Aula 3 e aree di networking limitrofe.'],
+          title: 'Come raggiungerci',
+          body: 'L’Aula 3 si trova nell’edificio principale della Scuola Superiore Sant’Anna (Piazza Martiri della Libertà, 33). Il campus è facilmente raggiungibile a piedi dal centro città.',
+          mediaLabel: 'Link Google Maps',
+          mediaType: 'info-panel',
+          bullets: [
+            'Indirizzo: Piazza Martiri della Libertà, 33, Pisa.',
+            'Apri in Maps: https://maps.app.goo.gl/PZ2m1S6uUjS3T3T8',
+          ],
         },
         {
           eyebrow: 'Viaggio',

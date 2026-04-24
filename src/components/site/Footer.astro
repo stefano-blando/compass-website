@@ -33,8 +33,15 @@ const identity = getSiteIdentity(locale);
     <div>
       <p class="site-footer__eyebrow">{locale === 'it' ? 'Istituzioni' : 'Institutions'}</p>
       <div class="site-footer__logos">
-        <img src={resolvePublicPath("/images/logos/logo-Sant'anna-cerchio-INGLESE.png")} alt="Scuola Superiore Sant’Anna" class="footer-logo" />
-        <img src={resolvePublicPath("/images/logos/unipi-color.png")} alt="Università di Pisa" class="footer-logo" />
+        <a href="https://www.santannapisa.it" target="_blank" rel="noopener noreferrer">
+          <img src={resolvePublicPath("/images/logos/logo-Sant'anna-cerchio-INGLESE.png")} alt="Scuola Superiore Sant’Anna" class="footer-logo" />
+        </a>
+        <a href="https://www.unipi.it" target="_blank" rel="noopener noreferrer">
+          <img src={resolvePublicPath("/images/logos/unipi-color.png")} alt="Università di Pisa" class="footer-logo" />
+        </a>
+        <a href="https://phd-ai.it" target="_blank" rel="noopener noreferrer">
+          <img src={resolvePublicPath("/images/logos/ai_society_logo.png")} alt="National PhD in AI" class="footer-logo" />
+        </a>
       </div>
       <p>
         <a href={buildLocalizedPath(locale, 'registration')}>

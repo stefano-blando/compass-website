@@ -1,0 +1,148 @@
+---
+import Footer from '../../../components/site/Footer.astro';
+import Header from '../../../components/site/Header.astro';
+import type { Locale } from '../../../data/types';
+import Layout from '../../../layouts/Layout.astro';
+import { getPageMetadata, locales, buildLocalizedPath } from '../../../lib/site';
+import { talks } from '../../../data/talks';
+import { speakers } from '../../../data/speakers';
+
+export function getStaticPaths() {
+  return locales.map((lang) => ({ params: { lang } }));
+}
+
+const locale = Astro.params.lang as Locale;
+const pageMeta = getPageMetadata(locale, 'about'); // Use about meta as baseline
+
+const labels = {
+  en: {
+    title: 'Book of Abstracts',
+    intro: 'Comprehensive collection of research contributions and talk abstracts for COMPASS 2026.',
+    by: 'by',
+  },
+  it: {
+    title: 'Libro degli Abstract',
+    intro: 'Raccolta completa dei contributi di ricerca e degli abstract dei talk per COMPASS 2026.',
+    by: 'di',
+  }
+}[locale];
+
+function getSpeakerNames(slugs: string[]) {
+  return slugs
+    .map(slug => speakers.find(s => s.slug === slug)?.name ?? slug)
+    .join(', ');
+}
+
+// Filter out roundtables or sessions without abstracts if needed, 
+// but here we show all talks with an actual abstract.
+const publishedTalks = talks.filter(t => t.abstract[locale].length > 50);
+---
+
+<Layout locale={locale} title={`${labels.title} | COMPASS`} description={labels.intro}>
+  <Header locale={locale} />
+  <main class="abstracts-page">
+    <div class="container">
+      <header class="abstracts-page__header">
+        <p class="eyebrow">COMPASS 2026</p>
+        <h1>{labels.title}</h1>
+        <p class="intro">{labels.intro}</p>
+      </header>
+
+      <div class="abstracts-grid">
+        {publishedTalks.map((talk) => (
+          <article class="abstract-item" id={talk.slug}>
+            <div class="abstract-item__meta">
+              <span class="abstract-item__time">{talk.startsAt?.split('T')[1].substring(0, 5)}</span>
+              <h2 class="abstract-item__title">{talk.title[locale]}</h2>
+              {talk.speakerSlugs.length > 0 && (
+                <p class="abstract-item__speakers">
+                  {labels.by} <strong>{getSpeakerNames(talk.speakerSlugs)}</strong>
+                </p>
+              )}
+            </div>
+            <div class="abstract-item__content">
+              <p>{talk.abstract[locale]}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </main>
+  <Footer locale={locale} />
+</Layout>
+
+<style>
+  .abstracts-page {
+    padding: 4rem 0 8rem;
+    background: var(--surface-muted);
+  }
+
+  .abstracts-page__header {
+    max-width: 48rem;
+    margin-bottom: 5rem;
+  }
+
+  .abstracts-page__header h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 0.9;
+    margin: 0.5rem 0 1.5rem;
+  }
+
+  .abstracts-pageHeader .intro {
+    font-size: 1.25rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+
+  .abstracts-grid {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .abstract-item {
+    display: grid;
+    grid-template-columns: 24rem 1fr;
+    gap: 3rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(20, 32, 51, 0.1);
+  }
+
+  .abstract-item__time {
+    display: block;
+    font-family: var(--font-mono, monospace);
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+  }
+
+  .abstract-item__title {
+    font-size: 1.75rem;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+
+  .abstract-item__speakers {
+    font-size: 1rem;
+    color: var(--ink-soft);
+  }
+
+  .abstract-item__content {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 48rem;
+  }
+
+  @media (max-width: 960px) {
+    .abstract-item {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .abstract-item__content {
+      font-size: 1.05rem;
+    }
+  }
+</style>

@@ -421,7 +421,7 @@ describe('site helpers', () => {
       mediaType: 'landscape',
     });
     expect(speakers.hero.mediaType).toBe('speaker-network');
-    expect(venue.hero.mediaType).toBe('landscape');
+    expect(venue.hero.mediaType).toBe('video');
     expect(about.sections).toHaveLength(3);
     expect(about.sections[0]).toMatchObject({
       eyebrow: 'Mission',
