@@ -337,7 +337,7 @@ export const richPageContent = {
           mediaType: 'info-panel',
           bullets: [
             'Address: Piazza Martiri della Libertà, 33, Pisa.',
-            'Open in Maps: https://maps.app.goo.gl/PZ2m1S6uUjS3T3T8',
+            'Open in Maps: https://share.google/z3rT0X1zxYOYhAbXr',
           ],
         },
         {
@@ -551,7 +551,7 @@ export const richPageContent = {
           mediaType: 'info-panel',
           bullets: [
             'Indirizzo: Piazza Martiri della Libertà, 33, Pisa.',
-            'Apri in Maps: https://maps.app.goo.gl/PZ2m1S6uUjS3T3T8',
+            'Apri in Maps: https://share.google/z3rT0X1zxYOYhAbXr',
           ],
         },
         {
