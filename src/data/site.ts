@@ -360,21 +360,26 @@ export const richPageContent = {
         {
           eyebrow: 'Attendance',
           title: 'Join the Workshop',
-          body: 'Registration is required for all attendees to ensure proper room capacity and logistics management.',
+          body: 'Registration is required for all attendees to ensure proper room capacity and logistics management. The event is free for students and researchers.',
           mediaLabel: 'Registration form',
           mediaType: 'info-panel',
-          bullets: ['Mandatory for all participants.', 'Complete the form below to secure your place.'],
+          bullets: ['Mandatory for all participants.', 'Secure your place in Aula 3.', 'Coffee breaks and lunch included.'],
         },
         {
           eyebrow: 'Checklist',
           title: 'Before you Register',
-          body: 'Ensure your travel plans align with the workshop date. Once registered, you will receive confirmation and arrival details.',
+          body: 'Ensure your travel plans align with the workshop date. Once registered, you will receive confirmation and arrival details via email.',
           mediaLabel: 'Registration checklist',
           mediaType: 'portrait-grid',
-          bullets: ['Confirm availability for 18 May 2026.', 'Prepare your affiliation details.'],
+          images: [
+            '/images/venue/aula3_a.jpg',
+            '/images/venue/SSSA_entrata_arco.png',
+            '/images/venue/SSSA_parco.png',
+          ],
+          bullets: ['Confirm availability for 18 May 2026.', 'Prepare your affiliation details.', 'Check travel routes to Pisa.'],
         },
       ],
-      ctaLabel: 'Open the registration form',
+      ctaLabel: 'Go to the registration form',
     },
     organizers: {
       hero: {
@@ -567,21 +572,26 @@ export const richPageContent = {
         {
           eyebrow: 'Partecipazione',
           title: 'Iscriviti al Workshop',
-          body: 'La registrazione è necessaria per tutti i partecipanti per garantire la corretta gestione della capienza della sala e della logistica.',
+          body: 'La registrazione è necessaria per tutti i partecipanti per garantire la corretta gestione della capienza della sala e della logistica. L’evento è gratuito per studenti e ricercatori.',
           mediaLabel: 'Modulo di registrazione',
           mediaType: 'info-panel',
-          bullets: ['Obbligatorio per tutti i partecipanti.', 'Compila il modulo sottostante per assicurarti il posto.'],
+          bullets: ['Obbligatorio per tutti i partecipanti.', 'Assicurati un posto in Aula 3.', 'Coffee break e pranzo inclusi.'],
         },
         {
           eyebrow: 'Checklist',
           title: 'Prima di registrarti',
-          body: 'Assicurati che i tuoi piani di viaggio coincidano con la data del workshop. Una volta registrato, riceverai una conferma e i dettagli per l’arrivo.',
+          body: 'Assicurati che i tuoi piani di viaggio coincidano con la data del workshop. Una volta registrato, riceverai una conferma e i dettagli per l’arrivo via email.',
           mediaLabel: 'Checklist di registrazione',
           mediaType: 'portrait-grid',
-          bullets: ['Conferma la disponibilità per il 18 Maggio 2026.', 'Prepara i dettagli della tua affiliazione.'],
+          images: [
+            '/images/venue/aula3_a.jpg',
+            '/images/venue/SSSA_entrata_arco.png',
+            '/images/venue/SSSA_parco.png',
+          ],
+          bullets: ['Conferma la disponibilità per il 18 Maggio 2026.', 'Prepara i dettagli della tua affiliazione.', 'Verifica i percorsi per Pisa.'],
         },
       ],
-      ctaLabel: 'Apri il modulo di registrazione',
+      ctaLabel: 'Vai al modulo di registrazione',
     },
     organizers: {
       hero: {

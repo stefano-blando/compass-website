@@ -60,7 +60,8 @@ describe('site helpers', () => {
     expect(faqPageSource).toContain("getRichPageContent(locale, 'faq')");
 
     expect(aboutPageSource).toContain('<RichContentPage');
-    expect(speakersPageSource).toContain('<RichContentPage');
+    // Speakers page now uses a custom layout with SpeakerNetworkHero and grids
+    expect(speakersPageSource).toContain('<SpeakerNetworkHero');
     expect(venuePageSource).toContain('<RichContentPage');
     expect(registrationPageSource).toContain('<RichContentPage');
     expect(organizersPageSource).toContain('<RichContentPage');
@@ -291,7 +292,7 @@ describe('site helpers', () => {
 
     expect(getPageMetadata('it', 'registration')).toEqual({
       title: 'Registrazione | COMPASS',
-      description: 'Modalita di partecipazione e accesso al modulo esterno di registrazione.',
+      description: 'Modalità di partecipazione e modulo di registrazione per il workshop COMPASS.',
     });
 
     expect(getPageMetadata('en', 'organizers')).toEqual({
@@ -417,9 +418,9 @@ describe('site helpers', () => {
 
     expect(about.hero).toMatchObject({
       eyebrow: 'About COMPASS',
-      mediaType: 'video',
+      mediaType: 'landscape',
     });
-    expect(speakers.hero.mediaType).toBe('portrait-grid');
+    expect(speakers.hero.mediaType).toBe('speaker-network');
     expect(venue.hero.mediaType).toBe('landscape');
     expect(about.sections).toHaveLength(3);
     expect(about.sections[0]).toMatchObject({
@@ -431,23 +432,23 @@ describe('site helpers', () => {
     expect(about.ctaLabel).toBe('Read the programme');
     expect(about.sections[1]?.body).not.toMatch(/will eventually|reserved/i);
     expect(speakers.hero.intro).not.toMatch(/working page/i);
-    expect(speakers.sections[0]?.body).not.toMatch(/will present|reserved/i);
+    // Speakers page doesn't use sections anymore in the rich content sense
     expect(registration.hero.intro).not.toMatch(/will bridge/i);
     expect(organizers.hero.intro).not.toMatch(/will hold/i);
     expect(faq.hero).toMatchObject({
       eyebrow: 'FAQ',
       mediaLabel: 'Panoramica FAQ',
-      mediaType: 'video',
+      mediaType: 'landscape',
     });
     expect(faq.sections).toHaveLength(3);
     expect(faq.sections[1]).toMatchObject({
       eyebrow: 'Logistica',
-      title: 'Sede e Viaggio',
+      title: 'Viaggio e Alloggio',
       mediaType: 'landscape',
     });
     expect(faq.sections[1]?.body).not.toMatch(/riservat/i);
     expect(venue.sections[2]?.body).not.toMatch(/riservat/i);
-    expect(faq.sections[1].bullets).toContain('Sede storica nel centro città.');
+    expect(faq.sections[1].bullets).toContain('Sede: Aula 3, Scuola Superiore Sant’Anna (Campus principale).');
     expect(venue.sections.some((section) => section.mediaType === 'landscape')).toBe(true);
   });
 

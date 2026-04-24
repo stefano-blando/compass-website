@@ -17,7 +17,6 @@ const { locale } = Astro.props;
 const labels = getLabels(locale);
 const { speakers } = getHomepageContent(locale);
 const featuredSpeakers = getHomepageFeaturedSpeakers(locale);
-const portraitLabel = locale === 'it' ? 'Ritratto placeholder' : 'Portrait placeholder';
 const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
 ---
 
