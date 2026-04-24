@@ -74,6 +74,26 @@ export const speakers: Speaker[] = [
     type: ['keynote'],
   },
   {
+    slug: 'federica-casarosa',
+    name: 'Federica Casarosa',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
+    roleLabel: {
+      en: 'Keynote speaker',
+      it: 'Relatrice keynote',
+    },
+    bio: {
+      en: 'Federica Casarosa is a Research Fellow at the Sant’Anna School of Advanced Studies. Her research focuses on the intersection of law and technology, specifically on judicial cooperation, data protection, and consumer rights.',
+      it: 'Federica Casarosa è Ricercatrice presso la Scuola Superiore Sant’Anna. La sua ricerca si concentra sull’intersezione tra diritto e tecnologia, specificamente su cooperazione giudiziaria, protezione dei dati e diritti dei consumatori.',
+    },
+    links: {
+      website: 'https://www.santannapisa.it/it/federica-casarosa',
+    },
+    type: ['keynote'],
+  },
+  {
     slug: 'stefano-blando',
     name: 'Stefano Blando',
     affiliation: {
@@ -81,8 +101,8 @@ export const speakers: Speaker[] = [
       it: 'Scuola Superiore Sant’Anna e Università di Pisa',
     },
     roleLabel: {
-      en: 'Panel 1 chair and speaker',
-      it: 'Chair e relatore del Panel 1',
+      en: 'Panel 3 speaker',
+      it: 'Relatore del Panel 3',
     },
     image: '/images/speakers/stefano_blando.jpg',
     bio: {
@@ -120,8 +140,8 @@ export const speakers: Speaker[] = [
       it: 'Scuola Superiore Sant’Anna e Università di Pisa',
     },
     roleLabel: {
-      en: 'Panel 2 chair and speaker',
-      it: 'Chair e relatore del Panel 2',
+      en: 'Panel 3 chair and speaker',
+      it: 'Chair e relatore del Panel 3',
     },
     image: '/images/speakers/lorenzo_emer.png',
     bio: {
@@ -138,8 +158,8 @@ export const speakers: Speaker[] = [
       it: 'Università di Pisa e ISTI-CNR',
     },
     roleLabel: {
-      en: 'Panel 2 chair and speaker',
-      it: 'Chair e relatrice del Panel 2',
+      en: 'Panel 1 chair and speaker',
+      it: 'Chair e relatrice del Panel 1',
     },
     image: '/images/speakers/alice_musso.png',
     bio: {
@@ -156,8 +176,8 @@ export const speakers: Speaker[] = [
       it: 'Università di Pisa e Scuola Superiore Sant’Anna',
     },
     roleLabel: {
-      en: 'Panel 3 chair and speaker',
-      it: 'Chair e relatrice del Panel 3',
+      en: 'Panel 2 chair and speaker',
+      it: 'Chair e relatrice del Panel 2',
     },
     image: '/images/speakers/roberta_romano.png',
     bio: {
@@ -174,8 +194,8 @@ export const speakers: Speaker[] = [
       it: 'Università di Pisa e CNR-ISTI',
     },
     roleLabel: {
-      en: 'Panel 3 chair and speaker',
-      it: 'Chair e relatrice del Panel 3',
+      en: 'Panel 2 chair and speaker',
+      it: 'Chair e relatrice del Panel 2',
     },
     image: '/images/speakers/roberta_savella.png',
     bio: {
@@ -183,6 +203,149 @@ export const speakers: Speaker[] = [
       it: 'Roberta Savella è una dottoranda del Dottorato Nazionale in IA per la Società.',
     },
     type: ['panelist', 'chair', 'organizer'],
+  },
+  {
+    slug: 'corentin-lobet',
+    name: 'Corentin Lobet',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
+    roleLabel: {
+      en: 'Panel 1 speaker',
+      it: 'Relatore del Panel 1',
+    },
+    image: '/images/speakers/corentin-lobet.png',
+    bio: {
+      en: 'Corentin Lobet is a Ph.D. Student at the Scuola Superiore Sant’Anna.',
+      it: 'Corentin Lobet è un dottorando presso la Scuola Superiore Sant’Anna.',
+    },
+    type: ['panelist'],
+  },
+  {
+    slug: 'riccardo-porcedda',
+    name: 'Riccardo Porcedda',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
+      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
+    },
+    roleLabel: {
+      en: 'Panel 1 speaker',
+      it: 'Relatore del Panel 1',
+    },
+    image: '/images/speakers/riccardo_porcedda.png',
+    bio: {
+      en: 'Riccardo Porcedda is a speaker in the first panel.',
+      it: 'Riccardo Porcedda è un relatore nel primo panel.',
+    },
+    type: ['panelist'],
+  },
+  {
+    slug: 'giuseppe-f-squillace',
+    name: 'Giuseppe Squillace',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies and Université Paris-Saclay',
+      it: 'Scuola Superiore Sant’Anna e Université Paris-Saclay',
+    },
+    roleLabel: {
+      en: 'Panel 3 speaker',
+      it: 'Relatore del Panel 3',
+    },
+    image: '/images/speakers/giuseppe_squillace.png',
+    bio: {
+      en: 'Giuseppe Squillace is a speaker in the third panel.',
+      it: 'Giuseppe Squillace è un relatore nel terzo panel.',
+    },
+    type: ['panelist'],
+  },
+  {
+    slug: 'anna-gallo',
+    name: 'Anna Gallo',
+    affiliation: {
+      en: 'Enrico Fermi Research Center (CREF)',
+      it: 'Centro Ricerche Enrico Fermi (CREF)',
+    },
+    roleLabel: {
+      en: 'Panel 3 speaker',
+      it: 'Relatrice del Panel 3',
+    },
+    image: '/images/speakers/anna_gallo.jpeg',
+    bio: {
+      en: 'Anna Gallo is a postdoctoral researcher at CREF.',
+      it: 'Anna Gallo è una ricercatrice post-doc presso il CREF.',
+    },
+    type: ['panelist'],
+  },
+  {
+    slug: 'vittoria-caponecchia',
+    name: 'Vittoria Caponecchia',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
+    roleLabel: {
+      en: 'Panel 2 speaker',
+      it: 'Relatrice del Panel 2',
+    },
+    image: '/images/speakers/vittoria_caponecchia.jpeg',
+    bio: {
+      en: 'Vittoria Caponecchia is a PhD candidate in Artificial Intelligence for Society.',
+      it: 'Vittoria Caponecchia è una dottoranda in Artificial Intelligence for Society.',
+    },
+    type: ['panelist'],
+  },
+  {
+    slug: 'elio-grande',
+    name: 'Elio Grande',
+    affiliation: {
+      en: 'University of Pisa',
+      it: 'Università di Pisa',
+    },
+    roleLabel: {
+      en: 'Panel 2 speaker',
+      it: 'Relatore del Panel 2',
+    },
+    image: '/images/speakers/elio_grande.png',
+    bio: {
+      en: 'Elio Grande is an AI ethicist and PhD Candidate.',
+      it: 'Elio Grande è un eticista dell’IA e dottorando.',
+    },
+    type: ['panelist'],
+  },
+  {
+    slug: 'pagopa-speaker',
+    name: 'Senior Legal AI Expert (TBC)',
+    affiliation: {
+      en: 'To be confirmed',
+      it: 'In fase di conferma',
+    },
+    roleLabel: {
+      en: 'Keynote speaker',
+      it: 'Relatore keynote',
+    },
+    bio: {
+      en: 'Expert keynote contribution (TBC).',
+      it: 'Contributo keynote esperto (TBC).',
+    },
+    type: ['keynote'],
+  },
+  {
+    slug: 'francesca-chiaromonte',
+    name: 'Francesca Chiaromonte',
+    affiliation: {
+      en: 'Sant’Anna School of Advanced Studies',
+      it: 'Scuola Superiore Sant’Anna',
+    },
+    roleLabel: {
+      en: 'Professor of Statistics',
+      it: 'Professoressa di Statistica',
+    },
+    image: '/images/institutional/francesca-chiaromonte.png',
+    bio: {
+      en: 'Francesca Chiaromonte is a Professor of Statistics at the Sant’Anna School of Advanced Studies.',
+      it: 'Francesca Chiaromonte è professoressa di Statistica presso la Scuola Superiore Sant’Anna.',
+    },
+    type: ['institutional'],
   },
   {
     slug: 'panelist-tbc',
@@ -218,151 +381,5 @@ export const speakers: Speaker[] = [
       it: 'Simone Tonini è un dottorando presso la Scuola Superiore Sant’Anna.',
     },
     type: [],
-  },
-  {
-    slug: 'corentin-lobet',
-    name: 'Corentin Lobet',
-    affiliation: {
-      en: 'Sant’Anna School of Advanced Studies',
-      it: 'Scuola Superiore Sant’Anna',
-    },
-    roleLabel: {
-      en: 'Panel 1 speaker',
-      it: 'Relatore del Panel 1',
-    },
-    image: '/images/speakers/corentin-lobet.png',
-    bio: {
-      en: 'Corentin Lobet is a Ph.D. Student at the Scuola Superiore Sant’Anna.',
-      it: 'Corentin Lobet è un dottorando presso la Scuola Superiore Sant’Anna.',
-    },
-    type: ['panelist'],
-  },
-  {
-    slug: 'riccardo-porcedda',
-    name: 'Riccardo Porcedda',
-    affiliation: {
-      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
-      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
-    },
-    roleLabel: {
-      en: 'Panel 2 speaker',
-      it: 'Relatore del Panel 2',
-    },
-    image: '/images/speakers/riccardo_porcedda.png',
-    bio: {
-      en: 'Riccardo Porcedda is a speaker in the second panel.',
-      it: 'Riccardo Porcedda è un relatore nel secondo panel.',
-    },
-    type: ['panelist'],
-  },
-  {
-    slug: 'giuseppe-f-squillace',
-    name: 'Giuseppe Squillace',
-    affiliation: {
-      en: 'Sant’Anna School of Advanced Studies and Université Paris-Saclay',
-      it: 'Scuola Superiore Sant’Anna e Université Paris-Saclay',
-    },
-    roleLabel: {
-      en: 'Panel 2 speaker',
-      it: 'Relatore del Panel 2',
-    },
-    image: '/images/speakers/giuseppe_squillace.png',
-    bio: {
-      en: 'Giuseppe Squillace is a speaker in the second panel.',
-      it: 'Giuseppe Squillace è un relatore nel secondo panel.',
-    },
-    type: ['panelist'],
-  },
-  {
-    slug: 'anna-gallo',
-    name: 'Anna Gallo',
-    affiliation: {
-      en: 'Enrico Fermi Research Center (CREF)',
-      it: 'Centro Ricerche Enrico Fermi (CREF)',
-    },
-    roleLabel: {
-      en: 'Panel 2 speaker',
-      it: 'Relatrice del Panel 2',
-    },
-    image: '/images/speakers/anna_gallo.jpeg',
-    bio: {
-      en: 'Anna Gallo is a postdoctoral researcher at CREF.',
-      it: 'Anna Gallo è una ricercatrice post-doc presso il CREF.',
-    },
-    type: ['panelist'],
-  },
-  {
-    slug: 'vittoria-caponecchia',
-    name: 'Vittoria Caponecchia',
-    affiliation: {
-      en: 'Sant’Anna School of Advanced Studies',
-      it: 'Scuola Superiore Sant’Anna',
-    },
-    roleLabel: {
-      en: 'Panel 3 speaker',
-      it: 'Relatrice del Panel 3',
-    },
-    image: '/images/speakers/vittoria_caponecchia.jpeg',
-    bio: {
-      en: 'Vittoria Caponecchia is a PhD candidate in Artificial Intelligence for Society.',
-      it: 'Vittoria Caponecchia è una dottoranda in Artificial Intelligence for Society.',
-    },
-    type: ['panelist'],
-  },
-  {
-    slug: 'elio-grande',
-    name: 'Elio Grande',
-    affiliation: {
-      en: 'University of Pisa',
-      it: 'Università di Pisa',
-    },
-    roleLabel: {
-      en: 'Panel 3 speaker',
-      it: 'Relatore del Panel 3',
-    },
-    image: '/images/speakers/elio_grande.png',
-    bio: {
-      en: 'Elio Grande is an AI ethicist and PhD Candidate.',
-      it: 'Elio Grande è un eticista dell’IA e dottorando.',
-    },
-    type: ['panelist'],
-  },
-  {
-    slug: 'federica-casarosa',
-    name: 'Federica Casarosa',
-    affiliation: {
-      en: 'Sant’Anna School of Advanced Studies',
-      it: 'Scuola Superiore Sant’Anna',
-    },
-    roleLabel: {
-      en: 'Keynote speaker',
-      it: 'Relatrice keynote',
-    },
-    bio: {
-      en: 'Federica Casarosa is a Research Fellow at the Sant’Anna School of Advanced Studies. Her research focuses on the intersection of law and technology, specifically on judicial cooperation, data protection, and consumer rights.',
-      it: 'Federica Casarosa è Ricercatrice presso la Scuola Superiore Sant’Anna. La sua ricerca si concentra sull’intersezione tra diritto e tecnologia, specificamente su cooperazione giudiziaria, protezione dei dati e diritti dei consumatori.',
-    },
-    links: {
-      website: 'https://www.santannapisa.it/it/federica-casarosa',
-    },
-    type: ['keynote'],
-  },
-  {
-    slug: 'francesca-chiaromonte',
-    name: 'Francesca Chiaromonte',
-    affiliation: {
-      en: 'Sant’Anna School of Advanced Studies',
-      it: 'Scuola Superiore Sant’Anna',
-    },
-    roleLabel: {
-      en: 'Professor of Statistics',
-      it: 'Professoressa di Statistica',
-    },
-    image: '/images/institutional/francesca-chiaromonte.png',
-    bio: {
-      en: 'Francesca Chiaromonte is a Professor of Statistics at the Sant’Anna School of Advanced Studies.',
-      it: 'Francesca Chiaromonte è professoressa di Statistica presso la Scuola Superiore Sant’Anna.',
-    },
-    type: ['institutional'],
   },
 ];

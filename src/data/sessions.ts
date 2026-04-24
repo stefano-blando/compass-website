@@ -53,13 +53,28 @@ export const sessions: Session[] = [
       it: 'Panel 1: AI per la modellazione e la previsione',
     },
     description: {
-      en: 'Understanding the foundations and applications of AI in the predictive field. This session bridges algorithmic innovation and socio-economic impact.',
-      it: 'Comprendere i fondamenti e le applicazioni dell’AI in ambito predittivo. Questa sessione unisce innovazione algoritmica e impatto socio-economico.',
+      en: 'Foundations and applications of AI in predictive modeling, spanning from statistical methods to socio-economic forecasting.',
+      it: 'Fondamenti e applicazioni dell’AI nella modellazione predittiva, dai metodi statistici alle previsioni socio-economiche.',
     },
     type: 'panel',
     startsAt: '2026-05-18T11:00:00+02:00',
     endsAt: '2026-05-18T12:00:00+02:00',
-    chairSlugs: ['stefano-blando', 'biancamaria-bombino'],
+    chairSlugs: ['alice-musso', 'biancamaria-bombino'],
+  },
+  {
+    slug: 'keynote-2',
+    title: {
+      en: 'Keynote 2',
+      it: 'Keynote 2',
+    },
+    description: {
+      en: 'Keynote lecture by Prabhani Kuruppumullage Don (Pennsylvania State University).',
+      it: 'Lezione keynote di Prabhani Kuruppumullage Don (Pennsylvania State University).',
+    },
+    type: 'keynote',
+    startsAt: '2026-05-18T12:00:00+02:00',
+    endsAt: '2026-05-18T12:45:00+02:00',
+    chairSlugs: [],
   },
   {
     slug: 'networking-lunch',
@@ -77,14 +92,14 @@ export const sessions: Session[] = [
     chairSlugs: [],
   },
   {
-    slug: 'keynote-2',
+    slug: 'keynote-legal',
     title: {
-      en: 'Keynote 2',
-      it: 'Keynote 2',
+      en: 'Keynote 3',
+      it: 'Keynote 3',
     },
     description: {
-      en: 'Keynote lecture by Prabhani Kuruppumullage Don (Pennsylvania State University).',
-      it: 'Lezione keynote di Prabhani Kuruppumullage Don (Pennsylvania State University).',
+      en: 'Keynote lecture by Federica Casarosa (Scuola Superiore Sant’Anna).',
+      it: 'Lezione keynote di Federica Casarosa (Scuola Superiore Sant’Anna).',
     },
     type: 'keynote',
     startsAt: '2026-05-18T13:45:00+02:00',
@@ -92,10 +107,10 @@ export const sessions: Session[] = [
     chairSlugs: [],
   },
   {
-    slug: 'panel-3-legal-ethics',
+    slug: 'panel-2-legal-ethics',
     title: {
-      en: 'Panel 3: AI for Legal & Legal for AI Ethics',
-      it: 'Panel 3: AI for Legal e Legal for AI Ethics',
+      en: 'Panel 2: AI for Legal & Legal for AI Ethics',
+      it: 'Panel 2: AI for Legal e Legal for AI Ethics',
     },
     description: {
       en: 'Exploring the relationship between AI and the legal sector: predictive justice and normative frameworks.',
@@ -122,19 +137,19 @@ export const sessions: Session[] = [
     chairSlugs: [],
   },
   {
-    slug: 'panel-2-networks-nlp',
+    slug: 'panel-3-complexity',
     title: {
-      en: 'Panel 2: Complexity, Innovation, and the Digital World',
-      it: 'Panel 2: Complessità, innovazione e mondo digitale',
+      en: 'Panel 3: AI for Complexity and Economic Systems',
+      it: 'Panel 3: AI per la complessità e i sistemi economici',
     },
     description: {
-      en: 'Analyzing social and innovation networks combined with NLP to extract value from complex systems.',
-      it: 'Analisi delle reti sociali e dell’innovazione unita alla NLP per estrarre valore da sistemi complessi.',
+      en: 'Analyzing social and innovation networks combined with AI to extract value from complex systems.',
+      it: 'Analisi delle reti sociali e dell’innovazione unita all’AI per estrarre valore da sistemi complessi.',
     },
     type: 'panel',
     startsAt: '2026-05-18T16:00:00+02:00',
-    endsAt: '2026-05-18T17:30:00+02:00',
-    chairSlugs: ['lorenzo-emer', 'alice-musso'],
+    endsAt: '2026-05-18T17:15:00+02:00',
+    chairSlugs: ['lorenzo-emer', 'stefano-blando'],
   },
   {
     slug: 'rector-remarks',
@@ -143,8 +158,8 @@ export const sessions: Session[] = [
       it: 'Saluti del Rettore',
     },
     description: {
-      en: 'Institutional closing address by the Rector of Scuola Superiore Sant’Anna.',
-      it: 'Saluti istituzionali conclusivi del Rettore della Scuola Superiore Sant’Anna.',
+      en: 'Institutional closing address by Nicola Vitiello, Rector of Scuola Superiore Sant’Anna.',
+      it: 'Saluti istituzionali conclusivi di Nicola Vitiello, Rettore della Scuola Superiore Sant’Anna.',
     },
     type: 'opening',
     startsAt: '2026-05-18T17:30:00+02:00',
@@ -152,14 +167,14 @@ export const sessions: Session[] = [
     chairSlugs: [],
   },
   {
-    slug: 'keynote-legal',
+    slug: 'pagopa-session',
     title: {
-      en: 'Keynote 3',
-      it: 'Keynote 3',
+      en: 'Keynote: Legal AI & Regulation (TBC)',
+      it: 'Keynote: Legal AI e Regolazione (TBC)',
     },
     description: {
-      en: 'Keynote lecture by Federica Casarosa (Scuola Superiore Sant’Anna).',
-      it: 'Lezione keynote di Federica Casarosa (Scuola Superiore Sant’Anna).',
+      en: 'Expert perspective on AI and digital public services.',
+      it: 'Prospettiva esperta su AI e servizi pubblici digitali.',
     },
     type: 'keynote',
     startsAt: '2026-05-18T17:45:00+02:00',
@@ -173,8 +188,8 @@ export const sessions: Session[] = [
       it: 'Conclusioni',
     },
     description: {
-      en: 'Final workshop takeaways and future perspectives.',
-      it: 'Riflessioni conclusive del workshop e prospettive future.',
+      en: 'Final workshop takeaways by Francesca Chiaromonte.',
+      it: 'Riflessioni conclusive del workshop a cura di Francesca Chiaromonte.',
     },
     type: 'closing',
     startsAt: '2026-05-18T18:15:00+02:00',

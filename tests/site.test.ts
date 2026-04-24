@@ -484,35 +484,28 @@ describe('site helpers', () => {
       'keynote-1',
       'panel-1-ai-methods',
       'keynote-2',
-      'panel-3-legal-ethics',
-      'panel-2-networks-nlp',
       'keynote-legal',
+      'panel-2-legal-ethics',
+      'panel-3-complexity',
       'social-dinner',
     ]);
     expect(english[2]).toMatchObject({
       title: 'Panel 1: AI for Modeling and Forecasting',
       chairLabel: 'Session chairs',
-      chairNames: ['Stefano Blando', 'Biancamaria Bombino'],
+      chairNames: ['Alice Musso', 'Biancamaria Bombino'],
     });
     expect(italian[2]).toMatchObject({
       title: 'Panel 1: AI per la modellazione e la previsione',
     });
-    expect(italian[4]).toMatchObject({
-      chairLabel: 'Coordinamento',
-      title: 'Panel 3: AI for Legal e Legal for AI Ethics',
-    });
     expect(italian[5]).toMatchObject({
       chairLabel: 'Coordinamento',
-      title: 'Panel 2: Complessità, innovazione e mondo digitale',
+      title: 'Panel 2: AI for Legal e Legal for AI Ethics',
+    });
+    expect(italian[6]).toMatchObject({
+      chairLabel: 'Coordinamento',
+      title: 'Panel 3: AI per la complessità e i sistemi economici',
     });
     expect(english[4]).toMatchObject({
-      title: 'Panel 3: AI for Legal & Legal for AI Ethics',
-    });
-    expect(english[5]).toMatchObject({
-      title: 'Panel 2: Complexity, Innovation, and the Digital World',
-      featuredTalkTitle: 'The hidden structure of innovation networks',
-    });
-    expect(english[6]).toMatchObject({
       title: 'Keynote 3',
     });
   });
@@ -580,17 +573,22 @@ describe('site helpers', () => {
         endsAt: '2026-05-18T12:00:00+02:00',
       },
       {
+        slug: 'keynote-2',
+        startsAt: '2026-05-18T12:00:00+02:00',
+        endsAt: '2026-05-18T12:45:00+02:00',
+      },
+      {
         slug: 'networking-lunch',
         startsAt: '2026-05-18T12:45:00+02:00',
         endsAt: '2026-05-18T13:45:00+02:00',
       },
       {
-        slug: 'keynote-2',
+        slug: 'keynote-legal',
         startsAt: '2026-05-18T13:45:00+02:00',
         endsAt: '2026-05-18T14:30:00+02:00',
       },
       {
-        slug: 'panel-3-legal-ethics',
+        slug: 'panel-2-legal-ethics',
         startsAt: '2026-05-18T14:30:00+02:00',
         endsAt: '2026-05-18T15:30:00+02:00',
       },
@@ -600,9 +598,9 @@ describe('site helpers', () => {
         endsAt: '2026-05-18T16:00:00+02:00',
       },
       {
-        slug: 'panel-2-networks-nlp',
+        slug: 'panel-3-complexity',
         startsAt: '2026-05-18T16:00:00+02:00',
-        endsAt: '2026-05-18T17:30:00+02:00',
+        endsAt: '2026-05-18T17:15:00+02:00',
       },
       {
         slug: 'rector-remarks',
@@ -610,7 +608,7 @@ describe('site helpers', () => {
         endsAt: '2026-05-18T17:45:00+02:00',
       },
       {
-        slug: 'keynote-legal',
+        slug: 'pagopa-session',
         startsAt: '2026-05-18T17:45:00+02:00',
         endsAt: '2026-05-18T18:15:00+02:00',
       },
@@ -629,25 +627,24 @@ describe('site helpers', () => {
 
   it('returns the current lineups for the three thematic panels', () => {
     expect(getTalksForSession('panel-1-ai-methods').map((talk) => talk.title.en)).toEqual([
-      'Stefano Blando',
+      'Alice Musso',
       'Biancamaria Bombino',
-      'Panel Contributor (TBC)',
+      'Riccardo Porcedda',
       'Corentin Lobet',
       'Roundtable',
     ]);
-    expect(getTalksForSession('panel-2-networks-nlp').map((talk) => talk.title.en)).toEqual([
-      'The hidden structure of innovation networks',
-      'Alice Musso',
-      'Giuseppe Squillace (online)',
-      'Riccardo Porcedda',
-      'Anna Gallo',
-      'Roundtable',
-    ]);
-    expect(getTalksForSession('panel-3-legal-ethics').map((talk) => talk.title.en)).toEqual([
+    expect(getTalksForSession('panel-2-legal-ethics').map((talk) => talk.title.en)).toEqual([
       'From Risk to Protection: Vulnerability as a Benchmark for European AI Governance',
       'Regulation vs Innovation? Unpacking the dichotomy to foster responsible research',
       'Significant Harm in EU Law: When Voice-Based Virtual Assistants Are Prohibited',
       'Acting without action: Ethics and responsibility in AI systems (online)',
+      'Roundtable',
+    ]);
+    expect(getTalksForSession('panel-3-complexity').map((talk) => talk.title.en)).toEqual([
+      'The hidden structure of innovation networks',
+      'Stefano Blando',
+      'Giuseppe Squillace (online)',
+      'Anna Gallo',
       'Roundtable',
     ]);
   });
@@ -658,8 +655,8 @@ describe('site helpers', () => {
   });
 
   it('keeps the published programme aligned with the current workshop agenda', () => {
-    expect(sessions).toHaveLength(13);
-    expect(speakers).toHaveLength(20);
+    expect(sessions).toHaveLength(14);
+    expect(speakers).toHaveLength(21);
     expect(talks).toHaveLength(22);
 
     expect(sessions.map((session) => session.slug)).toEqual([
@@ -667,13 +664,14 @@ describe('site helpers', () => {
       'keynote-1',
       'coffee-break-1',
       'panel-1-ai-methods',
-      'networking-lunch',
       'keynote-2',
-      'panel-3-legal-ethics',
-      'coffee-break-2',
-      'panel-2-networks-nlp',
-      'rector-remarks',
+      'networking-lunch',
       'keynote-legal',
+      'panel-2-legal-ethics',
+      'coffee-break-2',
+      'panel-3-complexity',
+      'rector-remarks',
+      'pagopa-session',
       'closing-remarks',
       'social-dinner',
     ]);
