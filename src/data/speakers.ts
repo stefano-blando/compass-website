@@ -9,13 +9,13 @@ export const speakers: Speaker[] = [
       it: 'Scuola Superiore Sant’Anna',
     },
     roleLabel: {
-      en: 'Associate Professor',
-      it: 'Professore Associato',
+      en: 'Professor of Computer Science',
+      it: 'Professore di Informatica',
     },
-    image: '/images/speakers/andrea_vandin.jpg',
+    image: '/images/institutional/andrea-vandin.png',
     bio: {
-      en: 'Andrea Vandin is an Associate Professor of Computer Science at the Sant’Anna School of Advanced Studies. His research focuses on formal methods and software engineering for complex systems.',
-      it: 'Andrea Vandin è Professore Associato di Informatica presso la Scuola Superiore Sant’Anna. La sua ricerca si concentra sui metodi formali e l’ingegneria del software per sistemi complessi.',
+      en: 'Andrea Vandin is a Professor of Computer Science at the Sant’Anna School of Advanced Studies. His research focuses on formal methods and software engineering for complex systems.',
+      it: 'Andrea Vandin è Professore di Informatica presso la Scuola Superiore Sant’Anna. La sua ricerca si concentra sui metodi formali e l’ingegneria del software per sistemi complessi.',
     },
     type: ['institutional'],
   },
@@ -30,7 +30,7 @@ export const speakers: Speaker[] = [
       en: 'Rector',
       it: 'Rettore',
     },
-    image: '/images/speakers/nicola_vitiello.jpg',
+    image: '/images/institutional/nicola-vitiello.png',
     bio: {
       en: 'Nicola Vitiello is the Rector of the Scuola Superiore Sant’Anna and a Professor of Bioengineering.',
       it: 'Nicola Vitiello è il Rettore della Scuola Superiore Sant’Anna e Professore di Bioingegneria.',
@@ -352,7 +352,7 @@ export const speakers: Speaker[] = [
       en: 'Professor of Statistics',
       it: 'Professoressa di Statistica',
     },
-    image: '/images/speakers/francesca_chiaromonte.jpg',
+    image: '/images/institutional/francesca-chiaromonte.png',
     bio: {
       en: 'Francesca Chiaromonte is a Professor of Statistics at the Sant’Anna School of Advanced Studies.',
       it: 'Francesca Chiaromonte è professoressa di Statistica presso la Scuola Superiore Sant’Anna.',
