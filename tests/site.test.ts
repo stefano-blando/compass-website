@@ -512,7 +512,7 @@ describe('site helpers', () => {
       featuredTalkTitle: 'The hidden structure of innovation networks',
     });
     expect(english[6]).toMatchObject({
-      title: 'PagoPA Special Session',
+      title: 'Institutional Keynote (TBC)',
     });
   });
 

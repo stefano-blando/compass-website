@@ -359,18 +359,18 @@ export const speakers: Speaker[] = [
   },
   {
     slug: 'pagopa-speaker',
-    name: 'PagoPA',
+    name: 'Institutional Speaker (TBC)',
     affiliation: {
-      en: 'PagoPA S.p.A.',
-      it: 'PagoPA S.p.A.',
+      en: 'Institutional Partner',
+      it: 'Partner Istituzionale',
     },
     roleLabel: {
       en: 'Keynote speaker',
       it: 'Relatore keynote',
     },
     bio: {
-      en: 'Institutional contribution from PagoPA S.p.A. on AI and digital public services.',
-      it: 'Contributo istituzionale di PagoPA S.p.A. su AI e servizi pubblici digitali.',
+      en: 'Institutional keynote contribution (TBC) on AI and digital public services.',
+      it: 'Contributo keynote istituzionale (TBC) su AI e servizi pubblici digitali.',
     },
     type: ['keynote'],
   },

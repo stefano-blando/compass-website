@@ -284,12 +284,12 @@ export const talks: Talk[] = [
   {
     slug: 'pagopa-contribution',
     title: {
-      en: 'PagoPA: AI in Public Services',
-      it: 'PagoPA: l’AI nei servizi pubblici',
+      en: 'Institutional Keynote (TBC)',
+      it: 'Keynote istituzionale (TBC)',
     },
     abstract: {
-      en: 'Contribution from PagoPA on the impact of AI in digital public services.',
-      it: 'Contributo di PagoPA sull’impatto dell’AI nei servizi pubblici digitali.',
+      en: 'Institutional contribution on the impact of AI in digital public services (TBC).',
+      it: 'Contributo istituzionale sull’impatto dell’AI nei servizi pubblici digitali (TBC).',
     },
     speakerSlugs: ['pagopa-speaker'],
     sessionSlug: 'pagopa-session',

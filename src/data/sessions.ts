@@ -154,12 +154,12 @@ export const sessions: Session[] = [
   {
     slug: 'pagopa-session',
     title: {
-      en: 'PagoPA Special Session',
-      it: 'Sessione Speciale PagoPA',
+      en: 'Institutional Keynote (TBC)',
+      it: 'Keynote istituzionale (TBC)',
     },
     description: {
-      en: 'Industry perspective and digital public services contribution from PagoPA.',
-      it: 'Prospettiva industriale e servizi pubblici digitali a cura di PagoPA.',
+      en: 'Special session featuring institutional perspectives on AI and digital public services.',
+      it: 'Sessione speciale con prospettive istituzionali su AI e servizi pubblici digitali.',
     },
     type: 'keynote',
     startsAt: '2026-05-18T17:45:00+02:00',
