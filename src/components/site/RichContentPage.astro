@@ -156,6 +156,14 @@ function getMediaBadge(section: RichPageSection, index: number) {
                     </>
                   )}
                 </div>
+              ) : section.mediaType === 'logo-grid' ? (
+                <div class="rich-page__logo-grid" aria-hidden="true">
+                  {section.images?.map((img) => (
+                    <div class="rich-page__logo-item">
+                      <img src={resolvePublicPath(img)} alt="" class="rich-page__logo-img" />
+                    </div>
+                  ))}
+                </div>
               ) : section.mediaType === 'video' ? (
                 <div class="rich-page__video-shell" aria-hidden="true">
                   <span class="rich-page__video-play"></span>
@@ -473,13 +481,46 @@ function getMediaBadge(section: RichPageSection, index: number) {
 
   .rich-page__video-shell,
   .rich-page__landscape-shell,
-  .rich-page__info-panel {
+  .rich-page__info-panel,
+  .rich-page__logo-grid {
     position: relative;
     min-height: 12.5rem;
     border-radius: 28px;
     border: 1px solid rgba(255, 255, 255, 0.14);
     background: rgba(255, 255, 255, 0.06);
     overflow: hidden;
+  }
+
+  .rich-page__logo-grid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+  }
+
+  .rich-page__logo-item {
+    flex: 1 1 120px;
+    max-width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .rich-page__logo-img {
+    max-width: 100%;
+    max-height: 80px;
+    object-fit: contain;
+    filter: grayscale(1) contrast(1.2);
+    opacity: 0.8;
+    transition: filter 220ms ease, opacity 220ms ease;
+  }
+
+  .rich-page__logo-item:hover .rich-page__logo-img {
+    filter: none;
+    opacity: 1;
   }
 
   .rich-page__video-shell {

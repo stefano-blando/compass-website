@@ -92,8 +92,8 @@ export const speakers: Speaker[] = [
     slug: 'stefano-blando',
     name: 'Stefano Blando',
     affiliation: {
-      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
-      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
+      en: 'University of Pisa and Sant’Anna School of Advanced Studies',
+      it: 'Università di Pisa e Scuola Superiore Sant’Anna',
     },
     roleLabel: {
       en: 'Panel 1 chair and speaker',
@@ -110,13 +110,14 @@ export const speakers: Speaker[] = [
     slug: 'biancamaria-bombino',
     name: 'Biancamaria Bombino',
     affiliation: {
-      en: 'IIT-CNR · PhD-AI.it, Pillar Society',
-      it: 'IIT-CNR · PhD-AI.it, Pillar Society',
+      en: 'University of Pisa and IIT-CNR · PhD-AI.it, Pillar Society',
+      it: 'Università di Pisa e IIT-CNR · PhD-AI.it, Pillar Society',
     },
     roleLabel: {
       en: 'Panel 1 chair and speaker',
       it: 'Chair e relatrice del Panel 1',
     },
+    image: '/images/speakers/biancamaria-bombino.jpg',
     bio: {
       en: 'Biancamaria Bombino is a PhD candidate at IIT-CNR. She earned her BSc in Computer Science and MSc in Data Science and Business Informatics from the University of Pisa. Her research investigates LLM-based analysis of signed networks and semantic modeling of social interactions, focusing on leveraging Large Language Models to improve the inference and modeling of positive and negative ties in online social networks.',
       it: 'Biancamaria Bombino è una dottoranda presso l\'IIT-CNR. Ha conseguito la Laurea Triennale in Informatica e la Laurea Magistrale in Data Science and Business Informatics presso l\'Università di Pisa. La sua ricerca si occupa dell\'analisi di reti segnate tramite LLM e della modellazione semantica delle interazioni sociali, con l\'obiettivo di utilizzare i Large Language Models per migliorare l\'inferenza e la modellazione dei legami positivi e negativi nelle reti sociali online.',
@@ -127,8 +128,8 @@ export const speakers: Speaker[] = [
     slug: 'lorenzo-emer',
     name: 'Lorenzo Emer',
     affiliation: {
-      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
-      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
+      en: 'University of Pisa and Sant’Anna School of Advanced Studies',
+      it: 'Università di Pisa e Scuola Superiore Sant’Anna',
     },
     roleLabel: {
       en: 'Panel 2 chair and speaker',
@@ -163,8 +164,8 @@ export const speakers: Speaker[] = [
     slug: 'roberta-romano',
     name: 'Roberta Romano',
     affiliation: {
-      en: 'Sant’Anna School of Advanced Studies',
-      it: 'Scuola Superiore Sant’Anna',
+      en: 'University of Pisa and Sant’Anna School of Advanced Studies',
+      it: 'Università di Pisa e Scuola Superiore Sant’Anna',
     },
     roleLabel: {
       en: 'Panel 3 chair and speaker',
@@ -253,8 +254,8 @@ export const speakers: Speaker[] = [
     slug: 'riccardo-porcedda',
     name: 'Riccardo Porcedda',
     affiliation: {
-      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
-      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
+      en: 'University of Pisa and Sant’Anna School of Advanced Studies',
+      it: 'Università di Pisa e Scuola Superiore Sant’Anna',
     },
     roleLabel: {
       en: 'Panel 2 speaker',

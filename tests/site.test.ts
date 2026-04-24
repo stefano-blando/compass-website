@@ -615,7 +615,7 @@ describe('site helpers', () => {
   it('returns the current lineups for the three thematic panels', () => {
     expect(getTalksForSession('panel-1-ai-methods').map((talk) => talk.title.en)).toEqual([
       'Stefano Blando',
-      'Bianca Bombino',
+      'Biancamaria Bombino',
       'Simone Tonini',
       'Corentin Lobet',
       'Roundtable',

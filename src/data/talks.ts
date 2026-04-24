@@ -46,8 +46,8 @@ export const talks: Talk[] = [
   {
     slug: 'panel-1-biancamaria-bombino',
     title: {
-      en: 'Bianca Bombino',
-      it: 'Bianca Bombino',
+      en: 'Biancamaria Bombino',
+      it: 'Biancamaria Bombino',
     },
     abstract: {
       en: 'Current panel contribution listed in the latest workshop agenda.',

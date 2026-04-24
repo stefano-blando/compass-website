@@ -228,7 +228,7 @@ export type RichPageSection = {
   title: string;
   body: string;
   mediaLabel: string;
-  mediaType: 'portrait-grid' | 'landscape' | 'video' | 'info-panel';
+  mediaType: 'portrait-grid' | 'landscape' | 'video' | 'info-panel' | 'logo-grid';
   image?: string;
   images?: string[];
   bullets?: string[];
@@ -380,27 +380,44 @@ export const richPageContent = {
       hero: {
         eyebrow: 'Organizers',
         title: 'Academic and operational coordination',
-        intro: 'COMPASS is organized by the six panel chairs, all doctoral researchers from the National PhD Program in AI, with the support of our partner institutions.',
+        intro: 'COMPASS is organized by the six doctoral panel chairs from the National PhD Program in AI, with the support of our partner institutions and faculty supervisors.',
         mediaLabel: 'Organizing committee',
         mediaType: 'landscape',
         image: '/images/venue/SSSA_parco_vista_colonne.png',
       },
       sections: [
         {
-          eyebrow: 'Committee',
-          title: 'The Organizing Team',
-          body: 'The scientific program and logistics are coordinated by the six thematic panel chairs, representing the interdisciplinary breadth of the National PhD Program in Artificial Intelligence.',
+          eyebrow: 'Scientific Committee',
+          title: 'Doctoral Panel Chairs',
+          body: 'The scientific program and thematic panels are coordinated by six doctoral researchers representing the interdisciplinary breadth of the National PhD Program in Artificial Intelligence (PhD-AI.it).',
           mediaLabel: 'Committee overview',
           mediaType: 'portrait-grid',
+          images: [
+            '/images/speakers/stefano_blando.jpg',
+            '/images/speakers/lorenzo_emer.png',
+            '/images/speakers/alice_musso.png',
+            '/images/speakers/roberta_romano.png',
+            '/images/speakers/roberta_savella.png',
+            '/images/speakers/biancamaria-bombino.jpg',
+          ],
           bullets: ['Six Doctoral Panel Chairs.', 'National PhD Program in AI (PhD-AI.it).'],
         },
         {
-          eyebrow: 'Acknowledgements',
+          eyebrow: 'Partners',
           title: 'Supporting Institutions',
           body: 'This event is made possible by a scientific initiative grant from the University of Pisa, the hosting and support of Scuola Superiore Sant’Anna, and the coordination of the National PhD Program in AI.',
           mediaLabel: 'Supporting institutions',
-          mediaType: 'landscape',
-          bullets: ['University of Pisa (Scientific Grant).', 'Scuola Superiore Sant’Anna (Venue & Support).', 'National PhD Program in AI (Coordination).'],
+          mediaType: 'logo-grid',
+          images: [
+            '/images/logos/logo-Sant\'anna-cerchio-INGLESE.png',
+            '/images/logos/unipi-color.png',
+            '/images/logos/ai_society_logo.png',
+          ],
+          bullets: [
+            'University of Pisa (Scientific Grant).',
+            'Scuola Superiore Sant’Anna (Venue & Support).',
+            'National PhD Program in AI (Coordination).',
+          ],
         },
         {
           eyebrow: 'Contact',
@@ -408,7 +425,7 @@ export const richPageContent = {
           body: 'For general inquiries or operational clarifications, please reach out to the organizing committee directly via email.',
           mediaLabel: 'Contact information',
           mediaType: 'info-panel',
-          bullets: ['General workshop inquiries.', 'Operational follow-up.'],
+          bullets: ['General workshop inquiries: compass.workshop.pisa@gmail.com', 'Operational follow-up for registered participants.'],
         },
       ],
     },
@@ -580,27 +597,44 @@ export const richPageContent = {
       hero: {
         eyebrow: 'Organizzatori',
         title: 'Coordinamento accademico e operativo',
-        intro: 'COMPASS è organizzato dai sei panel chair, tutti ricercatori dottorali del Dottorato Nazionale in AI, con il supporto delle nostre istituzioni partner.',
+        intro: 'COMPASS è organizzato dai sei doctoral panel chair del Dottorato Nazionale in AI, con il supporto delle istituzioni partner e dei supervisori accademici.',
         mediaLabel: 'Comitato organizzatore',
         mediaType: 'landscape',
         image: '/images/venue/SSSA_parco_vista_colonne.png',
       },
       sections: [
         {
-          eyebrow: 'Comitato',
-          title: 'Il Team Organizzativo',
-          body: 'Il programma scientifico e la logistica sono coordinati dai sei chair tematici dei panel, che rappresentano l’ampiezza interdisciplinare del Dottorato Nazionale in Intelligenza Artificiale.',
+          eyebrow: 'Comitato Scientifico',
+          title: 'Doctoral Panel Chairs',
+          body: 'Il programma scientifico e i panel tematici sono coordinati da sei ricercatori dottorali che rappresentano l’ampiezza interdisciplinare del Dottorato Nazionale in Intelligenza Artificiale (PhD-AI.it).',
           mediaLabel: 'Panoramica del comitato',
           mediaType: 'portrait-grid',
+          images: [
+            '/images/speakers/stefano_blando.jpg',
+            '/images/speakers/lorenzo_emer.png',
+            '/images/speakers/alice_musso.png',
+            '/images/speakers/roberta_romano.png',
+            '/images/speakers/roberta_savella.png',
+            '/images/speakers/biancamaria-bombino.jpg',
+          ],
           bullets: ['Sei Doctoral Panel Chair.', 'Dottorato Nazionale in AI (PhD-AI.it).'],
         },
         {
-          eyebrow: 'Ringraziamenti',
-          title: 'Istituzioni Partner',
+          eyebrow: 'Partner',
+          title: 'Istituzioni di Supporto',
           body: 'L’evento è reso possibile da un bando per iniziative scientifiche dell’Università di Pisa, dall’ospitalità e dal supporto della Scuola Superiore Sant’Anna e dal coordinamento del Dottorato Nazionale in AI.',
           mediaLabel: 'Istituzioni di supporto',
-          mediaType: 'landscape',
-          bullets: ['Università di Pisa (Bando scientifico).', 'Scuola Superiore Sant’Anna (Sede e Supporto).', 'Dottorato Nazionale in AI (Coordinamento).'],
+          mediaType: 'logo-grid',
+          images: [
+            '/images/logos/logo-Sant\'anna-cerchio-INGLESE.png',
+            '/images/logos/unipi-color.png',
+            '/images/logos/ai_society_logo.png',
+          ],
+          bullets: [
+            'Università di Pisa (Bando scientifico).',
+            'Scuola Superiore Sant’Anna (Sede e Supporto).',
+            'Dottorato Nazionale in AI (Coordinamento).',
+          ],
         },
         {
           eyebrow: 'Contatti',
@@ -608,7 +642,7 @@ export const richPageContent = {
           body: 'Per domande generali o chiarimenti operativi, si prega di rivolgersi direttamente al comitato organizzatore via email.',
           mediaLabel: 'Informazioni di contatto',
           mediaType: 'info-panel',
-          bullets: ['Richieste generali sul workshop.', 'Follow-up operativo.'],
+          bullets: ['Richieste generali sul workshop: compass.workshop.pisa@gmail.com', 'Follow-up operativo per i partecipanti registrati.'],
         },
       ],
     },
