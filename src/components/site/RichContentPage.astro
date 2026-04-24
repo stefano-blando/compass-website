@@ -26,7 +26,7 @@ const ctaTargets: Partial<Record<RichRenderablePage, { href: string; external?: 
   venue: { href: '#rich-page-sections' },
   registration: { href: '#registration-form' },
   organizers: { href: buildLocalizedPath(locale, 'registration') },
-  faq: { href: buildLocalizedPath(locale, 'organizers') },
+  faq: { href: buildLocalizedPath(locale, 'registration') },
 };
 
 const pageTarget = ctaTargets[page];
