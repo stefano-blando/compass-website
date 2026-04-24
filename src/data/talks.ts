@@ -284,12 +284,12 @@ export const talks: Talk[] = [
   {
     slug: 'pagopa-contribution',
     title: {
-      en: 'Institutional Keynote (TBC)',
-      it: 'Keynote istituzionale (TBC)',
+      en: 'Legal AI & Regulation (TBC)',
+      it: 'Legal AI e Regolazione (TBC)',
     },
     abstract: {
-      en: 'Institutional contribution on the impact of AI in digital public services (TBC).',
-      it: 'Contributo istituzionale sull’impatto dell’AI nei servizi pubblici digitali (TBC).',
+      en: 'Expert contribution on the impact of AI in the legal sector and current regulatory frameworks (TBC).',
+      it: 'Contributo esperto sull’impatto dell’AI nel settore legale e gli attuali quadri normativi (TBC).',
     },
     speakerSlugs: ['pagopa-speaker'],
     sessionSlug: 'pagopa-session',

@@ -512,7 +512,7 @@ describe('site helpers', () => {
       featuredTalkTitle: 'The hidden structure of innovation networks',
     });
     expect(english[6]).toMatchObject({
-      title: 'Institutional Keynote (TBC)',
+      title: 'Keynote: Legal AI & Regulation (TBC)',
     });
   });
 

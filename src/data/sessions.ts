@@ -154,12 +154,12 @@ export const sessions: Session[] = [
   {
     slug: 'pagopa-session',
     title: {
-      en: 'Institutional Keynote (TBC)',
-      it: 'Keynote istituzionale (TBC)',
+      en: 'Keynote: Legal AI & Regulation (TBC)',
+      it: 'Keynote: Legal AI e Regolazione (TBC)',
     },
     description: {
-      en: 'Special session featuring institutional perspectives on AI and digital public services.',
-      it: 'Sessione speciale con prospettive istituzionali su AI e servizi pubblici digitali.',
+      en: 'Special session featuring expert perspectives on the intersection of Law and Artificial Intelligence.',
+      it: 'Sessione speciale con prospettive esperte sull’intersezione tra Diritto e Intelligenza Artificiale.',
     },
     type: 'keynote',
     startsAt: '2026-05-18T17:45:00+02:00',
