@@ -132,6 +132,18 @@ function getMediaBadge(section: RichPageSection, index: number) {
                 ))}
               </ul>
             )}
+            {section.cta && (
+              <div class="rich-page__section-actions">
+                <a 
+                  href={section.cta.href} 
+                  class="btn-secondary" 
+                  target={section.cta.external ? "_blank" : undefined}
+                  rel={section.cta.external ? "noopener noreferrer" : undefined}
+                >
+                  {section.cta.label}
+                </a>
+              </div>
+            )}
           </div>
 
           <div
@@ -694,6 +706,10 @@ function getMediaBadge(section: RichPageSection, index: number) {
 
   .rich-page__section-list li + li {
     margin-top: 0.5rem;
+  }
+
+  .rich-page__section-actions {
+    margin-top: 2rem;
   }
 
   .rich-page__section-media--warm {

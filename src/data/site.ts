@@ -244,6 +244,11 @@ export type RichPageSection = {
   image?: string;
   images?: string[];
   bullets?: string[];
+  cta?: {
+    label: string;
+    href: string;
+    external?: boolean;
+  };
 };
 
 export type RichPageContent = {
@@ -334,11 +339,16 @@ export const richPageContent = {
           title: 'How to Reach Us',
           body: 'Aula 3 is located in the main building of Scuola Superiore Sant’Anna (Piazza Martiri della Libertà, 33). The campus is easily reachable on foot from the city center.',
           mediaLabel: 'Google Maps link',
-          mediaType: 'info-panel',
+          mediaType: 'landscape',
+          image: '/images/venue/SSSA_entrata_arco.png',
           bullets: [
             'Address: Piazza Martiri della Libertà, 33, Pisa.',
-            'Open in Maps: https://share.google/z3rT0X1zxYOYhAbXr',
           ],
+          cta: {
+            label: 'Open in Google Maps',
+            href: 'https://share.google/z3rT0X1zxYOYhAbXr',
+            external: true,
+          },
         },
         {
           eyebrow: 'Travel',
@@ -548,11 +558,16 @@ export const richPageContent = {
           title: 'Come raggiungerci',
           body: 'L’Aula 3 si trova nell’edificio principale della Scuola Superiore Sant’Anna (Piazza Martiri della Libertà, 33). Il campus è facilmente raggiungibile a piedi dal centro città.',
           mediaLabel: 'Link Google Maps',
-          mediaType: 'info-panel',
+          mediaType: 'landscape',
+          image: '/images/venue/SSSA_entrata_arco.png',
           bullets: [
             'Indirizzo: Piazza Martiri della Libertà, 33, Pisa.',
-            'Apri in Maps: https://share.google/z3rT0X1zxYOYhAbXr',
           ],
+          cta: {
+            label: 'Apri in Google Maps',
+            href: 'https://share.google/z3rT0X1zxYOYhAbXr',
+            external: true,
+          },
         },
         {
           eyebrow: 'Viaggio',
