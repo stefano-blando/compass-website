@@ -102,8 +102,8 @@ export const speakers: Speaker[] = [
       it: 'Scuola Superiore Sant’Anna e Università di Pisa',
     },
     roleLabel: {
-      en: 'Panel 3 speaker',
-      it: 'Relatore del Panel 3',
+      en: 'Panel 3 chair and speaker',
+      it: 'Chair e relatore del Panel 3',
     },
     image: '/images/speakers/stefano_blando.jpg',
     bio: {

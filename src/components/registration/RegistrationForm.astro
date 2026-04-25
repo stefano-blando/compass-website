@@ -15,6 +15,9 @@ const labels = {
     affiliation: 'Affiliation',
     position: 'Position',
     researchArea: 'Primary Research Area',
+    attendanceType: 'Attendance Type',
+    inPerson: 'In person (at SSSA, Pisa)',
+    online: 'Online (Zoom)',
     lunch: 'Will you attend the networking lunch (12:45)?',
     dietary: 'Dietary requirements (allergies, preferences)',
     consent: 'I consent to the processing of my personal data for the organization of this workshop.',
@@ -44,6 +47,9 @@ const labels = {
     affiliation: 'Affiliazione',
     position: 'Posizione',
     researchArea: 'Area di ricerca principale',
+    attendanceType: 'Modalità di partecipazione',
+    inPerson: 'In presenza (presso SSSA, Pisa)',
+    online: 'Online (Zoom)',
     lunch: 'Parteciperai al networking lunch (12:45)?',
     dietary: 'Requisiti alimentari (allergie, preferenze)',
     consent: 'Acconsento al trattamento dei miei dati personali per l\'organizzazione del workshop.',
@@ -121,6 +127,21 @@ const privacyNote = locale === 'it'
             <option value="" disabled selected>{t.researchArea}...</option>
             {t.areas.map(a => <option value={a}>{a}</option>)}
           </select>
+        </div>
+
+        <!-- Attendance Type -->
+        <div class="form-group">
+          <label>{t.attendanceType} *</label>
+          <div class="radio-group">
+            <label class="radio-label">
+              <input type="radio" name="attendance_type" value="in-person" required />
+              <span>{t.inPerson}</span>
+            </label>
+            <label class="radio-label">
+              <input type="radio" name="attendance_type" value="online" required />
+              <span>{t.online}</span>
+            </label>
+          </div>
         </div>
 
         <!-- Networking Lunch -->
