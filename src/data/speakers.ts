@@ -236,8 +236,8 @@ export const speakers: Speaker[] = [
     },
     image: '/images/speakers/riccardo_porcedda.png',
     bio: {
-      en: 'Riccardo Porcedda is a speaker in the first panel.',
-      it: 'Riccardo Porcedda è un relatore nel primo panel.',
+      en: 'Riccardo Porcedda is a PhD student in Artificial Intelligence at the University of Pisa and Scuola Superiore Sant’Anna. His research focuses mostly on graph neural networks and synthetic network generation, with a recent focus on role discovery. He holds a background in Physics and Data Science and has been a visiting researcher at the Complexity Science Hub in Vienna and RWTH Aachen University. He also had experiences in startups working in the field of xAI, and liquidity optimization in financial networks (entering also the Fintech Milano Hub of Banca d\'Italia for the project "B2Bridge" while being Chief Data Officer of Liqex Srl). In December 2025 he founded Little-g.AI, a startup focused on the development of efficient foundational models alternatives to LLMs, focusing on applications on the academic publishing processes.',
+      it: 'Riccardo Porcedda è un dottorando in Intelligenza Artificiale presso l’Università di Pisa e la Scuola Superiore Sant’Anna. La sua ricerca si concentra principalmente sulle reti neurali a grafo e sulla generazione di reti sintetiche, con un recente focus sulla scoperta dei ruoli. Ha un background in Fisica e Data Science ed è stato ricercatore ospite presso il Complexity Science Hub di Vienna e la RWTH Aachen University. Ha inoltre maturato esperienze in startup che operano nel campo della xAI e nell’ottimizzazione della liquidità nelle reti finanziarie (entrando anche nel Fintech Milano Hub di Banca d’Italia per il progetto "B2Bridge" come Chief Data Officer di Liqex Srl). Nel dicembre 2025 ha fondato Little-g.AI, una startup focalizzata sullo sviluppo di modelli fondazionali efficienti alternativi agli LLM, con particolare attenzione alle applicazioni nei processi di pubblicazione accademica.',
     },
     type: ['panelist'],
   },
@@ -281,8 +281,8 @@ export const speakers: Speaker[] = [
     slug: 'vittoria-caponecchia',
     name: 'Vittoria Caponecchia',
     affiliation: {
-      en: 'Sant’Anna School of Advanced Studies',
-      it: 'Scuola Superiore Sant’Anna',
+      en: 'Sant’Anna School of Advanced Studies and University of Pisa',
+      it: 'Scuola Superiore Sant’Anna e Università di Pisa',
     },
     roleLabel: {
       en: 'Panel 2 speaker',

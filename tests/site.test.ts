@@ -629,7 +629,7 @@ describe('site helpers', () => {
     expect(getTalksForSession('panel-1-ai-methods').map((talk) => talk.title.en)).toEqual([
       'Alice Musso',
       'Biancamaria Bombino',
-      'Riccardo Porcedda',
+      'RAwR: Role-Aware Rewiring via Approximate Equitable Partition',
       'Corentin Lobet',
       'Roundtable',
     ]);
@@ -650,7 +650,7 @@ describe('site helpers', () => {
   });
 
   it('retrieves talks by slug for detail routes', () => {
-    expect(getTalkBySlug('keynote-guido-germano')?.sessionSlug).toBe('keynote-1');
+    expect(getTalkBySlug('keynote-guido-germano')?.sessionSlug).toBe('keynote-2');
     expect(getTalkBySlug('missing-talk')).toBeUndefined();
   });
 

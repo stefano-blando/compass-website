@@ -26,8 +26,8 @@ export const talks: Talk[] = [
       it: 'Contributo keynote confermato di Guido Germano (University College London).',
     },
     speakerSlugs: ['guido-germano'],
-    sessionSlug: 'keynote-1',
-    startsAt: '2026-05-18T09:45:00+02:00',
+    sessionSlug: 'keynote-2',
+    startsAt: '2026-05-18T12:00:00+02:00',
   },
   {
     slug: 'panel-1-alice-musso',
@@ -60,8 +60,8 @@ export const talks: Talk[] = [
   {
     slug: 'panel-1-riccardo-porcedda',
     title: {
-      en: 'Riccardo Porcedda',
-      it: 'Riccardo Porcedda',
+      en: 'RAwR: Role-Aware Rewiring via Approximate Equitable Partition',
+      it: 'RAwR: Role-Aware Rewiring via Approximate Equitable Partition',
     },
     abstract: {
       en: 'Current panel contribution on forecasting methods.',
@@ -110,8 +110,8 @@ export const talks: Talk[] = [
       it: 'Lezione keynote di Prabhani Kuruppumullage Don (Pennsylvania State University).',
     },
     speakerSlugs: ['prabhani-don'],
-    sessionSlug: 'keynote-2',
-    startsAt: '2026-05-18T12:00:00+02:00',
+    sessionSlug: 'keynote-1',
+    startsAt: '2026-05-18T09:45:00+02:00',
   },
   {
     slug: 'keynote-federica-casarosa',
