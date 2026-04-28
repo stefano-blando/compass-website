@@ -85,8 +85,8 @@ export const speakers: Speaker[] = [
       it: 'Relatrice keynote',
     },
     bio: {
-      en: 'Federica Casarosa is a Research Fellow at the Sant’Anna School of Advanced Studies. Her research focuses on the intersection of law and technology, specifically on judicial cooperation, data protection, and consumer rights.',
-      it: 'Federica Casarosa è Ricercatrice presso la Scuola Superiore Sant’Anna. La sua ricerca si concentra sull’intersezione tra diritto e tecnologia, specificamente su cooperazione giudiziaria, protezione dei dati e diritti dei consumatori.',
+      en: 'Federica Casarosa is a Research affiliate at the Sant\'Anna School of Advanced Studies. Since graduating in Private Law (University of Pisa, 2001) and subsequently obtaining a PhD in Law (European University Institute, 2008), she has focused on the intersection between law and technology, analysing the role of information in consumer contracts, protection of personal data of consumers and Internet users in general, and the impact of cybersecurity regulation on private law. She has experience training legal professionals in her role as scientific coordinator on various training projects led by the Centre for Judicial Cooperation (EUI).',
+      it: 'Federica Casarosa è ricercatrice affiliata presso la Scuola Superiore Sant’Anna. Dopo la laurea in Diritto Privato (Università di Pisa, 2001) e il dottorato in Giurisprudenza (Istituto Universitario Europeo, 2008), si è concentrata sull’intersezione tra diritto e tecnologia, analizzando il ruolo dell’informazione nei contratti dei consumatori, la protezione dei dati personali e l’impatto della regolamentazione della cybersicurezza sul diritto privato. Ha maturato esperienza nella formazione di professionisti legali come coordinatrice scientifica di vari progetti guidati dal Centre for Judicial Cooperation (EUI).',
     },
     links: {
       website: 'https://www.santannapisa.it/it/federica-casarosa',

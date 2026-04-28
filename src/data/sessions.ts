@@ -98,8 +98,8 @@ export const sessions: Session[] = [
       it: 'Keynote 3',
     },
     description: {
-      en: 'Keynote lecture by Federica Casarosa (Scuola Superiore Sant’Anna).',
-      it: 'Lezione keynote di Federica Casarosa (Scuola Superiore Sant’Anna).',
+      en: 'Keynote lecture by Federica Casarosa on disinformation, democracy, and the role of courts.',
+      it: 'Lezione keynote di Federica Casarosa su disinformazione, democrazia e il ruolo delle corti.',
     },
     type: 'keynote',
     startsAt: '2026-05-18T13:45:00+02:00',

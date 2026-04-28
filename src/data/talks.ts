@@ -116,12 +116,12 @@ export const talks: Talk[] = [
   {
     slug: 'keynote-federica-casarosa',
     title: {
-      en: 'Federica Casarosa',
-      it: 'Federica Casarosa',
+      en: 'Disinformation and Democracy: the role of courts at the boundary between the rule of law and freedom of expression in the digital society',
+      it: 'Disinformazione e democrazia: il ruolo delle corti al confine tra stato di diritto e libertà di espressione nella società digitale',
     },
     abstract: {
-      en: 'Confirmed keynote contribution by Federica Casarosa on law and emerging technologies.',
-      it: 'Contributo keynote confermato di Federica Casarosa su diritto e tecnologie emergenti.',
+      en: 'The presentation will argue that the rise of AI‑driven disinformation strategies fundamentally alters the relationship between freedom of expression and the rule of law by amplifying, accelerating, and obscuring manipulative political communication at an unprecedented scale. This development challenges the judiciary’s classical role as a guardian of free expression, raising the risk that interventions justified by opaque AI systems could be misused in contexts of democratic backsliding. Within this transformed landscape, EU instruments such as the Digital Services Act and the AI Act reconfigure the rule of law by imposing transparency, accountability, and risk‑mitigation duties on private actors whose AI technologies increasingly shape democratic discourse.',
+      it: 'La presentazione sosterrà che l\'ascesa delle strategie di disinformazione guidate dall\'IA altera fondamentalmente il rapporto tra libertà di espressione e stato di diritto ampliando, accelerando e oscurando la comunicazione politica manipolatoria su una scala senza precedenti. Questo sviluppo sfida il ruolo classico della magistratura come garante della libera espressione, aumentando il rischio che interventi giustificati da sistemi di IA opachi possano essere usati in modo improprio in contesti di regressione democratica. In questo panorama trasformato, strumenti UE come il Digital Services Act e l\'AI Act riconfigurano lo stato di diritto imponendo obblighi di trasparenza, responsabilità e mitigazione del rischio ad attori privati le cui tecnologie di IA modellano sempre più il discorso democratico.',
     },
     speakerSlugs: ['federica-casarosa'],
     sessionSlug: 'keynote-legal',
