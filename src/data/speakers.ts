@@ -91,7 +91,7 @@ export const speakers: Speaker[] = [
     links: {
       website: 'https://www.santannapisa.it/it/federica-casarosa',
     },
-    image: '/images/keynote/federica-casarosa.jpg',
+    image: '/images/keynote/federica-casarosa.png',
     type: ['keynote'],
   },
   {
