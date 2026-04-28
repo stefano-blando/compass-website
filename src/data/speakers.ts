@@ -349,23 +349,6 @@ export const speakers: Speaker[] = [
     type: ['institutional'],
   },
   {
-    slug: 'panelist-tbc',
-    name: 'Panelist (TBC)',
-    affiliation: {
-      en: 'To be confirmed',
-      it: 'In fase di conferma',
-    },
-    roleLabel: {
-      en: 'Panel speaker',
-      it: 'Relatore di panel',
-    },
-    bio: {
-      en: 'Reserved slot for a panel contributor.',
-      it: 'Slot riservato per un contributore del panel.',
-    },
-    type: ['panelist'],
-  },
-  {
     slug: 'simone-tonini',
     name: 'Simone Tonini',
     affiliation: {
