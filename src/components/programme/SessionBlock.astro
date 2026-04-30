@@ -85,7 +85,17 @@ const emptyState =
       {chairs.length > 0 && (
         <p class="session-block__chairs">
           <span>{copy.chairs}</span>
-          {chairs.map((chair) => chair.name).join(', ')}
+          {chairs.map((chair, idx) => {
+            const isLast = idx === chairs.length - 1;
+            return (
+              <>
+                <a href={buildLocalizedPath(locale, `speakers/${chair.slug}`)} class="session-block__chair-link">
+                  {chair.name}
+                </a>
+                {!isLast && ', '}
+              </>
+            );
+          })}
         </p>
       )}
     </header>
@@ -192,6 +202,17 @@ const emptyState =
     display: block;
     margin-bottom: 0.3rem;
     color: var(--accent-cool);
+  }
+
+  .session-block__chair-link {
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 220ms ease;
+  }
+
+  .session-block__chair-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
   }
 
   .session-block__talks-shell,

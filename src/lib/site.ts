@@ -661,6 +661,7 @@ export function getHomepageFeaturedSpeakers(locale: Locale) {
       role: selection.roleLabel[locale],
       bio: speaker.bio[locale],
       talkTitle: relatedTalk?.title[locale] ?? null,
+      talkSlug: relatedTalk?.slug ?? null,
     }];
   });
 }

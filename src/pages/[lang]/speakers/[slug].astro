@@ -91,7 +91,7 @@ const t = labels[locale];
               {speakerTalks.map(talk => (
                 <a href={buildLocalizedPath(locale, `talks/${talk.slug}`)} class="talk-card">
                   <h3>{talk.title[locale]}</h3>
-                  <p>{talk.abstract[locale].substring(0, 150)}...</p>
+                  <p>{talk.abstract[locale]}</p>
                 </a>
               ))}
             </div>

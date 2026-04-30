@@ -20,7 +20,7 @@ const startsAt = talk.startsAt?.slice(11, 16);
 ---
 
 <li class="talk-item">
-  <a class="talk-item__link" href={buildLocalizedPath(locale, `abstracts#${talk.slug}`)}>
+  <a class="talk-item__link" href={buildLocalizedPath(locale, `talks/${talk.slug}`)}>
     {startsAt && <span class="talk-item__time">{startsAt}</span>}
     <span class="talk-item__content">
       <strong>{talk.title[locale]}</strong>

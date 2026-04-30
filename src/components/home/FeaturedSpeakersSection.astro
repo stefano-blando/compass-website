@@ -43,56 +43,69 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
 
       <div class="featured-speakers__viewport" data-speaker-viewport aria-label={carouselLabel} data-scroll-shift data-scroll-speed="16">
         <div class="featured-speakers__track">
-          {featuredSpeakers.map((speaker, index) => (
-            <article
-              class="featured-speakers__card"
-              style={`--reveal-delay: ${index * 70}ms;`}
-              data-reveal-item
-              data-scroll-shift
-              data-scroll-speed={String(14 + (index % 3) * 5)}
-              data-scroll-direction={index % 2 === 0 ? '-1' : '1'}
-            >
-              <div class="media-shell media-shell--light media-shell--portrait featured-speakers__media featured-speakers__media-shell" aria-hidden="true" data-scroll-shift data-scroll-speed={String(10 + (index % 3) * 4)} data-scroll-direction={index % 2 === 0 ? '1' : '-1'}>
-                <span class="media-shell__badge">{speaker.role}</span>
-                <span class="media-shell__grid"></span>
-                <span class="media-shell__scan"></span>
-                <span class="media-shell__beam"></span>
-                <span class="media-shell__frame"></span>
-                <span class="featured-speakers__card-media-orbit featured-speakers__card-media-orbit--outer"></span>
-                <span class="featured-speakers__card-media-orbit featured-speakers__card-media-orbit--inner"></span>
-                <span class="featured-speakers__card-media-route"></span>
-                
-                {getSpeakerBySlug(speaker.slug)?.image ? (
-                  <div class="featured-speakers__photo">
-                    <img src={resolvePublicPath(getSpeakerBySlug(speaker.slug)!.image!)} alt={speaker.name} />
-                  </div>
-                ) : (
-                  <div class="featured-speakers__monogram">
-                    {speaker.name
-                      .split(' ')
-                      .map((part) => part[0])
-                      .slice(0, 2)
-                      .join('')}
-                  </div>
-                )}
+          {featuredSpeakers.map((speaker, index) => {
+            const profilePath = buildLocalizedPath(locale, `speakers/${speaker.slug}`);
+            return (
+              <article
+                class="featured-speakers__card"
+                style={`--reveal-delay: ${index * 70}ms;`}
+                data-reveal-item
+                data-scroll-shift
+                data-scroll-speed={String(14 + (index % 3) * 5)}
+                data-scroll-direction={index % 2 === 0 ? '-1' : '1'}
+              >
+                <a href={profilePath} class="featured-speakers__media-link">
+                  <div class="media-shell media-shell--light media-shell--portrait featured-speakers__media featured-speakers__media-shell" aria-hidden="true" data-scroll-shift data-scroll-speed={String(10 + (index % 3) * 4)} data-scroll-direction={index % 2 === 0 ? '1' : '-1'}>
+                    <span class="media-shell__badge">{speaker.role}</span>
+                    <span class="media-shell__grid"></span>
+                    <span class="media-shell__scan"></span>
+                    <span class="media-shell__beam"></span>
+                    <span class="media-shell__frame"></span>
+                    <span class="featured-speakers__card-media-orbit featured-speakers__card-media-orbit--outer"></span>
+                    <span class="featured-speakers__card-media-orbit featured-speakers__card-media-orbit--inner"></span>
+                    <span class="featured-speakers__card-media-route"></span>
+                    
+                    {getSpeakerBySlug(speaker.slug)?.image ? (
+                      <div class="featured-speakers__photo">
+                        <img src={resolvePublicPath(getSpeakerBySlug(speaker.slug)!.image!)} alt={speaker.name} />
+                      </div>
+                    ) : (
+                      <div class="featured-speakers__monogram">
+                        {speaker.name
+                          .split(' ')
+                          .map((part) => part[0])
+                          .slice(0, 2)
+                          .join('')}
+                      </div>
+                    )}
 
-                <div class="media-shell__caption">
-                  <strong>{speaker.name}</strong>
-                  <p>{speaker.affiliation[locale]}</p>
+                    <div class="media-shell__caption">
+                      <strong>{speaker.name}</strong>
+                      <p>{speaker.affiliation[locale]}</p>
+                    </div>
+                  </div>
+                </a>
+
+                <p class="featured-speakers__role">{speaker.role}</p>
+                <h3>
+                  <a href={profilePath} class="featured-speakers__name-link">{speaker.name}</a>
+                </h3>
+                <p class="featured-speakers__affiliation">{speaker.affiliation[locale]}</p>
+                <p class="featured-speakers__bio">{speaker.bio}</p>
+
+                <div class="featured-speakers__talk">
+                  <span>{locale === 'it' ? 'Contributo' : 'Contribution'}</span>
+                  {speaker.talkSlug ? (
+                    <a href={buildLocalizedPath(locale, `talks/${speaker.talkSlug}`)} class="featured-speakers__talk-link">
+                      <strong>{speaker.talkTitle ?? speakers.emptyTalkLabel}</strong>
+                    </a>
+                  ) : (
+                    <strong>{speaker.talkTitle ?? speakers.emptyTalkLabel}</strong>
+                  )}
                 </div>
-              </div>
-
-              <p class="featured-speakers__role">{speaker.role}</p>
-              <h3>{speaker.name}</h3>
-              <p class="featured-speakers__affiliation">{speaker.affiliation[locale]}</p>
-              <p class="featured-speakers__bio">{speaker.bio}</p>
-
-              <div class="featured-speakers__talk">
-                <span>{locale === 'it' ? 'Contributo' : 'Contribution'}</span>
-                <strong>{speaker.talkTitle ?? speakers.emptyTalkLabel}</strong>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
       </div>
 
@@ -327,10 +340,36 @@ const carouselLabel = locale === 'it' ? 'Scorri i relatori' : 'Browse speakers';
     text-transform: uppercase;
   }
 
+  .featured-speakers__media-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
   .featured-speakers__card h3 {
     margin: 0.4rem 0 0;
     font-size: 2rem;
     line-height: 0.95;
+  }
+
+  .featured-speakers__name-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 220ms ease;
+  }
+
+  .featured-speakers__name-link:hover {
+    color: var(--accent);
+  }
+
+  .featured-speakers__talk-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 220ms ease;
+  }
+
+  .featured-speakers__talk-link:hover {
+    color: var(--accent);
   }
 
   .featured-speakers__affiliation {

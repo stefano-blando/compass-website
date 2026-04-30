@@ -53,10 +53,27 @@ const publishedTalks = talks.filter(t => t.abstract[locale].length > 50);
           <article class="abstract-item" id={talk.slug}>
             <div class="abstract-item__meta">
               <span class="abstract-item__time">{talk.startsAt?.split('T')[1].substring(0, 5)}</span>
-              <h2 class="abstract-item__title">{talk.title[locale]}</h2>
+              <h2 class="abstract-item__title">
+                <a href={buildLocalizedPath(locale, `talks/${talk.slug}`)}>{talk.title[locale]}</a>
+              </h2>
               {talk.speakerSlugs.length > 0 && (
                 <p class="abstract-item__speakers">
-                  {labels.by} <strong>{getSpeakerNames(talk.speakerSlugs)}</strong>
+                  {labels.by}{' '}
+                  <strong>
+                    {talk.speakerSlugs.map((slug, idx) => {
+                      const speaker = speakers.find((s) => s.slug === slug);
+                      const name = speaker?.name ?? slug;
+                      const isLast = idx === talk.speakerSlugs.length - 1;
+                      return (
+                        <>
+                          <a href={buildLocalizedPath(locale, `speakers/${slug}`)} class="speaker-link">
+                            {name}
+                          </a>
+                          {!isLast && ', '}
+                        </>
+                      );
+                    })}
+                  </strong>
                 </p>
               )}
             </div>
@@ -123,9 +140,30 @@ const publishedTalks = talks.filter(t => t.abstract[locale].length > 50);
     color: var(--ink);
   }
 
+  .abstract-item__title a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 220ms ease;
+  }
+
+  .abstract-item__title a:hover {
+    color: var(--accent);
+  }
+
   .abstract-item__speakers {
     font-size: 1rem;
     color: var(--ink-soft);
+  }
+
+  .speaker-link {
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 220ms ease;
+  }
+
+  .speaker-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
   }
 
   .abstract-item__content {

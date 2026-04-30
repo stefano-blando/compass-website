@@ -103,18 +103,21 @@ const sessionWindow = session
             <span class="talk-detail__media-kicker">{pageCopy.speakerLens}</span>
 
             <div class:list={["talk-detail__portrait-grid", speakers.length === 1 && "talk-detail__portrait-grid--single"]} aria-hidden="true">
-              {speakers.slice(0, 3).map((speaker, idx) => (
-                <div class:list={[
-                  "talk-detail__portrait", 
-                  idx === 1 && "talk-detail__portrait--cool", 
-                  idx === 2 && "talk-detail__portrait--small",
-                  speaker.image && "talk-detail__portrait--has-image"
-                ]}>
-                  {speaker.image ? (
-                    <img src={resolvePublicPath(speaker.image)} alt={speaker.name} class="talk-detail__portrait-img" />
-                  ) : null}
-                </div>
-              ))}
+              {speakers.slice(0, 3).map((speaker, idx) => {
+                const profilePath = buildLocalizedPath(locale, `speakers/${speaker.slug}`);
+                return (
+                  <a href={profilePath} class:list={[
+                    "talk-detail__portrait", 
+                    idx === 1 && "talk-detail__portrait--cool", 
+                    idx === 2 && "talk-detail__portrait--small",
+                    speaker.image && "talk-detail__portrait--has-image"
+                  ]}>
+                    {speaker.image ? (
+                      <img src={resolvePublicPath(speaker.image)} alt={speaker.name} class="talk-detail__portrait-img" />
+                    ) : null}
+                  </a>
+                );
+              })}
               {speakers.length === 0 && (
                 <>
                   <span class="talk-detail__portrait"></span>
@@ -169,22 +172,27 @@ const sessionWindow = session
       <article class="talk-detail__abstract-panel" style="margin-top: 1.5rem;">
         <p class="page-meta__label">{pageCopy.speakers}</p>
         <div class="talk-detail__speaker-grid">
-          {speakers.map((speaker) => (
-            <div class="talk-detail__speaker-card">
-              <div class="talk-detail__speaker-head">
-                {speaker.image && (
-                  <div class="talk-detail__speaker-photo">
-                    <img src={resolvePublicPath(speaker.image)} alt={speaker.name} />
+          {speakers.map((speaker) => {
+            const profilePath = buildLocalizedPath(locale, `speakers/${speaker.slug}`);
+            return (
+              <div class="talk-detail__speaker-card">
+                <div class="talk-detail__speaker-head">
+                  {speaker.image && (
+                    <a href={profilePath} class="talk-detail__speaker-photo">
+                      <img src={resolvePublicPath(speaker.image)} alt={speaker.name} />
+                    </a>
+                  )}
+                  <div>
+                    <h2>
+                      <a href={profilePath} class="talk-detail__speaker-name-link">{speaker.name}</a>
+                    </h2>
+                    <p class="talk-detail__speaker-affiliation">{speaker.affiliation[locale]}</p>
                   </div>
-                )}
-                <div>
-                  <h2>{speaker.name}</h2>
-                  <p class="talk-detail__speaker-affiliation">{speaker.affiliation[locale]}</p>
                 </div>
+                <p>{speaker.bio[locale]}</p>
               </div>
-              <p>{speaker.bio[locale]}</p>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </article>
     </section>
@@ -465,6 +473,16 @@ const sessionWindow = session
     margin: 0;
     font-size: 2rem;
     line-height: 0.95;
+  }
+
+  .talk-detail__speaker-name-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 220ms ease;
+  }
+
+  .talk-detail__speaker-name-link:hover {
+    color: var(--accent);
   }
 
   .talk-detail__speaker-affiliation {

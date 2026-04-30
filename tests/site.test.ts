@@ -646,7 +646,7 @@ describe('site helpers', () => {
 
   it('keeps the published programme aligned with the current workshop agenda', () => {
     expect(sessions).toHaveLength(12);
-    expect(speakers).toHaveLength(20);
+    expect(speakers).toHaveLength(19);
     expect(talks).toHaveLength(20);
 
     expect(sessions.map((session) => session.slug)).toEqual([
@@ -666,7 +666,6 @@ describe('site helpers', () => {
 
     expect(speakers.map((speaker) => speaker.slug)).toEqual(expect.arrayContaining([
       'andrea-vandin',
-      'rettore-sssa',
       'guido-germano',
       'prabhani-don',
       'stefano-blando',
@@ -686,6 +685,7 @@ describe('site helpers', () => {
       'salvatore-ruggieri',
       'federica-casarosa',
     ]));
+    expect(speakers.map((speaker) => speaker.slug)).not.toContain('rettore-sssa');
     expect(speakers.map((speaker) => speaker.slug)).not.toContain('pagopa-speaker');
   });
 
