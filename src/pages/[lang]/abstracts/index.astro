@@ -35,7 +35,9 @@ function getSpeakerNames(slugs: string[]) {
 
 // Filter out roundtables or sessions without abstracts if needed, 
 // but here we show all talks with an actual abstract.
-const publishedTalks = talks.filter(t => t.abstract[locale].length > 50);
+const publishedTalks = talks
+  .filter(t => t.abstract[locale].length > 50 && !t.slug.includes('roundtable'))
+  .sort((a, b) => (a.startsAt ?? '').localeCompare(b.startsAt ?? ''));
 ---
 
 <Layout locale={locale} title={`${labels.title} | COMPASS`} description={labels.intro}>
