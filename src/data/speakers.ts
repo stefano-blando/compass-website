@@ -314,23 +314,6 @@ export const speakers: Speaker[] = [
     type: ['panelist'],
   },
   {
-    slug: 'pagopa-speaker',
-    name: 'Institutional AI Expert (TBC)',
-    affiliation: {
-      en: 'Institutional Partner',
-      it: 'Partner Istituzionale',
-    },
-    roleLabel: {
-      en: 'Keynote speaker',
-      it: 'Relatore keynote',
-    },
-    bio: {
-      en: 'Expert institutional contribution (TBC) on digitalization and artificial intelligence.',
-      it: 'Contributo istituzionale esperto (TBC) su digitalizzazione e intelligenza artificiale.',
-    },
-    type: ['keynote'],
-  },
-  {
     slug: 'francesca-chiaromonte',
     name: 'Francesca Chiaromonte',
     affiliation: {
@@ -338,13 +321,30 @@ export const speakers: Speaker[] = [
       it: 'Scuola Superiore Sant’Anna',
     },
     roleLabel: {
-      en: 'Professor of Statistics',
-      it: 'Professoressa di Statistica',
+      en: 'Professor of Statistics and Director of L’EMbeDS',
+      it: 'Professoressa di Statistica e Direttrice di L’EMbeDS',
     },
     image: '/images/institutional/francesca-chiaromonte.png',
     bio: {
-      en: 'Francesca Chiaromonte is a Professor of Statistics at the Sant’Anna School of Advanced Studies.',
-      it: 'Francesca Chiaromonte è professoressa di Statistica presso la Scuola Superiore Sant’Anna.',
+      en: 'Francesca Chiaromonte is a Professor of Statistics at the Sant’Anna School of Advanced Studies and Director of the Department of Excellence L’EMbeDS.',
+      it: 'Francesca Chiaromonte è professoressa di Statistica presso la Scuola Superiore Sant’Anna e Direttrice del Dipartimento di Eccellenza L’EMbeDS.',
+    },
+    type: ['institutional'],
+  },
+  {
+    slug: 'salvatore-ruggieri',
+    name: 'Salvatore Ruggieri',
+    affiliation: {
+      en: 'University of Pisa',
+      it: 'Università di Pisa',
+    },
+    roleLabel: {
+      en: 'Coordinator of the National PhD in AI for Society',
+      it: 'Coordinatore del Dottorato Nazionale in AI for Society',
+    },
+    bio: {
+      en: 'Salvatore Ruggieri is a Professor of Computer Science at the University of Pisa and Coordinator of the National PhD in AI for Society.',
+      it: 'Salvatore Ruggieri è Professore di Informatica presso l’Università di Pisa e Coordinatore del Dottorato Nazionale in AI for Society.',
     },
     type: ['institutional'],
   },

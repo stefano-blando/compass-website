@@ -2,16 +2,16 @@ import type { Talk } from './types';
 
 export const talks: Talk[] = [
   {
-    slug: 'opening-remarks-vandin-chiaromonte',
+    slug: 'opening-remarks-ruggieri-chiaromonte',
     title: {
       en: 'Opening Remarks',
       it: 'Saluti introduttivi',
     },
     abstract: {
-      en: 'Workshop welcome and institutional framing by Andrea Vandin and Francesca Chiaromonte.',
-      it: 'Benvenuto al workshop e saluti istituzionali a cura di Andrea Vandin e Francesca Chiaromonte.',
+      en: 'Workshop welcome and institutional framing by Salvatore Ruggieri and Francesca Chiaromonte.',
+      it: 'Benvenuto al workshop e saluti istituzionali a cura di Salvatore Ruggieri e Francesca Chiaromonte.',
     },
-    speakerSlugs: ['andrea-vandin', 'francesca-chiaromonte'],
+    speakerSlugs: ['salvatore-ruggieri', 'francesca-chiaromonte'],
     sessionSlug: 'opening-remarks',
     startsAt: '2026-05-18T09:30:00+02:00',
   },
@@ -268,45 +268,17 @@ export const talks: Talk[] = [
     startsAt: '2026-05-18T17:00:00+02:00',
   },
   {
-    slug: 'rector-remarks-talk',
-    title: {
-      en: 'Rector’s Remarks',
-      it: 'Saluti del Rettore',
-    },
-    abstract: {
-      en: 'Closing institutional address by Nicola Vitiello, Rector of Scuola Superiore Sant’Anna.',
-      it: 'Saluti istituzionali conclusivi di Nicola Vitiello, Rettore della Scuola Superiore Sant’Anna.',
-    },
-    speakerSlugs: ['rettore-sssa'],
-    sessionSlug: 'rector-remarks',
-    startsAt: '2026-05-18T17:30:00+02:00',
-  },
-  {
-    slug: 'pagopa-contribution',
-    title: {
-      en: 'Institutional Speaker on Digitalization and AI (TBC)',
-      it: 'Relatore Istituzionale su Digitalizzazione e AI (TBC)',
-    },
-    abstract: {
-      en: 'Expert institutional perspective on the impact of digitalization and artificial intelligence (TBC).',
-      it: 'Prospettiva istituzionale esperta sull’impatto della digitalizzazione e dell’intelligenza artificiale (TBC).',
-    },
-    speakerSlugs: ['pagopa-speaker'],
-    sessionSlug: 'pagopa-session',
-    startsAt: '2026-05-18T17:45:00+02:00',
-  },
-  {
     slug: 'closing-remarks-talk',
     title: {
       en: 'Closing Remarks',
       it: 'Conclusioni',
     },
     abstract: {
-      en: 'Final takeaway and workshop wrap-up.',
-      it: 'Sintesi finale e chiusura del workshop.',
+      en: 'Final takeaway and workshop wrap-up by Andrea Vandin.',
+      it: 'Sintesi finale e chiusura del workshop a cura di Andrea Vandin.',
     },
-    speakerSlugs: ['francesca-chiaromonte'],
+    speakerSlugs: ['andrea-vandin'],
     sessionSlug: 'closing-remarks',
-    startsAt: '2026-05-18T18:15:00+02:00',
+    startsAt: '2026-05-18T17:15:00+02:00',
   },
 ];

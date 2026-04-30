@@ -8,8 +8,8 @@ export const sessions: Session[] = [
       it: 'Saluti introduttivi',
     },
     description: {
-      en: 'Andrea Vandin and Francesca Chiaromonte open the workshop day and frame the agenda.',
-      it: 'Andrea Vandin e Francesca Chiaromonte aprono la giornata e inquadrano l’agenda del workshop.',
+      en: 'Salvatore Ruggieri and Francesca Chiaromonte open the workshop day and frame the agenda.',
+      it: 'Salvatore Ruggieri e Francesca Chiaromonte aprono la giornata e inquadrano l’agenda del workshop.',
     },
     type: 'opening',
     startsAt: '2026-05-18T09:30:00+02:00',
@@ -152,48 +152,18 @@ export const sessions: Session[] = [
     chairSlugs: ['lorenzo-emer', 'stefano-blando'],
   },
   {
-    slug: 'rector-remarks',
-    title: {
-      en: 'Rector’s Remarks',
-      it: 'Saluti del Rettore',
-    },
-    description: {
-      en: 'Institutional closing address by Nicola Vitiello, Rector of Scuola Superiore Sant’Anna.',
-      it: 'Saluti istituzionali conclusivi di Nicola Vitiello, Rettore della Scuola Superiore Sant’Anna.',
-    },
-    type: 'opening',
-    startsAt: '2026-05-18T17:30:00+02:00',
-    endsAt: '2026-05-18T17:45:00+02:00',
-    chairSlugs: [],
-  },
-  {
-    slug: 'pagopa-session',
-    title: {
-      en: 'Keynote: Institutional Speaker on Digitalization and AI (TBC)',
-      it: 'Keynote: Relatore Istituzionale su Digitalizzazione e AI (TBC)',
-    },
-    description: {
-      en: 'Special session featuring institutional perspectives on digitalization and artificial intelligence.',
-      it: 'Sessione speciale con prospettive istituzionali su digitalizzazione e intelligenza artificiale.',
-    },
-    type: 'keynote',
-    startsAt: '2026-05-18T17:45:00+02:00',
-    endsAt: '2026-05-18T18:15:00+02:00',
-    chairSlugs: [],
-  },
-  {
     slug: 'closing-remarks',
     title: {
       en: 'Closing Remarks',
       it: 'Conclusioni',
     },
     description: {
-      en: 'Final workshop takeaways by Francesca Chiaromonte.',
-      it: 'Riflessioni conclusive del workshop a cura di Francesca Chiaromonte.',
+      en: 'Final workshop takeaways by Andrea Vandin.',
+      it: 'Riflessioni conclusive del workshop a cura di Andrea Vandin.',
     },
     type: 'closing',
-    startsAt: '2026-05-18T18:15:00+02:00',
-    endsAt: '2026-05-18T18:30:00+02:00',
+    startsAt: '2026-05-18T17:15:00+02:00',
+    endsAt: '2026-05-18T17:45:00+02:00',
     chairSlugs: [],
   },
   {

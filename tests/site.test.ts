@@ -444,7 +444,7 @@ describe('site helpers', () => {
     expect(faq.sections).toHaveLength(3);
     expect(faq.sections[1]).toMatchObject({
       eyebrow: 'Logistica',
-      title: 'Viaggio e Alloggio',
+      title: 'Sede e Accessibilità',
       mediaType: 'landscape',
     });
     expect(faq.sections[1]?.body).not.toMatch(/riservat/i);
@@ -603,19 +603,9 @@ describe('site helpers', () => {
         endsAt: '2026-05-18T17:15:00+02:00',
       },
       {
-        slug: 'rector-remarks',
-        startsAt: '2026-05-18T17:30:00+02:00',
-        endsAt: '2026-05-18T17:45:00+02:00',
-      },
-      {
-        slug: 'pagopa-session',
-        startsAt: '2026-05-18T17:45:00+02:00',
-        endsAt: '2026-05-18T18:15:00+02:00',
-      },
-      {
         slug: 'closing-remarks',
-        startsAt: '2026-05-18T18:15:00+02:00',
-        endsAt: '2026-05-18T18:30:00+02:00',
+        startsAt: '2026-05-18T17:15:00+02:00',
+        endsAt: '2026-05-18T17:45:00+02:00',
       },
       {
         slug: 'social-dinner',
@@ -655,9 +645,9 @@ describe('site helpers', () => {
   });
 
   it('keeps the published programme aligned with the current workshop agenda', () => {
-    expect(sessions).toHaveLength(14);
-    expect(speakers).toHaveLength(21);
-    expect(talks).toHaveLength(22);
+    expect(sessions).toHaveLength(12);
+    expect(speakers).toHaveLength(20);
+    expect(talks).toHaveLength(20);
 
     expect(sessions.map((session) => session.slug)).toEqual([
       'opening-remarks',
@@ -670,8 +660,6 @@ describe('site helpers', () => {
       'panel-2-legal-ethics',
       'coffee-break-2',
       'panel-3-complexity',
-      'rector-remarks',
-      'pagopa-session',
       'closing-remarks',
       'social-dinner',
     ]);
@@ -695,10 +683,10 @@ describe('site helpers', () => {
       'vittoria-caponecchia',
       'elio-grande',
       'francesca-chiaromonte',
-      'panelist-tbc',
+      'salvatore-ruggieri',
       'federica-casarosa',
     ]));
-    expect(speakers.map((speaker) => speaker.slug)).not.toContain('benedetta-tessa');
+    expect(speakers.map((speaker) => speaker.slug)).not.toContain('pagopa-speaker');
   });
 
   it('aligns speaker contribution metadata with the seeded talk sessions', () => {
