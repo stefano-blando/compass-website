@@ -134,8 +134,8 @@ export const talks: Talk[] = [
       it: 'Dal rischio alla protezione: la vulnerabilità come benchmark per la governance europea dell’IA',
     },
     abstract: {
-      en: 'The advent of AI, particularly generative AI, raises numerous concerns regarding the protection of individuals most exposed to the risks arising from the pervasive use of new technologies.',
-      it: 'L’avvento dell’IA, in particolare dell’IA generativa, solleva numerose preoccupazioni riguardo alla protezione degli individui più esposti ai rischi derivanti dall’uso pervasivo delle nuove tecnologie.',
+      en: 'The advent of AI, particularly generative AI, raises numerous concerns regarding the protection of individuals most exposed to the risks arising from the pervasive use of new technologies across various aspects of daily life. The EU legislator has acknowledged these challenges, consequently mandating respect for the category of so-called "vulnerable" subjects. The discussion aims to address the concept of vulnerability in light of the AI Act, envisaging a governance model in which the protection of fragility becomes the fundamental benchmark for the very legitimacy of technological innovation.',
+      it: 'L’avvento dell’IA, in particolare dell’IA generativa, solleva numerose preoccupazioni riguardo alla protezione degli individui più esposti ai rischi derivanti dall’uso pervasivo delle nuove tecnologie in vari aspetti della vita quotidiana. Il legislatore dell’UE ha riconosciuto queste sfide, imponendo di conseguenza il rispetto della categoria dei cosiddetti soggetti "vulnerabili". La discussione mira ad affrontare il concetto di vulnerabilità alla luce dell’AI Act, prospettando un modello di governance in cui la protezione della fragilità diventi il parametro fondamentale per la legittimità stessa dell’innovazione tecnologica.',
     },
     speakerSlugs: ['roberta-romano'],
     sessionSlug: 'panel-2-legal-ethics',
@@ -148,8 +148,8 @@ export const talks: Talk[] = [
       it: 'Regolamentazione vs Innovazione? Analisi della dicotomia per favorire una ricerca responsabile',
     },
     abstract: {
-      en: 'This talk will challenge the assumption that regulation stifles innovation and discuss responsible research practices.',
-      it: 'Questo intervento metterà in discussione il presupposto che la regolamentazione soffochi l’innovazione e discuterà pratiche di ricerca responsabile.',
+      en: 'The regulatory landscape in the European Union has seen two different trends in the past few years: after a wave of regulations which left us with the AI Act, the Digital Services Act, the Data Governance Act, the Data Act (just to name a few) and other landmark pieces of legislation, the new direction is going towards simplification, following the narrative that “regulation stifles innovation”. This talk will challenge this assumption and discuss responsible research practices to foster ethical innovation in the field of new technologies.',
+      it: 'Il panorama normativo dell’Unione Europea ha visto due tendenze diverse negli ultimi anni: dopo un’ondata di regolamenti che ci hanno lasciato l’AI Act, il Digital Services Act, il Data Governance Act, il Data Act (solo per citarne alcuni) e altri atti legislativi storici, la nuova direzione va verso la semplificazione, seguendo la narrazione che "la regolamentazione soffoca l’innovazione". Questo talk metterà in discussione questo assunto e discuterà pratiche di ricerca responsabile per favorire l’innovazione etica nel campo delle nuove tecnologie.',
     },
     speakerSlugs: ['roberta-savella'],
     sessionSlug: 'panel-2-legal-ethics',
@@ -176,8 +176,8 @@ export const talks: Talk[] = [
       it: 'Agire senza azione: etica e responsabilità nei sistemi di IA (online)',
     },
     abstract: {
-      en: 'Building upon the recognition of the vulnerabilities of the agents involved, exploring dynamically negotiated responsibility.',
-      it: 'Partendo dal riconoscimento delle vulnerabilità degli agenti coinvolti, esplorando la responsabilità negoziata dinamicamente.',
+      en: 'What kind of acting and, consequently, of responsibility arises in the context of artificial intelligence systems? On the one hand, an artificial intelligence system appears capable of an “acting without action” – that is, without a subject – which emerges in our very relationship with the system itself. This would call for a regime of moral responsibility different from that of fault tout court. Rather, by building upon the recognition of the vulnerabilities of the agents involved, a kind of dynamically negotiated responsibility would seem to arise. On the other hand, this appears to align well with the more general legal orientation, which tends toward liability without fault, or objective liability. Setting aside doctrinal nuances, there may be a correspondence between the two domains, namely the ethical and the legal one. Such an approach, which will be described during the speech, could do justice to already proposed solutions, such as the logging of interactions provided for in the EU Artificial Intelligence Act.',
+      it: 'Che tipo di agire e, di conseguenza, di responsabilità sorge nel contesto dei sistemi di intelligenza artificiale? Da un lato, un sistema di intelligenza artificiale appare capace di un "agire senza azione" – cioè senza un soggetto – che emerge proprio nel nostro rapporto con il sistema stesso. Ciò richiederebbe un regime di responsabilità morale diverso da quello della colpa tout court. Piuttosto, partendo dal riconoscimento delle vulnerabilità degli agenti coinvolti, sembrerebbe sorgere una sorta di responsabilità dinamicamente negoziata. D’altro canto, ciò appare in linea con l’orientamento giuridico più generale, che tende verso la responsabilità senza colpa, o responsabilità oggettiva. Mettendo da parte le sfumature dottrinali, potrebbe esserci una corrispondenza tra i due domini, quello etico e quello legale. Un tale approccio, che verrà descritto durante l’intervento, potrebbe rendere giustizia alle soluzioni già proposte, come la registrazione delle interazioni prevista dall’AI Act dell’UE.',
     },
     speakerSlugs: ['elio-grande'],
     sessionSlug: 'panel-2-legal-ethics',
@@ -242,12 +242,12 @@ export const talks: Talk[] = [
   {
     slug: 'panel-3-anna-gallo',
     title: {
-      en: 'Anna Gallo',
-      it: 'Anna Gallo',
+      en: 'Unveiling Signed Complexity: A Statistically Validated Bipartite Projection',
+      it: 'Svelare la Signed Complexity: una proiezione bipartita statisticamente validata',
     },
     abstract: {
-      en: 'Current panel contribution on complexity and economic networks.',
-      it: 'Contributo di panel sulla complessità e le reti economiche.',
+      en: 'Bipartite networks provide a fundamental insight into the organisation of complex real-world systems. A key challenge in modeling these systems is devising a monopartite projection that preserves the intricate information encoded within the original bipartite structure. We propose an unsupervised algorithm to obtain statistically validated projections of bipartite signed networks, according to which any two nodes sharing a statistically significant number of concordant (discordant) motifs are connected by a positive (negative) edge. By assessing statistical significance through four distinct Exponential Random Graph Models (ERGMs), we generate link-specific p-values filtered via multiple testing correction. After validating the method on synthetic configurations from a fully controllable generative model, we apply it to three real-world social networks. In all cases, the algorithm detects non-trivial mesoscopic structures that cannot be explained by the constraints of the null models, thus unveiling the authentic signed complexity of the underlying system. Finally, we show how the inherent flexibility of our framework allows for easy extensions to more sophisticated null models and different complex systems.',
+      it: 'Le reti bipartite forniscono una visione fondamentale dell’organizzazione dei sistemi complessi del mondo reale. Una sfida chiave nella modellazione di questi sistemi è l’ideazione di una proiezione monopartitica che preservi le intricate informazioni codificate all’interno della struttura bipartita originale. Proponiamo un algoritmo non supervisionato per ottenere proiezioni statisticamente validate di reti bipartite signed, secondo cui due nodi che condividono un numero statisticamente significativo di motivi concordanti (discordanti) sono collegati da un arco positivo (negativo). Valutando la significatività statistica attraverso quattro distinti Exponential Random Graph Models (ERGM), generiamo p-value specifici per i collegamenti filtrati tramite correzione per test multipli. Dopo aver convalidato il metodo su configurazioni sintetiche da un modello generativo completamente controllabile, lo applichiamo a tre reti sociali del mondo reale. In tutti i casi, l’algoritmo rileva strutture mesoscopiche non banali che non possono essere spiegate dai vincoli dei modelli nulli, svelando così l’autentica complessità signed del sistema sottostante. Infine, mostriamo come la flessibilità intrinseca del nostro framework consenta facili estensioni a modelli nulli più sofisticati e a diversi sistemi complessi.',
     },
     speakerSlugs: ['anna-gallo'],
     sessionSlug: 'panel-3-complexity',
