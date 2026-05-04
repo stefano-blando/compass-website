@@ -214,12 +214,12 @@ export const talks: Talk[] = [
   {
     slug: 'panel-3-stefano-blando',
     title: {
-      en: 'Stefano Blando',
-      it: 'Stefano Blando',
+      en: 'Network Topology and Machine Learning for Systemic Risk: From Early Warning to Trading Strategies',
+      it: 'Topologia delle Reti e Machine Learning per il Rischio Sistemico: Dagli Early Warning alle Strategie di Trading',
     },
     abstract: {
-      en: 'Current panel contribution on complex economic systems.',
-      it: 'Contributo di panel sui sistemi economici complessi.',
+      en: 'This work investigates the application of network topology and machine learning for systemic risk prediction in equity markets. Using daily returns from S&P 500 constituents, we construct dynamic correlation networks to extract high-dimensional topological features, including eigenvalue-based metrics (absorption ratio, network entropy) and graph-theoretic centralities. We evaluate a comparative suite of predictive architectures—ranging from Gradient Boosted Decision Trees to Graph Neural Networks (GraphSAGE, GAT) and LSTMs—validated through walk-forward cross-validation with purging. Our findings reveal that network topology exhibits statistically significant anomalies an average of 67 days prior to crisis onset, with lead-lag analysis confirming predictive causality over traditional implied volatility measures (VIX). Furthermore, we examine market microstructure through the lens of herding behavior (CCK framework) and volatility spillovers (Diebold-Yilmaz), ultimately translating these signals into economically significant trading strategies such as Kelly-style probability scaling.',
+      it: 'Questo lavoro indaga l\'integrazione tra topologia delle reti e machine learning per la previsione del rischio sistemico nei mercati azionari. Utilizzando i rendimenti giornalieri dei componenti dello S&P 500, costruiamo reti di correlazione dinamiche per estrarre feature topologiche ad alta dimensione, inclusi parametri basati sugli autovalori (absorption ratio, network entropy) e centralità teoriche dei grafi. Valutiamo una suite comparativa di architetture predittive — dai Gradient Boosted Decision Trees alle Graph Neural Networks (GraphSAGE, GAT) e LSTM — validate tramite walk-forward cross-validation con purging. I risultati dimostrano che la topologia della rete manifesta anomalie statisticamente significative con una media di 67 giorni di anticipo rispetto all\'inizio delle crisi, con un\'analisi lead-lag che conferma la causalità predittiva rispetto alle misure tradizionali di volatilità implicita (VIX). Infine, esaminiamo la microstruttura del mercato attraverso il comportamento di herding (framework CCK) e gli spillover di volatilità (metodologia Diebold-Yilmaz), traducendo questi segnali in strategie di trading economicamente significative come il probability scaling in stile Kelly.',
     },
     speakerSlugs: ['stefano-blando'],
     sessionSlug: 'panel-3-complexity',
