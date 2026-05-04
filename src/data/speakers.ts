@@ -126,7 +126,7 @@ export const speakers: Speaker[] = [
       en: 'Panel 1 chair and speaker',
       it: 'Chair e relatrice del Panel 1',
     },
-    image: '/images/speakers/biancamaria-bombino.jpg',
+    image: '/images/speakers/biancamaria-bombino.jpeg',
     bio: {
       en: 'Biancamaria Bombino is a PhD candidate at IIT-CNR.',
       it: 'Biancamaria Bombino è una dottoranda presso l\'IIT-CNR.',
