@@ -119,8 +119,8 @@ export const speakers: Speaker[] = [
     slug: 'biancamaria-bombino',
     name: 'Biancamaria Bombino',
     affiliation: {
-      en: 'University of Pisa and IIT-CNR',
-      it: 'Università di Pisa e IIT-CNR',
+      en: 'IIT-CNR and University of Pisa',
+      it: 'IIT-CNR e Università di Pisa',
     },
     roleLabel: {
       en: 'Panel 1 chair and speaker',
@@ -128,8 +128,8 @@ export const speakers: Speaker[] = [
     },
     image: '/images/speakers/biancamaria-bombino.jpeg',
     bio: {
-      en: 'Biancamaria Bombino is a PhD candidate at IIT-CNR.',
-      it: 'Biancamaria Bombino è una dottoranda presso l\'IIT-CNR.',
+      en: 'Biancamaria Bombino is a PhD student in the National Italian PhD program in AI for Society at IIT-CNR. She holds a Bachelor\'s degree in Computer Science and a Master\'s degree in Data Science and Business Informatics from the University of Pisa. She previously held a graduate research fellowship at ISTI-CNR. Her research focuses on network science and large language models.',
+      it: 'Biancamaria Bombino è una dottoranda del Dottorato Nazionale in AI for Society presso l\'IIT-CNR. Ha conseguito la laurea triennale in Informatica e la laurea magistrale in Data Science and Business Informatics presso l\'Università di Pisa. In precedenza ha ricoperto un assegno di ricerca presso l\'ISTI-CNR. La sua ricerca si concentra sulla network science e sui modelli di linguaggio di grandi dimensioni.',
     },
     type: ['panelist', 'chair', 'organizer'],
   },

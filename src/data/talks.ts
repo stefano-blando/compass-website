@@ -46,12 +46,12 @@ export const talks: Talk[] = [
   {
     slug: 'panel-1-biancamaria-bombino',
     title: {
-      en: 'Biancamaria Bombino',
-      it: 'Biancamaria Bombino',
+      en: 'How online environments shape public debate',
+      it: 'Come gli ambienti online influenzano il dibattito pubblico',
     },
     abstract: {
-      en: 'Current panel contribution on predictive modeling applications.',
-      it: 'Contributo di panel sulle applicazioni della modellazione predittiva.',
+      en: 'Online public debate does not evolve in a neutral space: the structure of interactions and the context in which they occur can significantly shape how discussions develop. While some environments amplify polarization and conflict, others foster support and empathy. This talk explores these differences by examining online discussions across contrasting information environments, showing how patterns of interaction and language vary, and what these dynamics reveal about the evolution of public discourse in digital spaces.',
+      it: 'Il dibattito pubblico online non si evolve in uno spazio neutrale: la struttura delle interazioni e il contesto in cui avvengono possono plasmare in modo significativo lo sviluppo delle discussioni. Mentre alcuni ambienti amplificano la polarizzazione e il conflitto, altri favoriscono il supporto e l\'empatia. Questo talk esplora queste differenze esaminando le discussioni online in ambienti informativi contrastanti, mostrando come variano i modelli di interazione e di linguaggio, e cosa rivelano queste dinamiche sull\'evoluzione del discorso pubblico negli spazi digitali.',
     },
     speakerSlugs: ['biancamaria-bombino'],
     sessionSlug: 'panel-1-ai-methods',
