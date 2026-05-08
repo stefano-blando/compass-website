@@ -254,8 +254,8 @@ export const speakers: Speaker[] = [
     },
     image: '/images/speakers/giuseppe_squillace.png',
     bio: {
-      en: 'Giuseppe Squillace is a speaker in the third panel.',
-      it: 'Giuseppe Squillace è un relatore nel terzo panel.',
+      en: 'Giuseppe Squillace received his Ph.D. in Computer Science from the IMT School for Advanced Studies Lucca in 2024. He is currently a postdoctoral researcher at CentraleSupélec, Université Paris-Saclay. His research interests include machine learning, optimization, multi-agent systems, and network theory.',
+      it: 'Giuseppe Squillace ha conseguito il dottorato di ricerca in Informatica presso la Scuola IMT Alti Studi Lucca nel 2024. Attualmente è ricercatore post-dottorato presso CentraleSupélec, Université Paris-Saclay. I suoi interessi di ricerca includono machine learning, ottimizzazione, sistemi multi-agente e teoria delle reti.',
     },
     type: ['panelist'],
   },

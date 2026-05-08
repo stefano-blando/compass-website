@@ -633,7 +633,7 @@ describe('site helpers', () => {
     expect(getTalksForSession('panel-3-complexity').map((talk) => talk.title.en)).toEqual([
       'The hidden structure of innovation networks',
       'Network Topology and Machine Learning for Systemic Risk: From Early Warning to Trading Strategies',
-      'Giuseppe Squillace (online)',
+      'Scalable Network Embedding with Approximate Equitable Partitions (online)',
       'Unveiling Signed Complexity: A Statistically Validated Bipartite Projection',
       'Roundtable',
     ]);
