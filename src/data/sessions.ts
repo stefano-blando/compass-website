@@ -68,8 +68,8 @@ export const sessions: Session[] = [
       it: 'Keynote 2',
     },
     description: {
-      en: 'Keynote lecture by Guido Germano (University College London).',
-      it: 'Lezione keynote di Guido Germano (University College London).',
+      en: 'Keynote lecture by Guido Germano on machine learning applications in finance.',
+      it: 'Lezione keynote di Guido Germano sulle applicazioni del machine learning nella finanza.',
     },
     type: 'keynote',
     startsAt: '2026-05-18T12:00:00+02:00',

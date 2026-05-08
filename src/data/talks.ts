@@ -18,12 +18,12 @@ export const talks: Talk[] = [
   {
     slug: 'keynote-guido-germano',
     title: {
-      en: 'Guido Germano',
-      it: 'Guido Germano',
+      en: 'Applications of machine learning in finance',
+      it: 'Applicazioni del machine learning nella finanza',
     },
     abstract: {
-      en: 'Confirmed keynote contribution by Guido Germano (University College London).',
-      it: 'Contributo keynote confermato di Guido Germano (University College London).',
+      en: 'The talk covers recent applications of machine learning in finance I have been working on in the last ten years with my PhD students: 1. The use of large language models to assess sentiment in financial news, correlate it with returns, and deploy it in sentiment-based trading strategies; 2. The use of reinforcement learning and sentiment-augmented reinforcement learning in portfolio allocation. 3. The use of deep neural networks as surrogates to speed up the pricing with stochastic models; 4. The use of deep neural networks for model calibration, i.e. the forward-looking estimation of model parameters from the market prices of European options; 5. The use of various machine learning techniques (logistic regression, support vector machines, neural networks, Bayesian regularisation, k-nearest neighbours, etc.) for credit scoring. Not all these approaches work equally well or have an edge with respect to traditional methods just because they are based on machine learning: the first has the most spectacular results, the fifth the least, the third and fourth depend on the model.',
+      it: 'Il talk illustra le recenti applicazioni del machine learning in finanza su cui ho lavorato negli ultimi dieci anni con i miei dottorandi: 1. L\'uso di large language models per valutare il sentiment nelle notizie finanziarie, correlarlo con i rendimenti e impiegarlo in strategie di trading basate sul sentiment; 2. L\'uso del reinforcement learning e del sentiment-augmented reinforcement learning nell\'allocazione di portafoglio; 3. L\'uso di reti neurali profonde come surrogati per velocizzare il pricing con modelli stocastici; 4. L\'uso di reti neurali profonde per la calibrazione del modello, ovvero la stima forward-looking dei parametri del modello a partire dai prezzi di mercato delle opzioni europee; 5. L\'uso di varie tecniche di machine learning (regressione logistica, support vector machines, reti neurali, regolarizzazione bayesiana, k-nearest neighbours, ecc.) per il credit scoring. Non tutti questi approcci funzionano ugualmente bene o hanno un vantaggio rispetto ai metodi tradizionali solo perché basati sul machine learning: il primo ha i risultati più spettacolari, il quinto i meno, il terzo e il quarto dipendono dal modello.',
     },
     speakerSlugs: ['guido-germano'],
     sessionSlug: 'keynote-2',

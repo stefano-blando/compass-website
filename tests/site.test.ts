@@ -618,9 +618,9 @@ describe('site helpers', () => {
   it('returns the current lineups for the three thematic panels', () => {
     expect(getTalksForSession('panel-1-ai-methods').map((talk) => talk.title.en)).toEqual([
       'Alice Musso',
-      'Biancamaria Bombino',
+      'How online environments shape public debate',
       'RAwR: Role-Aware Rewiring via Approximate Equitable Partition',
-      'Corentin Lobet',
+      'Model Readability and Explanatory Alignment',
       'Roundtable',
     ]);
     expect(getTalksForSession('panel-2-legal-ethics').map((talk) => talk.title.en)).toEqual([
@@ -632,9 +632,9 @@ describe('site helpers', () => {
     ]);
     expect(getTalksForSession('panel-3-complexity').map((talk) => talk.title.en)).toEqual([
       'The hidden structure of innovation networks',
-      'Stefano Blando',
+      'Network Topology and Machine Learning for Systemic Risk: From Early Warning to Trading Strategies',
       'Giuseppe Squillace (online)',
-      'Anna Gallo',
+      'Unveiling Signed Complexity: A Statistically Validated Bipartite Projection',
       'Roundtable',
     ]);
   });
