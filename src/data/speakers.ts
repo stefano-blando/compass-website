@@ -164,8 +164,8 @@ export const speakers: Speaker[] = [
     },
     image: '/images/speakers/alice_musso.png',
     bio: {
-      en: 'Alice Musso is a PhD student at ISTI-CNR.',
-      it: 'Alice Musso è una dottoranda presso l\'ISTI-CNR.',
+      en: 'Alice Musso is a PhD student in the National Italian PhD Program in Artificial Intelligence for Society at ISTI-CNR. She holds a Bachelor’s degree in Foreign Languages and Literature from the University of Florence and a Master’s degree in Linguistics from the University of Pisa, with a specialization in Computational Linguistics. She previously held a graduate research fellowship at ISTI-CNR. Her research focuses on Natural Language Processing and Machine Learning in the field of Cultural Heritage.',
+      it: 'Alice Musso è una dottoranda nel Programma Nazionale di Dottorato in Intelligenza Artificiale per la Società presso l\'ISTI-CNR. Ha conseguito la laurea triennale in Lingue e Letterature Straniere presso l\'Università di Firenze e la laurea magistrale in Linguistica presso l\'Università di Pisa, con una specializzazione in Linguistica Computazionale. In precedenza ha ricoperto un assegno di ricerca presso l\'ISTI-CNR. La sua ricerca si concentra sul Natural Language Processing e sul Machine Learning nel campo del Patrimonio Culturale.',
     },
     type: ['panelist', 'chair', 'organizer'],
   },

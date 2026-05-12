@@ -124,6 +124,10 @@ export const pageMetadata = {
       title: 'FAQ | COMPASS',
       description: 'Practical workshop questions, logistics, and quick answers.',
     },
+    abstracts: {
+      title: 'Abstracts | COMPASS',
+      description: 'Book of abstracts for the COMPASS workshop contributions.',
+    },
   },
   it: {
     home: {
@@ -157,6 +161,10 @@ export const pageMetadata = {
     faq: {
       title: 'FAQ | COMPASS',
       description: 'Domande pratiche sul workshop, logistica e risposte rapide.',
+    },
+    abstracts: {
+      title: 'Abstract | COMPASS',
+      description: 'Libro degli abstract per i contributi del workshop COMPASS.',
     },
   },
 } as const satisfies Record<Locale, Record<SitePageKey, { title: string; description: string }>>;
@@ -485,6 +493,17 @@ export const richPageContent = {
       ],
       ctaLabel: 'Register for the workshop',
     },
+    abstracts: {
+      hero: {
+        eyebrow: 'Abstracts',
+        title: 'Workshop Contributions',
+        intro: 'Detailed abstracts and research summaries for all talks and panel contributions presented during the COMPASS workshop.',
+        mediaLabel: 'Abstracts collection',
+        mediaType: 'landscape',
+        image: '/images/venue/aula3_a.jpg',
+      },
+      sections: [],
+    },
   },
   it: {
     about: {
@@ -703,6 +722,17 @@ export const richPageContent = {
         },
       ],
       ctaLabel: 'Iscriviti al workshop',
+    },
+    abstracts: {
+      hero: {
+        eyebrow: 'Abstract',
+        title: 'Contributi del Workshop',
+        intro: 'Abstract dettagliati e sintesi delle ricerche per tutti gli interventi e i contributi dei panel presentati durante il workshop COMPASS.',
+        mediaLabel: 'Raccolta abstract',
+        mediaType: 'landscape',
+        image: '/images/venue/aula3_a.jpg',
+      },
+      sections: [],
     },
   },
 } as const satisfies Record<Locale, Record<RichPageKey, RichPageContent>>;
